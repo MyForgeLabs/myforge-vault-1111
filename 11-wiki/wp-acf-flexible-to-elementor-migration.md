@@ -659,5 +659,3 @@ Ez a playbook + példa kód publikus GitHub repó alapanyaga lesz: `acf-to-eleme
 
 ## Kapcsolódó
 
-<!-- auto-enriched 2026-05-18: semantic inbound via vault-search -->
-- [[elementor-repeater-media-condition-gotcha]] (sem-rokon, score=0.54)

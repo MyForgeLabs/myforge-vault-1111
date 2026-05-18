@@ -71,7 +71,3 @@ A `limit` csak rate-limit. Bot detection ellen védi az appot, de **autentikáci
 
 - [[05-Memory/Infrastructure#UFW rules]]
 - [[11-wiki/openssh-config-d-load-order]]
-<!-- auto-enriched 2026-05-18: +3 semantic cross-link via vault-search -->
-- [[crystallize-threshold-ramp]] (sem-rokon, score=0.52)
-- [[g-eval-bias-mitigation-pattern]] (sem-rokon, score=0.52)
-- [[Crystallization-protocol]] (sem-rokon, score=0.51)

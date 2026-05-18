@@ -98,5 +98,3 @@ A B-1 Week 5 subagent-fanout 30-sample paired kalibráció (`06-Audits/2026-05-1
 - [[sv-05-crystallization-automation]] — B-1 research
 - [[sv-07-continuous-evaluation]] — független eval-signal (B-3 L2 NLI)
 - [[smart-trigger-cost-pattern]] — kapcsolódó cost-savings pattern
-<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
-- [[ufw-limit-rate-limit-pattern]] (sem-rokon, score=0.52)

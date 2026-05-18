@@ -135,5 +135,3 @@ Plus 4 auto-disable trigger. Részletek: [[.vault-rsi/README.md]] + [[02-Project
 - [[11-wiki/sprint-day-0-skeleton-first]] — Day 0 playbook
 - [[07-Decisions/2026-05-12 sv-2 recursive self-improvement arch]] — B-8 ADR, az első alkalmazás
 - [[07-Decisions/2026-05-12 sv-3 multi-agent orchestration arch]] — Critic-agent (4. réteg forrása)
-<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
-- [[backout-trigger-pattern]] (sem-rokon, score=0.70)

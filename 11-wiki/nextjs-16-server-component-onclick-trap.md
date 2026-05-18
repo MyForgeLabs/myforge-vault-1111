@@ -71,5 +71,3 @@ A `digest` kódot meg lehet feleltetni a renderelt oldalon a `<RootErrorBoundary
 - [[nextjs-server-component-in-client-tree]] — másik SC↔Client interop-csapda
 - [[nextjs-search-params-force-dynamic]] — Next.js 15+ Suspense + searchParams
 </content>
-<!-- auto-enriched 2026-05-18: +1 semantic cross-link via vault-search -->
-- [[nextjs-turbopack-gotchas]] (sem-rokon, score=0.35)

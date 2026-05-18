@@ -319,8 +319,6 @@ notebooklm generate audio -n a60d993b-1926-40cc-b947-94b3ef663f00
 - [[11-wiki/Karpathy-LLM-Wiki-pattern]] — a „compilation" elv amit a NotebookLM Audio Overview generálási folyamata közvetlen analógia
 - [[11-wiki/Crystallization-protocol]] — a Sprint 3 (11.11stop hook) integrációs pontja
 - [[11-wiki/cloakbrowser-fingerprint-bypass]] — fallback ha Cloudflare/Turnstile blokk
-<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
-- [[web-speech-api-continuous-stt]] (sem-rokon, score=0.56)
 ## NotebookLM-konverzáció
 
 - **Notebook ID:** `a60d993b-1926-40cc-b947-94b3ef663f00`

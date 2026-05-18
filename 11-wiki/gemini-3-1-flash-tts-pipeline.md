@@ -188,5 +188,3 @@ A teljes hangalapú projekt-pipeline [[02-Projects/mfl-voice]] néven külön pr
 - [[02-Projects/mfl-voice]]
 - [[11-wiki/gemini-2-5-flash-thinking-budget]]
 - [[11-wiki/notebooklm-cli-gotchas]]
-<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
-- [[elementor-repeater-media-condition-gotcha]] (sem-rokon, score=0.53)

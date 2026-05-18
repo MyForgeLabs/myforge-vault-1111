@@ -60,7 +60,3 @@ A widget `register_controls()` PHP-jét nézd meg minden `condition` kulcs után
 
 - [[02-Projects/foxxi]] — itt élesben szembesültünk vele
 - Elementor docs: https://developers.elementor.com/docs/widgets/widget-controls/ (MEDIA control + conditional display)
-<!-- auto-enriched 2026-05-18: +3 semantic cross-link via vault-search -->
-- [[wp-elementor-template-conflicts]] (sem-rokon, score=0.58)
-- [[wp-acf-flexible-to-elementor-migration]] (sem-rokon, score=0.54)
-- [[gemini-3-1-flash-tts-pipeline]] (sem-rokon, score=0.53)

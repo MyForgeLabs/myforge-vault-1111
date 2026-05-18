@@ -134,7 +134,3 @@ ss -tlnp | grep -E ":(5900|6080)"
 
 - [[05-Memory/Infrastructure#VNC]]
 - [[11-wiki/notebooklm-headless-login-fifo]]
-<!-- auto-enriched 2026-05-18: +3 semantic cross-link via vault-search -->
-- [[claude-code-subagent-fanout]] (sem-rokon, score=0.54)
-- [[apt-upgrade-vs-install-new-packages]] (sem-rokon, score=0.54)
-- [[llm-daemon-warm-pattern]] (sem-rokon, score=0.53)

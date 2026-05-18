@@ -134,9 +134,8 @@ $heading = $is_en ? 'Our services' : __('Szolgáltatásaink', 'foxxi');
 
 - [[11-wiki/wp-acf-flexible-to-elementor-migration]] — ACF→Elementor migrációs módszertan
 - [[02-Projects/foxxi]] — projekt-állapot
-<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+<!-- auto-enriched 2026-05-18: +4 semantic inbound via vault-search  (FP-fixed: -1) -->
 - [[wpml-multilingual-pattern-family]] (sem-rokon, score=0.33)
-- [[elementor-repeater-media-condition-gotcha]] (sem-rokon, score=0.58)
 - [[wp-cli-shared-db-export-fallback]] (sem-rokon, score=0.51)
 - [[wp-elementor-bricks-json-escape-trap]] (sem-rokon, score=0.62)
 - [[wp-notion-elementor-import-pattern]] (sem-rokon, score=0.58)

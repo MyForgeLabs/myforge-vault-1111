@@ -117,5 +117,3 @@ A B-2 Week 3 telemetria-monitorozó (`vault-embed-freshness`) jelenleg **chunk-c
 - [[sv-02-recursive-self-improvement]] — B-2 sprint host
 - [[two-tier-graph-extraction]] — graphify vs Memgraph LLM komplementer
 - [[../06-Audits/2026-05-18 vault-meta NB cross-projekt Q4-Q5]] — forrás-audit
-<!-- auto-enriched 2026-05-18: +1 semantic cross-link via vault-search -->
-- [[sv-06-world-model-knowledge-graph]] (sem-rokon, score=0.36)

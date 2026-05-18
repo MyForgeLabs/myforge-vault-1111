@@ -125,7 +125,3 @@ Generate everything else as specified. The product zone stays empty — it will 
 
 - [[07-Decisions/2026-05-04 Multi-category rendszer + új árazási szabályok v2]] — kontextus
 - [[02-Projects/kgc-berles]] — Instagram carousel prompt-tár forrása
-<!-- auto-enriched 2026-05-18: +3 semantic cross-link via vault-search -->
-- [[destructive-action-hard-confirm-ux]] (sem-rokon, score=0.54)
-- [[sv-05-crystallization-automation]] (sem-rokon, score=0.52)
-- [[sv-02-recursive-self-improvement]] (sem-rokon, score=0.52)
