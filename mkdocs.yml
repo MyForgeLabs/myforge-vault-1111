@@ -64,6 +64,23 @@ plugins:
       minify_html: true
       minify_css: true
       minify_js: true
+  - rss:
+      match_path: "wiki/.*\\.en"
+      date_from_meta:
+        as_creation: created
+        as_update: updated
+      categories:
+        - tags
+      comments_path: "#__comments"
+      feeds_filenames:
+        rss_created: feed.xml
+        rss_updated: feed-updated.xml
+        json_created: feed.json
+        json_updated: feed-updated.json
+      url_parameters:
+        utm_source: "myforge-vault-1111"
+        utm_medium: RSS
+        utm_campaign: "feed-syndication"
 
 markdown_extensions:
   - admonition
@@ -93,6 +110,7 @@ nav:
       - Full (4.6 MB): graph/index.html
   - Evergreen Wiki:
       - Áttekintés: wiki/Index.md
+  - Audio Overviews: audio/Index.md
   - ADR (Decisions):
       - Áttekintés: decisions/Index.md
   - Meta:

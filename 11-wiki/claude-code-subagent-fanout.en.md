@@ -13,7 +13,7 @@ translated_from: claude-code-subagent-fanout.md
 
 > **TL;DR:** 267 files mutated via LLM in **~5 minutes, $0 marginal cost, zero API key**, using 8 parallel Claude Code subagents inside a single subscription. 267/267 YAML-valid, 534/534 audit-compliant. Across 7 production iterations: **174 subagent calls, ~12,300 new triplets, $0 total**.
 
-> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[claude-code-subagent-fanout.md]] (Hungarian version).
+> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[claude-code-subagent-fanout]] (Hungarian version).
 
 The classic "apply LLM-aided mutation to N files" task (frontmatter normalization, summary generation, taxonomy tagging) can be solved **without any Anthropic API key** using Claude Code's subagent-fanout pattern: within your Claude Code subscription, you spawn N parallel `general-purpose` subagents — each operates in its own scope, mutates a batch of files, then returns an aggregated report. The sweet spot is **30 files per agent, 8 agents in parallel, ~80-100 sec per agent**.
 
@@ -164,6 +164,13 @@ Across 7 production iterations (174 subagent calls, ~12,300 new triplets, $0 cos
 **Lesson (b) — a subagent CANNOT call the `Task` tool itself:** a "Phase 2 fanout" subagent intentionally wanted to spawn 10 sub-subagents for a 3061-fact LLM-classify, but the `Task` tool is NOT accessible at subagent level (only parent). Workaround: a **deterministic regex/keyword stand-in classifier** ran instead → conservative remap rate (285 facts vs expected ~1500-2000). **Mitigation:** if you delegate a task to a subagent and it would need to spawn its own fanout — do it in the parent session in two stages (Phase-prepare unpacks batches → parent spawns N subagents → Phase-collect aggregates), NOT as a single-subagent task.
 
 **Pool-limit confirmation:** 13 parallel subagents in one turn was successful, 0 deadlocks. The earlier pool-limit estimate (8-10) can be raised to **~13 parallel** if tasks work in independent folders. Higher pools (15+) have not yet been tested.
+
+## Audio overview
+
+- EN narration (Charon voice): `[[.vault-nb/audio-overviews/claude-code-subagent-fanout.en.mp3]]`
+- HU narration (Kore voice): `[[.vault-nb/audio-overviews/claude-code-subagent-fanout.hu.mp3]]`
+
+Generated via Gemini 3.1 Flash TTS preview. ~1-2 minutes each. See [[gemini-3-1-flash-tts-pipeline]] for the pipeline.
 
 ## Related
 

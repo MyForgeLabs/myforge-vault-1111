@@ -13,7 +13,7 @@ source:
 
 # Crystallization protocol
 
-> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[Crystallization-protocol.md]] (Hungarian version).
+> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[Crystallization-protocol]] (Hungarian version).
 
 When a session closes (`/11.11stop`), the agent **must** transform learnings into long-term knowledge: every `## Learnings` bullet is propagated into the appropriate persistent layer. **This is not optional.** The vault only "compounds" (in the Karpathy sense) if knowledge is carried into the persistent layers at every session close.
 
@@ -138,6 +138,13 @@ If unsure → keep it in `## Learnings` (lives in the session file as raw) but D
 ## Combined with aggressive context loading
 
 If you have already preloaded the project file + last 5 sessions + ADRs at session start (per the context-loading protocol), then propagation is **faster**: the agent knows which section the new knowledge fits into and won't duplicate.
+
+## Audio overview
+
+- EN narration (Charon voice): `[[.vault-nb/audio-overviews/Crystallization-protocol.en.mp3]]`
+- HU narration (Kore voice): `[[.vault-nb/audio-overviews/Crystallization-protocol.hu.mp3]]`
+
+Generated via Gemini 3.1 Flash TTS preview. ~1-2 minutes each. See [[gemini-3-1-flash-tts-pipeline]] for the pipeline.
 
 ## Related
 

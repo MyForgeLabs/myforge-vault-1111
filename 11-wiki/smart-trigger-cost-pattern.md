@@ -59,8 +59,8 @@ ENV: `VAULT_NLI_VETO=0` (default OFF, opt-in shadow-mode)
 
 | Pipeline | Cheap baseline | Expensive second-pass | Trigger | Cost-savings | Forrás |
 |---|---|---|---|---|---|
-| Vault-search rerank | cosine (sub-ms) | bge-reranker-v2-m3 cross-enc | max-cos < 0.65 | 1.65× (3/5 trigger 2/5 skip) | [[../06-Audits/2026-05-17 reranker smart-trigger]] |
-| Crystallize Layer 2.5 | G-Eval verdict | NLI DeBERTa entailment | csak auto-prop kandidátra | 5-9× (5/9 discard skipped) | [[../06-Audits/2026-05-17 NLI Layer 2.5 integration]] |
+| Vault-search rerank | cosine (sub-ms) | bge-reranker-v2-m3 cross-enc | max-cos < 0.65 | 1.65× (3/5 trigger 2/5 skip) | [[../06-Audits/2026-05-17 B-2 reranker smart-trigger]] |
+| Crystallize Layer 2.5 | G-Eval verdict | NLI DeBERTa entailment | csak auto-prop kandidátra | 5-9× (5/9 discard skipped) | [[../06-Audits/2026-05-17 B-1 NLI Layer 2.5 integration]] |
 | Crystallize Layer 2.6 | NLI verdict | vault-coherence-check NLI×5 neighbours | csak auto-prop post-NLI | 9× (5/9 discard + 0/4 NLI-veto skipped) | [[../06-Audits/2026-05-17 Layer 2.6 vault-coherence integration]] |
 | **OmniRoute cascade (3-szintű)** | rule-based / cosine | claude-code subagent | confidence < threshold per-level | **36.4% auto vs deep-only** | [[../06-Audits/2026-05-17 OmniRoute cascade skeleton]] |
 | **SelfCheckGPT N=3** | G-Eval single | 3× G-Eval re-run (Manakul 2023) | borderline-band 0.70-0.85 | **6× vs naiv-N=3-all** | [[../06-Audits/2026-05-17 SelfCheckGPT borderline-filter skeleton]] |

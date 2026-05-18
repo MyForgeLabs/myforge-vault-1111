@@ -13,7 +13,7 @@ source:
 
 # Karpathy LLM Wiki pattern
 
-> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[Karpathy-LLM-Wiki-pattern.md]] (Hungarian version).
+> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[Karpathy-LLM-Wiki-pattern]] (Hungarian version).
 
 A minimal RAG pattern published by Andrej Karpathy in April 2026. **Core idea:** instead of classic retrieval (vector DB, embeddings, runtime search), the LLM **incrementally compiles** knowledge into a structured wiki that accumulates (compounds) over time.
 
@@ -82,6 +82,13 @@ A 10.7k★ Chinese self-evolving agent framework, [`lsdefine/GenericAgent`](http
 **Key difference: autonomy level.** GenericAgent does autonomous skill-growth (auto-crystallize after every task), our system is human-in-the-loop (batch preview + user approval at session close). The memory structure is the same, the autonomy level differs.
 
 **Takeaway:** if you ever build a PaaS-style agent system, the 9-atomic-tool + L0-L4 layer pattern is a solid starting skeleton.
+
+## Audio overview
+
+- EN narration (Charon voice): `[[.vault-nb/audio-overviews/Karpathy-LLM-Wiki-pattern.en.mp3]]`
+- HU narration (Kore voice): `[[.vault-nb/audio-overviews/Karpathy-LLM-Wiki-pattern.hu.mp3]]`
+
+Generated via Gemini 3.1 Flash TTS preview. ~1-2 minutes each. See [[gemini-3-1-flash-tts-pipeline]] for the pipeline.
 
 ## Related
 

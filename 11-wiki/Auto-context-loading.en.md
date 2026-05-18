@@ -10,7 +10,7 @@ translated_from: Auto-context-loading.md
 
 # Auto-context-loading
 
-> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[Auto-context-loading.md]] (Hungarian version).
+> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[Auto-context-loading]] (Hungarian version).
 
 After `/11.11start "<name>"`, the agent **immediately performs aggressive pre-load** — it reads all important context **before** the user asks the first question. Goal: have the full picture from second 1 of the session, no need to ask "what was happening last time".
 
@@ -20,8 +20,8 @@ The session name (`/11.11start` argument) contains a project-indicating keyword.
 
 | Session name contains | Project slug | Project file |
 |-----------------------|--------------|--------------|
-| `<project-keyword-1>`, `<alias-1>` | `<project-slug-1>` | [[02-Projects/<project-slug-1>]] |
-| `<project-keyword-2>`, `<alias-2>` | `<project-slug-2>` | [[02-Projects/<project-slug-2>]] |
+| `<project-keyword-1>`, `<alias-1>` | `<project-slug-1>` | `02-Projects/<project-slug-1>.md` |
+| `<project-keyword-2>`, `<alias-2>` | `<project-slug-2>` | `02-Projects/<project-slug-2>.md` |
 | ... | ... | ... |
 | `vault`, `obsidian`, `agent-meta` | (vault-meta) | no project file, [[02-Projects/Index]] |
 | `wellbeing`, generic words | (other) | (no project file) |
@@ -109,6 +109,13 @@ E.g. `/11.11start "projectA + projectB review"`. The agent:
 ## Budget
 
 Target: **~15-20K token** pre-load. If you overshoot, first trim Tasks/Backlog entries (only top 5 priorities), then drop the older sessions.
+
+## Audio overview
+
+- EN narration (Charon voice): `[[.vault-nb/audio-overviews/Auto-context-loading.en.mp3]]`
+- HU narration (Kore voice): `[[.vault-nb/audio-overviews/Auto-context-loading.hu.mp3]]`
+
+Generated via Gemini 3.1 Flash TTS preview. ~1-2 minutes each. See [[gemini-3-1-flash-tts-pipeline]] for the pipeline.
 
 ## Related
 

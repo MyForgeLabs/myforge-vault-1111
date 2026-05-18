@@ -144,7 +144,8 @@ Az interaktív HTML-ek static-asset-ként közvetlenül szerverülnek (GH-Pages 
 - [[two-tier-graph-extraction]] — miért két extraction-réteg
 - [[../05-Memory/Infrastructure#Memgraph]] — Memgraph deploy-pattern
 - [[memgraph-ce-feature-limits]] — vector-index + multi-namespace
-- [[../06-Audits/2026-05-17 B-7 entity-graph state]] — eredeti audit (ha létezik)
+- [[../06-Audits/2026-05-17 B-7 Week 2 typed entity-nodes]] — typed entity-nodes audit
+- [[../06-Audits/2026-05-17 B-7 wikilink-importer MENTIONS edges]] — MENTIONS edges audit
 
 ## Regenerálás
 

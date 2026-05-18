@@ -7,7 +7,7 @@ updated: 2026-05-17
 related:
   - "[[07-Decisions/2026-05-12 sv-5 crystallization automation arch]]"
   - "[[11-wiki/sv-05-crystallization-automation]]"
-  - "[[.vault-ko/prompts/g-eval-template]]"
+  - ".vault-ko/prompts/g-eval-template.md"
 session: "[[08-Sessions/2026-05-17-obsidian-vault]]"
 status: passed
 ---

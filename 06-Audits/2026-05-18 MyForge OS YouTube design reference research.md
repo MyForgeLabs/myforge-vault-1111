@@ -12,7 +12,7 @@ tags:
   - agentic-os
   - inspiration
 related:
-  - "[[02-Projects/myforge-os]]"
+  - "[[02-Projects/myforge-dashboard]]"
   - "[[07-Decisions/2026-05-08 Myforge OS Wave A-K dashboard expansion]]"
   - "[[11-wiki/Karpathy-LLM-Wiki-pattern]]"
 status: complete

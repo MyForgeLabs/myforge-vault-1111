@@ -11,7 +11,7 @@ translated_from: subagent-fanout-context-aware-classification.md
 
 # Subagent-fanout context-aware classification
 
-> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[subagent-fanout-context-aware-classification.md]] (Hungarian version).
+> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[subagent-fanout-context-aware-classification]] (Hungarian version).
 
 The subagent-fanout pattern ([[claude-code-subagent-fanout]]) scales well for bulk LLM mutation ($0 cost in Claude Code), but **classification tasks** (entity typing, label injection, summary tagging, NER) have quality that varies drastically based on whether the subagent receives context for the item being classified. A **blind classifier** (item name only) typically yields ~5% false-positive rate and low recall; a **context-aware classifier** (subagent reads the source documents where the entity is mentioned) has FP-rate <2%, with recall +20-40pp higher.
 
@@ -144,6 +144,13 @@ For 8,997 entities, hybrid is ~10 agent-hours (parallel 8 subagents → ~1.25 ho
 - **Active-learning loop** — errors found in manual samples are added to the few-shot prompt for the next iteration
 - **Source-quality weight** — `wiki/` sources outweigh `raw/` sources, context-injection priority
 - **Confidence-threshold escalation** — blind output includes "confidence 0-1"; <0.7 → context-aware re-run
+
+## Audio overview
+
+- EN narration (Charon voice): `[[.vault-nb/audio-overviews/subagent-fanout-context-aware-classification.en.mp3]]`
+- HU narration (Kore voice): `[[.vault-nb/audio-overviews/subagent-fanout-context-aware-classification.hu.mp3]]`
+
+Generated via Gemini 3.1 Flash TTS preview. ~1-2 minutes each. See [[gemini-3-1-flash-tts-pipeline]] for the pipeline.
 
 ## Related
 

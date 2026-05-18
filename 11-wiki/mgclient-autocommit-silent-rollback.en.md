@@ -13,7 +13,7 @@ translated_from: mgclient-autocommit-silent-rollback.md
 
 > **TL;DR:** **1262 entity-typing operations silently rolled back, zero errors raised**, because `pymgclient.connect()` defaults to explicit-transaction-mode and we forgot one line: `conn.autocommit = True`. Subagent logs reported "1262 entities typed"; Memgraph showed 0 changes. The fix is one line. **This pitfall affects pymgclient, psycopg2, mariadb, cx_Oracle, pyodbc** — basically every classic DB driver. After the fix: typing coverage jumped **28.9% → 72.8%** on the same batch.
 
-> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[mgclient-autocommit-silent-rollback.md]] (Hungarian version).
+> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[mgclient-autocommit-silent-rollback]] (Hungarian version).
 
 The `pymgclient` (the official Memgraph Python driver) `connect()` default is **explicit-transaction-mode**. If `conn.autocommit = True` is NOT set, then every `SET`, `CREATE`, `MERGE`, `DELETE` statement gets **silently rolled back** when `conn.close()` runs (or the connection drops) — as if nothing had happened. **No error is raised.** The query result (`fetchall()`) looks fine, the row count is returned, but the DB state is untouched.
 
@@ -143,6 +143,13 @@ The pitfall is NOT exclusive to `mgclient` — many DB drivers default to explic
 - **Health-check beforehand** — `MATCH (n) RETURN count(n) LIMIT 1` ping before the write batch to ensure the connection is alive
 - **Connection-pool** vs single-conn — with a pool, every conn needs autocommit set separately
 - **Audit-log per batch** — successful apply → write a log line with the count-delta
+
+## Audio overview
+
+- EN narration (Charon voice): `[[.vault-nb/audio-overviews/mgclient-autocommit-silent-rollback.en.mp3]]`
+- HU narration (Kore voice): `[[.vault-nb/audio-overviews/mgclient-autocommit-silent-rollback.hu.mp3]]`
+
+Generated via Gemini 3.1 Flash TTS preview. ~1-2 minutes each. See [[gemini-3-1-flash-tts-pipeline]] for the pipeline.
 
 ## Related
 

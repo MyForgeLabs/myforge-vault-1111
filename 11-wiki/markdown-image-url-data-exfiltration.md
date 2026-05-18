@@ -16,7 +16,7 @@ Klasszikus prompt-injection vektor: ha egy LLM-alapú alkalmazás Markdown-form�
 
 - [[sv-08-notebooklm-cognitive-layer]] — "Simon Willison 2024-elején bemutatta, hogy egy külső fájlba rejtett Markdown-kép URL képes volt privát adatokat kiszivárogtatni a query string-en keresztül. Google 2024 áprilisában javította, de a precedens megmaradt"
 - [[sv-08-notebooklm-cognitive-layer]] — "Prompt injection / data exfiltration" mint zárt rendszerek bizalmi-audit kötelezettsége
-- [[security-and-hardening]] (skill) — általános prompt-injection-mitigáció playbook
+- `security-and-hardening` (skill, not a wiki node) — általános prompt-injection-mitigáció playbook
 - [[claude-code-harness-blocks]] — Claude Code-ban runtime block-pattern destruktív akciók ellen
 
 ## Mintázat

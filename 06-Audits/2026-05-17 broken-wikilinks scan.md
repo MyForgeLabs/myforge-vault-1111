@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-05-17
 tags: ["#type/audit", "#project/sv", "sv-7", "vault-integrity"]
 project: [[../02-Projects/superintelligent-vault]]
-data: [[broken-wikilinks-2026-05-17.json]]
+data: 06-Audits/broken-wikilinks-2026-05-17.json
 ---
 
 # Broken-wikilinks scan (2026-05-17)
@@ -88,7 +88,7 @@ data: [[broken-wikilinks-2026-05-17.json]]
 
 ## Adatfájl
 
-- Full broken-list JSON: [[broken-wikilinks-2026-05-17.json]] (189 target × source-list)
+- Full broken-list JSON: `06-Audits/broken-wikilinks-2026-05-17.json` (189 target × source-list)
 
 ## Kapcsolódó
 

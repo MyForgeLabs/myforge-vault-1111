@@ -11,7 +11,7 @@ translated_from: multi-layer-safety-gate.md
 
 # Multi-layer safety-gate playbook
 
-> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[multi-layer-safety-gate.md]] (Hungarian version).
+> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[multi-layer-safety-gate]] (Hungarian version).
 
 For high-risk features (RSI, auto-prompt-evolution, code self-modification, auto-promotion) you need **4 independent defense layers**. No single layer is enough — they validate each other ("defense in depth").
 
@@ -132,6 +132,13 @@ The first project combining the 4-layer gate:
 | 4. Critic review | `.vault-rsi/config/rsi-config.yml: critic_review_required` | Semantically bad output |
 
 Plus 4 auto-disable triggers.
+
+## Audio overview
+
+- EN narration (Charon voice): `[[.vault-nb/audio-overviews/multi-layer-safety-gate.en.mp3]]`
+- HU narration (Kore voice): `[[.vault-nb/audio-overviews/multi-layer-safety-gate.hu.mp3]]`
+
+Generated via Gemini 3.1 Flash TTS preview. ~1-2 minutes each. See [[gemini-3-1-flash-tts-pipeline]] for the pipeline.
 
 ## Related
 

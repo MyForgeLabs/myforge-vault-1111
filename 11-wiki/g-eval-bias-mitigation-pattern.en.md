@@ -13,7 +13,7 @@ translated_from: g-eval-bias-mitigation-pattern.md
 
 > **TL;DR:** When the LLM that generated the content also judges it ("Claude scores Claude"), self-enhancement bias inflates scores by **~25%** in published measurements. Our 4-block bias-mitigation prompt cut auto-promotion from **10/10 → 6/10** on a 10-bullet paired sample, average confidence **0.880 → 0.760**. But a 30-sample paired calibration revealed an honest catch: bias-mitigation is **symmetric** (tightens both Pass AND Fail classes), causing **47% Pass-recall loss** (7/15 good bullets falsely discarded). Conclusion: **opt-in env-var, NOT default shift**. The asymmetry signal is the critical metric most evals don't measure.
 
-> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[g-eval-bias-mitigation-pattern.md]] (Hungarian version).
+> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[g-eval-bias-mitigation-pattern]] (Hungarian version).
 
 ## What this is NOT
 
@@ -104,6 +104,13 @@ A 30-sample paired calibration produced a **CONDITIONAL PASS** verdict — an im
 | C (NOT recommended) | v0.3 default, threshold unchanged | HIGH | 53% | pure precision focus |
 
 **Reusable insight:** every bias-mitigation prompt evaluation must measure BOTH the Pass-set AND Fail-set confidence drop — the asymmetry is the critical signal.
+
+## Audio overview
+
+- EN narration (Charon voice): `[[.vault-nb/audio-overviews/g-eval-bias-mitigation-pattern.en.mp3]]`
+- HU narration (Kore voice): `[[.vault-nb/audio-overviews/g-eval-bias-mitigation-pattern.hu.mp3]]`
+
+Generated via Gemini 3.1 Flash TTS preview. ~1-2 minutes each. See [[gemini-3-1-flash-tts-pipeline]] for the pipeline.
 
 ## Related
 

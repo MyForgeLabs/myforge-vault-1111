@@ -109,7 +109,7 @@ Ekkor az agent **csak alap-kontextust** tölt be:
 3. [[01-Daily/Index]] mai + tegnapi
 4. **Nem mélyül el** — várja a user-irányítást
 
-**Token-budget vault-meta session-höz: ~2K token elég.** A 15-20K cap az aggressive pre-load felső korlátja, **nem cél**. Ha a session vault-meta (workflow-fejlesztés, vault-restructure, smoke-teszt, agent-meta munka), a minimal verzió olcsóbb és pont elegendő — 3 forrás × ~700 token. A 15-20K-t projekt-detektálás esetén használd ki: projekt-fájl + 5 session + ADR-ek + Memory + Backlog + Host. Forrás-validáció: [[08-Sessions/2026-04-30-smoke-teszt-mechanika]].
+**Token-budget vault-meta session-höz: ~2K token elég.** A 15-20K cap az aggressive pre-load felső korlátja, **nem cél**. Ha a session vault-meta (workflow-fejlesztés, vault-restructure, smoke-teszt, agent-meta munka), a minimal verzió olcsóbb és pont elegendő — 3 forrás × ~700 token. A 15-20K-t projekt-detektálás esetén használd ki: projekt-fájl + 5 session + ADR-ek + Memory + Backlog + Host. Forrás-validáció: `08-Sessions/_archive/2026-04-30-smoke-teszt-mechanika.md`.
 
 ## Mi van több detektált projekt esetén
 

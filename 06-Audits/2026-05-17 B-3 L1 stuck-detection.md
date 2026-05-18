@@ -89,4 +89,4 @@ Idempotency guard means re-running is safe — only new `(slug, type, pattern)` 
 - [[../02-Projects/superintelligent-vault]] — B-3 axis row
 - [[../11-wiki/sv-07-continuous-evaluation]] — origin recommendation
 - [[2026-05-17 B-3 Week 2 L2 NLI-judge]] — L2 layer above this
-- [[L1_Stuck_Alerts.csv]] — append-only output
+- `06-Audits/L1_Stuck_Alerts.csv` — append-only output

@@ -10,7 +10,7 @@ translated_from: verification-step-before-claim.md
 
 # Verification step before any claim
 
-> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[verification-step-before-claim.md]] (Hungarian version).
+> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[verification-step-before-claim]] (Hungarian version).
 
 ## TL;DR
 
@@ -97,6 +97,13 @@ Claim ──> "X is done / works"
 | ADR publishing | ✅ references really exist |
 | Daily note | ⚠️ light verification |
 | Brainstorm | ❌ not needed (creative work) |
+
+## Audio overview
+
+- EN narration (Charon voice): `[[.vault-nb/audio-overviews/verification-step-before-claim.en.mp3]]`
+- HU narration (Kore voice): `[[.vault-nb/audio-overviews/verification-step-before-claim.hu.mp3]]`
+
+Generated via Gemini 3.1 Flash TTS preview. ~1-2 minutes each. See [[gemini-3-1-flash-tts-pipeline]] for the pipeline.
 
 ## Related
 

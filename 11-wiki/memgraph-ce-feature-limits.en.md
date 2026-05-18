@@ -13,7 +13,7 @@ translated_from: memgraph-ce-feature-limits.md
 
 > **TL;DR:** Memgraph **Community Edition** silently breaks on 4 features Neo4j users assume work: (1) DDL inside multi-statement transactions, (2) constraints inside transactions, (3) multi-database, (4) MAGE algorithms. The win: **native vector-index is FREE in CE 3.9.0** — measured **1ms mean / 2.6ms p95 search latency**, **280× speedup** over our previous numpy-cosine workaround. Multi-namespace vector-index (3 namespaces × 2829/462/8997 nodes) works **out-of-the-box, zero Enterprise license needed**.
 
-> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[memgraph-ce-feature-limits.md]] (Hungarian version).
+> **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[memgraph-ce-feature-limits]] (Hungarian version).
 
 The Memgraph **Community Edition** (current build: `memgraph/memgraph:latest` → **3.9.0**) silently rejects or hard-errors on several core features — a production-bug source if you code against it as if it were Neo4j. This doc collects limits actually hit in production and the working workarounds. Update as new limits surface.
 
@@ -134,6 +134,13 @@ label+property_vector  Entity      embedding  8997   (entity-graph)
 - `CREATE VECTOR INDEX <name> ON :<Label>(<prop>) WITH CONFIG ...` is one CQL statement per namespace
 
 **Reusable insight:** Memgraph CE multi-tenant vector-search **out-of-the-box** (no Neo4j-style license requirement), namespace per `:<Label>` trivially separated.
+
+## Audio overview
+
+- EN narration (Charon voice): `[[.vault-nb/audio-overviews/memgraph-ce-feature-limits.en.mp3]]`
+- HU narration (Kore voice): `[[.vault-nb/audio-overviews/memgraph-ce-feature-limits.hu.mp3]]`
+
+Generated via Gemini 3.1 Flash TTS preview. ~1-2 minutes each. See [[gemini-3-1-flash-tts-pipeline]] for the pipeline.
 
 ## Related
 
