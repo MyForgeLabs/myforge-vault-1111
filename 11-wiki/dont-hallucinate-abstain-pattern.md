@@ -50,6 +50,18 @@ A vault-kontextusban ez a NotebookLM synthesis-output auditjához használható:
 - **Cost-explosion**: 3 modell-hívás minden query-re = 3× cost. Csak high-stakes kérdésekre, vagy cached-eval baseline-on.
 - **Latency-explosion**: párhuzamosítva is a leglassabb modell dominál; ha 1 modell timeout-ol, az egész abstain-decision blokkol — defensive timeout kell.
 - **Self-RAG-zavar**: ha a 3 modell ugyanazt a vektor-retrieve-d-context-et kapja, a context maga lehet hallucinált, és nem segít a multi-model. RAG-szinten is multi-retriever kell, ha komolyan veszed.
+- **Tie-break-anomaly**: 1 modell ANSWER + 1 ABSTAIN + 1 LOW_CONFIDENCE = ambivalens. Definiálj előre tie-break-rule-t (pl. „bármilyen ABSTAIN → ABSTAIN" majority-vagy precision-prefer).
+- **Cooperative-bias-leak**: ha cooperative-mód közben a 3 modell `share`-eli a köztes válaszait, a 2. modell már anchored az 1.-re. NEM consensus, hanem anchoring. Independent-parallel kötelező a competitive-mode-hoz.
+
+## Mikor használd / mikor NE
+
+| Use-case | „Abstain" érdemes? | Miért |
+|---|---|---|
+| High-stakes RAG (orvosi, jogi, pénzügyi) | IGEN | A hibás válasz költségesebb, mint az "nem tudom" |
+| Casual chatbot UI | RÉSZBEN | A user-experience leromolhat 25% ABSTAIN-rate-en |
+| Code-generation | NEM (általában) | A test-suite a jobb gate, nem a confidence-vote |
+| Faktoid-question-answer | IGEN | A faktoid jól-definiált, abstain-érték magas |
+| Creative-writing | NEM | Nincs „helyes válasz", a vote-disagreement zaj |
 
 ## Kapcsolódó
 

@@ -48,6 +48,19 @@ Kódra: `microsoft/deberta-v3-large-mnli` vagy `cross-encoder/nli-deberta-v3-bas
 - **Nyelv-mismatch**: angol-trained NLI magyar bullet-ekre — accuracy zuhan. Megoldás: multilingual NLI (XLM-R-MNLI) vagy LLM-fordítás premissza-szinten.
 - **Negation-flip**: deberta-MNLI érzékeny a "nem"-re — ha a generatív judge átírta a Learnings-et "X nem stabil"-ról "X stabil"-ra, az NLI catch-eli, **de** csak ha a premissza-chunk tartalmazza a negált változatot.
 - **Empty-premissza**: ha a retrieve nem talál releváns chunk-ot, NEM neutral-t kell visszaadni, hanem "no-evidence" flaget — különben a hipotézis "passol" minden ellenőrzést.
+- **Domain-shift**: orvosi vagy jogi domain-en a deberta-MNLI accuracy ~10-20pp-vel rosszabb, mint általános news-szövegen. Domain-fine-tuning vagy specifikus modell (BioBERT-MNLI) ajánlott.
+- **Multi-claim-bullet csapda**: egy bullet több állítást tartalmaz ("X stabil ÉS Y javul") — NLI-modell az egészet entailment-ezi vagy contradiction-ölőzi, NEM finomítva. Atomic-claim-bontás előfeldolgozás kötelező.
+- **Smart-threshold over-tuning**: a per-target P(contradiction) küszöböt N=30 sample-en kalibrálni rosszul fog scaling-elni. Validate-set N≥100, és heti drift-monitoring kötelező.
+
+## Mikor használd / mikor NE
+
+| Use-case | NLI ajánlott? | Miért |
+|---|---|---|
+| Session Learnings → wiki propagáció | IGEN | Bullet-szintű tényszerű inkonzisztencia gate |
+| Search-result relevancia ranking | NEM | Reranker / cross-encoder bi-encoder jobb (semantic-hasonlóság, NEM logikai) |
+| RAG-grounded answer audit | IGEN | A generált válasz tényileg a retrieved-context-ből jön-e |
+| Hosszú dokumentum összegzés-audit | RÉSZBEN | Sliding-window kell, és multi-claim-bontás |
+| Subjektív / kreatív output (story, design) | NEM | Az NLI a tényszerűségre gyúr, nem értékel kreatív minőséget |
 
 ## Kapcsolódó
 

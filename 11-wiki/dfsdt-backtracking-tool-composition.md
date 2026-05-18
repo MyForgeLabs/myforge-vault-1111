@@ -48,6 +48,18 @@ A vault-kontextusban a DFSDT analógiája a `vault-graph-query` cross-source-bá
 - **Stateful tool-mellékhatás-rontás**: ha a `tool_2` ír egy DB-be és backtrack-elsz, a DB-állapot megmarad — explicit rollback-procedúra vagy sandbox-branch ([[sandbox-branch-mutation-isolation]]) kell.
 - **LLM-judge bias** a confidence-küszöbnél: self-favoritism miatt az LLM hajlamos "P(success) = 0.85" overestimate-re. Calibrálj 30-100 sample-en, ha komolyan veszed.
 - **Tool-spec drift** ([[memgraph-ce-feature-limits]]-szerű): ha egy tool API-ja változik a DFSDT-tanult priors közben, a backtrack-stratégia elavul. Periodikus újratanulás vagy MCP-absztrakció kell.
+- **Best-of-N anti-pattern**: csak a "végső legjobb" ágat tartani meg, az alternatívák ki-dobni → tanulási információ-veszteség. Az ágakat memo-ld a session-en belül.
+- **Lineáris-ReAct fall-back-kényszer**: ha a budget elfogy és lineáris-ReAct-re esel vissza, NEM `ABSTAIN` — silent-confidence-drop. Better: explicit `LOW_CONFIDENCE` flag a return-objektumban.
+
+## Mikor használd / mikor NE
+
+| Task | DFSDT érdemes? | Miért |
+|---|---|---|
+| 1-lépés keresés (kérdés → válasz) | NEM | Backtrack overhead 0% nyereség |
+| 3-7 lépés multi-tool agent | IGEN | A compounding-errors itt domináns |
+| ≥10 lépés komplex workflow | RÉSZBEN | Fa exponenciális — max-depth-cap + Best-of-N memo |
+| Stateful destructive task (DB-write) | CSAK sandbox-ban | A mellékhatás miatt backtrack rontásos |
+| Real-time interactive | NEM | Latency 2-4× — user-türelmet öl |
 
 ## Kapcsolódó
 
