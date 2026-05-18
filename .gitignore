@@ -61,7 +61,9 @@ scratch/
 # Ezek lokálisan kerülnek a vault-ba, NEM a public-repo-ba.
 # A public-repo-ban marad néhány SV-meta example-content (8 SV-sprint session-t kifejezetten engedjük).
 02-Projects/
+!02-Projects/Index.md
 01-Daily/
+!01-Daily/Index.md
 # 08-Sessions/ — NEM ignorálva, mert SV-meta example-content (lásd scrub-rules.yaml include_paths)
 03-Hosts/
 04-Tasks/Backlog.md
@@ -79,7 +81,6 @@ scratch/
 06-Audits/crystallize-health.json
 06-Audits/cross-source-conflicts-*.md
 06-Audits/ko-normalize-*.jsonl
-06-Audits/System_Health.md
 
 # Pre-commit hook generated
 .pre-commit-config.local.yaml
