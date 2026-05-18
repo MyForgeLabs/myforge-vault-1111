@@ -58,10 +58,11 @@ test-output/
 scratch/
 
 # === User-specific (private vault content) ===
-# Ezek lokálisan kerülnek a vault-ba, NEM a public-repo-ba
+# Ezek lokálisan kerülnek a vault-ba, NEM a public-repo-ba.
+# A public-repo-ban marad néhány SV-meta example-content (8 SV-sprint session-t kifejezetten engedjük).
 02-Projects/
-08-Sessions/
 01-Daily/
+# 08-Sessions/ — NEM ignorálva, mert SV-meta example-content (lásd scrub-rules.yaml include_paths)
 03-Hosts/
 04-Tasks/Backlog.md
 04-Tasks/Dashboard.md
