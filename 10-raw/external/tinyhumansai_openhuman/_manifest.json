@@ -1,0 +1,108 @@
+{
+  "repo": "tinyhumansai/openhuman",
+  "ingested_at": "2026-05-18T07:02:34.217589",
+  "head_commit": "0f616e4a62ff21c01a16acee8b7c56e6b1d67197",
+  "head_commit_short": "0f616e4",
+  "files": [
+    {
+      "repo_path": "docs/agent-subagent-tool-flow.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__agent-subagent-tool-flow.md",
+      "chars": 24183
+    },
+    {
+      "repo_path": "docs/memory-sync-functions.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__memory-sync-functions.md",
+      "chars": 15166
+    },
+    {
+      "repo_path": "docs/NOTIFICATION_TESTING_STATUS.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__NOTIFICATION_TESTING_STATUS.md",
+      "chars": 8390
+    },
+    {
+      "repo_path": "docs/TAURI_CEF_FINDINGS_AND_CHANGES.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__TAURI_CEF_FINDINGS_AND_CHANGES.md",
+      "chars": 18067
+    },
+    {
+      "repo_path": "docs/whatsapp-data-flow.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__whatsapp-data-flow.md",
+      "chars": 5364
+    },
+    {
+      "repo_path": "docs/MEET_AGENT_SMOKE.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__MEET_AGENT_SMOKE.md",
+      "chars": 4833
+    },
+    {
+      "repo_path": "docs/wechat-message-scraping-issue.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__wechat-message-scraping-issue.md",
+      "chars": 2700
+    },
+    {
+      "repo_path": "docs/DELEGATION_POLICY.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__DELEGATION_POLICY.md",
+      "chars": 2130
+    },
+    {
+      "repo_path": "docs/ENVIRONMENT-CONTRACT-ROADMAP.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__ENVIRONMENT-CONTRACT-ROADMAP.md",
+      "chars": 4883
+    },
+    {
+      "repo_path": "docs/TEST-COVERAGE-MATRIX.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__TEST-COVERAGE-MATRIX.md",
+      "chars": 42725
+    },
+    {
+      "repo_path": "docs/CONTRIBUTOR-REWARDS.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__CONTRIBUTOR-REWARDS.md",
+      "chars": 3094
+    },
+    {
+      "repo_path": "docs/PORTFOLIO_READINESS.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__PORTFOLIO_READINESS.md",
+      "chars": 3370
+    },
+    {
+      "repo_path": "docs/WEEKLY-CODE-REVIEW.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__WEEKLY-CODE-REVIEW.md",
+      "chars": 3353
+    },
+    {
+      "repo_path": "docs/RELEASE-MANUAL-SMOKE.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__RELEASE-MANUAL-SMOKE.md",
+      "chars": 8205
+    },
+    {
+      "repo_path": "docs/AGENT_SELF_LEARNING.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__AGENT_SELF_LEARNING.md",
+      "chars": 17268
+    },
+    {
+      "repo_path": "docs/PROMPT_INJECTION_GUARD.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__PROMPT_INJECTION_GUARD.md",
+      "chars": 3421
+    },
+    {
+      "repo_path": "docs/agent-workflows/cursor-cloud-agents.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__agent-workflows__cursor-cloud-agents.md",
+      "chars": 12917
+    },
+    {
+      "repo_path": "docs/agent-workflows/open-pr-reconciliation-2026-05-13.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__agent-workflows__open-pr-reconciliation-2026-05-13.md",
+      "chars": 9897
+    },
+    {
+      "repo_path": "docs/agent-workflows/codex-pr-checklist.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__agent-workflows__codex-pr-checklist.md",
+      "chars": 7520
+    },
+    {
+      "repo_path": "docs/superpowers/plans/2026-05-11-operator-mvp-plan.md",
+      "vault_path": "10-raw/external/tinyhumansai_openhuman/docs__superpowers__plans__2026-05-11-operator-mvp-plan.md",
+      "chars": 19071
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "repo": "browserbase/skills",
+  "ingested_at": "2026-05-18T07:03:23.136723",
+  "head_commit": "592061aa685c29227a00459f06ac7c3343f61ff7",
+  "head_commit_short": "592061a",
+  "files": [
+    {
+      "repo_path": "README.md",
+      "vault_path": "10-raw/external/browserbase_skills/README.md",
+      "chars": 4167
+    }
+  ]
+}

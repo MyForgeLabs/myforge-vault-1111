@@ -1,0 +1,43 @@
+{
+  "repo": "addyosmani/agent-skills",
+  "ingested_at": "2026-05-18T07:03:02.487482",
+  "head_commit": "f17c6e88c904dc747381c374312c2d58e10647ae",
+  "head_commit_short": "f17c6e8",
+  "files": [
+    {
+      "repo_path": "docs/copilot-setup.md",
+      "vault_path": "10-raw/external/addyosmani_agent-skills/docs__copilot-setup.md",
+      "chars": 3041
+    },
+    {
+      "repo_path": "docs/getting-started.md",
+      "vault_path": "10-raw/external/addyosmani_agent-skills/docs__getting-started.md",
+      "chars": 5310
+    },
+    {
+      "repo_path": "docs/opencode-setup.md",
+      "vault_path": "10-raw/external/addyosmani_agent-skills/docs__opencode-setup.md",
+      "chars": 4136
+    },
+    {
+      "repo_path": "docs/windsurf-setup.md",
+      "vault_path": "10-raw/external/addyosmani_agent-skills/docs__windsurf-setup.md",
+      "chars": 1459
+    },
+    {
+      "repo_path": "docs/gemini-cli-setup.md",
+      "vault_path": "10-raw/external/addyosmani_agent-skills/docs__gemini-cli-setup.md",
+      "chars": 5505
+    },
+    {
+      "repo_path": "docs/skill-anatomy.md",
+      "vault_path": "10-raw/external/addyosmani_agent-skills/docs__skill-anatomy.md",
+      "chars": 5920
+    },
+    {
+      "repo_path": "docs/cursor-setup.md",
+      "vault_path": "10-raw/external/addyosmani_agent-skills/docs__cursor-setup.md",
+      "chars": 2347
+    }
+  ]
+}

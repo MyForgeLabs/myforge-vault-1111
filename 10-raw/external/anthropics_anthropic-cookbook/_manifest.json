@@ -1,0 +1,13 @@
+{
+  "repo": "anthropics/anthropic-cookbook",
+  "ingested_at": "2026-05-17T19:22:09.751143",
+  "head_commit": "b5b727b70a6e2f89b741ee075cca67917d2b3488",
+  "head_commit_short": "b5b727b",
+  "files": [
+    {
+      "repo_path": "README.md",
+      "vault_path": "10-raw/external/anthropics_anthropic-cookbook/README.md",
+      "chars": 5822
+    }
+  ]
+}

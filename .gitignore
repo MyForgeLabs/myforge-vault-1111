@@ -1,0 +1,84 @@
+# === SOSEM committed ===
+
+# Auth / secrets / credentials
+.env
+.env.*
+*.key
+*.pem
+*storage_state.json
+credentials.json
+auth.json
+*.id
+notebook.id
+vault-meta-notebook.id
+
+# Vault DB-k (real data — csak schema bemegy)
+.vault-ko/facts.db
+.vault-ko/facts.db-*
+.vault-ko/calibration/
+.vault-ko/pending/
+.vault-ko/remap-log.jsonl
+.vault-memory/data/
+.vault-memory/bm25-index.json
+.vault-eval/eval-*.jsonl
+.vault-rsi/scoring-pending/
+.vault-rsi/scoring-responses/
+.vault-rsi/candidates/
+.vault-rsi/gepa-log.jsonl
+
+# Cache, dependencies, build
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+.next/
+dist/
+build/
+.cache/
+*.log
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Backup-fájlok (sosem committed)
+*.bak.*
+*.bak
+
+# Backup before-scrub state
+.backup/
+
+# Temp/test directories
+/tmp/
+test-output/
+scratch/
+
+# === User-specific (private vault content) ===
+# Ezek lokálisan kerülnek a vault-ba, NEM a public-repo-ba
+02-Projects/
+08-Sessions/
+01-Daily/
+03-Hosts/
+04-Tasks/Backlog.md
+04-Tasks/Dashboard.md
+05-Memory/User.md
+05-Memory/Infrastructure.md
+05-Memory/Dashboard-access.md
+05-Memory/Agents-skill-suite.md
+
+# Client-research raw / audit-output (vault-local, NEM public)
+10-raw/2026-*-foxxi*
+10-raw/2026-*-kgc*
+10-raw/2026-*-client*
+06-Audits/crystallize-log.jsonl
+06-Audits/crystallize-health.json
+06-Audits/cross-source-conflicts-*.md
+06-Audits/ko-normalize-*.jsonl
+06-Audits/System_Health.md
+
+# Pre-commit hook generated
+.pre-commit-config.local.yaml

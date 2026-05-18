@@ -1,0 +1,13 @@
+{
+  "repo": "TauricResearch/TradingAgents",
+  "ingested_at": "2026-05-18T07:03:25.316419",
+  "head_commit": "61522e103e61601c553b4544abcd53fa7ebf9f1d",
+  "head_commit_short": "61522e1",
+  "files": [
+    {
+      "repo_path": "README.md",
+      "vault_path": "10-raw/external/TauricResearch_TradingAgents/README.md",
+      "chars": 14391
+    }
+  ]
+}

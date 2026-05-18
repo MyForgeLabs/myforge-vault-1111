@@ -1,0 +1,5 @@
+session_slug,timestamp,alert_type,pattern,count,first_ts,last_ts,detected_at
+2026-05-15-szerver-update,09:25,repeat,ssh ,3,09:25,09:34,2026-05-17T21:40:47+00:00
+2026-05-15-szerver-update,09:25,error_cluster,fail,3,09:25,09:50,2026-05-17T21:40:47+00:00
+2026-05-02-foxxi-weboldal,05:40,repeat,wpml,4,05:40,06:56,2026-05-17T21:40:55+00:00
+2026-05-08-rojt-s-bojt-weboldal,10:25,repeat,wp ,4,10:25,11:55,2026-05-17T21:40:55+00:00

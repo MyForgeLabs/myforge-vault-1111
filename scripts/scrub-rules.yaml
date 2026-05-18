@@ -1,0 +1,220 @@
+# SCRUB-rules for Superintelligent Vault public-release filter
+#
+# Default policy: SKIP (paranoid — semmi NEM kerül a public-repo-ba alapból).
+# Explicit `include_*` listával engedj egy-egy path-mintát publishable-ré.
+# A `replacements:` szakasz utólag re-write-eli az ügyfél-specifikus stringeket.
+#
+# Idempotens: minden run ugyanazt az output-ot adja a vault-state alapján.
+
+source_vault: /root/obsidian-vault
+target_repo: /root/projects/superintelligent-vault-public
+
+# === ARCHITECTURAL-LEVEL PUBLISHABLE ===
+include_paths:
+  # Vault szabályok és sablonok (generic)
+  - "AGENTS.md"
+  - "00-Meta/**/*.md"
+  - "00-Meta/templates/**"
+
+  # Evergreen wiki (87+ doc) — ARCHITECTURE-LEVEL, generic
+  - "11-wiki/**/*.md"
+
+  # Architecture Decision Records (28) — generic
+  - "07-Decisions/**/*.md"
+
+  # Vault sprint-skeleton-mappák (üres, csak README.md / config-yml)
+  - ".vault-ko/README.md"
+  - ".vault-ko/prompts/**"
+  - ".vault-ko/safety/**"
+  - ".vault-ko/schema/**"
+  - ".vault-memory/README.md"
+  - ".vault-memory/scripts/**.py"
+  - ".vault-eval/README.md"
+  - ".vault-eval/scripts/**.py"
+  - ".vault-tools/README.md"
+  - ".vault-tools/scripts/**.py"
+  - ".vault-nb/README.md"
+  - ".vault-nb/scripts/**.py"
+  - ".vault-agents/README.md"
+  - ".vault-agents/scripts/**.sh"
+  - ".vault-agents/prompts/**"
+  - ".vault-rsi/README.md"
+  - ".vault-rsi/scripts/**.py"
+  - ".vault-rsi/prompts/**"
+  - ".vault-graph/README.md"
+  - ".vault-graph/scripts/**.py"
+
+  # External-research (10-raw/external — publikus repos)
+  - "10-raw/external/**"
+
+  # Selective session-include: csak SV-meta session-ek (NEM ügyfél)
+  - "08-Sessions/2026-05-1*-obsidian-vault*.md"
+  - "08-Sessions/2026-05-13-sv-*.md"
+  - "08-Sessions/2026-05-17-obsidian-vault*.md"
+
+  # SV-meta audit-ok (NEM ügyfél-research)
+  - "06-Audits/2026-05-1* B-* *.md"
+  - "06-Audits/2026-05-1* GitHub *.md"
+  - "06-Audits/2026-05-1* vault-meta *.md"
+  - "06-Audits/2026-05-1* shadow-monitoring *.md"
+  - "06-Audits/2026-05-1* OmniRoute *.md"
+  - "06-Audits/2026-05-1* SelfCheckGPT *.md"
+  - "06-Audits/2026-05-1* Layer 2.6 *.md"
+  - "06-Audits/2026-05-1* ENV-defaults *.md"
+  - "06-Audits/2026-05-1* persistent NLI *.md"
+  - "06-Audits/2026-05-1* GEPA *.md"
+  - "06-Audits/2026-05-1* G-Eval *.md"
+  - "06-Audits/2026-05-1* score-gap *.md"
+  - "06-Audits/2026-05-1* auto-skill-distill *.md"
+  - "06-Audits/2026-05-1* predicate-remap *.md"
+  - "06-Audits/2026-05-17 cross-projekt synthesis *.md"
+  - "06-Audits/2026-05-18 *.md"
+  - "06-Audits/2026-05-17 broken-wikilinks *.md"
+  - "06-Audits/skill-canonicalize-baseline-*.md"
+  - "06-Audits/skill-distill-candidates-*.md"
+  - "06-Audits/L1_Stuck_Alerts.csv"
+
+  # Public scriptek (vault-tooling)
+  - "scripts/**"
+
+# === ALWAYS-SKIP (paranoid blacklist, even if include matches) ===
+always_skip:
+  # Auth / credential / private state
+  - "**/.env"
+  - "**/.env.*"
+  - "**/storage_state.json"
+  - "**/credentials.json"
+  - "**/auth.json"
+  - "**/*.key"
+  - "**/*.pem"
+  - "**/notebooklm.id"
+  - "**/vault-meta-notebook.id"
+
+  # Vault DB-k és real-state
+  - ".vault-ko/facts.db"
+  - ".vault-ko/facts.db-*"
+  - ".vault-ko/calibration/*.jsonl"
+  - ".vault-ko/pending/**"
+  - ".vault-ko/remap-log.jsonl"
+  - ".vault-memory/data/**"
+  - ".vault-memory/bm25-index.json"
+  - ".vault-eval/eval-*.jsonl"
+  - ".vault-rsi/scoring-pending/**"
+  - ".vault-rsi/scoring-responses/**"
+  - ".vault-rsi/candidates/**"
+  - ".vault-rsi/gepa-log.jsonl"
+
+  # User/Infra private
+  - "05-Memory/User.md"
+  - "05-Memory/Dashboard-access.md"
+  - "05-Memory/Infrastructure.md"   # → template-version goes to .vault-skeletons/
+  - "05-Memory/Agents-skill-suite.md"
+
+  # Project files (client data!)
+  - "02-Projects/**"
+  - "!02-Projects/Index.md"  # Index OK (placeholder után)
+
+  # Daily-notes (lehet client-info)
+  - "01-Daily/**"
+
+  # Backlog (lehet client-todo)
+  - "04-Tasks/Backlog.md"
+  - "04-Tasks/Dashboard.md"
+
+  # Host-fájlok (IP, VPS info!)
+  - "03-Hosts/**"
+
+  # Backup-fájlok
+  - "**/*.bak.*"
+  - "**/*.bak"
+
+  # Raw-research (lehet client-tartalom)
+  - "10-raw/2026-*.md"   # Daily trending OK lesz, de selective
+  - "10-raw/2026-04*"    # foxxi-research-ek
+  - "!10-raw/external/**"
+  - "!10-raw/*GitHub trending*"   # GitHub-trending-reports OK
+
+  # Crystallize-log (event-stream lehet client-info)
+  - "06-Audits/crystallize-log.jsonl"
+  - "06-Audits/crystallize-health.json"
+  - "06-Audits/cross-source-conflicts-*.md"
+  - "06-Audits/ko-normalize-*.jsonl"
+  - "06-Audits/Eval_Trend.md"
+  - "06-Audits/System_Health.md"
+  - "06-Audits/Index.md"   # generic Index — bemegy később külön
+  - "06-Audits/broken-wikilinks-*.json"
+
+  # Sessions: default-skip implicit (NEM include-on → NEM publish)
+  # Itt NEM állítjuk always_skip-re, hogy a selective include-okat ne overrideja.
+
+  # IDE / OS
+  - "**/.DS_Store"
+  - "**/Thumbs.db"
+  - "**/.idea/**"
+  - "**/.vscode/**"
+  - "**/node_modules/**"
+  - "**/__pycache__/**"
+  - "**/.pytest_cache/**"
+
+# === STRING REPLACEMENTS ===
+# Az include-olt fájlokban ezeket a stringeket lecseréli.
+# Sorrend: leghosszabb előbb (substring-collision elkerülése).
+replacements:
+  # Personal info
+  - find: "peti.markovics@gmail.com"
+    replace: "user@example.com"
+  - find: "Peti Markovics"
+    replace: "Vault User"
+  - find: "peti.markovics"
+    replace: "user"
+  - find: "Markovics Péter"
+    replace: "Vault User"
+
+  # Ügyfél-domainek
+  - find: "foxxi.hu"
+    replace: "example-foxxi.local"
+  - find: "kgshop.hu"
+    replace: "example-shop.local"
+  - find: "rojtesbojt.hu"
+    replace: "example-rojt.local"
+  - find: "teszt.eu"
+    replace: "example-balance.local"
+  - find: "kisgeparuhaz.hu"
+    replace: "example-petanque.local"
+  - find: "mapesz.hu"
+    replace: "example-mapesz.local"
+  - find: "myforge.dev"
+    replace: "example-dashboard.local"
+
+  # Hosting / infra
+  - find: "srv1199845"
+    replace: "vps-prod-example"
+  - find: "srv1482413"
+    replace: "vps-dev-example"
+  - find: "hostinger.com"
+    replace: "shared-hosting-example.com"
+
+  # Notebook-ID + conversation-ID (UUID-k publicly OK, de pl. felfedik kit kiszolgálnak)
+  - find: "5469d262-1f25-43fe-b4eb-2a3c779c35b7"
+    replace: "<vault-meta-nb-id-here>"
+  - find: "1ebb0c05-802f-46dd-910b-2a133b5a331d"
+    replace: "<nb-conversation-id-here>"
+
+  # Auth / cookies (paranoid)
+  - find: "w3LBhudv"     # VNC password
+    replace: "<vnc-password-here>"
+
+forbidden_strings:
+  # Pre-commit hook detect-eli; ha bármelyik megjelenik a commit-diff-ben → block
+  - "peti.markovics@gmail.com"
+  - "w3LBhudv"
+  - "srv1199845"
+  - "srv1482413"
+  - "5469d262-1f25-43fe-b4eb-2a3c779c35b7"   # NB-ID
+  - "BEGIN OPENSSH PRIVATE KEY"
+  - "BEGIN RSA PRIVATE KEY"
+  - "sk-ant-api"   # csak ténylegesen API-kulcs-prefix, NEM az ENV-var név
+
+# === STATS / VERIFICATION ===
+expected_min_files: 100    # below this → SCRUB FAIL, missing content
+expected_max_files: 500    # above this → SCRUB FAIL, too permissive
