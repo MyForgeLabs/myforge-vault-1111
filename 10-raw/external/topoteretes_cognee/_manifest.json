@@ -1,0 +1,13 @@
+{
+  "repo": "topoteretes/cognee",
+  "ingested_at": "2026-05-18T17:31:28.656349",
+  "head_commit": "8b0d6875cabe64ae8f9f84f3b2f93f37a59e3f68",
+  "head_commit_short": "8b0d687",
+  "files": [
+    {
+      "repo_path": "README.md",
+      "vault_path": "10-raw/external/topoteretes_cognee/README.md",
+      "chars": 12144
+    }
+  ]
+}

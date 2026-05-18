@@ -1,0 +1,163 @@
+{
+  "repo": "microsoft/graphrag",
+  "ingested_at": "2026-05-18T17:31:31.149714",
+  "head_commit": "de531f0a697d2f35c4f85cb8511141507278404e",
+  "head_commit_short": "de531f0",
+  "files": [
+    {
+      "repo_path": "README.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/README.md",
+      "chars": 4557
+    },
+    {
+      "repo_path": "docs/visualization_guide.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__visualization_guide.md",
+      "chars": 3817
+    },
+    {
+      "repo_path": "docs/get_started.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__get_started.md",
+      "chars": 4570
+    },
+    {
+      "repo_path": "docs/developing.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__developing.md",
+      "chars": 2836
+    },
+    {
+      "repo_path": "docs/cli.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__cli.md",
+      "chars": 195
+    },
+    {
+      "repo_path": "docs/blog_posts.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__blog_posts.md",
+      "chars": 4818
+    },
+    {
+      "repo_path": "docs/index.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__index.md",
+      "chars": 5654
+    },
+    {
+      "repo_path": "docs/config/overview.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__config__overview.md",
+      "chars": 546
+    },
+    {
+      "repo_path": "docs/config/yaml.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__config__yaml.md",
+      "chars": 22338
+    },
+    {
+      "repo_path": "docs/config/models.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__config__models.md",
+      "chars": 8106
+    },
+    {
+      "repo_path": "docs/config/init.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__config__init.md",
+      "chars": 1594
+    },
+    {
+      "repo_path": "docs/prompt_tuning/overview.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__prompt_tuning__overview.md",
+      "chars": 1013
+    },
+    {
+      "repo_path": "docs/prompt_tuning/manual_prompt_tuning.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__prompt_tuning__manual_prompt_tuning.md",
+      "chars": 4400
+    },
+    {
+      "repo_path": "docs/prompt_tuning/auto_prompt_tuning.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__prompt_tuning__auto_prompt_tuning.md",
+      "chars": 4809
+    },
+    {
+      "repo_path": "docs/index/overview.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__index__overview.md",
+      "chars": 1750
+    },
+    {
+      "repo_path": "docs/index/byog.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__index__byog.md",
+      "chars": 3622
+    },
+    {
+      "repo_path": "docs/index/architecture.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__index__architecture.md",
+      "chars": 4041
+    },
+    {
+      "repo_path": "docs/index/outputs.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__index__outputs.md",
+      "chars": 7243
+    },
+    {
+      "repo_path": "docs/index/default_dataflow.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__index__default_dataflow.md",
+      "chars": 9600
+    },
+    {
+      "repo_path": "docs/index/methods.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__index__methods.md",
+      "chars": 4108
+    },
+    {
+      "repo_path": "docs/index/inputs.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__index__inputs.md",
+      "chars": 25657
+    },
+    {
+      "repo_path": "docs/query/overview.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__query__overview.md",
+      "chars": 2449
+    },
+    {
+      "repo_path": "docs/query/local_search.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__query__local_search.md",
+      "chars": 4518
+    },
+    {
+      "repo_path": "docs/query/drift_search.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__query__drift_search.md",
+      "chars": 4322
+    },
+    {
+      "repo_path": "docs/query/global_search.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__query__global_search.md",
+      "chars": 6014
+    },
+    {
+      "repo_path": "docs/query/question_generation.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__query__question_generation.md",
+      "chars": 2387
+    },
+    {
+      "repo_path": "docs/data/operation_dulce/ABOUT.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__data__operation_dulce__ABOUT.md",
+      "chars": 139
+    },
+    {
+      "repo_path": "docs/data/operation_dulce/Operation Dulce v2 1 1.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__data__operation_dulce__Operation Dulce v2 1 1.md",
+      "chars": 122851
+    },
+    {
+      "repo_path": "docs/examples_notebooks/inputs/operation dulce/ABOUT.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__examples_notebooks__inputs__operation dulce__ABOUT.md",
+      "chars": 176
+    },
+    {
+      "repo_path": "docs/examples_notebooks/inputs/operation dulce/Operation Dulce v2 1 1.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__examples_notebooks__inputs__operation dulce__Operation Dulce v2 1 1.md",
+      "chars": 122851
+    },
+    {
+      "repo_path": "docs/query/notebooks/overview.md",
+      "vault_path": "10-raw/external/microsoft_graphrag/docs__query__notebooks__overview.md",
+      "chars": 609
+    }
+  ]
+}

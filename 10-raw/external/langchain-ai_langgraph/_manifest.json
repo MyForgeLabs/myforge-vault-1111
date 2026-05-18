@@ -1,0 +1,13 @@
+{
+  "repo": "langchain-ai/langgraph",
+  "ingested_at": "2026-05-18T17:31:33.631981",
+  "head_commit": "076e2a3627206f5a1aef573aaca4a01e5af897ca",
+  "head_commit_short": "076e2a3",
+  "files": [
+    {
+      "repo_path": "README.md",
+      "vault_path": "10-raw/external/langchain-ai_langgraph/README.md",
+      "chars": 6351
+    }
+  ]
+}
