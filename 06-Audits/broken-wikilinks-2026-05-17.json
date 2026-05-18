@@ -1,0 +1,678 @@
+{
+  "scan_time": "2026-05-17T22:39Z",
+  "scanned_md_files": 446,
+  "broken_targets_count": 189,
+  "broken_references_total": 292,
+  "broken_targets": {
+    "01-Daily/2026-05-11": [
+      "06-Audits/System_Health.md",
+      "06-Audits/System_Health.md",
+      "06-Audits/System_Health.md",
+      "06-Audits/System_Health.md",
+      "06-Audits/System_Health.md",
+      "06-Audits/System_Health.md",
+      "08-Sessions/2026-05-11-kgc-weboldal.md",
+      "08-Sessions/2026-05-11-kinda-project.md",
+      "08-Sessions/2026-05-11-kinda-project-2.md"
+    ],
+    "07-Decisions/": [
+      "README.md",
+      "10-raw/Index.md",
+      "06-Audits/2026-04-23 Teljes infra audit.md",
+      "06-Audits/Index.md",
+      "11-wiki/Index.md",
+      "00-Meta/Frontmatter-schema.md",
+      "00-Meta/Frontmatter-schema.md"
+    ],
+    "08-Sessions/": [
+      "README.md",
+      "10-raw/Index.md",
+      "01-Daily/Index.md",
+      "11-wiki/11.11-session-protokoll.md",
+      "11-wiki/Karpathy-LLM-Wiki-pattern.md",
+      "00-Meta/Frontmatter-schema.md"
+    ],
+    "01-Daily/2026-05-10": [
+      "06-Audits/System_Health.md",
+      "06-Audits/System_Health.md",
+      "06-Audits/System_Health.md",
+      "06-Audits/System_Health.md",
+      "08-Sessions/2026-05-11-kgc-weboldal.md",
+      "08-Sessions/2026-05-11-kinda-project.md"
+    ],
+    "02-Projects/koko\\": [
+      "02-Projects/Index.md",
+      "06-Audits/2026-04-23 Teljes infra audit.md",
+      "03-Hosts/vps-dev-example - dev.md",
+      "03-Hosts/vps-prod-example - prod.md",
+      "05-Memory/Infrastructure.md"
+    ],
+    "02-Projects/teszt-eu\\": [
+      "02-Projects/Index.md",
+      "06-Audits/2026-04-23 Teljes infra audit.md",
+      "03-Hosts/vps-dev-example - dev.md",
+      "05-Memory/Infrastructure.md",
+      "05-Memory/Infrastructure.md"
+    ],
+    "00-Meta/graph-schema.yml": [
+      "04-Tasks/Backlog.md",
+      "11-wiki/sprint-day-0-skeleton-first.md",
+      "08-Sessions/2026-05-13-sv-b2-memory-architecture.md",
+      "08-Sessions/2026-05-13-sv-b2-memory-architecture.md"
+    ],
+    "feedback_claims_verification": [
+      "08-Sessions/2026-05-04-rojt-s-bojt-weboldal.md",
+      "08-Sessions/2026-05-04-rojt-s-bojt-weboldal.md",
+      "08-Sessions/2026-05-13-rojt-s-bojt.md",
+      "08-Sessions/2026-05-08-rojt-s-bojt-weboldal.md"
+    ],
+    "feedback_destructive_action_confirm": [
+      "08-Sessions/2026-05-13-rojt-s-bojt.md",
+      "08-Sessions/2026-05-12-kgc-robbantott-bra.md",
+      "08-Sessions/2026-05-12-kgc-robbantott-bra.md",
+      "08-Sessions/2026-05-08-rojt-s-bojt-weboldal.md"
+    ],
+    "07-Decisions/2026-05-10 Tartozék-rendszer schema (MachineAccessory M:N)": [
+      "02-Projects/kgc-berles.md",
+      "06-Audits/System_Health.md",
+      "06-Audits/System_Health.md"
+    ],
+    "02-Projects/kgc-erp\\": [
+      "02-Projects/Index.md",
+      "03-Hosts/vps-prod-example - prod.md",
+      "05-Memory/Infrastructure.md"
+    ],
+    "02-Projects/kgshop-bluebird\\": [
+      "02-Projects/Index.md",
+      "03-Hosts/vps-prod-example - prod.md",
+      "05-Memory/Infrastructure.md"
+    ],
+    "02-Projects/KGC-ALL Architektura": [
+      "02-Projects/Index.md",
+      "08-Sessions/2026-04-30-deploy-smoke-teszt.md",
+      "00-Meta/Glossary.md"
+    ],
+    "02-Projects/mfl-bot\\": [
+      "02-Projects/Index.md",
+      "03-Hosts/vps-prod-example - prod.md",
+      "05-Memory/Infrastructure.md"
+    ],
+    "02-Projects/petanque-kisgeparuhaz\\": [
+      "02-Projects/Index.md",
+      "03-Hosts/vps-prod-example - prod.md",
+      "05-Memory/Infrastructure.md"
+    ],
+    "02-Projects/foxxi-cv-website": [
+      "06-Audits/2026-05-08 Vault rendezesi audit.md",
+      "01-Daily/2026-05-04.md",
+      "02-Projects/foxxi-sprint-2026-05/foxxi-seo-research-2026-05-08-v2.md"
+    ],
+    "01-Daily/2026-05-12": [
+      "06-Audits/System_Health.md",
+      "06-Audits/System_Health.md",
+      "08-Sessions/2026-05-12-kinda-projekt-folytat-s.md"
+    ],
+    "07-Decisions/2026-05-XX agentmemory vs vault-grep": [
+      "04-Tasks/Backlog.md",
+      "08-Sessions/2026-05-11-github-repo.md",
+      "08-Sessions/2026-05-10-github-repok.md"
+    ],
+    "X": [
+      "11-wiki/memory-md-overflow-management.md",
+      "08-Sessions/2026-04-23-obsidian-vault-rendbetetele.md",
+      "08-Sessions/2026-04-23-obsidian-vault-rendbetetele.md"
+    ],
+    "^\\": [
+      "11-wiki/wp-yoast-llms-txt-customization.md",
+      "11-wiki/wp-yoast-llms-txt-customization.md",
+      "11-wiki/wp-yoast-llms-txt-customization.md"
+    ],
+    "reference_nano_banana_image_gen": [
+      "11-wiki/svg-asset-vs-vector-tradeoff.md",
+      "08-Sessions/2026-05-04-rojt-s-bojt-weboldal.md",
+      "08-Sessions/2026-05-08-rojt-s-bojt-weboldal.md"
+    ],
+    "-n \"$CHAT_ID\"": [
+      "11-wiki/claude-code-session-id-per-chat-isolation.md",
+      "11-wiki/claude-code-session-id-per-chat-isolation.md",
+      "11-wiki/cli-session-id-env-var-matrix.md"
+    ],
+    "11-wiki/": [
+      "11-wiki/Karpathy-LLM-Wiki-pattern.md",
+      "11-wiki/Karpathy-LLM-Wiki-pattern.md",
+      "11-wiki/Karpathy-LLM-Wiki-pattern.md"
+    ],
+    "feedback_foxxi_color_palette_switch": [
+      "08-Sessions/2026-05-04-rojt-s-bojt-weboldal.md",
+      "08-Sessions/2026-05-13-rojt-s-bojt.md",
+      "08-Sessions/2026-05-08-rojt-s-bojt-weboldal.md"
+    ],
+    "02-Projects/foxxi-seo-research-output/": [
+      "08-Sessions/2026-05-04-foxxi-seo-research-notebooklm.md",
+      "08-Sessions/2026-05-04-foxxi-seo-research-notebooklm.md",
+      "02-Projects/foxxi-sprint-2026-05/foxxi-seo-uzenet-2026-05-04.md"
+    ],
+    "00-Meta/templates/README\\": [
+      "README.md",
+      "00-Meta/README.md"
+    ],
+    "06-Audits/2026-04-23 Teljes infra audit\\": [
+      "README.md",
+      "06-Audits/Index.md"
+    ],
+    "06-Audits/System_Health\\": [
+      "README.md",
+      "06-Audits/Index.md"
+    ],
+    "02-Projects/kgc-berles\\": [
+      "02-Projects/Index.md",
+      "03-Hosts/vps-dev-example - dev.md"
+    ],
+    "02-Projects/kgc-kivetitok\\": [
+      "02-Projects/Index.md",
+      "03-Hosts/vps-prod-example - prod.md"
+    ],
+    "02-Projects/kgc-tv-cms\\": [
+      "02-Projects/Index.md",
+      "03-Hosts/vps-prod-example - prod.md"
+    ],
+    "02-Projects/foxxi\\": [
+      "02-Projects/Index.md",
+      "03-Hosts/Shared Hosting (Cloud Professional).md"
+    ],
+    "02-Projects/foxxi-email-arhivum\\": [
+      "02-Projects/Index.md",
+      "03-Hosts/Shared Hosting (Cloud Professional).md"
+    ],
+    "02-Projects/myforge-dashboard\\": [
+      "02-Projects/Index.md",
+      "03-Hosts/vps-dev-example - dev.md"
+    ],
+    "02-Projects/rojtesbojt\\": [
+      "02-Projects/Index.md",
+      "03-Hosts/Shared Hosting (Cloud Professional).md"
+    ],
+    "wikilink": [
+      "06-Audits/2026-05-17 B-7 wikilink-importer MENTIONS edges.md",
+      "11-wiki/sv-06-world-model-knowledge-graph.md"
+    ],
+    "06-Audits/eval-l1-baseline-20260517T192717Z.jsonl": [
+      "06-Audits/2026-05-17 B-3 Week 2 L2 NLI-judge.md",
+      "06-Audits/2026-05-17 B-3 Week 2 L2 NLI-judge.md"
+    ],
+    "link": [
+      "06-Audits/2026-05-17 B-5 notebooklm per-project bootstrap.md",
+      "11-wiki/sv-06-world-model-knowledge-graph.md"
+    ],
+    "feedback-3d-chars-on-retro-bg": [
+      "06-Audits/System_Health.md",
+      "08-Sessions/2026-05-11-kgc-marketing.md"
+    ],
+    "11-wiki/img-viewer-zoom-pan-ux": [
+      "06-Audits/System_Health.md",
+      "08-Sessions/2026-05-12-robbantott-bra-keres.md"
+    ],
+    "11-wiki/multi-figure-parts-list-pattern": [
+      "06-Audits/System_Health.md",
+      "08-Sessions/2026-05-12-robbantott-bra-keres.md"
+    ],
+    "11-wiki/parts-table-vs-figure-page-detection": [
+      "06-Audits/System_Health.md",
+      "08-Sessions/2026-05-12-robbantott-bra-keres.md"
+    ],
+    "feedback_multi_page_pdf_check.md": [
+      "06-Audits/System_Health.md",
+      "08-Sessions/2026-05-12-robbantott-bra-keres.md"
+    ],
+    "2026-05-15 VNC stack systemd reboot-survival": [
+      "06-Audits/System_Health.md",
+      "08-Sessions/2026-05-15-szerver-update.md"
+    ],
+    "03-Hosts/vps-dev-example - dev\\": [
+      "03-Hosts/Index.md",
+      "05-Memory/Infrastructure.md"
+    ],
+    "03-Hosts/vps-prod-example - prod\\": [
+      "03-Hosts/Index.md",
+      "05-Memory/Infrastructure.md"
+    ],
+    "03-Hosts/Shared Hosting (Cloud Professional)\\": [
+      "03-Hosts/Index.md",
+      "05-Memory/Infrastructure.md"
+    ],
+    "\"$1\" == *$'\\n'*": [
+      "04-Tasks/Backlog.md",
+      "08-Sessions/_archive/2026-04-30-smoke-teszt-mechanika.md"
+    ],
+    "05-Memory/feedback_active_session_pointer_divergence": [
+      "11-wiki/claude-code-session-id-per-chat-isolation.md",
+      "11-wiki/claude-code-session-id-per-chat-isolation.md"
+    ],
+    "10-raw/": [
+      "11-wiki/Karpathy-LLM-Wiki-pattern.md",
+      "11-wiki/Karpathy-LLM-Wiki-pattern.md"
+    ],
+    "11-wiki/sv-05": [
+      "11-wiki/sv-05-crystallization-automation.md",
+      "11-wiki/sv-05-crystallization-automation.md"
+    ],
+    "feedback_foxxi_elementor_editability": [
+      "08-Sessions/2026-05-04-rojt-s-bojt-weboldal.md",
+      "08-Sessions/2026-05-08-rojt-s-bojt-weboldal.md"
+    ],
+    "../../05-Memory/feedback_active_session_pointer_divergence": [
+      "08-Sessions/2026-05-16-obsidian-vault-rdekes-k-rd-sek.md",
+      "08-Sessions/2026-05-16-obsidian-vault-rdekes-k-rd-sek.md"
+    ],
+    "05-Memory/": [
+      "00-Meta/Frontmatter-schema.md",
+      "00-Meta/Frontmatter-schema.md"
+    ],
+    "02-Projects/<slug>": [
+      "00-Meta/templates/Session-template.md",
+      "00-Meta/skills/load-session-context/SKILL.md"
+    ],
+    "00-Meta/README\\": [
+      "README.md"
+    ],
+    "00-Meta/Tag-taxonomy\\": [
+      "README.md"
+    ],
+    "00-Meta/Frontmatter-schema\\": [
+      "README.md"
+    ],
+    "00-Meta/Glossary\\": [
+      "README.md"
+    ],
+    "01-Daily/Index\\": [
+      "README.md"
+    ],
+    "02-Projects/Index\\": [
+      "README.md"
+    ],
+    "03-Hosts/Index\\": [
+      "README.md"
+    ],
+    "04-Tasks/Backlog\\": [
+      "README.md"
+    ],
+    "04-Tasks/Dashboard\\": [
+      "README.md"
+    ],
+    "05-Memory/README\\": [
+      "README.md"
+    ],
+    "05-Memory/User\\": [
+      "README.md"
+    ],
+    "05-Memory/Infrastructure\\": [
+      "README.md"
+    ],
+    "05-Memory/Skill-map\\": [
+      "README.md"
+    ],
+    "06-Audits/Index\\": [
+      "README.md"
+    ],
+    "10-raw/Index\\": [
+      "README.md"
+    ],
+    "11-wiki/Index\\": [
+      "README.md"
+    ],
+    "../../05-Memory/feedback_mfl_voice_sprint_isolation": [
+      "02-Projects/mfl-voice.md"
+    ],
+    "02-Projects/<név>": [
+      "02-Projects/Index.md"
+    ],
+    "02-Projects/kgc-marketing\\": [
+      "02-Projects/Index.md"
+    ],
+    "02-Projects/foxxi-sprint-2026-05/README\\": [
+      "02-Projects/Index.md"
+    ],
+    "02-Projects/foxxi-logos/README\\": [
+      "02-Projects/Index.md"
+    ],
+    "02-Projects/foxxi-cv-website/README\\": [
+      "02-Projects/Index.md"
+    ],
+    "02-Projects/mfl-voice\\": [
+      "02-Projects/Index.md"
+    ],
+    "02-Projects/mapesz\\": [
+      "02-Projects/Index.md"
+    ],
+    "02-Projects/boulium\\": [
+      "02-Projects/Index.md"
+    ],
+    "02-Projects/superintelligent-vault\\": [
+      "02-Projects/Index.md"
+    ],
+    "02-Projects/KGC-ALL Architektura\\": [
+      "02-Projects/Index.md"
+    ],
+    "\"$name\" == _bmad*": [
+      "02-Projects/Index.md"
+    ],
+    "-n \"$last\"": [
+      "02-Projects/Index.md"
+    ],
+    "-d \"$d/.git\"": [
+      "02-Projects/Index.md"
+    ],
+    "20 Servers MOC": [
+      "10-raw/2026-04-23 — NotebookLM briefing - Obsidian vault AI agent infra.md"
+    ],
+    "jegyzet": [
+      "10-raw/2026-04-23 — NotebookLM briefing - Obsidian vault AI agent infra.md"
+    ],
+    "10-raw/2026-04-23 — Claude designer prompt - agent dashboard\\": [
+      "10-raw/Index.md"
+    ],
+    "10-raw/2026-04-23 — GitHub trending (daily)\\": [
+      "10-raw/Index.md"
+    ],
+    "10-raw/2026-04-23 — NotebookLM briefing - Obsidian vault AI agent infra\\": [
+      "10-raw/Index.md"
+    ],
+    "10-raw/2026-04-23 — firecrawl - Example Domain \\": [
+      "10-raw/Index.md"
+    ],
+    "10-raw/2026-04-23 — myforge-os design bundle readme\\": [
+      "10-raw/Index.md"
+    ],
+    "10-raw/2026-04-23 — myforge-os design chat transcript\\": [
+      "10-raw/Index.md"
+    ],
+    "10-raw/2026-04-24 — GitHub trending (daily)\\": [
+      "10-raw/Index.md"
+    ],
+    "10-raw/2026-04-24 — firecrawl - rojtos-bojt-kavesbogre-coffee\\": [
+      "10-raw/Index.md"
+    ],
+    "10-raw/2026-04-25 — GitHub trending (daily)\\": [
+      "10-raw/Index.md"
+    ],
+    "10-raw/2026-04-26 — GitHub trending (daily)\\": [
+      "10-raw/Index.md"
+    ],
+    "10-raw/2026-04-27 — GitHub trending (daily)\\": [
+      "10-raw/Index.md"
+    ],
+    "10-raw/2026-04-28 — GitHub trending (daily)\\": [
+      "10-raw/Index.md"
+    ],
+    "10-raw/2026-04-29 — GitHub trending (daily)\\": [
+      "10-raw/Index.md"
+    ],
+    "05-Memory/Skill-map.md": [
+      "07-Decisions/2026-04-23 Claude Code Agentic OS - build plan.md"
+    ],
+    "slug": [
+      "07-Decisions/2026-04-24 MYFORGE OS dashboard — roadmap v2.md"
+    ],
+    "07-Decisions/2026-04-30 Crystallization workflow + auto-context-loading\\": [
+      "07-Decisions/Index.md"
+    ],
+    "07-Decisions/2026-04-29 KGC TV CMS — Print Editorial admin + heartbeat protokoll\\": [
+      "07-Decisions/Index.md"
+    ],
+    "07-Decisions/2026-04-26 Adattárolás — Postgres saját DB + Prisma\\": [
+      "07-Decisions/Index.md"
+    ],
+    "07-Decisions/2026-04-24 MYFORGE OS dashboard — roadmap v2\\": [
+      "07-Decisions/Index.md"
+    ],
+    "07-Decisions/2026-04-24 MAPESZ PWA platform-független architektúra\\": [
+      "07-Decisions/Index.md"
+    ],
+    "07-Decisions/2026-04-24 KGC-Bérlés üzleti szabályok v1\\": [
+      "07-Decisions/Index.md"
+    ],
+    "07-Decisions/2026-04-24 Git stratégia — standalone repo + 7 commit + GitHub Flow\\": [
+      "07-Decisions/Index.md"
+    ],
+    "07-Decisions/2026-04-24 Brand kanonizálás — KGC BEST Warm Editorial\\": [
+      "07-Decisions/Index.md"
+    ],
+    "07-Decisions/2026-04-23 Vault design - NotebookLM research findings\\": [
+      "07-Decisions/Index.md"
+    ],
+    "07-Decisions/2026-04-23 Unified agent memory\\": [
+      "07-Decisions/Index.md"
+    ],
+    "07-Decisions/2026-04-23 Session orchestration\\": [
+      "07-Decisions/Index.md"
+    ],
+    "07-Decisions/2026-04-23 Claude Code Agentic OS - build plan\\": [
+      "07-Decisions/Index.md"
+    ],
+    "07-Decisions/2026-04-23 Audit actions\\": [
+      "07-Decisions/Index.md"
+    ],
+    "11-wiki/enable-tool-search-auto-pattern": [
+      "06-Audits/2026-05-17 ENABLE_TOOL_SEARCH activation.md"
+    ],
+    "../08-Sessions/2026-05-17-notebooklm-context-mining": [
+      "06-Audits/2026-05-17 ENABLE_TOOL_SEARCH activation.md"
+    ],
+    "\"${VAULT_META_NB_AUTOPUSH:-0}\" == \"1\"": [
+      "06-Audits/2026-05-17 B-5 vault-meta notebook hook.md"
+    ],
+    "-x \"$hook\"": [
+      "06-Audits/2026-05-17 B-5 vault-meta notebook hook.md"
+    ],
+    "wiki": [
+      "06-Audits/2026-05-17 B-1 G-Eval bias-mitigation v0.3.md"
+    ],
+    "../11-wiki/vault-ko-conflicts-audit-design": [
+      "06-Audits/2026-05-17 B-3 vault-coherence-drift check.md"
+    ],
+    "06-Audits/2026-05-10 Foxxi performance audit\\": [
+      "06-Audits/Index.md"
+    ],
+    "06-Audits/2026-05-10 Foxxi Google snippet diagnosis\\": [
+      "06-Audits/Index.md"
+    ],
+    "06-Audits/2026-05-10 Foxxi email deliverability diagnosis\\": [
+      "06-Audits/Index.md"
+    ],
+    "06-Audits/2026-05-12 himalajaijoga.hu webelemzés\\": [
+      "06-Audits/Index.md"
+    ],
+    "06-Audits/2026-05-12 nonplusz.hu-basic webelemzés\\": [
+      "06-Audits/Index.md"
+    ],
+    "L1_Stuck_Alerts.csv": [
+      "06-Audits/2026-05-17 B-3 L1 stuck-detection.md"
+    ],
+    "02-Projects/foxxi-sprint-2026-05": [
+      "06-Audits/2026-05-08 Vault rendezesi audit.md"
+    ],
+    "../.vault-tools/scripts/skill-canonicalize.py": [
+      "06-Audits/skill-canonicalize-baseline-2026-05-17.md"
+    ],
+    "feedback_docker_prune_safety": [
+      "04-Tasks/Backlog.md"
+    ],
+    "../05-Memory/feedback_mfl_voice_sprint_isolation": [
+      "04-Tasks/Backlog.md"
+    ],
+    "00-Meta/bash-patches/README\\": [
+      "04-Tasks/Backlog.md"
+    ],
+    "\"$slug\" == \"Index\"": [
+      "11-wiki/obsidian-color-coding.md"
+    ],
+    "-f \"$f.bak.20260513-colors\"": [
+      "11-wiki/obsidian-color-coding.md"
+    ],
+    "10-raw/mfl-research-2026-05-15/": [
+      "11-wiki/mfl-voice-jarvis-mother-research.md"
+    ],
+    "10-raw/mfl-research-2026-05-15/audio/MOTHER.mp3": [
+      "11-wiki/mfl-voice-jarvis-mother-research.md"
+    ],
+    "10-raw/mfl-research-2026-05-15/audio/JARVIS.mp3": [
+      "11-wiki/mfl-voice-jarvis-mother-research.md"
+    ],
+    "10-raw/mfl-research-2026-05-15/audio/VOICE_ARCH.mp3": [
+      "11-wiki/mfl-voice-jarvis-mother-research.md"
+    ],
+    "../05-Memory/feedback_git_sensitive_data": [
+      "11-wiki/hellopack-wordpress-plugin-suite.md"
+    ],
+    "05-Memory/feedback_git_sensitive_data": [
+      "11-wiki/hellopack-wordpress-plugin-suite.md"
+    ],
+    "AGENTS.md": [
+      "11-wiki/sv-02-recursive-self-improvement.md"
+    ],
+    "10-raw/2026-04-23 — cikk": [
+      "11-wiki/Index.md"
+    ],
+    "…": [
+      "11-wiki/Crystallization-protocol.md"
+    ],
+    "active-session-pointer-divergence": [
+      "11-wiki/bmad-cross-machine-artifact-verification.md"
+    ],
+    "../05-Memory/feedback_active_session_pointer_divergence": [
+      "11-wiki/claude-code-session-id-per-chat-isolation.md"
+    ],
+    "00-Meta/": [
+      "11-wiki/Karpathy-LLM-Wiki-pattern.md"
+    ],
+    "\"$BRANCH\" =~ ^rsi-(sandbox": [
+      "11-wiki/multi-layer-safety-gate.md"
+    ],
+    ".vault-rsi/README.md": [
+      "11-wiki/multi-layer-safety-gate.md"
+    ],
+    "`docs/NEXT_SESSION_KICKOFF.md`": [
+      "08-Sessions/2026-05-08-kinda-project-folytasa.md"
+    ],
+    "`docs/SESSION_HANDOFF.md`": [
+      "08-Sessions/2026-05-08-kinda-project-folytasa.md"
+    ],
+    "`docs/wellbeing-kerdesek-attinak.md`": [
+      "08-Sessions/2026-05-08-kinda-project-folytasa.md"
+    ],
+    "`docs/designer-prompts/05-superadmin.md`": [
+      "08-Sessions/2026-05-08-kinda-project-folytasa.md"
+    ],
+    "07-Decisions/2026-05-XX agentmemory vs vault-Karpathy": [
+      "08-Sessions/2026-05-11-github-repo.md"
+    ],
+    "X\\": [
+      "08-Sessions/2026-04-23-obsidian-vault-rendbetetele.md"
+    ],
+    "feedback_active_session_pointer_divergence": [
+      "08-Sessions/2026-05-16-boulium.md"
+    ],
+    "feedback_multi_page_pdf_check": [
+      "08-Sessions/2026-05-12-robbantott-bra-keres.md"
+    ],
+    "02-Projects/foxxi-sprint-2026-05/foxxi-blog-drafts": [
+      "08-Sessions/2026-05-10-foxxi-weboldal.md"
+    ],
+    "feedback_auto_mode_polish_packages": [
+      "08-Sessions/2026-05-13-rojt-s-bojt.md"
+    ],
+    "08-Sessions/2026-04-30-vault-restructure\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-29-wellbeing\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-29-kgc-weboldal\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-27-kgc-marketing-kivetitok\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-27-foxi\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-26-myforge-dashboard-polish-tabs\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-25-kgc-marketing\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-24-myforge-dashboard-fejlesztes\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-24-mapesz\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-24-kgc-frontend-folytatas\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-24-kgc-frontend-fejlesztes\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-23-obsidian-vault-rendbetetele\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-23-notebooklm-obsidian-vault\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-23-myforge-dashboard\\": [
+      "08-Sessions/Index.md"
+    ],
+    "08-Sessions/2026-04-23-kgc-innovation-tour-marketing\\": [
+      "08-Sessions/Index.md"
+    ],
+    "wp w3-total-cache flush avoids LiteSpeed cache": [
+      "08-Sessions/2026-05-16-obsidian-vault-rdekes-k-rd-sek.md"
+    ],
+    "github-trending": [
+      "08-Sessions/2026-05-10-github-repok.md"
+    ],
+    "Next.js API proxy bridge": [
+      "08-Sessions/2026-05-09-vault-maintenance.md"
+    ],
+    "…fejlesztes": [
+      "08-Sessions/2026-05-09-vault-maintenance.md"
+    ],
+    "01-Daily/": [
+      "00-Meta/Frontmatter-schema.md"
+    ],
+    "03-Hosts/": [
+      "00-Meta/Frontmatter-schema.md"
+    ],
+    "02-Projects/": [
+      "00-Meta/Frontmatter-schema.md"
+    ],
+    "06-Audits/": [
+      "00-Meta/Frontmatter-schema.md"
+    ],
+    "06-Audits/System_Health.md": [
+      "00-Meta/Frontmatter-schema.md"
+    ],
+    "": [
+      "02-Projects/foxxi-sprint-2026-05/foxxi-uzenet-2026-05-04-vegleges.md"
+    ],
+    "00-Meta/skills/load-session-context/SKILL\\": [
+      "00-Meta/skills/README.md"
+    ],
+    "00-Meta/skills/propagate-session/SKILL\\": [
+      "00-Meta/skills/README.md"
+    ],
+    "07-Decisions/YYYY-MM-DD <ADR>": [
+      "00-Meta/templates/Project-template.md"
+    ],
+    "03-Hosts/<host>": [
+      "00-Meta/templates/Project-template.md"
+    ],
+    "<file>": [
+      "00-Meta/skills/load-session-context/SKILL.md"
+    ],
+    ".vault-memory/scripts/vault-search.py": [
+      "00-Meta/skills/load-session-context/SKILL.md"
+    ]
+  }
+}

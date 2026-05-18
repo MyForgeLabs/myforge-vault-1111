@@ -134,15 +134,10 @@ always_skip:
   - "!10-raw/external/**"
   - "!10-raw/*GitHub trending*"   # GitHub-trending-reports OK
 
-  # Crystallize-log (event-stream lehet client-info)
+  # Audits — event-stream / live-state JSON/JSONL skip
+  # (NEM az MD-audit-ok — azok mehetnek public-ra az include_paths alapján)
   - "06-Audits/crystallize-log.jsonl"
-  - "06-Audits/crystallize-health.json"
-  - "06-Audits/cross-source-conflicts-*.md"
   - "06-Audits/ko-normalize-*.jsonl"
-  - "06-Audits/Eval_Trend.md"
-  - "06-Audits/System_Health.md"
-  - "06-Audits/Index.md"   # generic Index — bemegy később külön
-  - "06-Audits/broken-wikilinks-*.json"
 
   # Sessions: default-skip implicit (NEM include-on → NEM publish)
   # Itt NEM állítjuk always_skip-re, hogy a selective include-okat ne overrideja.
