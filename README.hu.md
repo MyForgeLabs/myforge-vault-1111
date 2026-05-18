@@ -1,13 +1,17 @@
-# Superintelligent Vault (SV)
+# MyForge Vault 11.11
 
 > **8-tengelyű evolúciós módszer és working tooling egy személyes Obsidian-vault önfejlesztő tudásrendszerré alakítására.**
-> Augmented intelligence — NEM AGI, NEM hype. Magyar+angol dokumentáció, MIT.
+> Készítette: [MyForge Labs](mailto:11.11@myforgelabs.com). Augmented intelligence — NEM AGI, NEM hype. Magyar+angol dokumentáció, MIT.
 
-[English version](./README.en.md) · [Roadmap](./07-Decisions/2026-05-12%20Superintelligent%20vault%20evolution%20roadmap.md) · [Cross-projekt synthesis](./06-Audits/2026-05-18%20vault-meta%20NotebookLM%20cross-projekt%20synthesis.md)
+[English version](./README.md) · [Roadmap](./07-Decisions/2026-05-12%20Superintelligent%20vault%20evolution%20roadmap.md) · [Cross-projekt synthesis](./06-Audits/2026-05-18%20vault-meta%20NotebookLM%20cross-projekt%20synthesis.md)
 
 ## Mi ez
 
-A Superintelligent Vault egy **8-tengelyű architektúra** + **35+ production-script** + **87+ evergreen wiki** + **28 ADR** ami egy klasszikus Obsidian-vault-ot **self-improving tudásrendszerré** alakít. Mérhető numerikus eredményekkel és nyílt forrású-publikálással egyértelmű scope-pal.
+A **MyForge Vault 11.11** (belső kódnév: SV — Superintelligent Vault) egy **8-tengelyű architektúra** + **35+ production-script** + **87+ evergreen wiki** + **28 ADR** ami egy klasszikus Obsidian-vault-ot **self-improving tudásrendszerré** alakít. Mérhető numerikus eredményekkel és nyílt forrású-publikálással egyértelmű scope-pal.
+
+A **11.11** a névben két jelentést hordoz:
+- 🏢 **MyForge Labs alapítási jel** — a `11.11@myforgelabs.com` email-cím a vault előtti
+- 🔧 **Session-orchestration primitív** — minden workflow a `11.11*` CLI-családon (mint `11.11start`, `11.11stop`, `11.11crystallize`, `11.11worker`) — ez a "kötőszövet" ami a 8 tengelyt egy rendszerré teszi
 
 A módszer kiindulópontja [Karpathy LLM-Wiki pattern](./11-wiki/Karpathy-LLM-Wiki-pattern.md)-je: a "raw input" (10-raw) → "desztillált tudás" (11-wiki) crystallization-workflow. A SV ezt evolúcióval bővíti 8 függetlenül fejleszthető tengellyel.
 
@@ -53,7 +57,7 @@ A módszer kiindulópontja [Karpathy LLM-Wiki pattern](./11-wiki/Karpathy-LLM-Wi
 
 ## Miben vagyunk MÁSOK (NEM verseny — kompozit)
 
-| Funkció | Pocock/skills | obra/superpowers | tinyhumansai/openhuman | **SV** |
+| Funkció | Pocock/skills | obra/superpowers | tinyhumansai/openhuman | **MyForge Vault 11.11** |
 |---|:---:|:---:|:---:|:---:|
 | Skill-share | ✅ | ✅ | ✅ | ✅ + Memgraph vector |
 | Cross-projekt synthesis | ❌ | ❌ | ❌ | ✅ NotebookLM 63 source |
@@ -63,6 +67,7 @@ A módszer kiindulópontja [Karpathy LLM-Wiki pattern](./11-wiki/Karpathy-LLM-Wi
 | RSI (GEPA Pareto) | ❌ | ❌ | ❌ | ✅ +14.3% verified |
 | 8-axis ADR | ❌ | ❓ | ❓ | ✅ explicit per-axis |
 | Multi-agent orchestration | ❌ | ❓ | ❌ | ✅ 11.11worker ÉLES |
+| **11.11 session-orchestration** | ❌ | ❌ | ❌ | ✅ unique CLI-család |
 
 ## Quick start
 
@@ -91,7 +96,11 @@ A teljes módszertan **architektúra-level reprodukálható** a [07-Decisions/](
 
 ## Pozícionálás (transparent)
 
-A SV-rendszer **NEM** "Pocock-skills alternative" vagy "openhuman challenger". A módszer egy **8-tengelyű kompozit architektúra** mérhető eredményekkel, mindezt nyílt forráskóddal + saját Obsidian-vault-on használva. Cél: ipari peer-feedback + bárki más reprodukálni tudja a saját vault-jában.
+A MyForge Vault 11.11 **NEM** "Pocock-skills alternative" vagy "openhuman challenger". A módszer egy **8-tengelyű kompozit architektúra** mérhető eredményekkel, a MyForge Labs saját Obsidian-vault-ján használva, nyílt forráskóddal publikálva. Cél: ipari peer-feedback + bárki más reprodukálni tudja a saját vault-jában.
+
+## Ki van mögötte
+
+[**MyForge Labs**](mailto:11.11@myforgelabs.com) — kis magyar engineering-műhely ami agent-skill infrastruktúrát, multilingual webplatformokat és AI-augmented operatív tooling-ot épít. ~2026-02-26 alapítása óta a `11.11@myforgelabs.com` a céges essence.
 
 ## License
 

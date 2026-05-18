@@ -1,4 +1,4 @@
-# SCRUB-rules for Superintelligent Vault public-release filter
+# SCRUB-rules for MyForge Vault 11.11 public-release filter
 #
 # Default policy: SKIP (paranoid — semmi NEM kerül a public-repo-ba alapból).
 # Explicit `include_*` listával engedj egy-egy path-mintát publishable-ré.
@@ -7,7 +7,7 @@
 # Idempotens: minden run ugyanazt az output-ot adja a vault-state alapján.
 
 source_vault: /root/obsidian-vault
-target_repo: /root/projects/superintelligent-vault-public
+target_repo: /root/projects/myforge-vault-1111
 
 # === ARCHITECTURAL-LEVEL PUBLISHABLE ===
 include_paths:

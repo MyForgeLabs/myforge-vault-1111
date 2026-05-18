@@ -1,13 +1,17 @@
-# Superintelligent Vault (SV)
+# MyForge Vault 11.11
 
 > **An open-source 8-axis methodology + working tooling for evolving a personal Obsidian-vault into a self-improving knowledge-system.**
-> Augmented intelligence — NOT AGI, NOT hype. Hungarian+English docs, MIT.
+> Made by [MyForge Labs](mailto:11.11@myforgelabs.com). Augmented intelligence — NOT AGI, NOT hype. Hungarian+English docs, MIT.
 
 [Magyar verzió](./README.hu.md) · [Roadmap](./07-Decisions/2026-05-12%20Superintelligent%20vault%20evolution%20roadmap.md) · [Cross-project synthesis](./06-Audits/2026-05-18%20vault-meta%20NotebookLM%20cross-projekt%20synthesis.md)
 
 ## What is this
 
-The Superintelligent Vault is an **8-axis architecture** + **35+ production scripts** + **87+ evergreen wiki pages** + **28 ADRs** that turns a classic Obsidian-vault into a **self-improving knowledge-system**. With measurable numeric results and clear open-source publishing scope.
+**MyForge Vault 11.11** (internal codename: SV) is an **8-axis architecture** + **35+ production scripts** + **87+ evergreen wiki pages** + **28 ADRs** that turns a classic Obsidian-vault into a **self-improving knowledge-system**. With measurable numeric results and clear open-source publishing scope.
+
+The **11.11** in the name carries two meanings:
+- 🏢 **MyForge Labs founding signal** — the company's `11.11@myforgelabs.com` email predates this vault
+- 🔧 **Session-orchestration primitive** — every workflow runs through the `11.11*` CLI family (`11.11start`, `11.11stop`, `11.11note`, `11.11focus`, `11.11ls`, `11.11crystallize`, `11.11worker`) — the connective tissue that makes the 8 axes work as one system
 
 The methodology starts from [Karpathy's LLM-Wiki pattern](./11-wiki/Karpathy-LLM-Wiki-pattern.md): the "raw input" (10-raw) → "distilled knowledge" (11-wiki) crystallization workflow. SV extends this through evolution along 8 independently developable axes.
 
@@ -53,7 +57,7 @@ The methodology starts from [Karpathy's LLM-Wiki pattern](./11-wiki/Karpathy-LLM
 
 ## What's DIFFERENT (NOT competition — composite)
 
-| Feature | Pocock/skills | obra/superpowers | tinyhumansai/openhuman | **SV** |
+| Feature | Pocock/skills | obra/superpowers | tinyhumansai/openhuman | **MyForge Vault 11.11** |
 |---|:---:|:---:|:---:|:---:|
 | Skill share | ✅ | ✅ | ✅ | ✅ + Memgraph vector |
 | Cross-project synthesis | ❌ | ❌ | ❌ | ✅ NotebookLM 63 source |
@@ -63,6 +67,7 @@ The methodology starts from [Karpathy's LLM-Wiki pattern](./11-wiki/Karpathy-LLM
 | RSI (GEPA Pareto) | ❌ | ❌ | ❌ | ✅ +14.3% verified |
 | 8-axis ADR | ❌ | ❓ | ❓ | ✅ explicit per-axis |
 | Multi-agent orchestration | ❌ | ❓ | ❌ | ✅ 11.11worker LIVE |
+| **11.11 session orchestration** | ❌ | ❌ | ❌ | ✅ unique CLI family |
 
 ## Quick start
 
@@ -91,7 +96,11 @@ The full methodology is **architecture-level reproducible** through the [07-Deci
 
 ## Positioning (transparent)
 
-The SV is **NOT** a "Pocock-skills alternative" or "openhuman challenger". The methodology is an **8-axis composite architecture with measurable results**, used on our own Obsidian-vault, published as open source. Goal: industry peer feedback + anyone else reproduces it on their own vault.
+MyForge Vault 11.11 is **NOT** a "Pocock-skills alternative" or "openhuman challenger". The methodology is an **8-axis composite architecture with measurable results**, used on MyForge Labs' own Obsidian-vault, published as open source. Goal: industry peer feedback + anyone else reproduces it on their own vault.
+
+## Who's behind it
+
+[**MyForge Labs**](mailto:11.11@myforgelabs.com) — small Hungarian engineering shop building agent-skill infrastructure, multilingual web platforms, and AI-augmented operational tooling. Founded around 11.11.
 
 ## License
 
