@@ -116,6 +116,10 @@ nav:
   - Meta:
       - meta/README.md
   - Audits:
-      - audits/Index.md
+      - Áttekintés: audits/Index.md
+      - Mind: audits/
   - SV-meta Sessions:
-      - sessions/
+      - Áttekintés: sessions/Index.md
+      - Mind: sessions/
+  - Daily logs:
+      - Áttekintés: daily/Index.md

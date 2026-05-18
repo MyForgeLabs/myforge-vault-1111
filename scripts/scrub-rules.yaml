@@ -52,27 +52,27 @@ include_paths:
   - "08-Sessions/2026-05-13-sv-*.md"
   - "08-Sessions/2026-05-17-obsidian-vault*.md"
 
-  # SV-meta audit-ok (NEM ügyfél-research)
-  - "06-Audits/2026-05-1* B-* *.md"
-  - "06-Audits/2026-05-1* GitHub *.md"
-  - "06-Audits/2026-05-1* vault-meta *.md"
-  - "06-Audits/2026-05-1* shadow-monitoring *.md"
-  - "06-Audits/2026-05-1* OmniRoute *.md"
-  - "06-Audits/2026-05-1* SelfCheckGPT *.md"
-  - "06-Audits/2026-05-1* Layer 2.6 *.md"
-  - "06-Audits/2026-05-1* ENV-defaults *.md"
-  - "06-Audits/2026-05-1* persistent NLI *.md"
-  - "06-Audits/2026-05-1* GEPA *.md"
-  - "06-Audits/2026-05-1* G-Eval *.md"
-  - "06-Audits/2026-05-1* score-gap *.md"
-  - "06-Audits/2026-05-1* auto-skill-distill *.md"
-  - "06-Audits/2026-05-1* predicate-remap *.md"
-  - "06-Audits/2026-05-17 cross-projekt synthesis *.md"
-  - "06-Audits/2026-05-18 *.md"
-  - "06-Audits/2026-05-17 broken-wikilinks *.md"
+  # Audits — mind technikai/SV-meta + maintenance + általános-érvényű
+  # (a forbidden_strings + replacements szűrik az ügyfél-info-t)
+  - "06-Audits/Index.md"
+  - "06-Audits/2026-05-*.md"
+  - "06-Audits/2026-04-*.md"
+  - "06-Audits/System_Health.md"
+  - "06-Audits/Eval_Trend.md"
+  - "06-Audits/crystallize-*.md"
+  - "06-Audits/crystallize-*.json"
+  - "06-Audits/shadow-monitoring-trend.md"
+  - "06-Audits/broken-wikilinks-*.md"
+  - "06-Audits/broken-wikilinks-*.json"
   - "06-Audits/skill-canonicalize-baseline-*.md"
   - "06-Audits/skill-distill-candidates-*.md"
   - "06-Audits/L1_Stuck_Alerts.csv"
+
+  # Daily Index (a per-day daily-fájlok client-info-t tartalmazhatnak, csak Index)
+  - "01-Daily/Index.md"
+
+  # Sessions Index (a per-session-fájlok scoped a 08-Sessions/2026-05-1*-obsidian-vault*.md alá)
+  - "08-Sessions/Index.md"
 
   # Public scriptek (vault-tooling)
   - "scripts/**"
