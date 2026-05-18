@@ -114,8 +114,9 @@ always_skip:
   - "02-Projects/**"
   - "!02-Projects/Index.md"  # Index OK (placeholder után)
 
-  # Daily-notes (lehet client-info)
+  # Daily-notes (lehet client-info — kivéve Index)
   - "01-Daily/**"
+  - "!01-Daily/Index.md"
 
   # Backlog (lehet client-todo)
   - "04-Tasks/Backlog.md"
