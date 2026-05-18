@@ -146,3 +146,6 @@ Ha a [[11-wiki/Auto-context-loading]] szerint a start-kor már betöltöttük a 
 - [[11-wiki/Auto-context-loading]] — a start-time pre-load
 - [[00-Meta/Frontmatter-schema]] — milyen YAML kell az új fájloknak
 - [[AGENTS]] — kötelezővé teszi
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[session-end-auto-crystallization-hook]] (sem-rokon, score=0.77)
+- [[ufw-limit-rate-limit-pattern]] (sem-rokon, score=0.51)

@@ -64,3 +64,6 @@ A `/usr/local/bin/11.11*` shell-CLI nevek **változatlanok** (`11.11start`, `11.
 
 - [[11-wiki/claude-code-harness-blocks]] — más Claude Code-specifikus runtime-quirk-ök
 - [[11-wiki/external-skill-cherry-pick]] — skill management ahol a name-mező szintén kritikus
+<!-- auto-enriched 2026-05-18: +2 semantic cross-link via vault-search -->
+- [[11.11-session-protokoll]] (sem-rokon, score=0.62)
+- [[agent-vault-setup-playbook]] (sem-rokon, score=0.60)

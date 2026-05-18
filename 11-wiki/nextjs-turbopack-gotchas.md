@@ -145,3 +145,6 @@ Részletek: [[nextjs-server-component-in-client-tree]].
 - [[nextjs-api-proxy-bridge]] — komplementer (multi-service)
 - [[../02-Projects/kgc-berles]] / [[../02-Projects/myforge-dashboard]] / [[../02-Projects/teszt-eu]] — host-projektek
 - [[../06-Audits/2026-05-18 vault-meta NotebookLM cross-projekt synthesis]] — Q2-#2 cross-projekt
+<!-- auto-enriched 2026-05-18: +1 semantic cross-link via vault-search -->
+- [[puppeteer-pdf-system-chrome]] (sem-rokon, score=0.60)
+- [[nextjs-16-server-component-onclick-trap]] (sem-rokon, score=0.35)

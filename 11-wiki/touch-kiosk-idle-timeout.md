@@ -71,3 +71,10 @@ KGC-Bérlés totem oszlopok (Tizen Samsung 1080×1920, 2 db: bejárat + pult), 2
 
 - Implementáció: `/root/projektjeim/KGC-ALL/kgc-berles/components/totem/TotemLayout.tsx`
 - Session: [[08-Sessions/2026-05-06-kgc-weboldal]]
+
+## Kapcsolódó
+
+<!-- auto-enriched 2026-05-18: semantic neighbours via vault-search -->
+
+- [[destructive-action-hard-confirm-ux]] (sem=0.57)
+

@@ -147,3 +147,5 @@ A **POST-VERIFY** lépés a legfontosabb — az inkonzisztens slash-handling akk
 - [[hostinger-litespeed-cache-purge-protokoll]] — gyakran ugyanazon projekteken
 - [[../02-Projects/foxxi]] / [[../02-Projects/rojtesbojt]] — host-projektek
 - [[../06-Audits/2026-05-18 vault-meta NotebookLM cross-projekt synthesis]] — Q2-#6 forrás-extrakt
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[wpml-multilingual-pattern-family]] (sem-rokon, score=0.48)

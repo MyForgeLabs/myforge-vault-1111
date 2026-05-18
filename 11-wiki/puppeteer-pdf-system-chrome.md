@@ -113,3 +113,6 @@ Kinda projektben: `apps/balance/lib/{report-pdf,report-token}.ts` + `apps/balanc
 
 - [[02-Projects/teszt-eu]] — Balance riport-flow
 - [[11-wiki/cross-subdomain-cookie-session-bridge]] — szessziókezelés ehhez orthogonális
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[nextjs-turbopack-gotchas]] (sem-rokon, score=0.60)
+- [[orphan-pdf-auto-resume-pattern]] (sem-rokon, score=0.49)

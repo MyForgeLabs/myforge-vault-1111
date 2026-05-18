@@ -93,3 +93,7 @@ Plus: az SVG-rect `fill="transparent"` defaulton **NEM klikkelhető** (csak a 2p
 ## Kapcsolódó
 
 - [[02-Projects/robbantott-kereso]] — implementáció (15+ commit, ebből `bd8b260` a layout-bug fix)
+<!-- auto-enriched 2026-05-18: +3 semantic cross-link via vault-search -->
+- [[nano-banana-cli-gotchas]] (sem-rokon, score=0.58)
+- [[nano-banana-ultra-wide-stitch]] (sem-rokon, score=0.57)
+- [[svg-asset-vs-vector-tradeoff]] (sem-rokon, score=0.54)

@@ -102,3 +102,5 @@ Plus 2 curtain-iteráció elvetve: CSS-only stage-curtain + Adobe Stock free-tie
 - [[wp-cli-bricks-postmeta-pattern]] — hogyan injektáld az SVG-t Bricks-tartalomba
 - [[reference_nano_banana_image_gen]] — higgins/nano_banana_2 image-render workflow
 - [[hellopack-wordpress-plugin-suite]] — Bricks-ecosystem
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[svg-img-overlay-aspect-ratio]] (sem-rokon, score=0.54)

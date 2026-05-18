@@ -58,3 +58,5 @@ Ha valamelyik `MISSING`, **ne idézd be a Summary-be cáfolat nélkül**. Két o
 - [[Crystallization-protocol]]
 - [[../05-Memory/Infrastructure]] — több-agent szinkronizációs gotcha-k
 - [[active-session-pointer-divergence]] — analóg multi-agent state-eltérés
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[session-close-ritual-pattern]] (sem-rokon, score=0.75)

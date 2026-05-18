@@ -79,3 +79,5 @@ A `11.11stop` (vagy `/11.11-zar-session`) trigger 4 lépést kötelező sorrendb
 - [[verification-step-before-claim]] — alapelv
 - [[audit-log-append-only-pattern]] — log-szabály
 - [[Karpathy-LLM-Wiki-pattern]] — háttér-filozófia (raw → distilled)
+<!-- auto-enriched 2026-05-18: +1 semantic cross-link via vault-search -->
+- [[memory-md-overflow-management]] (sem-rokon, score=0.33)

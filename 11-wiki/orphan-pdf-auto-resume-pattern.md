@@ -112,3 +112,11 @@ Ha a self-healing-en túl lépünk:
 
 - [[02-Projects/robbantott-kereso]] `backend/app/startup.py` (commit `c302b3d`)
 - Felhasználói "megint nem sikerül feltölteni" → diagnosztikus session-ből kiderült: 4 orphan PDF + auto-resume → 95% recovery probléma nélkül
+
+## Kapcsolódó
+
+<!-- auto-enriched 2026-05-18: semantic neighbours via vault-search -->
+
+- [[Karpathy-LLM-Wiki-pattern]] (sem=0.51)
+- [[puppeteer-pdf-system-chrome]] (sem=0.49)
+

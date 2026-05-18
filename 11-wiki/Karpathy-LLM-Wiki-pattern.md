@@ -89,3 +89,5 @@ Egy 10.7k★ kínai self-evolving agent framework, [`lsdefine/GenericAgent`](htt
 - [[07-Decisions/2026-04-23 Claude Code Agentic OS - build plan]]
 - [[08-Sessions/2026-05-11-github-repo]] — GenericAgent README elemzés + L0-L4 párhuzam felfedezés
 - [[10-raw/2026-04-23 — NotebookLM briefing - Obsidian vault AI agent infra]]
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[orphan-pdf-auto-resume-pattern]] (sem-rokon, score=0.51)

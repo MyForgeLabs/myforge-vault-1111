@@ -122,3 +122,5 @@ Ahol **nem éri meg**: ha a call <10/nap (cron-job-szerű), a daemon RAM-foglal�
 - [[../02-Projects/superintelligent-vault]] — B-2 sprint Week 3 performance-pillér
 - [[sprint-day-0-skeleton-first]] — skeleton-first komplementer (daemon a "boot a CLI-ban" után jön)
 - [[claude-code-subagent-fanout]] — fanout horizontálisan skáláz (N parallel call), daemon vertikálisan (1 call gyors). Kombinálható.
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[vnc-stack-systemd-reboot-survival]] (sem-rokon, score=0.53)

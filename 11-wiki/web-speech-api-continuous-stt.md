@@ -179,3 +179,5 @@ Production-stack-hez: Chrome/Edge target, fallback push-to-talk. Safari/Firefox 
 - [[11-wiki/gemini-3-1-flash-tts-pipeline]] — TTS lánc második fele
 - [[11-wiki/mfl-voice-jarvis-mother-research]] — VOICE_ARCH részletek (Q1-Q5)
 - [[05-Memory/Infrastructure#Web Speech API + Tailscale HTTPS]] — HTTPS-context Tailscale-en
+<!-- auto-enriched 2026-05-18: +1 semantic cross-link via vault-search -->
+- [[sv-08-notebooklm-cognitive-layer]] (sem-rokon, score=0.56)

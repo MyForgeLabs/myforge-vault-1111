@@ -138,3 +138,5 @@ wp wpml batch send-to-translation --target-language=en
 - [[wp-elementor-template-conflicts]]
 - [[migration-pattern-family-taxonomy]]
 - [[fallback-pattern-family-taxonomy]]
+<!-- auto-enriched 2026-05-18: +1 semantic cross-link via vault-search -->
+- [[wp-elementor-bricks-json-escape-trap]] (sem-rokon, score=0.48)

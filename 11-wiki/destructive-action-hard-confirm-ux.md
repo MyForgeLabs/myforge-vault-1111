@@ -135,3 +135,6 @@ Recovery + bizonyíték a "véletlen törlés"-panaszokra.
 - [[multi-layer-safety-gate]] — komplementer dev-side safety-pattern
 - [[../02-Projects/kgc-berles]] / [[../02-Projects/teszt-eu]] / [[../02-Projects/foxxi]] — host-projektek
 - [[../06-Audits/2026-05-18 vault-meta NotebookLM cross-projekt synthesis]] — Q2-#1 cross-projekt
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[ai-prompt-fidelity-locks]] (sem-rokon, score=0.54)
+- [[touch-kiosk-idle-timeout]] (sem-rokon, score=0.57)

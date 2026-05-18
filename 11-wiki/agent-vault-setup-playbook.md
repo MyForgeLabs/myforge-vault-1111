@@ -564,3 +564,6 @@ A vault **GitHub-ra** push-olódik 10 percenként (vault-autosave). Plusz biztos
 - [[02-Projects/Index]] — projekt-dashboard sablon
 - [[05-Memory/Infrastructure]] — host + portok + szolgáltatások (Peti-specifikus)
 - [[11-wiki/external-skill-cherry-pick]] — hogyan vegyünk át külső skill-eket symlinkkel
+<!-- auto-enriched 2026-05-18: +1 semantic cross-link via vault-search -->
+- [[sv-03-multi-agent-orchestration]] (sem-rokon, score=0.59)
+- [[vscode-extension-slash-command-naming]] (sem-rokon, score=0.60)

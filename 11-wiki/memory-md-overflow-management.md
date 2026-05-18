@@ -99,3 +99,6 @@ Session: [[../08-Sessions/2026-05-16-obsidian-vault-rdekes-k-rd-sek]]
 - [[Karpathy-LLM-Wiki-pattern]] — háttér-architektúra (index vs memory szétválasztása)
 - [[11.11-session-protokoll]] — minden session-záráskor 1-2 memory-update várható
 - [[Crystallization-protocol]] — a routing decision tree memory-bullet-ekre is alkalmazódik
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[session-close-ritual-pattern]] (sem-rokon, score=0.33)
+- [[session-end-auto-crystallization-hook]] (sem-rokon, score=0.30)

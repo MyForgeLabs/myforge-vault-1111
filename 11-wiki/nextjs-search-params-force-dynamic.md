@@ -77,3 +77,5 @@ Kinda projekt: `apps/web/lib/use-url-state.ts` + `apps/web/app/admin/_components
 
 - [[11-wiki/nextjs-server-component-in-client-tree]] — másik Next.js 16 gotcha (server async komponens client-fában)
 - [[02-Projects/teszt-eu]] — globális szűrők Phase 1
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[nextjs-turbopack-gotchas]] (sem-rokon, score=0.59)

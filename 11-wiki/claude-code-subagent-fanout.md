@@ -228,3 +228,5 @@ A `2026-05-17-obsidian-vault-3` session során **13 párhuzamos subagent egy ses
 - [[11-wiki/sprint-day-0-skeleton-first]] — komplementer playbook (Day 0 skeleton scaffold)
 - [[11-wiki/multi-layer-safety-gate]] — high-risk fanout-hoz (RSI / auto-mutate)
 - [[02-Projects/superintelligent-vault]] — B-4 + B-6 sprintek mind subagent-fanout-ra építenek
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[vnc-stack-systemd-reboot-survival]] (sem-rokon, score=0.54)

@@ -207,7 +207,8 @@ A jelenlegi MFL-Voice Sprint 1 fókusz (Backlog-item) a 5-voice AB-teszt + cron 
 - [[11-wiki/gemini-3-1-flash-tts-pipeline]] — TTS pipeline (működik a vault-brief-ben)
 - [[11-wiki/notebooklm-cli-gotchas]] — research workflow (3 új gotcha 2026-05-15: #1b párhuzamos research-wait, #4b partial-import-elfogadás)
 - [[08-Sessions/2026-05-15-mfl-voice-sprint-1]] — research session
-
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[web-speech-api-continuous-stt]] (sem-rokon, score=0.57)
 ## A research raw-dump linkek
 
 ### MOTHER (Alien 1979) — 6 Q

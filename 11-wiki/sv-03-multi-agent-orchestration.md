@@ -359,7 +359,9 @@ notebooklm generate audio -n c7eba59a-a42b-4bf4-8fb2-30c13806eb64
 - [[11-wiki/sv-01-memory-architecture]] — kapcsolódik a context-rot megoldásokhoz (külső memória)
 - [[11-wiki/Crystallization-protocol]] — a summarizer-agent szerepköre épülhet rá
 - [[11-wiki/Karpathy-LLM-Wiki-pattern]] — alapminta, ami a több-párhuzamos-agent-runtime irányába skálázódik
-
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[langgraph-durable-stateful-agent-orchestration-pattern]] (sem-rokon, score=0.62)
+- [[agent-vault-setup-playbook]] (sem-rokon, score=0.59)
 ## NotebookLM-konverzáció
 
 - **Notebook ID:** `c7eba59a-a42b-4bf4-8fb2-30c13806eb64`

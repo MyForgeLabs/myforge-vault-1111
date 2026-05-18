@@ -345,7 +345,8 @@ A B-8 Week 2 subagent élesítette a **valós Pareto-improvement loopot** (audit
 - [[11-wiki/11.11-session-protokoll]] — a session-lifecycle, ahova az auto-skill-desztilláció bekerül
 - [[11-wiki/external-skill-cherry-pick]] — skill-pool gyarapítási minta, párhuzamos az auto-desztilláció filozófiájával
 - [[11-wiki/sv-01-memory-architecture]] — az előző tengely
-
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[ai-prompt-fidelity-locks]] (sem-rokon, score=0.52)
 ## NotebookLM-konverzáció
 
 - **Notebook ID:** `a2425bc7-4786-46f4-9fe8-00fa9510177e`

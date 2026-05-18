@@ -150,3 +150,5 @@ A 63-source NB synthesis-ben:
 - [[g-eval-bias-mitigation-pattern]] — G-Eval bias mérséklés
 - [[layered-eval-cascading-pattern]] — G-Eval + NLI cascade
 - [[../06-Audits/2026-05-18 vault-meta NB cross-projekt Q4-Q5]] — forrás-audit
+<!-- auto-enriched 2026-05-18: +1 semantic cross-link via vault-search -->
+- [[memory-md-overflow-management]] (sem-rokon, score=0.30)

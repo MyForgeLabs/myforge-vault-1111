@@ -146,7 +146,8 @@ Az interaktív HTML-ek static-asset-ként közvetlenül szerverülnek (GH-Pages 
 - [[memgraph-ce-feature-limits]] — vector-index + multi-namespace
 - [[../06-Audits/2026-05-17 B-7 Week 2 typed entity-nodes]] — typed entity-nodes audit
 - [[../06-Audits/2026-05-17 B-7 wikilink-importer MENTIONS edges]] — MENTIONS edges audit
-
+<!-- auto-enriched 2026-05-18: +1 semantic cross-link via vault-search -->
+- [[sv-06-world-model-knowledge-graph]] (sem-rokon, score=0.56)
 ## Regenerálás
 
 ```bash

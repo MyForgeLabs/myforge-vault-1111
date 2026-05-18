@@ -246,7 +246,8 @@ notebooklm generate audio -n e2e31ae8-fa81-4775-9cd7-2cc43b441d69
 - [[10-raw/2026-05-12 — Superintelligence research source pool]]
 - [[11-wiki/Karpathy-LLM-Wiki-pattern]] — a vault jelenlegi memory-struktúrájának háttere
 - [[11-wiki/Crystallization-protocol]] — a #5 tengely (auto-crystallization) kapcsolata
-
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[async-memory-consolidation-letta]] (sem-rokon, score=0.89)
 ## NotebookLM-konverzáció
 
 - **Notebook ID:** `e2e31ae8-fa81-4775-9cd7-2cc43b441d69`

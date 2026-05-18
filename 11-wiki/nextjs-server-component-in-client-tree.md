@@ -101,3 +101,5 @@ A kulcs: ha a vault.ts megjelenik `[Client Component Browser]` ágként, akkor v
 
 - [[07-Decisions/2026-05-08 Myforge OS Wave A-K dashboard expansion]]
 - Hivatalos: https://nextjs.org/docs/app/getting-started/server-and-client-components
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[nextjs-turbopack-gotchas]] (sem-rokon, score=0.54)

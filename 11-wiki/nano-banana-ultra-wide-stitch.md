@@ -89,3 +89,5 @@ KGC autó-matrica 210×40 cm (`/root/projektjeim/Kisgépcentrum-marketing/brand/
 
 - [[nano-banana-cli-gotchas]] — CLI flag-bugok
 - [[wp-elementor-template-conflicts]] — másik konfliktus-playbook minta
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[svg-img-overlay-aspect-ratio]] (sem-rokon, score=0.57)

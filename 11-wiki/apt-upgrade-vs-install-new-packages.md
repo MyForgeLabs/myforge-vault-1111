@@ -81,3 +81,5 @@ apt-get install -y --allow-change-held-packages linux-virtual linux-image-virtua
 
 - [[11-wiki/ssh-timeout-remote-process-survives]]
 - [[05-Memory/Infrastructure#Unattended-upgrades]]
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[vnc-stack-systemd-reboot-survival]] (sem-rokon, score=0.54)

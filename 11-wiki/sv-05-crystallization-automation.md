@@ -371,7 +371,8 @@ notebooklm generate audio -n a219107d-e8fe-4ece-b721-ae6e3182bd45
 - [[11-wiki/Auto-context-loading]] — a session-induló context-pre-load (a propagáció másik fele)
 - [[10-raw/2026-05-12 — Superintelligence research source pool]] — a teljes source-pool
 - [[11-wiki/sv-01-memory-architecture]] — kapcsolódó tengely (memory-réteg, amibe a kristályosított tudás kerül)
-
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[ai-prompt-fidelity-locks]] (sem-rokon, score=0.52)
 ## NotebookLM-konverzáció
 
 - **Notebook ID:** `a219107d-e8fe-4ece-b721-ae6e3182bd45`

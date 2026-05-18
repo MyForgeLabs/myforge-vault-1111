@@ -78,3 +78,5 @@ Brand-pontos retro halftone + Hungarian text accent (Ő, É, Á) Pro-t igényel.
 
 - [[nano-banana-ultra-wide-stitch]] — 5.25:1+ workaround
 - [[notebooklm-cli-gotchas]] — másik AI CLI quirk-kompiláció minta
+<!-- auto-enriched 2026-05-18: +1 semantic inbound via vault-search -->
+- [[svg-img-overlay-aspect-ratio]] (sem-rokon, score=0.58)
