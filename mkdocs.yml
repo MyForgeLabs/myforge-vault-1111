@@ -47,6 +47,8 @@ plugins:
         - hu
         - en
   - awesome-pages
+  - ezlinks:
+      wikilinks: true
   - git-revision-date-localized:
       enable_creation_date: true
       type: timeago
