@@ -1,6 +1,6 @@
 ---
 name: Chromium img-svg parent-fill cascade bug
-description: Chromium az `<img src="*.svg">` mode-ban néha figyelmen kívül hagyja a child path-ok saját `fill="..."` attributumait, ha a parent `<g>` style-jában van fill-cascade. Cairo helyesen renderel ugyanazt a fájlt. Workaround: PNG-vé renderelni cairosvg-vel.
+description: "Chromium az `<img src=\"*.svg\">` mode-ban néha figyelmen kívül hagyja a child path-ok saját `fill=\"...\"` attributumait, ha a parent `<g>` style-jában van fill-cascade. Cairo helyesen renderel ugyanazt a fájlt. Workaround: PNG-vé renderelni cairosvg-vel."
 type: wiki
 tags: ["#wiki", "#tech/svg", "#tech/browser-bug"]
 created: 2026-05-10

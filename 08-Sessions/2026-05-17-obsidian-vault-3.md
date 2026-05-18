@@ -2,9 +2,9 @@
 name: obsidian-vault
 type: session
 project: obsidian-vault
-status: open
+status: closed
 started: 2026-05-17T22:29+00:00
-ended:
+ended: 2026-05-18T14:57+00:00
 agent: claude
 # B-3 eval fields (auto-backfilled, null = not yet evaluated)
 eval_score: null
@@ -57,6 +57,7 @@ tags: ["#type/session", "#project/obsidian-vault"]
 
 ## Cél
 
+5-axis super-session a vault-meta sprint befejezésére + open-source release + MyForge OS Chase-style refactor + Wave M+N follow-up.
 
 ## Events
 
@@ -72,9 +73,20 @@ tags: ["#type/session", "#project/obsidian-vault"]
 - 07:04 — Phase 8 ✓✓✓: GitHub-trending recurrence-elemzés (26 napi report, 2026-04-23→2026-05-18). Top kategória agent-skill/framework 17 repo / 80 megjelenés. Top-3 deep-dive (mattpocock/skills 12× + obra/superpowers 7× + tinyhumansai/openhuman 7× = mai is) + top 4-10 áttekintés. 9 repo net-ingest LANDED 10-raw/external/-ba (vault-net-ingest --preset docs-only). Audit-MD + 5 action-item (P1 ADR: openhuman vs SV diff). Ipari validation: frontier-on dolgozunk.
 - 07:18 — Phase 9.3 ➜ DEFER Week 6: 260 KO-DB pending request van (112 external-repo a Phase 8-ból + 148 régi vault-MD ingest), claude-code-fanout-igényes ~30 perc, mai pool kifutott. Cron-ozott: parent-spawn-fanout (16-batch × ~16-fact) Week 6 task. Audit-log /tmp/vault-ko-pending/*.request.json megőrződik.
 - 07:23 — Phase 9 KOMPLETT (7/7): GitHub-trending heti recurrence-cron LIVE + 4 cherry-pick kandidát auto-detect. Pozicionálási ADR (SV vs Pocock/Superpowers/OpenHuman 12-funkció diff, MIT license, low-key marketing). NotebookLM Q4+Q5 cross-projekt research (6 unique differentiator + 7 publish-priority). README magyar+angol LANDED (open-source landing-doku, 8-axis intro + Quick-start). 5 Pocock Tier-S skill cherry-picked (tdd/grill-with-docs/zoom-out/write-a-skill/obsidian-vault) → Memgraph SkillChunk 462→467, smoke top-1 cosine 0.726. KO-DB pending 260 → Week 6 task.
+- 07:42 — Phase 10 KOMPLETT: private repo /root/projects/superintelligent-vault-public/ ÉLES — 375 fájl, 4.3MB, 1 initial commit f4b8432. SCRUB-pipeline: paranoid YAML-rule + scrub-public.py glob-aware regex + 13 forbidden_strings check (0 violation). Content: 97 wiki + 31 ADR + 45 audit + 13 SV-meta session + 7 meta + scripts/docs/examples/skeletons. 85 string-replace alkalmazva (user→user, example-foxxi.local→example-foxxi.local, vps-prod-example→vps-prod-example, NB-ID-k generic placeholderre, stb.). README magyar+angol + MIT LICENSE + .gitignore + setup.sh interactive + reproduction-guide.md (5-step) + demo-projekt + 2 demo-session + memory-template-ek + GitHub Actions example.
+- 08:09 — Phase 11 KOMPLETT: GitHub repo create + push ÉLES (PetykaMaki/superintelligent-vault PRIVATE, https://github.com/PetykaMaki/superintelligent-vault). 2 commit (initial + sessions-fix), 388 fájl pushed. .gitignore fix után 13 SV-meta session bekerült. 20-test smoke-suite PASS: file-struct + forbidden-clean + script-syntax + YAML-parse + reprodukciós step-1 sikeres /tmp/sv-test-vault-on (élő vault érintetlen) + Memgraph + vault-search natív + cron + cherry-pick suggestion. 37% broken-wikilink VÁRT (user-content path-okra hivatkoznak).
+- 08:23 — Phase 12 ✓: Rebrand MyForge Vault 11.11. GitHub repo rename superintelligent-vault → myforge-vault-1111 (PRIVATE, https://github.com/PetykaMaki/myforge-vault-1111). Lokál mappa /root/projects/myforge-vault-1111. README HU+EN brand-update (MyForge Labs + 11.11 dual-meaning: cégalapítási email 11.11@myforgelabs.com + session-orchestration CLI-család). LICENSE copyright MyForge Labs. scrub-rules.yaml target-path update. Diff-tábla bővítve '11.11 session-orchestration' sorral mint unique funkció. Repo-description GitHub-on update. 3. commit e8c5974 pushed.
+- 08:28 — Phase 13 ✓: Repo transfer PetykaMaki → MyForgeLabs org. Új URL: https://github.com/MyForgeLabs/myforge-vault-1111 (PRIVATE). Régi URL automatikusan redirect. Lokál git remote update. Org description-ben: 'You Dream. We Forge.'. A repo most már a céges org tulajdona, PetykaMaki account automatikus admin-coll. 3 commit változatlanul. 388 fájl megőrződött.
+- 08:44 — Phase 14 (in progress): MyForge OS Wave L mission-control pivot ADR LANDED (07-Decisions/2026-05-18 MyForge OS Wave L). 10 új vault-integráció lehetőség identifikálva, design-alapelvek (deep space + amber/cyan, telemetry-density, NEM cringe). Wave L→Q roadmap. 1. demo deliverable LANDED: /api/vault/oxygen-status (Next.js route, KO-DB + Memgraph + crystallize-monitor aggregálás, 60s cache, 0-100 oxygen-level) + components/agentic/mission-control/OxygenGauge.tsx (NASA-stílusú circular SVG, color-coded health, 4-cell breakdown legend). Build/restart user-action (next start cache miss, npm run build kell). Research-subagent fut (YouTube + GitHub-pkg ajánlás).
+- 08:49 — Phase 14 KOMPLETT (Wave L1 foundation LANDED): 3 új mission-control komponens (StarfieldBackground pure-CSS 3-layer drift + OxygenGauge NASA-stílusú gauge + SprintRadar B-1..B-8 8-axis polygon) + 2 új API endpoint (/api/vault/oxygen-status + /api/vault/sprint-radar) + mission-control.css design-tokens (deep-space + 4-state color + JetBrains Mono + a11y). 0 új dep (React 19 + Next.js 16 + Turbopack-szafe), 388 új sor. Research-MD 14KB 8-forrás + 8-widget + 18-link feldolgozva. Wave L1 acceptance PASS. Wave L2 (4-6 widget recharts + react-gauge-component + scificn-ui) + L3 (CRT + audio + canvas + 3D globe) becsült 5-7 nap. Deploy user-action (npm run build + restart, 5-8 perc).
+- 11:09 — Phase 16 KOMPLETT — Chase-style Command Center ÉLES. 9 új komponens (SkillCard/Grid/Panel/RunHistory/VaultAggregator/ActivityHeatmap/CommandCenter + types) + 4 új API endpoint (/api/skills/discover, /api/cc/{skill/run,runs,aggregator,activity-heatmap}). Wave L1 cleanup (mission-control komp + 2 API + /mission-control route + missionControl preset-mezők). Régi page → /legacy-v2. Smoke ÉLES: 257 claude-skill auto-discovered (343 unique tag), 4 active session + 10 active project + 15 open task aggregálva, activity-heatmap 30-day SVG. Build 11:08:09 → restart 11:08:14 UTC. Compatibility: Next 16 + React 19 + Turbopack. JoeyBream/command-centre referencia (1:1 stack-egyezés Chase AI YouTube-mintából).
+- 11:24 — Phase 18 KOMPLETT — Tools scope ÉLES. 41 vault-tool katalogizálva 9 kategoriában (/api/cc/tools), SSE shell-runner (/api/cc/tool/run) whitelist+sanitization+5min-timeout. SkillCard tool-scope amber-badge + SkillCardGrid 4-tab (All/Tools/Vault/Claude) + SkillPanel scope-aware endpoint-dispatch. Build11:21:38→11:22 RESTART. Smoke: vault-ko-query --stats ✓ (13801 fact streaming), 11.11 health ✓, 11.11ls silent-fail (set -e + env-mismatch Next.js Node-spawn — direkt-shell OK, Wave M follow-up). Régi page → /legacy-v2.
+- 14:36 — Phase N (Wave N) KOMPLETT — graphify integráció. uv tool install graphifyy 0.8.11 + claude skill install + vault-run (graphify update /root/obsidian-vault): 18102 nodes, 28542 edges, 1033 communities, 764 fájl, ~2.4M szó, /bin/bash cost (tree-sitter AST + Leiden, NEM LLM). Output: graphify-out/graph.html 16MB + graph.json 17MB + GRAPH_REPORT.md 334KB. Új API endpoint /api/cc/graphify-status + /api/cc/graphify-html (serve graph.html), új komponens GraphifyPanel (VaultAggregator-ba beillesztve). Build N+1 restart 14:36:23. A graphify a Memgraph entity-graph (8997 LLM-extracted) komplementere — pure-deterministic tree-sitter 2-tier-pattern (two-tier-graph-extraction wiki igazolva).
 ## Summary
 
-**4-fázisú szuper-extended session: 18 task LANDED, minden 8 SV-tengely érintve.** Wall-clock ~40 perc (22:30→23:10), cost $0 (subscription-keretben), **13× subagent-fanout** (R1 4 + R2 4 + R3 5) — ez a 7. iteráció. 18 új audit-MD + 4 új script + 2 új CLI symlink + 5 bővített script + 1 új YAML config.
+**16+ órás multi-phase szuper-extended session: ~95 task LANDED, 19 fázis 3 megabb axison.** 2026-05-17T22:29 → 2026-05-18T14:45, cost ~$0 (subscription-keret). 13+ subagent-fanout iteráció (5×8-13 párh). 30+ új audit-MD + 12 új script + 9 új SKILL.md + 35+ új komponens + 1 új GitHub repo (MyForgeLabs/myforge-vault-1111) + 1 új tool (graphify telepítve+integrálva).
+
+### Axis A — Vault-meta sprint befejezése (Phase 1-9, hajnal 22:30→07:23)
 
 **Fázis 1 — Quick wins (én, 5/5 ✓):**
 - `vault-ko-normalize` APPLY → **89 fact / 37 subject / 34 group** rewrite (audit-log perzisztált)
@@ -100,6 +112,29 @@ tags: ["#type/session", "#project/obsidian-vault"]
 4. **SelfCheckGPT borderline-filter skeleton** → 2-phase pending N-sample variance, smoke 3 FLAG / 7 OK / 0 FP, **6× cost-savings** vs naiv-N=3, default OFF
 5. **Predicate-remap Phase 2 fanout** → 285 fact remap (stand-in classifier, subagent Task-tool hiánya miatt regex/keyword), **dumping-ground 27.7% → 19.8%** (-7.9pp), idempotency verified
 
+**Fázis 6-9 (hajnal 06:47→07:23, 9 task):**
+- **Phase 6 cross-projekt synthesis** — NotebookLM Q1+Q2+Q3 ÉLŐN futtatva (63 source, 21 result): 8 recurring pattern + 6 failure-mode + 7 tech-stack tradeoff. 2 új wiki: `hostinger-litespeed-cache-purge-protokoll` (15 sess-evidence) + `wp-elementor-bricks-json-escape-trap` (5 sess, ÚJ insight Q2-#6)
+- **Phase 7 time-series trend** — W17→W21 trend-elemzés (W20=37 session burst), 2 csoport: 12 W20+ új vs 8 W17-W18 stable-recurring. 2 wiki: `destructive-action-hard-confirm-ux` + `nextjs-turbopack-gotchas`. Új script: `vault-image-batch` (bulk nano-banana per projekt)
+- **Phase 8 GitHub-trending recurrence** — 26 napi report aggr. Top kategória agent-skill/framework 17 repo / 80 megj. Top-3 deep-dive: mattpocock/skills 12× + obra/superpowers 7× + tinyhumansai/openhuman 7×. 9 repo net-ingestelve `10-raw/external/`. **Frontier-on dolgozunk** ipari validation
+- **Phase 9 production-ramp prep + cross-projekt + cron + ENV** — heti `vault-github-trending-recurrence` cron LIVE + 4 cherry-pick kandidát + Pozicionálási ADR (SV vs Pocock/Superpowers/OpenHuman 12-funkció diff) + README magyar+angol + 5 Pocock Tier-S skill cherry-picked (tdd/grill-with-docs/zoom-out/write-a-skill/obsidian-vault) → SkillChunk 462→467, smoke top-1 cos 0.726
+
+### Axis B — Open-source release (Phase 10-13, 07:42→08:28)
+
+- **Phase 10 SCRUB-pipeline** — `/root/projects/myforge-vault-1111` private repo scaffold, 375 fájl + 4.3 MB, scrub-public.py paranoid YAML + 85 string-replace + 13 forbidden_strings = 0 violation. `LICENSE` MIT + `.gitignore` + `setup.sh` interaktív + `docs/reproduction-guide.md` 5-step + demo-projekt + memory-template-ek
+- **Phase 11 GitHub repo CREATE + push** — `PetykaMaki/superintelligent-vault` PRIVATE, 2 commit, **388 fájl pushed**. 20-test smoke-suite PASS (clone + structure + script + reprodukciós step-1 + Memgraph + cron + cherry-pick)
+- **Phase 12 Rebrand `MyForge Vault 11.11`** — repo rename + README HU+EN brand-update (MyForge Labs + 11.11 dual-meaning: cégalap-email `11.11@myforgelabs.com` + session-orch CLI-család). LICENSE copyright update. Diff-tábla "11.11 session-orchestration" sor mint unique funkció
+- **Phase 13 Transfer org-ba** — `PetykaMaki/myforge-vault-1111` → **MyForgeLabs/myforge-vault-1111** (PRIVATE megőrzött), régi URL automatikus redirect, lokál git remote frissítve
+
+### Axis C — MyForge OS Chase-style refactor (Phase 14-19+M+N, 08:44→14:45)
+
+- **Phase 14 Wave L mission-control pivot** — első próbálkozás (OxygenGauge + SprintRadar + StarfieldBackground + 2 API), user "**hülyén néz ki**" → VISSZAVONTUK a fő-page-ről, külön `/mission-control` route
+- **Phase 15 UX audit + YouTube research** — Chase AI (`@Chase-H-AI` 126K követő) azonosítva műfaj-fő-népszerűsítőként, `JoeyBream/command-centre` GitHub-clone **1:1 stack-egyezés** (Next 16 + React 19 + Tailwind 4). 10 átvehető UI-building-block + 5 NEM-átvehető
+- **Phase 16 TELJES Chase-style refactor** — 9 új komponens (SkillCard/Grid/Panel/RunHistory/VaultAggregator/ActivityHeatmap/CommandCenter) + 4 API (`/api/skills/discover`, `/api/cc/{skill/run,runs,aggregator,activity-heatmap}`). Régi page → `/legacy-v2`. 257 claude-skill auto-discovered, ÉLES
+- **Phase 17-18 fixes + Tools** — CLAUDE_BIN path fix + Controller-race + frontend error-display. **41 vault-tool katalogizálva** 9 kategoriában `/api/cc/tools` + `/api/cc/tool/run` SSE shell-runner whitelist+sanitization+5min-timeout. SkillCardGrid 4-tab (All/Tools/Vault/Claude) tool-scope amber-badge
+- **Phase 19 TelemetryStrip** — header alá info-sűrített `CAPS 305 · SESSIONS 4 · PROJECTS 18 · TASKS 150 · HOSTS 3 · FACTS 13.8k · ENTITIES 9.0k` (új `/api/cc/summary` endpoint)
+- **Phase M (Wave M)** — react-markdown + remark-gfm + @tailwindcss/typography integráció (Claude-scope output rendered, tool-scope pre-mono). 4 új panel a sidebar-ba: HostsPanel + CronTimer + CommitsFeed + GitHubPanel (icon-fix Github→Code2 lucide v1.9 brand-kihagyás miatt). 5 vault-projekt SKILL.md a `000-OS/Claude/skills/`-ben (foxxi-context, kgc-context, mfl-voice-context, robbantott-kereso-context, boulium-context). `11.11ls` Next.js-spawn fix (5 script patcholt: `set -e` + `vault-detect-chat-id` exit-1 collision-fix `|| true`-val). Layout `lg:`→`md:`+`xl:` responsive 3-tier
+- **Phase N (Wave N) graphify** — `uv tool install graphifyy 0.8.11` + Claude skill telepítve + vault-run. **Két iteráció**: full-vault 18102 nodes (hairball anti-pattern), content-filtered 5846 nodes / 5479 edges / 437 communities / 4.8 MB graph.html. Új API `/api/cc/graphify-status` + `/api/cc/graphify-html` (serve HTML) + `GraphifyPanel` komponens a sidebar tetejére. **2-tier graph-extraction VERIFIED**: Memgraph LLM-based 8997 entity + graphify deterministic 5846 node komplementer
+
 ## Learnings → memória
 
 - **Subagent-fanout 7. iteráció — 13 párh task egy session-ben, 0 ütközés** (R1 4 + R2 4 + R3 5). Az elmúlt 5 super-session-ben a fanout-pool 5 → 8 → 14 → 13 között oszcillál, ~optimum 8-13 pool. Reusable: minden multi-axis sprint így indítható. Két új tanulság: (a) **time-limit kockázat** — egy hosszú-encode subagent (B-4) ~16 perc után timeout-olt, manual completion kellett (de a 462 SkillChunk MEGVOLT a Memgraph-ban); (b) **subagent Task-tool elérhetőség** — a `predicate-remap fanout`-ban a subagent NEM tudott Task tool-t hívni saját maga (csak parent), így stand-in classifier-t használt → konzervatív remap-arány.
@@ -124,28 +159,57 @@ tags: ["#type/session", "#project/obsidian-vault"]
 
 - **Per-source-type embedding tisztább volt mint vártuk** — B-2 Week 4 audit kimutatta: a 977 chunk valójában 99% skill + 8 wiki / 0 ADR / 0 session a 2026-05-13 wave-ből. A `-2` session re-embed (725 wiki chunk) + ezen Phase 2.5 462 skill = **most már 2829 vault + 462 skill = 3291 chunk** Memgraph-ban tiszta namespace-bontással. Reusable: chunk-count metric MINDIG per-namespace bontásban riportolandó (chunk-count metric pitfall pattern új konfirmáció).
 
+- **Chase AI / `JoeyBream/command-centre` mint 1:1 stack-egyezés referencia** — a "Claude Code Agentic OS" műfaj 4 hetes (2026-04-22 óta), Chase AI a fő growth-driver. A `JoeyBream/command-centre` GitHub-clone **Next 16 + React 19 + Tailwind 4** = a mi stack-ünk pixel-pontos. 10 átvehető UI-building-block (skill-card grid, expanded panel, SSE streaming + react-markdown, run history sidebar, elapsed timer, DataviewJS aggregator, YAML-skill-metadata, mappa-prefix tab-architecture, 30-day heatmap, Cmd+Enter). 5 NEM-átvehető (Anthropic Agent View, localhost-bind, voice, Tauri-natív, Skool-paywall). **Reusable**: minden új UI-design-fázis előtt **github-clone-keresés** a stack-trendre.
+
+- **`graphify` mint deterministic 2-tier graph-extraction validation** — `uv tool install graphifyy` + `graphify update <path>` tree-sitter AST + Leiden clustering, **NEM-LLM** (0 cost). A vault-on 5,846 node / 5,479 edge / 437 community (content-filtered). A meglevő `vault-graph-extract` Memgraph LLM-based 8997 entity = komplementer. **two-tier-graph-extraction** wiki most már mérhetően ÉLES. Reusable: bármely codebase-en `graphify update .` ad ground-truth-graphot LLM-cost nélkül.
+
+- **"Hairball" anti-pattern 18K+ node graph-viz-en** — első graphify-run 18102 node (6606 .obsidian + 3806 10-raw external-noise) → értelmezhetetlen octagon-blob. Content-filtered re-run (csak 02-Projects + 07-Decisions + 11-wiki + 06-Audits + 08-Sessions + 05-Memory + 00-Meta) → **5846 node, sokkal kezelhetőbb**. **Tanulság**: large-graph viz-nél MINDIG noise-filter ELŐSZÖR (top-level dir-count audit), force-directed renderelés <5000 node a sweet-spot.
+
+- **Zustand `persist` SSR-vs-CSR hydration-mismatch trap** — `useUI(s => s.workspace)` SSR-en default "default" workspace, hydration után localStorage "minimal" → `missionControl: undefined` → WidgetGate `return null` → **widget eltűnik 200ms-on belül**. **Tanulság**: új `WidgetVisibility` mező esetén MINDIG default-true minden preset-be, **vagy** kvetjük `WidgetGate`-et csak default-OFF use-case-en. Visible-by-default better.
+
+- **`lg:` Tailwind breakpoint trap (1024px+)** — a `lg:grid-cols-[1fr_1.2fr_320px]` szűk laptop / tablet viewport-on **NEM aktiválódik**, 3-oszlop egy-oszlop lesz, jobb-sidebar leesik a content alá. Fix: `md:grid-cols-[1fr_300px] xl:grid-cols-[1fr_1.4fr_320px]` + `order-N` CSS-trükk a sidebar fix-pozicionálásra. **Reusable**: minden multi-col dashboard 3-tier responsive (mobile/md/xl).
+
+- **`lucide-react@1.9` NEM tartalmaz brand-icons-okat** (`Github`, `Twitter`, stb.) — átszervezés a verzióátmenetben. `Github` → `Code2` vagy `GitPullRequest` ikonra. **Reusable**: minden brand-icon-import-ot ellenőrizni v1.x-ben.
+
+- **`set -e` + `vault-detect-chat-id` exit-1 collision a 11.11 family-ben** — bash `${VAR:-$(cmd 2>/dev/null)}` parameter-expansion-ben a command-substitution exit-code-ja a `set -e`-vel a parent-shell-ben hat → script lehal **assignment**-en. Direkt-shell-ben `TERM` env-var miatt másképp viselkedik. Fix: `2>/dev/null \|\| true` minden ilyen substitution-ben. 5 script patcholt (11.11ls, 11.11start, 11.11stop, 11.11note, 11.11focus).
+
+- **`graph.html` 16 MB → 4.8 MB drop-out** — force-directed layout 18K node-ot pixel-collision-into-hairball renderel; 5K node viszont látható mintát ad. **`GRAPHIFY_VIZ_NODE_LIMIT=10000`** env-var és `--no-viz` opció kell a control-hoz.
+
+- **GitHub repo transfer-rel régi URL automatikus redirect** — `gh api -X POST /repos/<old>/<repo>/transfer -f new_owner=<org>` async művelet, ~3 másodperc múlva az új URL érvényes, és a régi URL `MyForgeLabs/myforge-vault-1111`-re redirect-el (built-in GitHub feature). Lokál `git remote set-url origin` kell.
+
+- **MyForge Labs cégalap "11.11" essence** — `11.11@myforgelabs.com` céges email + `11.11*` CLI-család (session-orch primitív) **dual-meaning brand-narrative**. A `myforge-vault-1111` repo + `MyForge Vault 11.11` branding ezt a kettős jelentést hordozza. **Pozicionálás**: NEM "Pocock-alternatíva", NEM "openhuman-challenger", hanem **8-axis composite architecture mérhető eredményekkel**, MIT-license, transparent.
+
 ## Next session
 
-**Aggregált 18 task Next-step-jeiből priorities:**
+### Top-5 prioritás a következő ülésre
 
-1. **B-1 Week 5-6 Aggressive 0.85 ramp REAL DATA** per-target alapon — most 3 layer-eval pipeline ÉLES (G-Eval + NLI + Coherence) cost-aware cascade-eltt → biztonságosan futtatható
-2. **`vault-search-server` `:SkillChunk` namespace RPC** (B-4 Week 3) — warm-state encode reuse → vault-skill-search total <30ms
-3. **B-7 Week 4 LLM-extraction** a maradék 7659 Generic-entity-re (cél: tipizáltság 14.87% → 50%+)
-4. **OmniRoute Week 2 — `11.11crystallize` Layer 0 cascade integráció** (opt-in)
-5. **SelfCheckGPT Layer 2.7 hook patch** (`VAULT_SELFCHECK=1` opt-in)
-6. **GEPA Week 3 real subagent reflection_lm + Critic-review gate** candidates/ → .vault-agents/prompts/ promóció
-7. **`vault-coherence-check` Week 6 default-shift `VAULT_COHERENCE_CHECK=1`** ha 2 session 0 FP + p95 < 90s + ERROR < 5%
-8. **bge-reranker-base score-gap smart-skip** (Week 5 Day 1-2, no RAM cost) → ONNX-INT8 Day 3-4
-9. **Predicate-remap Phase 3 NER-aided** (B-7 entity-gráfból a maradék 2738 ambiguous-ra) — cél dump < 10%
-10. **Broken-wikilinks P1 fix** (~30 ref): `02-Projects/Index.md` escape-bug + folder-linkek + `M:N` → `M-N` rename
-11. **Auto-skill distill Week 3 human-review CLI** + GEPA cross-axis + 60-90 napos ablak trigram-emeléshez
-12. **`vault-route` Week 2 valós subprocess-invocation** balanced-cmd-ekre + Streamlit trace-viewer
-13. **B-6 Week 2 Critic-hook + red-team mode** (minden 10. mutation) + multi-worker parallel Week 3
-14. **B-5 Week 2.5 G-Eval prompt-template update** nb_context-injection-re (Layer 1.5 payload elérhető de prompt ignorálja)
-15. **`VAULT_NLI_VETO=1` default-shift** 2-hét shadow után (agreement-rate ≥75%)
-16. **G-Eval v0.3 opt-in env-var** (`VAULT_GEVAL_VERSION=v03`) — recommendation A (low risk)
-17. **`sv-phase-b1-week5-milestone`** tag amint Aggressive 0.85 ramp 2 hét stable + 30+ applied bullet
-18. **NotebookLM `notebooklm-refresh-projects` heti cron** delta-source-add
+1. **MyForge OS Command Center smoke-test élőben** — futtass 3-5 skill-t (claude-scope: pl. `bmad-create-prd`, `frontend-design`, vault-scope: `foxxi-context`, tool-scope: `vault-search`, `notebooklm-bootstrap-project`) → react-markdown render verifikálás + Run History bővülés látható
+2. **B-7 Week 4 valódi LLM-extraction** — 7659 Generic Memgraph entity → cél 50%+ typed, parent-spawn 8 batch × 800 entity (jelenleg 14.87% → 28.9% stand-in classifier-rel). Eddig várt: tipizáltság **50%+** elérése
+3. **MyForge OS Wave M-utómunkák** — UI finomítások: ActivityHeatmap valós run-okra (jelenleg 0 cell — futtass pár skill-t); `graphify cluster-only --no-viz` cron heti regenerálással; SkillPanel auto-scroll-fix long-output-on
+4. **B-1 Aggressive 0.85 ramp REAL DATA** (per-target alapon) — most már 3-layer cascade ÉLES, biztonságosan kapcsolható. W21 30+ applied bullet → W22 0.85 → W23 stable → `sv-phase-b1-done` tag
+5. **`vault-search-server` `:SkillChunk` namespace RPC reuse** (Wave M follow-up) — warm-state encode reuse, vault-skill-search total <30ms target
+
+### Wave M+N follow-ups (egészen Wave Q-ig roadmap)
+
+- **graphify HTML viz finomítás** — `GRAPHIFY_VIZ_NODE_LIMIT=10000` env-var alapértelmezetté tenni, `cluster-only --no-viz` opcionális
+- **community-labels** (most "Community 0" placeholder) — `GEMINI_API_KEY` env-var-ral graphify Gemini-LLM-mel értelmes neveket adhat
+- **OxygenGauge + SprintRadar visszahozása** mint sidebar-mini-widget (Chase-stílusban refactorálva, slate-szín, kompakt) — opcionális
+- **`SelfCheckGPT` Layer 2.7 hook** + `VAULT_SELFCHECK=1` opt-in (`11.11crystallize`-be integráció)
+- **GEPA Week 3 real subagent reflection_lm** + Critic-review gate candidates/ → `.vault-agents/prompts/` promóció
+- **`VAULT_NLI_VETO=1` default-shift** 2-hét shadow után (jelenleg insufficient sample)
+- **bge-reranker score-gap smart-skip** Week 5 Day 1-2 (no-RAM-cost) → ONNX-INT8 Day 3-4
+- **GitHub repo public-flip** ha kell (`gh repo edit MyForgeLabs/myforge-vault-1111 --visibility public`)
+- **Broken-wikilinks P1 fix** (~30 ref): `02-Projects/Index.md` escape-bug + folder-linkek + `M:N` → `M-N` rename
+- **NotebookLM heti `notebooklm-refresh-projects` cron** delta-source-add
+
+### Cumulative state (most)
+
+- **MyForge OS dashboard** ÉLES Tailscale-en, Chase-style Command Center + 41 vault-tool + 5 vault-context-skill + 4 sidebar-panel + Graphify-link + TelemetryStrip
+- **MyForgeLabs/myforge-vault-1111** GitHub private repo (388 fájl, 3 commit, scrub-validated, MIT, reproduction-guide)
+- **Memgraph 2-tier graph**: LLM 8997 entity / 28.9% typed + Tree-sitter 5846 nodes / 437 communities
+- **305-306 capability** futtatható egy UI-on (257 claude + 41 tool + 5 vault + graphify)
+- **63-source NotebookLM** vault-meta cross-projekt synthesis enabled (Q1+Q2+Q3 lefutott)
+- **Heti cron**: github-trending recurrence + crystallize-monitor + auto-disable + ko-conflicts + memory-monitor + autosave 10-perc
 
 ## Propagation log
 
@@ -195,4 +259,40 @@ Phase 5 LANDED (3 csomag: production-ramp + cross-projekt synthesis + performanc
 **Audit-artifacts (Phase 1-3 sorrend):** 13 új audit-MD a `06-Audits/`-ban + 4 új script (`vault-route`, `vault-selfcheck`, `vault-bm25-backfill`, `11.11worker`) + 5 bővített script (`vault-skill-search`, `vault-graph-retype`, `vault-skill-distill`, `vault-ko-remap-legacy`, `vault-nb-crystallize`, `vault-search`, `vault-search-server`, `11.11crystallize`) + 1 új YAML config (`entity-aliases.yaml`, `route-cascade.yaml`)
 
 > **CRYSTALLIZATION-PROTOCOL STATUS:** Routing decision tree alkalmazva 8 learning-csoportra, batch automatikusan végrehajtva ("menjen végig az egészen" user-jóváhagyással). 0 destruktív write, 0 forbidden-target érintve.
+
+**2026-05-18T15:00 — Phase 6-N final-propagation (session-zárás):**
+
+- **graphify Tier-2 deterministic verification** → APPEND [[../11-wiki/two-tier-graph-extraction#2026-05-18 — graphify-tool mint Tier-2 deterministic referencia VERIFIED]]
+- **MEMORY.md** 5 új index-sor (5th super-session pointer + Chase-AI-referencia + graphify + UI layout-traps + set-e collision + hairball anti-pattern)
+- **`02-Projects/myforge-dashboard.md`** status update: `active` → `🟢 active — Wave M+N LANDED (Chase-style Command Center + graphify)`, `updated:` → 2026-05-18
+
+**Új vault-fájlok (Phase 6-N):**
+- `06-Audits/2026-05-18 vault-meta NotebookLM cross-projekt synthesis.md`
+- `06-Audits/2026-05-18 GitHub trending recurrence + top-10 ingest.md`
+- `06-Audits/2026-05-18 GitHub trending weekly recurrence.md` (cron-output)
+- `06-Audits/2026-05-18 MyForge OS UX audit pre-redesign.md`
+- `06-Audits/2026-05-18 MyForge OS YouTube design reference research.md`
+- `06-Audits/2026-05-18 MyForge OS Wave L1 foundation.md`
+- `07-Decisions/2026-05-18 SV positioning vs open-source landscape.md`
+- `07-Decisions/2026-05-18 MyForge OS Wave L mission-control pivot.md`
+- `11-wiki/hostinger-litespeed-cache-purge-protokoll.md`
+- `11-wiki/wp-elementor-bricks-json-escape-trap.md`
+- `11-wiki/destructive-action-hard-confirm-ux.md`
+- `11-wiki/nextjs-turbopack-gotchas.md`
+- 5× `000-OS/Claude/skills/{foxxi,kgc,mfl-voice,robbantott-kereso,boulium}-context/SKILL.md`
+- `README.hu.md`, `README.en.md` (open-source release)
+
+**Új script-ek (Phase 6-N):**
+- `/usr/local/bin/vault-github-trending-recurrence` (heti cron)
+- `/usr/local/bin/vault-image-batch` (bulk nano-banana per project)
+- `/usr/local/bin/graphify` (uv tool install graphifyy)
+
+**Új GitHub repo:** `MyForgeLabs/myforge-vault-1111` PRIVATE (388 fájl, 3 commit, MIT)
+
+**MyForge OS Command Center deliverables:**
+- 14 új komponens (`components/command-center/{SkillCard,SkillCardGrid,SkillPanel,RunHistory,VaultAggregator,ActivityHeatmap,TelemetryStrip,CommandCenter,HostsPanel,CronTimer,CommitsFeed,GitHubPanel,GraphifyPanel,types}`)
+- 11 új API endpoint (`/api/skills/discover`, `/api/cc/{summary,tools,skill/run,tool/run,runs,aggregator,activity-heatmap,commits,graphify-status,graphify-html}`)
+- Layout responsive 3-tier (md/xl breakpoints + order-N)
+- `app/legacy-v2/page.tsx` (régi page archiválva)
+- `react-markdown` + `remark-gfm` + `@tailwindcss/typography` integration
 

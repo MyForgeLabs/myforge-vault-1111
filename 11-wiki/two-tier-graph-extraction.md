@@ -51,9 +51,30 @@ Top hubok a deterministic baseline-ben:
 - ✅ Bármilyen graph-extraction-pipeline, ahol az LLM-eredmény ellenőrizhetőség fontos
 - ✅ Schema-versioning kontextusban — a Tier-1 stabil, Tier-2 LLM-prompt-evolúcióval változhat
 
+## 2026-05-18 — graphify-tool mint Tier-2 deterministic referencia VERIFIED
+
+A korábban hipotetikus Tier-1 (regex/wikilink) + Tier-2 (LLM-extract) sémát most **gyakorlatban verifikáltuk** egy konkrét external-tool-lal: **`safishamsi/graphify`** (`uv tool install graphifyy 0.8.11`).
+
+A graphify egy **pure-deterministic tree-sitter AST + Leiden clustering** pipeline ($0 cost, NEM-LLM), ami a vault-on:
+- **5,846 node / 5,479 edge / 437 community** (content-filtered: 02-Projects + 07-Decisions + 11-wiki + 06-Audits + 08-Sessions + 05-Memory + 00-Meta)
+- **graph.html 4.8 MB** (force-directed interactive viz)
+- **GRAPH_REPORT.md 160 KB** ("Surprising connections" + community-list + god-nodes)
+
+A meglevő Memgraph entity-graph (LLM-based `vault-graph-extract`, **8,997 entity / 28.9% typed**) és a graphify-output **két különböző csomóponti-modellt ad**:
+- Memgraph: szemantikai entitások (Concept, Decision, Sprint, Project, Skill, Person, ...)
+- Graphify: szintaktikai node-ok (function-call, import, file-reference, AST-leaf)
+
+**Cross-validation use-case**: ha egy entity csak az LLM-graph-ban van DE a deterministic-graph-ban NINCS → hallucinációs gyanú; fordítva: ha csak a tree-sitter-ben → LLM nem ismerte fel a koncepciót.
+
+**Az `eredeti` two-tier-pattern most már elérhető-egészen**: 
+- Tier-1A (regex-wikilink) — `vault-graph-mentions-extract` ÉLES (1954 :MENTIONS edge)
+- Tier-1B (tree-sitter AST) — **`graphify` ÉLES** (5,846 deterministic node)
+- Tier-2 (LLM-extract) — `vault-graph-extract` + `vault-graph-retype` (8,997 typed entity)
+
 ## Kapcsolódó
 
 - [[sv-06-world-model-knowledge-graph]] — B-7 research
 - [[memgraph-ce-feature-limits]] — Memgraph CE workaround-ok
 - [[claude-code-subagent-fanout]] — Tier-2 LLM-extraction motorja
 - [[vendor-feature-verify-before-workaround]] — kapcsolódó verifikációs lecke
+- [[external-skill-cherry-pick]] — a graphify mint cherry-pick eredmény

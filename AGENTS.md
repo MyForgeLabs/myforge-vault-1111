@@ -217,3 +217,6 @@ Ha új konvenció kerül, szerkeszd közvetlenül — a változás azonnal él m
 - [[11-wiki/Johnny-Decimal-prefix]] — miért 00-, 01-, … prefix
 - [[11-wiki/11.11-session-protokoll]] — session-szervezés mélyebben
 - [[02-Projects/Index]] — projekt dashboard
+# graphify
+- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
+When the user types `/graphify`, invoke the Skill tool with `skill: "graphify"` before doing anything else.

@@ -28,13 +28,16 @@ def main():
     args = ap.parse_args()
 
     conn = mgclient.connect(host=args.host, port=args.port)
+    # autocommit so SET/CREATE/MERGE statements persist (was silently rolling back
+    # for the B-7 typing batch — verified 2026-05-18). Read-only queries unaffected.
+    conn.autocommit = True
     try:
         cur = conn.cursor()
         cur.execute(args.cypher)
         try:
             rows = cur.fetchall()
         except mgclient.InterfaceError:
-            # statement with no result-set (e.g. CREATE INDEX)
+            # statement with no result-set (e.g. CREATE INDEX, SET label)
             print("[ok] no rows", file=sys.stderr)
             return
         col_names = [d.name for d in (cur.description or [])]

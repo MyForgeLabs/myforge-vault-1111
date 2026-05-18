@@ -4,7 +4,9 @@ type: wiki
 tags: ["#type/wiki", "notebooklm", "cli", "race-condition", "rate-limit"]
 created: 2026-05-12
 updated: 2026-05-12
-related: [[11-wiki/notebooklm-headless-login-fifo]], [[11-wiki/notebooklm-seo-competitor-research-pattern]]
+related:
+  - "[[11-wiki/notebooklm-headless-login-fifo]]"
+  - "[[11-wiki/notebooklm-seo-competitor-research-pattern]]"
 source:
   - "2026-05-12 SV-research session — 8 párhuzamos notebook, 5 sub-agent batch (Phase A+)"
 ---
