@@ -11,9 +11,18 @@ translated_from: memgraph-ce-feature-limits.md
 
 # Memgraph CE feature-limits + workarounds
 
+> **TL;DR:** Memgraph **Community Edition** silently breaks on 4 features Neo4j users assume work: (1) DDL inside multi-statement transactions, (2) constraints inside transactions, (3) multi-database, (4) MAGE algorithms. The win: **native vector-index is FREE in CE 3.9.0** — measured **1ms mean / 2.6ms p95 search latency**, **280× speedup** over our previous numpy-cosine workaround. Multi-namespace vector-index (3 namespaces × 2829/462/8997 nodes) works **out-of-the-box, zero Enterprise license needed**.
+
 > **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[memgraph-ce-feature-limits.md]] (Hungarian version).
 
 The Memgraph **Community Edition** (current build: `memgraph/memgraph:latest` → **3.9.0**) silently rejects or hard-errors on several core features — a production-bug source if you code against it as if it were Neo4j. This doc collects limits actually hit in production and the working workarounds. Update as new limits surface.
+
+## What this is NOT
+
+- **NOT a Memgraph-vs-Neo4j shootout** — this is a pragmatic CE feature-list, not a benchmark. We chose Memgraph for the in-memory vector-index; your call may differ.
+- **NOT exhaustive** — only limits hit in our production. Other CE limits (HA cluster, audit-log, RBAC) are listed in the migration table but we have NOT independently verified them.
+- **NOT static** — Memgraph ships fast. The "WORKS in CE 3.9.0" callout flipped from earlier docs. Re-verify before relying on it.
+- **NOT a recommendation against Enterprise** — if you need multi-tenancy or HA, pay for Enterprise. The point is CE goes much further than the 2023-era docs suggested.
 
 ## The 4 main limits
 

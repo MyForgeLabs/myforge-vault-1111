@@ -132,7 +132,7 @@ def collect_files(target: Path) -> list[Path]:
 def main():
     ap = argparse.ArgumentParser(description="Vault embed (B-2)")
     ap.add_argument("--backfill", nargs="?", const="ALL", help="Backfill dir (default: all semantic folders)")
-    ap.add_argument("--file", help="Single file (absolute or vault-relative path)")
+    ap.add_argument("--file", action="append", default=[], help="File path (absolute or vault-relative). Repeatable to batch multiple files with single model-load.")
     ap.add_argument("--update-since", help="ISO timestamp — re-embed only newer files (TODO)")
     ap.add_argument("--namespace", default="content", help="Memgraph namespace (default: content)")
     ap.add_argument("--dry-run", action="store_true")
@@ -144,10 +144,11 @@ def main():
 
     files: list[Path] = []
     if args.file:
-        p = Path(args.file)
-        if not p.is_absolute():
-            p = VAULT_ROOT / p
-        files.append(p.resolve())
+        for f in args.file:
+            p = Path(f)
+            if not p.is_absolute():
+                p = VAULT_ROOT / p
+            files.append(p.resolve())
     elif args.backfill == "ALL":
         for folder in SEMANTIC_FOLDERS:
             files.extend(collect_files(VAULT_ROOT / folder))

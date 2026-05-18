@@ -11,9 +11,18 @@ translated_from: mgclient-autocommit-silent-rollback.md
 
 # mgclient autocommit silent-rollback
 
+> **TL;DR:** **1262 entity-typing operations silently rolled back, zero errors raised**, because `pymgclient.connect()` defaults to explicit-transaction-mode and we forgot one line: `conn.autocommit = True`. Subagent logs reported "1262 entities typed"; Memgraph showed 0 changes. The fix is one line. **This pitfall affects pymgclient, psycopg2, mariadb, cx_Oracle, pyodbc** — basically every classic DB driver. After the fix: typing coverage jumped **28.9% → 72.8%** on the same batch.
+
 > **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[mgclient-autocommit-silent-rollback.md]] (Hungarian version).
 
 The `pymgclient` (the official Memgraph Python driver) `connect()` default is **explicit-transaction-mode**. If `conn.autocommit = True` is NOT set, then every `SET`, `CREATE`, `MERGE`, `DELETE` statement gets **silently rolled back** when `conn.close()` runs (or the connection drops) — as if nothing had happened. **No error is raised.** The query result (`fetchall()`) looks fine, the row count is returned, but the DB state is untouched.
+
+## What this is NOT
+
+- **NOT a Memgraph-specific bug** — it's a generic DB-driver class behavior. `psycopg2` (Postgres), `mariadb`, `cx_Oracle`, `pyodbc` all share the same default. See "Wider lesson" below.
+- **NOT a driver defect** — explicit-transaction-mode is a deliberate, documented default. The pitfall is in the developer mental model, not the driver.
+- **NOT detectable via exit-code** — no exception, no warning, no log line. Only DB-side count queries reveal it.
+- **NOT solved by `with` context-manager** — `__exit__` calls `close()`, which does NOT commit. The pattern looks safe but silently rolls back.
 
 ## TL;DR
 

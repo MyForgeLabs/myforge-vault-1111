@@ -11,9 +11,19 @@ translated_from: claude-code-subagent-fanout.md
 
 # Claude Code subagent-fanout — bulk LLM mutation at $0 cost
 
+> **TL;DR:** 267 files mutated via LLM in **~5 minutes, $0 marginal cost, zero API key**, using 8 parallel Claude Code subagents inside a single subscription. 267/267 YAML-valid, 534/534 audit-compliant. Across 7 production iterations: **174 subagent calls, ~12,300 new triplets, $0 total**.
+
 > **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[claude-code-subagent-fanout.md]] (Hungarian version).
 
-The classic "apply LLM-aided mutation to N files" task (frontmatter normalization, summary generation, taxonomy tagging) can be solved **without any Anthropic API key** using Claude Code's subagent-fanout pattern: within your Claude Code subscription, you spawn N parallel `general-purpose` subagents — each operates in its own scope, mutates a batch of files, then returns an aggregated report.
+The classic "apply LLM-aided mutation to N files" task (frontmatter normalization, summary generation, taxonomy tagging) can be solved **without any Anthropic API key** using Claude Code's subagent-fanout pattern: within your Claude Code subscription, you spawn N parallel `general-purpose` subagents — each operates in its own scope, mutates a batch of files, then returns an aggregated report. The sweet spot is **30 files per agent, 8 agents in parallel, ~80-100 sec per agent**.
+
+## What this is NOT
+
+- **NOT a benchmark** — no controlled comparison vs direct API at equal scale. Numbers are from production iterations, not lab.
+- **NOT a production guarantee** — Claude Code's subagent pool size, rate-limits, and fanout-call availability are subject to Anthropic's product decisions.
+- **NOT for CPU-bound inference** (embeddings, Whisper, CLIP) — model-loading overhead dominates, see "When NOT to use".
+- **NOT zero-cost in absolute terms** — the Claude Code subscription is a flat fee; the "$0" refers to **marginal cost per additional fanout run**.
+- **NOT cross-document reasoning** — agents see only their batch. State-machine work needs a single sequential agent.
 
 ## When to use
 

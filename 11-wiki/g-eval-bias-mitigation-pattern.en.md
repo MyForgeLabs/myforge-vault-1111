@@ -11,7 +11,16 @@ translated_from: g-eval-bias-mitigation-pattern.md
 
 # G-Eval bias-mitigation pattern
 
+> **TL;DR:** When the LLM that generated the content also judges it ("Claude scores Claude"), self-enhancement bias inflates scores by **~25%** in published measurements. Our 4-block bias-mitigation prompt cut auto-promotion from **10/10 → 6/10** on a 10-bullet paired sample, average confidence **0.880 → 0.760**. But a 30-sample paired calibration revealed an honest catch: bias-mitigation is **symmetric** (tightens both Pass AND Fail classes), causing **47% Pass-recall loss** (7/15 good bullets falsely discarded). Conclusion: **opt-in env-var, NOT default shift**. The asymmetry signal is the critical metric most evals don't measure.
+
 > **Origin:** Originally written in Hungarian as part of MyForge Vault 11.11 — Superintelligent Vault project. Source: [[g-eval-bias-mitigation-pattern.md]] (Hungarian version).
+
+## What this is NOT
+
+- **NOT a benchmark** — n=10 and n=30 paired samples are small. Treat numbers as directional signal, not statistical proof.
+- **NOT a recommended default** — our own 30-sample calibration produced a CONDITIONAL PASS with **47% Pass-recall loss**, so we run v0.3 as opt-in only.
+- **NOT a substitute for multi-judge ensemble** — if you can afford 3+ judges from different families, do that instead. This pattern is for cost-sensitive single-judge setups.
+- **NOT magic prompt engineering** — the 4 bias blocks are textbook (self-enhancement, verbosity, position, halo). The contribution is the **measured asymmetry finding**, not the prompt itself.
 
 ## The problem
 

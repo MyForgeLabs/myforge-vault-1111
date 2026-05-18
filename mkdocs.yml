@@ -89,7 +89,8 @@ nav:
   - Reproduction Guide: reproduction-guide.md
   - Knowledge Graph:
       - Áttekintés: wiki/vault-knowledge-graph-overview.md
-      - Interaktív (full, 4.6 MB): graph/index.html
+      - Interactive viewer: graph/viewer.html
+      - Full (4.6 MB): graph/index.html
   - Evergreen Wiki:
       - Áttekintés: wiki/Index.md
   - ADR (Decisions):

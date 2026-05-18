@@ -89,17 +89,34 @@ A graphify content-filtered, mert a teljes vault-on (`.obsidian/plugins/` + `10-
 - **Tartalom:** 5846 node + 5479 edge + 437 community szín-kódolt
 - **UX:** zoom · pan · node-search · community-isolate
 
-### C. Mkdocs nav integráció
+### C. D3.js induced-subgraph viewer (Phase 2 — ÉLES 2026-05-18)
+
+- **Path:** `/root/projects/myforge-vault-1111/docs/graph/viewer.html` (12.8 KB) + `top200.json` (13.0 KB)
+- **Forrás:** Memgraph top-200 hub-entitás (fokszám-rank) + intra-edges (39 dedup, undirected)
+- **D3:** v7 jsDelivr CDN (~80 KB external, browser-cached)
+- **Total első-load:** ~106 KB (12.8 KB HTML + 13.0 KB JSON + ~80 KB D3 CDN) — **~43× kisebb** a Phase-1 4.6 MB-hoz képest
+- **Features:**
+  - Force-directed layout (d3-force) + d3-zoom (0.2×–4× scale-extent, drag-pan)
+  - Per-label színkód (9 szín, sidebar legend with counts)
+  - Filter-checkbox per-label (toggle visibility, dim inactive)
+  - **Click-to-expand** — node-kattintás kiemeli a szomszédságot, többi node-ot dim-eli (client-side, no API)
+  - Hover tooltip — név + label + degree (XSS-safe textContent)
+  - Search input — substring filter node-name-en
+  - Drag-rögzítés (drag node → fix position; release → free)
+- **Mobile UX:** 200 KB első-load → 3G-n ~2–3s, 4G-n <1s. Sidebar 240→200 px <720 px viewport-on.
+
+### D. Mkdocs nav integráció
 
 A `mkdocs.yml` `nav:` szekcióban új top-level tab:
 
 ```yaml
 - Knowledge Graph:
-    - Áttekintés (SVG): knowledge-graph-overview.md
-    - Interaktív (full): graph/index.html
+    - Áttekintés: wiki/vault-knowledge-graph-overview.md
+    - Interactive viewer: graph/viewer.html      # Phase 2 — ~106 KB
+    - Full (4.6 MB): graph/index.html            # Phase 1 — graphify reuse
 ```
 
-Az interaktív HTML static-asset-ként közvetlenül szerverül.
+Az interaktív HTML-ek static-asset-ként közvetlenül szerverülnek (GH-Pages auto-gzip).
 
 ## 2-tier extraction — mit mond melyik?
 
@@ -119,6 +136,8 @@ Az interaktív HTML static-asset-ként közvetlenül szerverül.
 > 2. **Cseréljük D3-induced-subgraph-ra** — top-200 hub + intra-edges, ~150 KB inline-d3.js + JSON, zoom + click-to-expand, sokkal gyorsabb
 >
 > Ajánlás: **Phase 1 — másold be MOST** (zero-effort, már megvan), **Phase 2 — építsd ki a D3-induced-subgraph-ot** amikor lesz időkeret (~1 nap dev, magas ROI). A current commit a Phase 1.
+>
+> **Phase 2 update (2026-05-18):** ÉLES, lásd C. szekció — `viewer.html` 12.8 KB + `top200.json` 13.0 KB + D3 v7 CDN ~80 KB ≈ 106 KB total első-load (43× kisebb).
 
 ## Kapcsolódó
 
@@ -134,11 +153,16 @@ Az interaktív HTML static-asset-ként közvetlenül szerverül.
 python3 /tmp/build_svg.py
 # (forrás: /tmp/top100_full.json + /tmp/top100_edges.json a vault-graph-query-ből)
 
-# B. Interaktív
+# B. Interaktív (Phase 1 — full graphify)
 cd /root/obsidian-vault && graphify scan . --output graphify-out/ \
     --exclude '.obsidian/plugins/*' --exclude '10-raw/*'
 cp graphify-out/graph.html /root/projects/myforge-vault-1111/docs/graph/index.html
 
-# C. Wiki stats refresh
+# C. D3 induced-subgraph viewer (Phase 2 — top-200 + intra-edges)
+/root/.notebooklm-venv/bin/python3 /tmp/extract_top200.py
+# Writes: /root/projects/myforge-vault-1111/docs/graph/top200.json
+# Viewer (viewer.html) static, only re-emit top200.json on regen.
+
+# D. Wiki stats refresh
 vault-graph-query "MATCH (n:Entity) RETURN count(n)" --json
 ```
