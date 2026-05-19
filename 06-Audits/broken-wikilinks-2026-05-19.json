@@ -1,18 +1,15 @@
 {
-  "scan_time": "2026-05-19T04:30:02+00:00",
-  "scanned_files": 909,
-  "broken_targets": 12,
-  "broken_references": 18,
+  "scan_time": "2026-05-19T17:44:11+00:00",
+  "scanned_files": 1040,
+  "broken_targets": 30,
+  "broken_references": 37,
   "items": [
     {
-      "target": "11-wiki/jarvis-persona-design-spec",
+      "target": "bmad-vault-bridge",
       "refs": [
-        "11-wiki/mfl-voice-multilingual-pipeline.md",
-        "11-wiki/mfl-voice-multilingual-pipeline.md",
-        "11-wiki/mfl-voice-tts-providers-comparison.md",
-        "11-wiki/mfl-voice-tts-providers-comparison.md",
-        "11-wiki/voice-agent-architecture-patterns.md",
-        "11-wiki/voice-agent-architecture-patterns.md"
+        "06-Audits/2026-05-18 BMAD Sprint B context-preload adoption.md",
+        "11-wiki/bmad-context-preload-pattern.md",
+        "11-wiki/bmad-context-preload-pattern.md"
       ]
     },
     {
@@ -20,6 +17,34 @@
       "refs": [
         "06-Audits/2026-05-18 Concept full-batch sub-classification.md",
         "06-Audits/2026-05-18 Concept full-batch sub-classification.md"
+      ]
+    },
+    {
+      "target": "atomic-write-pattern",
+      "refs": [
+        "11-wiki/daily-rollup-auto-summarize.en.md",
+        "11-wiki/daily-rollup-auto-summarize.en.md"
+      ]
+    },
+    {
+      "target": "wordpress-router",
+      "refs": [
+        "11-wiki/codegraph-pre-indexed-token-saver.en.md",
+        "11-wiki/codegraph-pre-indexed-token-saver.md"
+      ]
+    },
+    {
+      "target": "wp-block-development",
+      "refs": [
+        "11-wiki/codegraph-pre-indexed-token-saver.en.md",
+        "11-wiki/codegraph-pre-indexed-token-saver.md"
+      ]
+    },
+    {
+      "target": "wp-rest-api",
+      "refs": [
+        "11-wiki/codegraph-pre-indexed-token-saver.en.md",
+        "11-wiki/codegraph-pre-indexed-token-saver.md"
       ]
     },
     {
@@ -35,9 +60,27 @@
       ]
     },
     {
+      "target": "../11-wiki/bmad-vault-bridge",
+      "refs": [
+        "06-Audits/2026-05-18 BMAD Sprint B context-preload adoption.md"
+      ]
+    },
+    {
+      "target": "../11-wiki/posix-atomic-write-pattern",
+      "refs": [
+        "06-Audits/2026-05-18 atomic-write HIGH-4 wrap-up.md"
+      ]
+    },
+    {
       "target": "../11-wiki/r2-storage-opt-in-pattern",
       "refs": [
         "02-Projects/boulium.md"
+      ]
+    },
+    {
+      "target": "../11-wiki/sqlite-executescript-implicit-commit",
+      "refs": [
+        "07-Decisions/2026-05-19 KO-DB hash key — drop provenance from hash.md"
       ]
     },
     {
@@ -47,9 +90,57 @@
       ]
     },
     {
+      "target": "../11-wiki/vault-ko-ingest-prompt-tightening-2026-05-19",
+      "refs": [
+        "06-Audits/2026-05-19 Memgraph cleanup Phase-3 next-step plan.md"
+      ]
+    },
+    {
+      "target": "02-Projects/<slug>/bmad/",
+      "refs": [
+        "00-Meta/Frontmatter-schema.md"
+      ]
+    },
+    {
+      "target": "11-wiki/bge-m3-cosine-plafon-hungarian-technical",
+      "refs": [
+        "06-Audits/2026-05-18 B-2 final tag ratification.md"
+      ]
+    },
+    {
+      "target": "11-wiki/sv-02-memory-architecture",
+      "refs": [
+        "06-Audits/2026-05-18 B-2 final tag ratification.md"
+      ]
+    },
+    {
       "target": "2026-05-17 sv-b7 typed-extraction recovery",
       "refs": [
         "06-Audits/2026-05-18 Concept full-batch sub-classification.md"
+      ]
+    },
+    {
+      "target": "2026-05-18 bmad-vault-bridge skeleton",
+      "refs": [
+        "06-Audits/2026-05-19 BMAD Sprint C per-projekt redirect.md"
+      ]
+    },
+    {
+      "target": "Johnny-Decimal-prefix.en",
+      "refs": [
+        "11-wiki/architecture-overview.en.md"
+      ]
+    },
+    {
+      "target": "cli-session-id-env-var-matrix.en",
+      "refs": [
+        "11-wiki/architecture-overview.en.md"
+      ]
+    },
+    {
+      "target": "load-session-context-pattern",
+      "refs": [
+        "11-wiki/per-project-context-skill-pattern.md"
       ]
     },
     {
@@ -59,27 +150,45 @@
       ]
     },
     {
+      "target": "notebooklm-cli-gotchas.en",
+      "refs": [
+        "11-wiki/architecture-overview.en.md"
+      ]
+    },
+    {
       "target": "react-onwheel-passive-default",
       "refs": [
         "11-wiki/img-viewer-zoom-pan-ux.md"
       ]
     },
     {
-      "target": "wordpress-router",
+      "target": "step-00-vault-preload.md",
       "refs": [
-        "11-wiki/codegraph-pre-indexed-token-saver.md"
+        "06-Audits/2026-05-18 BMAD Sprint B context-preload adoption.md"
       ]
     },
     {
-      "target": "wp-block-development",
+      "target": "vault-cleanup",
       "refs": [
-        "11-wiki/codegraph-pre-indexed-token-saver.md"
+        "06-Audits/2026-05-18 vault-cron-flock wrapper.md"
       ]
     },
     {
-      "target": "wp-rest-api",
+      "target": "vault-corruption-detection-pattern.md",
       "refs": [
-        "11-wiki/codegraph-pre-indexed-token-saver.md"
+        "11-wiki/vault-corruption-detection-pattern.en.md"
+      ]
+    },
+    {
+      "target": "vault-ko-ingest",
+      "refs": [
+        "11-wiki/notebooklm-ingest-pipeline.en.md"
+      ]
+    },
+    {
+      "target": "vault-stats-generator",
+      "refs": [
+        "11-wiki/stale-numbers-in-static-artifacts-pattern.en.md"
       ]
     }
   ]

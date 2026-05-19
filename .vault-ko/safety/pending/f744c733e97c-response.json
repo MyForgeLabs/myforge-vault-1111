@@ -1,0 +1,13 @@
+{
+  "scores": {
+    "factuality": 0.85,
+    "novelty": 0.85,
+    "durability": 0.85,
+    "vault_fit": 0.9,
+    "safety": 1.0
+  },
+  "reasoning": "Concrete FP-rate measurement (50%→0%) + 3-layer pattern. Reusable for any auto-link pipeline. Wiki-canonical.",
+  "modified_bullet": null,
+  "conflict_with": [],
+  "downgrade_routing_to": null
+}

@@ -13,6 +13,37 @@ related:
 
 > Brainstorm-jellegű audit: **22 új fejlesztési ötlet** ami NEM szerepel a B-1/B-2/B-3/B-8/GEPA/LongMemEval backlogban. A cél: capability-gap-ek, 2026-os emerging patternek, daily-use friction, synergy a meglévő komponensek között, és külső adat-bridge-ek.
 
+## Idea-track status (2026-05-19 PM final)
+
+**Legend:** ✅ LANDED · 🟡 SKELETON · 🔴 DEFERRED
+
+| # | Idea | Status | Shipped as |
+|---:|---|:---:|---|
+| 1 | RAGAS/DeepEval CI-gate | ✅ LANDED | `vault-eval-ci` skeleton + LongMemEval-S harness |
+| 2 | `vault-explain` retrieval-trace | ✅ LANDED | `vault-explain` (Round 6) |
+| 3 | KO-DB freshness-decay | ✅ LANDED | `vault-ko-freshness` (Round 6) |
+| 4 | Daily-note `## Yesterday` auto-summarize | ✅ LANDED | `vault-daily-rollup` (Round 6) |
+| 5 | KO-DB → Anki/Mochi export | ✅ LANDED | `vault-ko-anki` (Round 6) |
+| 6 | ColBERT late-interaction fallback | 🟡 SKELETON | `vault-colbert-fallback` (Round 10, model not downloaded) |
+| 7 | Cross-lingual HU↔EN entity-link | 🟡 SKELETON | `vault-entity-link` (Round 9, 0/8913 annotated) |
+| 8 | Reverse-lookup provenance UI | ✅ LANDED | `vault-ko-why` (Round 7) |
+| 9 | Temporal-KG SCD2 layer | ✅ LANDED | `vault-ko-temporal` + SCD2 fact-versioning hook ACTIVATED (1.0.9) |
+| 10 | Predicate-aware schema-evolution | ✅ LANDED | `vault-ko-schema-evolve` (Round 8, 127 predicates audited) |
+| 11 | HopRAG multi-hop reasoning | ✅ LANDED | `vault-multi-hop` (Round 9) |
+| 12 | Vault-search query-rewrite | ✅ LANDED | `vault-search --explain` (Round 7) |
+| 13 | Personal browser-history bridge | ✅ LANDED | `vault-browser-history` (Round 8) |
+| 14 | GitHub commit-history bridge | ✅ LANDED | `vault-gh-bridge` (1.0.9 PM) |
+| 15 | Sleep-consolidation cron | ✅ LANDED | `vault-sleep-consolidate` + Sleep-Critic stage-2 ACTIVATED (1.0.9) |
+| 16 | Letta virtual-context OS layer | 🟡 SKELETON | `vault-core-memory` (Round 9, 996/2048 tokens) |
+| 17 | RSI Tier-3 agent-on-agent | 🟡 SKELETON | B-8 RSI Critic skeleton ACTIVATED (1.0.9, safety-gated) |
+| 18 | graphify × Memgraph diff-watcher | ✅ LANDED | `vault-graph-diff` (Round 8, Jaccard 0.0070) |
+| 19 | NLI × KO-DB × Memgraph triangulation | ✅ LANDED | `vault-triangulate` (Round 7) |
+| 20 | Vault-MCP server local-first | ✅ LANDED | `vault-mcp` (Round 3, 7 read-only tools) |
+| 21 | KO-DB Bayesian-belief-update | ✅ LANDED | `vault-ko-belief` (Round 8) + hash-refactor UNBLOCKED (1.0.9) |
+| 22 | NotebookLM deep-research → KO-DB | ✅ LANDED | `vault-nb-ingest` (Round 7-8) |
+
+**Final tally: 22/22 LANDED or SKELETON (100%)** — 16 LANDED in PM, 6 SKELETON with explicit follow-up gates. No DEFERRED items after 1.0.9.
+
 ---
 
 ## TL;DR — top-5 highest-value

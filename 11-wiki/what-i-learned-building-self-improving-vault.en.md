@@ -13,9 +13,9 @@ hn_title: "What I learned building a self-improving Obsidian-vault in 5 hours"
 
 # What I learned building a self-improving Obsidian-vault in 5 hours
 
-> **TL;DR:** Over a single ~5-hour evening, three Claude Code sessions and ~50× subagent fanouts turned a static Obsidian vault into a working "agentic OS": **219 wikis, 9004 entity-graph concepts, 24,606 graph edges, 88 audits, 14 cron jobs, all running on one VPS at $0 marginal cost**. The actual lessons aren't about agents being magic — they're about the **silent failure modes** that almost killed it: 1262 graph writes rolled back without raising a single exception, a "bias-mitigated" LLM judge that quietly discarded 47% of correct learnings, and a $0-cost subagent pattern that hits a hard wall the moment you try to nest it. This is the essay I wish I'd had three weeks ago.
+> **TL;DR:** Over a single ~5-hour evening, three Claude Code sessions and ~50× subagent fanouts turned a static Obsidian vault into a working "agentic OS"; two more days of follow-up landed it as a public release: **274 wikis, 8,913 entity-graph concepts (post -30.2% cleanup), 19,215 graph edges, 126 audits, 23 cron jobs, all running on one VPS at $0 marginal cost**. The actual lessons aren't about agents being magic — they're about the **silent failure modes** that almost killed it: 1262 graph writes rolled back without raising a single exception, a "bias-mitigated" LLM judge that quietly discarded 47% of correct learnings, a $0-cost subagent pattern that hits a hard wall the moment you try to nest it — and the counter-intuitive finding that a fetch-pool sweep on LongMemEval-S showed **K=5 is a sweet-spot (76.77% Recall@5) on a monotonically *decreasing* curve**. This is the essay I wish I'd had three weeks ago.
 
-> **Repo:** [github.com/MyForgeLabs/myforge-vault-1111](https://github.com/MyForgeLabs/myforge-vault-1111) (MIT, 219 wikis, 48 EN translations)
+> **Repo:** [github.com/MyForgeLabs/myforge-vault-1111](https://github.com/MyForgeLabs/myforge-vault-1111) (MIT, 274 wikis, 71 EN translations, v1.0.9)
 > **Wiki site:** [myforgelabs.github.io/myforge-vault-1111](https://myforgelabs.github.io/myforge-vault-1111/)
 
 ---
@@ -46,10 +46,10 @@ Eight evolutionary axes, each shipped as a 2-week sprint, each scaffolded in a s
 | **B-4** | Tool composition ([[sv-04-tool-composition]]) | MCP-bridges; the three CLI agents share one skill registry |
 | **B-5** | NotebookLM cognitive layer ([[sv-08-notebooklm-cognitive-layer]]) | Google NotebookLM as a CLI-driven deep-research subroutine |
 | **B-6** | Multi-agent orchestration ([[sv-03-multi-agent-orchestration]]) | Claude / Codex / Gemini share the vault via symlinks, `AGENT=` env-var stamps commits |
-| **B-7** | World-model knowledge graph ([[sv-07-entity-graph]]) | Memgraph 3.9 CE, native vector-index, 9004 nodes, 24,606 edges, 100% typed |
+| **B-7** | World-model knowledge graph ([[sv-07-entity-graph]]) | Memgraph 3.9 CE, native vector-index, 8,913 nodes, 19,215 edges (post-cleanup -30.2% noise) |
 | **B-8** | Recursive self-improvement ([[sv-02-recursive-self-improvement]]) | 4-layer safety-gate ([[multi-layer-safety-gate]]); `VAULT_CRYSTALLIZE_REAL=1` + sandbox branch + forbidden-target list |
 
-After the 5-hour burst: 219 wikis (from ~120), KO-DB 13,675 facts (from 604), Memgraph 24,606 edges (from 0), $0 marginal inference cost.
+After the 5-hour burst plus two follow-up days: 274 wikis (from ~120), KO-DB 13,800+ facts (from 604), Memgraph 19,215 edges post-cleanup (peaked at 24,606 before noise-prune), $0 marginal inference cost.
 
 Most of those numbers don't matter. What matters is that 5 specific things almost broke the project, and four of them were silent. Here they are.
 
@@ -247,13 +247,34 @@ Not: LLM orchestrates the whole thing because "the agent is smart enough to figu
 
 The general rule I now follow: **if the operation has a closed-form database query, write the query**. The LLM goes inside the judging step, not around it.
 
+### 3.6 LongMemEval K-sweep — the curve is monotonically *decreasing*, K=5 wins
+
+This is the "huh, really?" finding from the follow-up day. We had a hybrid BM25 + bge-m3 + RRF retrieval pipeline locked at **67.68% Recall@5** (the v0.2 baseline). I figured plugging in a BGE-reranker-v2-m3 cross-encoder on the fused pool would lift it a few points; what I didn't expect was that **fetch-pool size K is the dominant lever, and the curve goes the wrong direction**.
+
+| Fetch-pool K | Recall@5 | Δ vs K=20 |
+|---:|---:|---:|
+| **5** | **76.77%** | **+5.05pp** |
+| 10 | 74.75% | +3.03pp |
+| 20 (default) | 71.72% | — |
+| 50 | 67.68% (v0.2 hybrid baseline) | -4.04pp |
+
+Stacking the BGE-reranker on top of K=20 took us from 71.72% → 73.74% — a real +2.02pp, but **less than half of the lift from just shrinking K**. The reranker cost: 942.9 s vs 15.2 s, a **62× wall-clock tax for half the gain**.
+
+Mechanism (hypothesis): RRF score `1/(60 + rank)` is bounded by the worst rank in the fused pool. A bigger pool pulls in low-quality lexical-only matches that get fused near the top, polluting the top-5. Small pool = more selective fusion = better top-5. The counter-intuitive part is that "more candidates = better" is the default mental model from most BM25-only retrieval work, and it's *backwards* here.
+
+What I shipped: v0.3-A (RRF, K=5) as the new default. The reranker stays opt-in behind `VAULT_RERANK=v2-m3` for cases where reranker-budget makes sense (~16 min for 99-Q is fine for nightly eval, not for interactive search).
+
+The wider lesson: **sweep your hyperparameters even when the documented default seems sensible**. The Atlan RAG-eval literature treats fetch-pool K as "set it to 20 and move on"; on our vault, that's the worst point on the curve.
+
+Full readout: [[../06-Audits/2026-05-19 LongMemEval v0.3 sweep results]].
+
 ---
 
 ## 4. The cost
 
 This is the part where I'm supposed to either say "I spent $5000 on Anthropic" or "I did the whole thing for free." Honest answer is the latter, with an asterisk.
 
-**Actual marginal cost: $0.** Every LLM call was inside my existing Claude Code subscription (Pro plan, ~$200/mo, which I was paying anyway). No Anthropic API key was loaded. No fanouts to GPT-4 or Gemini. The full ~50× subagent fanouts, 174 subagent calls, 13,675 KO-DB facts, 9004 typed concepts, 24,606 graph edges — all $0 marginal.
+**Actual marginal cost: $0.** Every LLM call was inside my existing Claude Code subscription (Pro plan, ~$200/mo, which I was paying anyway). No Anthropic API key was loaded. No fanouts to GPT-4 or Gemini. The full ~50× subagent fanouts, 174 subagent calls, 13,800+ KO-DB facts, 8,913 typed concepts (post-cleanup), 19,215 graph edges — all $0 marginal.
 
 **Hypothetical cost if I'd done the same work via direct API:**
 
@@ -261,7 +282,7 @@ This is the part where I'm supposed to either say "I spent $5000 on Anthropic" o
 |---|---|---|
 | 174 subagent calls × ~30K input + ~5K output | ~$0.30 | ~$1.53 |
 | 13,675 fact extractions × ~2K input + ~500 output | ~$0.27 | ~$1.37 |
-| 9004 entity classifications × ~1K input + ~200 output | ~$0.10 | ~$0.51 |
+| 8,913 entity classifications × ~1K input + ~200 output (post-cleanup) | ~$0.10 | ~$0.51 |
 | G-Eval scoring 600+ Learning bullets × ~3K input + ~800 output | ~$0.05 | ~$0.24 |
 | **Total** | **~$0.72** | **~$3.65** |
 
@@ -275,7 +296,7 @@ A second cost worth being honest about: **human time, ~5 hours active, ~10 hours
 
 Three things are queued for the next burst:
 
-**Recursive self-improvement Tier-2** ([[sv-02-recursive-self-improvement]]). Right now the vault crystallizes learnings into the wiki. The next step is for the wiki to crystallize *itself* — a meta-pass that reads the 219 wikis, finds taxonomic gaps and duplications, and proposes consolidations. The B-8 sandbox is built, the 4-layer safety gate works (env-flag + script-gate + git-hook + Critic-review). The piece I haven't shipped is the GEPA-style evolutionary prompt optimizer that would let the crystallization prompt itself improve session-over-session. Day-0 scaffolding exists, full loop is Q3 work.
+**Recursive self-improvement Tier-2** ([[sv-02-recursive-self-improvement]]). Right now the vault crystallizes learnings into the wiki. The next step is for the wiki to crystallize *itself* — a meta-pass that reads the 274 wikis, finds taxonomic gaps and duplications, and proposes consolidations. The B-8 sandbox is built, the 4-layer safety gate works (env-flag + script-gate + git-hook + Critic-review). The piece I haven't shipped is the GEPA-style evolutionary prompt optimizer that would let the crystallization prompt itself improve session-over-session. Day-0 scaffolding exists, full loop is Q3 work.
 
 **BMAD integration** ([[bmad-vault-integration-pattern]]). BMAD ("BMad Method") is a structured agent-skill suite I've been using for project planning — PRD creation, architecture decisions, code review, retrospectives. Right now it lives parallel to the vault. The plan is to wire BMAD agents to write directly into `02-Projects/`, `07-Decisions/`, and `08-Sessions/` using the same crystallization protocol, so that every PRD becomes a queryable KO-DB row and every architectural decision auto-generates an ADR file. Half-shipped — three projects already use it (MAPESZ, KGC-4, Boulium); the rest of the BMAD skill suite needs migration.
 
@@ -298,7 +319,7 @@ What's in there:
 
 What's *not* in there: my actual KO-DB content (it has client-confidential triples in it), my session logs (same reason), and the `05-Memory/` files (user-specific). The README explains how to bootstrap your own vault from the schema + scripts. The Karpathy-LLM-Wiki pattern is documented end-to-end ([[Karpathy-LLM-Wiki-pattern]]). The 5 lessons in this essay each have their own deep-dive wiki page with the production-incident detail I cut from this longform.
 
-If you take one thing from this: **the value of an LLM-friendly knowledge base is not in the tooling, it's in the discipline of writing in your own words and compounding it weekly**. The 219 wikis are not a benchmark. They're 219 things I now don't have to re-learn. The agents are the lever, but the lever rests on the fact that the knowledge is *written down, in my voice, in one searchable place, with `created:` and `updated:` and a lang-tag and a tag-taxonomy*.
+If you take one thing from this: **the value of an LLM-friendly knowledge base is not in the tooling, it's in the discipline of writing in your own words and compounding it weekly**. The 274 wikis are not a benchmark. They're 274 things I now don't have to re-learn. The agents are the lever, but the lever rests on the fact that the knowledge is *written down, in my voice, in one searchable place, with `created:` and `updated:` and a lang-tag and a tag-taxonomy*.
 
 The five hard lessons were the price of entry. The compounding is the prize.
 

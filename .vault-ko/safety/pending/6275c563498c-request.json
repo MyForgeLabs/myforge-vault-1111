@@ -1,0 +1,17 @@
+{
+  "schema": "critic-review/v1",
+  "hash": "6275c563498c",
+  "created_at": "2026-05-19T17:49:17Z",
+  "target_file": "11-wiki/boulium-project-context.md",
+  "bullet_text": "Boulium projekt indító kontextus — új project, vízió = mobile-first PWA + offline-first + 'validáció nem rögzítés' + 3-tier hierarchia (MAPESZ→Egyesület→Klub, 47 klub × 2340 játékos). Staging petanque.mfl.support állítólag már létezik (NEM ellenőrizve). Domain-portfólió: boulium.com parked + boulium.blog élő WP, lejár 2026-07-07.",
+  "diff_text": "",
+  "prompt_template_path": "/root/obsidian-vault/.vault-ko/prompts/critic-review-template.md",
+  "expected_dims": [
+    "factuality",
+    "novelty",
+    "durability",
+    "vault_fit",
+    "safety"
+  ],
+  "output_format": "json-only-no-fence"
+}

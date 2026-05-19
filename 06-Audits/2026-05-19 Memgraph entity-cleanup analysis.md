@@ -7,7 +7,7 @@ tags: ["#type/audit", "#project/superintelligent-vault", "memgraph", "knowledge-
 related:
   - "[[../11-wiki/two-tier-graph-extraction]]"
   - "[[../08-Sessions/2026-05-19-obsidian-vault]]"
-  - "[[../00-Meta/graph-schema.yml]]"
+  - "`00-Meta/graph-schema.yml`"
   - "[[../11-wiki/mgclient-autocommit-silent-rollback]]"
 status: draft — read-only, no mutations executed
 ---

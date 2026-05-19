@@ -125,6 +125,7 @@ A session-fájl megmarad raw-szerű referenciának — a desztillátum az index-
 
 | Layer | Parancs | Funkció |
 |---|---|---|
+| 0 migration | `migrate-hash-refactor-2026-05-19.py` | KO-DB fact-hash refactor: hash by `(s,p,o)` only, `fact_provenance` 1:N side-table (2026-05-19, 190 ms migration, unlocks Bayesian #21) |
 | 1 ingest | `vault-ko-ingest --file <path>` | Triplet-extraction subagent-tel, 2-phase pending pattern |
 | 2 score | `11.11crystallize <slug> --scorer claude-code --with-context` | G-Eval Learning-bullet scoring + KO-DB context-inject |
 | 3 query | `vault-ko-query <pattern>` | Substring + filter + JSON + `--stats` + `--conflicts` + `--top-k` (cross-source rank) + `--semantic` (Memgraph bridge) |

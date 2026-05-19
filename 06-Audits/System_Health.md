@@ -2,97 +2,116 @@
 name: System Health — vault integritás
 type: audit
 tags: ["#type/audit", "vault-health"]
-date: 2026-05-18
-updated: 2026-05-18T15:44
+date: 2026-05-19
+updated: 2026-05-19T17:47
 author: vault-cleanup
 ---
 
-# System Health — 2026-05-18 15:44 UTC
+# System Health — 2026-05-19 17:47 UTC
 
 Automatikusan generálva: `vault-cleanup`
 
-Vault: `/root/obsidian-vault` — 607 markdown fájl
+Vault: `/root/obsidian-vault` — 1060 markdown fájl
 
-> [!warning] ⚠️ **1651 problémát** találtam
+> [!warning] ⚠️ **1934 problémát** találtam
 
 
-## 🔗 Broken wikilinkek (1479)
+## 🔗 Broken wikilinkek (1498)
 
 _fájl → target_
 
-- 02-Projects/kgc-berles.md → [[07-Decisions/2026-05-10 Tartozék-rendszer schema (MachineAccessory M:N)]]
-- 06-Audits/2026-05-17 B-1 G-Eval bias-mitigation v0.3.md → [[.vault-ko/prompts/g-eval-template]]
-- 06-Audits/2026-05-17 B-3 L1 stuck-detection.md → [[L1_Stuck_Alerts.csv]]
-- 06-Audits/2026-05-17 B-3 vault-coherence-drift check.md → [[../11-wiki/vault-ko-conflicts-audit-design]]
-- 06-Audits/2026-05-17 B-7 Week 4 LLM-extraction.md → [[../11-wiki/sv-07-entity-graph]]
-- 06-Audits/2026-05-17 ENABLE_TOOL_SEARCH activation.md → [[../08-Sessions/2026-05-17-notebooklm-context-mining]]
-- 06-Audits/2026-05-17 broken-wikilinks scan.md → [[../11-wiki/wikilink-importer-pattern]]
+- 02-Projects/boulium.md → [[../11-wiki/r2-storage-opt-in-pattern]]
+- 06-Audits/2026-05-17 B-4 Week 2 skill-embedding + search.md → [[../.vault-tools/scripts/vault-skill-search.py]]
+- 06-Audits/2026-05-17 G-Eval v0.3 30-sample paired kalibráció.md → [[../.vault-ko/prompts/g-eval-template.md]]
 - 06-Audits/2026-05-17 broken-wikilinks scan.md → [[X]]
-- 06-Audits/2026-05-17 broken-wikilinks scan.md → [[broken-wikilinks-2026-05-17.json]]
-- 06-Audits/2026-05-17 broken-wikilinks scan.md → [[broken-wikilinks-2026-05-17.json]]
-- 06-Audits/2026-05-18 MyForge OS YouTube design reference research.md → [[02-Projects/myforge-os]]
-- 06-Audits/shadow-monitoring-trend.md → [[crystallize-health]]
-- 08-Sessions/2026-05-11-kgc-marketing.md → [[feedback-3d-chars-on-retro-bg]]
-- 08-Sessions/2026-05-11-kgc-weboldal.md → [[01-Daily/2026-05-10]]
-- 08-Sessions/2026-05-11-kgc-weboldal.md → [[01-Daily/2026-05-11]]
-- 08-Sessions/2026-05-11-kinda-project-2.md → [[01-Daily/2026-05-11]]
-- 08-Sessions/2026-05-11-kinda-project.md → [[01-Daily/2026-05-10]]
-- 08-Sessions/2026-05-11-kinda-project.md → [[01-Daily/2026-05-11]]
-- 08-Sessions/2026-05-12-kinda-projekt-folytat-s.md → [[01-Daily/2026-05-12]]
-- 08-Sessions/2026-05-12-robbantott-bra-keres.md → [[11-wiki/img-viewer-zoom-pan-ux]]
-- 08-Sessions/2026-05-12-robbantott-bra-keres.md → [[11-wiki/multi-figure-parts-list-pattern]]
-- 08-Sessions/2026-05-12-robbantott-bra-keres.md → [[11-wiki/parts-table-vs-figure-page-detection]]
-- 08-Sessions/2026-05-12-robbantott-bra-keres.md → [[feedback_multi_page_pdf_check.md]]
-- 08-Sessions/2026-05-15-szerver-update.md → [[2026-05-15 VNC stack systemd reboot-survival]]
-- 08-Sessions/2026-05-16-obsidian-vault-rdekes-k-rd-sek.md → [[wp w3-total-cache flush avoids LiteSpeed cache]]
-- 08-Sessions/2026-05-17-foxxi-weboldal.md → [[checklist m5]]
-- 08-Sessions/2026-05-18-kgc-all.md → [[11-wiki/higgsfield-reel-flow-kgc]]
-- 08-Sessions/2026-05-18-kgc-all.md → [[11-wiki/kgc-social-trend-stack-2026]]
-- 11-wiki/bmad-cross-machine-artifact-verification.md → [[active-session-pointer-divergence]]
+- 06-Audits/2026-05-17 cross-projekt synthesis prep.md → [[../07-Decisions/2026-05-08 Rojt és Bojt — Bricks Builder migration (D1).md]]
+- 06-Audits/2026-05-17 cross-projekt synthesis prep.md → [[../07-Decisions/2026-05-08 Rojt és Bojt — Foglalási rendszer Amelia Pro + Gravity Forms (D3).md]]
+- 06-Audits/2026-05-18 B-2 final tag ratification.md → [[11-wiki/bge-m3-cosine-plafon-hungarian-technical]]
+- 06-Audits/2026-05-18 B-2 final tag ratification.md → [[11-wiki/sv-02-memory-architecture]]
+- 06-Audits/2026-05-18 B-7 entity-expansion + cross-source-gate.md → [[../07-Decisions/2026-05-12 sv-7 advanced-graph-search arch]]
+- 06-Audits/2026-05-18 BMAD Sprint B context-preload adoption.md → [[../11-wiki/bmad-vault-bridge]]
+- 06-Audits/2026-05-18 BMAD Sprint B context-preload adoption.md → [[bmad-vault-bridge]]
+- 06-Audits/2026-05-18 BMAD Sprint B context-preload adoption.md → [[step-00-vault-preload.md]]
+- 06-Audits/2026-05-18 Concept full-batch sub-classification.md → [[../07-Decisions/2026-05-18 SV-B7 typed-extraction stratégia]]
+- 06-Audits/2026-05-18 Concept full-batch sub-classification.md → [[2026-05-17 sv-b7 typed-extraction recovery]]
+- 06-Audits/2026-05-18 Concept full-batch sub-classification.md → [[2026-05-18 Concept sub-classification 1000-sample audit]]
+- 06-Audits/2026-05-18 Concept full-batch sub-classification.md → [[2026-05-18 Concept sub-classification 1000-sample audit]]
+- 06-Audits/2026-05-18 Concept sub-classification.md → [[../11-wiki/sv-08-typed-entity-graph]]
+- 06-Audits/2026-05-18 atomic-write HIGH-4 wrap-up.md → [[../11-wiki/posix-atomic-write-pattern]]
+- 06-Audits/2026-05-18 vault-cron-flock wrapper.md → [[vault-cleanup]]
+- 06-Audits/2026-05-19 BMAD Sprint C per-projekt redirect.md → [[2026-05-18 bmad-vault-bridge skeleton]]
+- 06-Audits/2026-05-19 Memgraph cleanup Phase-3 next-step plan.md → [[../11-wiki/vault-ko-ingest-prompt-tightening-2026-05-19]]
+- 06-Audits/2026-05-19 Memgraph entity-cleanup analysis.md → [[../00-Meta/graph-schema.yml]]
+- 06-Audits/2026-05-19 Temporal-KG SCD2 skeleton.md → [[../00-Meta/migrations/2026-05-19-scd2-facts.sql]]
+- 06-Audits/2026-05-19 Temporal-KG SCD2 skeleton.md → [[../00-Meta/migrations/2026-05-19-scd2-facts.sql]]
+- 06-Audits/skill-canonicalize-baseline-2026-05-17.md → [[../.vault-tools/scripts/skill-canonicalize.py]]
+- 07-Decisions/2026-05-19 KO-DB hash key — drop provenance from hash.md → [[../11-wiki/sqlite-executescript-implicit-commit]]
+- 11-wiki/architecture-overview.en.md → [[Johnny-Decimal-prefix.en]]
+- 11-wiki/architecture-overview.en.md → [[cli-session-id-env-var-matrix.en]]
+- 11-wiki/architecture-overview.en.md → [[notebooklm-cli-gotchas.en]]
+- 11-wiki/audit-md-self-referential-loop.en.md → [[X]]
+- 11-wiki/audit-md-self-referential-loop.md → [[X]]
+- 11-wiki/bmad-context-preload-pattern.md → [[bmad-vault-bridge]]
+- 11-wiki/bmad-context-preload-pattern.md → [[bmad-vault-bridge]]
+- 11-wiki/codegraph-pre-indexed-token-saver.en.md → [[wordpress-router]]
+- 11-wiki/codegraph-pre-indexed-token-saver.en.md → [[wp-block-development]]
+- 11-wiki/codegraph-pre-indexed-token-saver.en.md → [[wp-rest-api]]
+- 11-wiki/codegraph-pre-indexed-token-saver.md → [[wordpress-router]]
+- 11-wiki/codegraph-pre-indexed-token-saver.md → [[wp-block-development]]
+- 11-wiki/codegraph-pre-indexed-token-saver.md → [[wp-rest-api]]
+- 11-wiki/daily-rollup-auto-summarize.en.md → [[atomic-write-pattern]]
+- 11-wiki/daily-rollup-auto-summarize.en.md → [[atomic-write-pattern]]
+- 11-wiki/img-viewer-zoom-pan-ux.md → [[react-onwheel-passive-default]]
 - 11-wiki/memory-md-overflow-management.md → [[X]]
-- 11-wiki/smart-trigger-cost-pattern.md → [[../06-Audits/2026-05-17 NLI Layer 2.5 integration]]
-- 11-wiki/smart-trigger-cost-pattern.md → [[../06-Audits/2026-05-17 reranker smart-trigger]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 0]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1000]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1001]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1002]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1003]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1004]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1005]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1006]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1007]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1008]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1009]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 100]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1010]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1012]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1013]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 1017]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 101]]
-- graphify-out-full-noisy/GRAPH_REPORT.md → [[_COMMUNITY_Community 102]]
-- ... és még 1429
+- 11-wiki/multi-figure-parts-list-pattern.md → [[multi-page-pdf-figure-check]]
+- 11-wiki/notebooklm-ingest-pipeline.en.md → [[vault-ko-ingest]]
+- 11-wiki/per-project-context-skill-pattern.md → [[load-session-context-pattern]]
+- 11-wiki/stale-numbers-in-static-artifacts-pattern.en.md → [[vault-stats-generator]]
+- 11-wiki/temporal-kg-scd2-pattern.md → [[../00-Meta/migrations/2026-05-19-scd2-facts.sql]]
+- 11-wiki/temporal-kg-scd2-pattern.md → [[../00-Meta/migrations/2026-05-19-scd2-facts.sql]]
+- 11-wiki/vault-corruption-detection-pattern.en.md → [[vault-corruption-detection-pattern.md]]
+- ... és még 1448
 
 
-## 📋 Hiányzó frontmatter (4)
+## 📋 Hiányzó frontmatter (5)
 
 _md fájl YAML header nélkül_
 
+- 06-Audits/cost-rollup-2026-W21.md
 - README.en.md
 - README.hu.md
 - graphify-out-full-noisy/GRAPH_REPORT.md
 - graphify-out/GRAPH_REPORT.md
 
 
-## 🚫 Érvénytelen YAML (1)
+## 🚫 Érvénytelen YAML (7)
 
 _parse-error a frontmatterben_
 
+- 06-Audits/2026-05-18 Concept sub-classification.md: while parsing a block mapping
+  in "<unicode string>", line 1, column 1:
+    nam
+- 06-Audits/2026-05-18 Memgraph edge-inference closure.md: while parsing a block mapping
+  in "<unicode string>", line 1, column 1:
+    nam
 - 06-Audits/2026-05-18 MyForge OS UX audit pre-redesign.md: while parsing a block mapping
   in "<unicode string>", line 1, column 1:
     nam
+- 06-Audits/2026-05-18 MyForge OS YouTube design reference research.md: while parsing a block mapping
+  in "<unicode string>", line 1, column 1:
+    nam
+- 06-Audits/2026-05-18 atomic-write 11.11crystallize + MEDIUM-2.md: while parsing a block mapping
+  in "<unicode string>", line 1, column 1:
+    nam
+- 06-Audits/2026-05-18 atomic-write HIGH-3 migration.md: while parsing a block mapping
+  in "<unicode string>", line 1, column 1:
+    nam
+- 06-Audits/2026-05-19 repo improvement audit.md: while parsing a flow node
+expected the node content, but found '<stream end>'
+  
 
 
-## ❓ Hiányzó `type:` mező (10)
+## ❓ Hiányzó `type:` mező (5)
 
 _frontmatter ok de nincs type_
 
@@ -101,86 +120,89 @@ _frontmatter ok de nincs type_
 - 000-OS/Claude/skills/kgc-context/SKILL.md
 - 000-OS/Claude/skills/mfl-voice-context/SKILL.md
 - 000-OS/Claude/skills/robbantott-kereso-context/SKILL.md
-- 11-wiki/dbnet-paddleocr-small-callouts.md
-- 11-wiki/demo-fallback-readonly-guard.md
-- 11-wiki/nextjs-pwa-shell-minimum.md
-- 11-wiki/orphan-pdf-auto-resume-pattern.md
-- 11-wiki/svg-img-overlay-aspect-ratio.md
 
 
-## 🏝️ Árva fájlok (157)
+## ❓ Hiányzó `name:` mező (1)
+
+_frontmatter ok de nincs name_
+
+- 06-Audits/2026-05-19 NotebookLM podcast top-7 EN plan.md
+
+
+## 🏝️ Árva fájlok (418)
 
 _nincs beérkező wikilink (Sessions kihagyva)_
 
 - 00-Meta/bash-patches/DEPLOY.md
+- 01-Daily/2026-04-23.md
+- 01-Daily/2026-04-25.md
+- 01-Daily/2026-04-26.md
+- 01-Daily/2026-04-27.md
+- 01-Daily/2026-04-28.md
+- 01-Daily/2026-04-29.md
+- 01-Daily/2026-05-01.md
+- 01-Daily/2026-05-03.md
+- 01-Daily/2026-05-04.md
+- 01-Daily/2026-05-13.md
+- 01-Daily/2026-05-15.md
+- 01-Daily/2026-05-16.md
+- 02-Projects/boulium/bmad/mock-prd-boulium-friends.md
+- 02-Projects/boulium/bmad/sprintc-boulium-prd-source.md
 - 02-Projects/foxxi-cv-website/site/DEPLOY.md
 - 02-Projects/foxxi-sprint-2026-05/foxxi-uzenet-2026-05-10-velasz-tarhely-transzfer.md
-- 06-Audits/2026-05-17 B-1 Aggressive 0.85 ramp risk-assessment.md
-- 06-Audits/2026-05-17 B-3 L1 stuck-detection.md
-- 06-Audits/2026-05-17 B-3 session eval frontmatter.md
-- 06-Audits/2026-05-17 B-4 Week 3 vault-search-server SkillChunk RPC.md
-- 06-Audits/2026-05-17 B-5 notebooklm per-project bootstrap.md
-- 06-Audits/2026-05-17 B-6 Week 1 worker + smoke.md
-- 06-Audits/2026-05-17 B-7 Week 2 typed entity-nodes.md
-- 06-Audits/2026-05-17 B-7 Week 3 typed-labels + alias.md
-- 06-Audits/2026-05-17 B-7 Week 4 LLM-extraction.md
-- 06-Audits/2026-05-17 B-7 wikilink-importer MENTIONS edges.md
-- 06-Audits/2026-05-17 ENABLE_TOOL_SEARCH activation.md
-- 06-Audits/2026-05-17 bge-reranker score-gap smart-skip.md
-- 06-Audits/2026-05-17 persistent NLI-process pool skeleton.md
-- 06-Audits/2026-05-18 GitHub trending weekly recurrence.md
-- 06-Audits/2026-05-18 MyForge OS UX audit pre-redesign.md
-- 06-Audits/Eval_Trend.md
-- 06-Audits/broken-wikilinks-latest.md
-- 07-Decisions/2026-05-18 SV positioning vs open-source landscape.md
+- 06-Audits/2026-05-18 B-6 11.11worker orchestration ÉLES.md
+- 06-Audits/2026-05-18 B-6 orchestrator auto-cascade.md
+- 06-Audits/2026-05-18 B-7 alias-deeper Cypher-direct.md
+- 06-Audits/2026-05-18 B-7 entity-expansion + cross-source-gate.md
+- 06-Audits/2026-05-18 BMAD-vault integration design.md
+- 06-Audits/2026-05-18 Concept full-batch sub-classification.md
+- 06-Audits/2026-05-18 Concept sub-classification.md
+- 06-Audits/2026-05-18 HN-posts ready-to-submit (7 EN wiki).md
+- 06-Audits/2026-05-18 KO-DB MCP-server skeleton.md
+- 06-Audits/2026-05-18 Memgraph edge-from-facts.md
+- 06-Audits/2026-05-18 Memgraph edge-inference closure.md
+- 06-Audits/2026-05-18 Quality automation 3-csomag.md
+- 06-Audits/2026-05-18 atomic-write HIGH-4 wrap-up.md
+- 06-Audits/2026-05-18 demo asciinema video.md
+- 06-Audits/2026-05-18 vault-cron-flock wrapper.md
+- 06-Audits/2026-05-19 B-2 no-socket score-norm bug — RESOLVED.md
+- 06-Audits/2026-05-19 BMAD Sprint C per-projekt redirect.md
+- 06-Audits/2026-05-19 Bayesian belief-update skeleton.md
+- 06-Audits/2026-05-19 GitHub trending weekly recurrence.md
+- 06-Audits/2026-05-19 LongMemEval-S vault-variant.md
+- 06-Audits/2026-05-19 NotebookLM podcast top-7 EN plan.md
+- 06-Audits/2026-05-19 SV brainstorm post-mega-session priority-rank.md
+- 06-Audits/2026-05-19 launch-readiness verify post-mega-session.md
+- 06-Audits/cost-rollup-2026-W21.md
+- 06-Audits/graph-diff-2026-05-19.md
+- 06-Audits/ko-belief-weekly-2026-W21.md
+- 06-Audits/scd2-supersession-monitor-2026-W21.md
+- 06-Audits/sleep-consolidate-2026-05-19.md
 - 08-Sessions/2026-05-09-vault-maintenance.md
-- 08-Sessions/2026-05-12-agentic-os.md
-- 08-Sessions/2026-05-12-kinda-projekt-folytat-s.md
-- 08-Sessions/2026-05-12-webelemzesek-himalajaijoga-nonplusz.md
-- 08-Sessions/2026-05-13-help.md
-- 08-Sessions/2026-05-13-rojt-s-bojt-weboldal.md
-- 08-Sessions/2026-05-13-sv-obsidian-coloring-fix.md
-- 08-Sessions/2026-05-13-sv-week2-extend.md
 - 08-Sessions/2026-05-14-creawave-weboldal.md
-- 08-Sessions/2026-05-17-foxxi-weboldal.md
-- 08-Sessions/2026-05-18-boulium-petanque-app.md
-- 08-Sessions/2026-05-18-obsidian-vault.md
-- 08-Sessions/_archive/2026-04-24-dashboard-test-2.md
-- 08-Sessions/_archive/2026-04-24-dashboard-test.md
-- 10-raw/2026-04-30 — GitHub trending (daily).md
-- 10-raw/2026-05-08 — GitHub trending (daily).md
-- 10-raw/2026-05-12 — GitHub trending (daily).md
-- 10-raw/2026-05-13 — GitHub trending (daily).md
-- 10-raw/2026-05-14 — GitHub trending (daily).md
-- 10-raw/2026-05-15 — GitHub trending (daily).md
-- 10-raw/2026-05-16 — GitHub trending (daily).md
-- 10-raw/2026-05-17 — GitHub trending (daily).md
-- 10-raw/2026-05-18 — GitHub trending (daily).md
-- 10-raw/external/1jehuang_jcode/docs__AGENT_NATIVE_VCS_CORE_BEHAVIOR.md
-- 10-raw/external/1jehuang_jcode/docs__AMBIENT_MODE.md
-- 10-raw/external/1jehuang_jcode/docs__AWS_BEDROCK_PROVIDER.md
-- 10-raw/external/1jehuang_jcode/docs__BROWSER_PROVIDER_PROTOCOL.md
-- 10-raw/external/1jehuang_jcode/docs__CLIENT_CORE_PRESENTATION_SPLIT_PLAN.md
-- 10-raw/external/1jehuang_jcode/docs__CODE_QUALITY_10_10_PLAN.md
-- ... és még 107
+- 08-Sessions/2026-05-19-boulium-phase-2.md
+- 08-Sessions/2026-05-19-foxxi-sprint-2026-05.md
+- 08-Sessions/2026-05-19-mfl-voice.md
+- ... és még 368
 
 
 ## Összefoglaló
 
 | Kategória | Darab |
 |-----------|-------|
+| 🩺 Daemon health | 0 |
 | 🗂️ Legacy mappa a gyökérben | 0 |
 | 📦 Hibás helyen lévő sprint-fájl | 0 |
-| 🔗 Broken wikilinkek | 1479 |
-| 📋 Hiányzó frontmatter | 4 |
-| 🚫 Érvénytelen YAML | 1 |
-| ❓ Hiányzó `type:` mező | 10 |
-| ❓ Hiányzó `name:` mező | 0 |
+| 🔗 Broken wikilinkek | 1498 |
+| 📋 Hiányzó frontmatter | 5 |
+| 🚫 Érvénytelen YAML | 7 |
+| ❓ Hiányzó `type:` mező | 5 |
+| ❓ Hiányzó `name:` mező | 1 |
 | 📅 Nem ISO dátum-formátum | 0 |
-| 🏝️ Árva fájlok | 157 |
+| 🏝️ Árva fájlok | 418 |
 | 🕸️ Elavult fájlok | 0 |
 | 💥 Olvashatatlan fájlok | 0 |
-| **Összesen** | **1651** |
+| **Összesen** | **1934** |
 
 ## Hogy olvasd
 
@@ -190,6 +212,7 @@ _nincs beérkező wikilink (Sessions kihagyva)_
 - **Missing type/name** = nem Frontmatter-schema-konform → pótold
 
 <!-- AUTO-GEN END — manual content below this line is preserved across runs -->
+
 
 
 
