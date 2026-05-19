@@ -2,6 +2,39 @@
 
 All notable changes to MyForge Vault 11.11.
 
+## [1.0.6] — 2026-05-19 (after midnight)
+
+Round 8 — four more ideas land. **13 of 22 brainstorm ideas LANDED today** (59%); 9 remaining. All read-only / additive.
+
+### Added — 4 new CLIs
+
+- **`vault-ko-belief`** (idea #21) — Bayesian belief-update on contradictions. Replaces the implicit "newest-wins" policy with proper Bayesian posterior over fact candidates. 4 verdicts: `confident-consensus` (≥0.85), `weak-consensus`, `contested`, `flip-recommended` (<0.35). Asymmetric: a single weak contradiction against a 6-source evergreen claim does NOT flip the verdict. Apply mode double-gated (`--apply` + `VAULT_BELIEF_APPLY=1`).
+- **`vault-ko-schema-evolve`** (idea #10) — predicate-vocabulary audit. **Found: 127 unique predicates** (40 canonical from the 38-vocab + 87 orphans). Top promote-candidates by usage: `prevents` (248), `fixes` (240), `defaults_to` (186), `motivated_by` (172). `--suggest-merges` runs similarity-pair finder (token-jaccard + sequence-ratio); detected 4 candidate merges including `has_string_value` ↔ `has_value`. `--apply` (gated by `VAULT_SCHEMA_APPLY=1`) executes the merges as SQL UPDATEs with audit-trail.
+- **`vault-graph-diff`** (idea #18) — two-tier graph cross-validation: graphify (Tier-2 deterministic tree-sitter + Leiden) vs Memgraph (Tier-1 LLM-extracted). **Surfaced: Jaccard agreement 0.0070** between the two graphs (Tier-1: 12,631 entities, Tier-2: 4,439 nodes, Both: 119) — the LLM-extraction layer captures noise (quoted-string-as-entity, hex-color values, code-snippet fragments). Concrete cleanup signal. `--write-audit` saves to `06-Audits/graph-diff-<date>.md`.
+- **`vault-nb-ingest`** (idea #22, completed in Round 7-8) — NotebookLM 7-section report → KO-DB triplet-extraction pipeline. Detected **6 reports** on this vault; estimated **~134-201 net new triplets** if `--apply` ran. Double-gated.
+
+### Added — wikis
+
+- `11-wiki/bayesian-belief-update-pattern.en.md` — when newest-wins is wrong, asymmetric likelihood-ratio handling
+- `11-wiki/notebooklm-ingest-pipeline.en.md` — 7-section parsing + pre-filter rules
+- `11-wiki/triangulation-score-pattern.en.md` — bge-reranker NLI proxy
+
+### Findings (audit-worthy)
+
+- **Memgraph entity-graph has grown to 12,631** (from 8,997 yesterday) — likely from continuous `vault-graph-extract` runs. The two-tier diff suggests many of the new ones are noise (quoted strings, code snippets).
+- **127 predicates in KO-DB** vs canonical 38-vocab — 87 orphans, top 4 (`prevents` / `fixes` / `defaults_to` / `motivated_by`) deserve promotion to canon.
+- **NotebookLM reports** live in `06-Audits/` not the canonical `10-raw/external/notebooklm/` — the script discovery heuristic handles both paths.
+
+### Numbers (post-1.0.6)
+
+- **13 brainstorm ideas LANDED** of 22 (59%), 9 remaining
+- **79** total `/usr/local/bin/vault-*` + `11.11*` scripts (up from 75)
+- Lint state: ruff 0, frontmatter 0, atomic-write 0
+- Memgraph: 12,631 entities (up from 8,997)
+- KO-DB: 13,801 facts, 127 unique predicates
+
+Full diff: https://github.com/MyForgeLabs/myforge-vault-1111/compare/v1.0.5...v1.0.6
+
 ## [1.0.5] — 2026-05-19 (very late evening)
 
 Round 7 — four more brainstorm ideas land. Now at **9 of 22 brainstorm ideas LANDED** (45 days into the v1.0 lifecycle, on launch-day itself).
