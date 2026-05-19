@@ -95,7 +95,22 @@ A tegnapi EPIC super-session **5-prio + backlog batch** lehúzása — minden am
 - 09:05 — **GitHub launch playbook subagent return**: `06-Audits/2026-05-19 GitHub launch playbook.md` 7,060 szó, 7 szekció, **3 direct competitor identified** (`swarmclawai/swarmvault` 3 hete launch-olt, `Ar9av/obsidian-wiki`, `obra/knowledge-graph`). **Defensible wedge**: 3-CLI-agent bridge + GEPA RSI + NotebookLM podcast layer (no competitor ships these). **Single highest-leverage action**: Tuesday 2026-05-26 15:00 UTC HN Angle A submit + 11-tweet X thread T+30 min. Cite-list: Show-HN survival study (asof.app/research) + llms.txt spec + GitHub social-preview docs.
 - 09:06 — **GitHub repo polish — 6 új artifact a public-repo-ban**: `SECURITY.md` (vuln disclosure policy) + `CITATION.cff` (Zenodo DOI-mintable) + `llms.txt` (agentic-browsing per llmstxt.org spec) + `.github/FUNDING.yml` (Sponsors) + `.github/ISSUE_TEMPLATE/vault_pattern.md` ("Share your vault" community template) + `.github/ISSUE_TEMPLATE/config.yml` (route blank-issue → Discussions). + **CHANGELOG.md v1.0.1 release notes** (Added/Changed/Fixed/Internal/Numbers, ~80 sor).
 - 09:08 — `vault-public-sync` triggered → commit `7ad30a2` pushed to `MyForgeLabs/myforge-vault-1111@main` (HEAD == origin/main, 0 commits ahead).
-- 09:09 — **v1.0.1 GitHub release LIVE**: https://github.com/MyForgeLabs/myforge-vault-1111/releases/tag/v1.0.1 — CHANGELOG-extracted notes, Latest-release flag, ready-to-link from HN/Twitter/Reddit.
+- 09:09 — **v1.0.1 GitHub release LIVE**: https://github.com/MyForgeLabs/myforge-vault-1111/releases/tag/v1.0.1
+- 09:15 — **Round 4 indul — user: "mi az amivel tudjuk javítani... contributornak :D meg a repot is nézzük át alaposan"**. 2 párhuzamos subagent spawn (repo-audit + CI-workflow scaffold), main thread on tangibles (PR template / Mermaid arch / FAQ / contributors).
+- 09:18 — Repo-improvement audit kezdő-state mapping (258 wiki / 71 EN / 45 ADR / 104 audit / 16 SV-meta session) + CODEOWNERS added.
+- 09:20 — **Mermaid architecture wiki ÉLES** (`11-wiki/architecture-overview.en.md`) — full 7-subgraph diagram (Input / Crystallize / Memory / Distilled / Tooling / Eval+RSI / Cognitive) + per-axis ADR+wiki deep-link table + footprint stats.
+- 09:21 — **FAQ wiki ÉLES** (`11-wiki/faq.en.md`) — 13 launch-FAQ kérdés ("What is this", "Should I use", "Is this AGI", "How much costs", "Why three CLI agents", "Why Memgraph", "Is AI-aided disclosed", "Discord", "Can I contribute", "Hungarian-first weird", "What's NOT in yet"). Each opinionated, specific, NOT generic.
+- 09:22 — **README hero rewrite**: counts frissítve (87 → **258** wiki, 28 → **45** ADR, fokozók: Cost ✓ / KO-DB 13.8K / Memgraph 8997+100% typed / hybrid R@5 67.68% / lint 66/66). 5 új badge (Release / Audits / Star-history). Quick-start link ✓ (placeholder `<owner>/superintelligent-vault.git` már nem volt, audit caught).
+- 09:23 — **vs mem0/Letta/GraphRAG/agentmemory competitor table** added — direct memory-OSS comparison (13 dimension), "Where SV is NOT the right pick" honest section, "Where SV IS" 4 use-case. Skill-agent comparison kept as separate table (different category).
+- 09:24 — **Contributors section ÉLES** — Vault User + Claude Code + Codex + Gemini + NotebookLM mind named co-collaborator (NEM tool). `AGENT=` commit-trailer pattern documented. Acknowledgements blokk (Karpathy / Memgraph / BAAI / agent-vendors / Obsidian community).
+- 09:25 — **Repo-audit subagent return**: 3,250£ audit landed. **1 stop-the-launch caught** (`<owner>/superintelligent-vault.git` placeholder) — already fixed in README edit a percekkel korábban. 5 highest-leverage fix-rank: (1) quickstart URL placeholder, (2) social-preview upload, (3) hero rewrite, (4) stale counters, (5) mem0/GraphRAG/Letta table. Mind a 5 LANDED + competitor-table v0. Audit-benchmarks: mem0 (4-row numbers table → second H2), qdrant (1-line docker run quickstart), lancedb (`<details>⭐` star reveal).
+- 09:25 — **Repo topics: 12 → 20** (+8 új: ai-agents, rag, vector-search, embedding, llm-eval, personal-knowledge-management, local-first, bge-m3). Maxed out at 20.
+- 09:26 — **`docs/assets/hero-banner.png` 420KB** generated from SVG (1280×640, ImageMagick `convert -density 300 -resize 1280x640`). **User-action remaining**: manual upload via Settings → Options → Social preview (REST API doesn't expose this, only Web UI).
+- 09:27 — **Star-history reveal + Built-with + Cite-this-work** collapsible `<details>` blocks added to README footer (lancedb-style pattern).
+- 09:27 — **HN Launch Console hidden from mkdocs nav** (optics risk — launch-internal artifact shouldn't be on the public docs site pre-launch).
+- 09:28 — **Codespaces devcontainer ÉLES** — `.devcontainer/{devcontainer.json,post-create.sh}` — Python 3.12 + Docker-in-Docker (auto-Memgraph) + 8 IDE extensions (Python/Pylance/Ruff/Markdown/MarkdownLint/TOML/YAML/Claude-Code) + port-forward (7687 silent / 8000 openPreview) + post-create banner. "Try it in Codespaces" button-ready.
+- 09:29 — **CI-workflow subagent return**: 4 új workflow YAML (`ci.yml` 5.9KB / `pr-labeler.yml` / `stale.yml` / `link-check.yml`) + `.github/labeler.yml` + 2 helper scripts (`lint_frontmatter.py` budget=25, `broken_wikilinks_check.py` budget=250) + `Makefile` (7 targets: help/install/lint/test/docs/build-docs/clean) + `requirements-dev.txt`. **YAML parse 5/5**. Budget-tunable (MAX_FRONTMATTER_ISSUES env + BROKEN_REF_BUDGET env) — CI passes today, ratchet-down later. Note: existing `docs.yml` (GitHub Pages deploy) untouched.
+- 09:30 — **Commit `be26485` + push to PUBLIC main** (5 changed files + 196 insertions). v1.0.2 release LIVE: https://github.com/MyForgeLabs/myforge-vault-1111/releases/tag/v1.0.2 — title: "launch-readiness polish (CI + devcontainer + competitor table + Mermaid arch + FAQ)".
 
 ## Summary
 
@@ -122,11 +137,26 @@ A 22-idea brainstorm 4 idea-ja ÉLES (#1 RAGAS / #13 Browser-history / #15 Sleep
 | Brainstorm ideas landed (of 22) | **4** (#1 RAGAS / #13 Browser-history / #15 Sleep-consolidation / #20 Vault-MCP) |
 | **Public repo polish (Round 3)** | SECURITY.md + CITATION.cff + llms.txt + FUNDING.yml + vault_pattern issue-template + issue-config + CHANGELOG v1.0.1 |
 | **Public commits today** | 7ad30a2 + autosaves (~9 commits in this Round 3 alone) |
-| **GitHub releases** | v1.0.0 → **v1.0.1 LIVE** (releases/tag/v1.0.1) |
+| **GitHub releases** | v1.0.0 → v1.0.1 → **v1.0.2 LIVE** (releases/tag/v1.0.2) |
 | **Launch playbook channels covered** | HN×3 / Twitter / Reddit×3 / Dev.to / Lobsters / LinkedIn / Mastodon |
 | Lint compliance | **66/66 scripts ✓** |
 | Pytest regression-gate | **3/3 PASS** |
 | Daemon health | **5/5 ✓** |
+
+### Round 4 extra (launch-readiness)
+
+| Kategória | Δ |
+|---|---|
+| Új GitHub workflows | **+4** (ci.yml + pr-labeler.yml + stale.yml + link-check.yml) |
+| CI helper scripts | **+2** (lint_frontmatter.py + broken_wikilinks_check.py) + .github/labeler.yml |
+| Repo dev-tooling | Makefile (7 targets) + requirements-dev.txt + .devcontainer/ |
+| Új wiki (vault-side) | **+2** (architecture-overview.en.md + faq.en.md) |
+| Új audit | **+2** (repo improvement audit 3,250£ + GitHub launch playbook 7,060£) |
+| Új public-repo file | CODEOWNERS + hero-banner.png + 5 nagyobb README rewrite |
+| Repo topics | 12 → **20** (8 új) |
+| Stop-the-launch findings caught | **1** (quickstart URL placeholder — fixed) |
+| Competitor wedge | mem0 / Letta / GraphRAG / agentmemory comparison table (13 dim) |
+| Contributors section | AI agents as named co-collaborators (Claude / Codex / Gemini / NotebookLM) honestly listed |
 
 ### Új infrastruktúra ÉLES
 
