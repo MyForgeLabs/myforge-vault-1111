@@ -2,6 +2,30 @@
 
 All notable changes to MyForge Vault 11.11.
 
+## [1.0.7] — 2026-05-19/20 (round 9)
+
+Round 9 — three more ideas land (two main-thread + one subagent). **16 of 22 brainstorm ideas LANDED** this session; only 6 remaining (GitHub-Linear bridge still in flight, ColBERT/HopRAG-extended/RSI-Tier-3 deferred).
+
+### Added — 3 new CLIs
+
+- **`vault-entity-link`** (idea #7) — Cross-lingual HU↔EN entity canonicalization skeleton. Audits Memgraph for missing `name_hu` / `name_en` / `canonical_form` properties (currently **0/12,778** entities have any). Subagent-fanout 2-phase pending-file interface for batched LLM annotation (request.json → external subagent → response.json). Apply mode double-gated (`--apply` + `VAULT_ENTITY_LINK_APPLY=1`). Cheap HU-vs-EN heuristic via diacritic + token signals for the "untyped sample" report.
+- **`vault-multi-hop`** (idea #11) — HopRAG-style multi-hop reasoning over the Memgraph entity-graph. Free-text query → entity detection (substring match across query tokens) → BFS up to N hops with typed edges. Path scoring uses an `EDGE_WEIGHTS` table (`ALIAS_OF` 0.9, `CAUSES` 0.8, `INSTANCE_OF` 0.85, etc.) with depth-penalty (×0.85 per hop). Validated 2-hop reasoning: `Memgraph` → `:USES_DATABASE` → `B-2 sprint` → `:DEPENDS_ON` → `bge-m3 embedding`.
+- **`vault-core-memory`** (idea #16 — Letta virtual-context OS skeleton) — formalizes the "core memory" (~2K mutable blocks: user-profile, active-project, open-tasks, glossary) vs "archival memory" (on-demand `vault-search`) split. `init` writes `00-Meta/core-memory.yaml` from current vault state (**996 tokens / 2048 budget** verified). `show`/`update`/`size`/`simulate`/`diff` subcommands. The migration of `11.11start` to use this layer is documented as the next step (not done today).
+
+### Findings worth tracking
+
+- **0/12,778 Memgraph entities** have bilingual annotation today — entire entity layer is single-language. The skeleton's batch-pending pipeline scales to ~30/batch; a full pass at 8× parallel subagents (~3 hours) would canonicalize the whole graph.
+- **Multi-hop path scoring** surfaces that the highest-info edges in the vault are `:USES_DATABASE`, `:ALTERNATIVE_TO`, `:DEPENDS_ON`, `:INSTANCE_OF`. The current edge distribution suggests `MENTIONS` is over-weighted as a generic linker — a cleanup target.
+
+### Numbers (post-1.0.7 draft)
+
+- **15 brainstorm ideas LANDED** of 22 (68%), 7 remaining
+- **81** total `/usr/local/bin/vault-*` + `11.11*` scripts (up from 79)
+- Lint state: ruff 0, frontmatter 0, atomic-write 0
+- Memgraph: 12,778 entities (likely cleanup-needed per Round 8 finding)
+
+Full diff: https://github.com/MyForgeLabs/myforge-vault-1111/compare/v1.0.6...v1.0.7
+
 ## [1.0.6] — 2026-05-19 (after midnight)
 
 Round 8 — four more ideas land. **13 of 22 brainstorm ideas LANDED today** (59%); 9 remaining. All read-only / additive.
