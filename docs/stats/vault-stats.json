@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T07:04:17Z",
+  "generated_at": "2026-05-19T07:12:23Z",
   "wiki": {
     "total": 172,
     "en": 70,
@@ -7,8 +7,8 @@
     "coverage_pct": 40.7
   },
   "audit": {
-    "total": 98,
-    "public": 94
+    "total": 103,
+    "public": 97
   },
   "memgraph": {
     "total_nodes": 31384,
@@ -23,8 +23,20 @@
   },
   "crons": 14,
   "public_commits": {
-    "all_time": 62,
-    "today": 29
+    "all_time": 63,
+    "today": 30
+  },
+  "health": {
+    "status": "good",
+    "latest_week": "2026-W20",
+    "scored": 88,
+    "auto_prop": 33,
+    "auto_prop_rate": 0.375,
+    "applied_real": 4,
+    "reverted": 0,
+    "revert_rate": 0.0,
+    "action": "hold",
+    "threshold": 0.95
   },
   "github_pages": "https://myforgelabs.github.io/myforge-vault-1111/",
   "repo_url": "https://github.com/MyForgeLabs/myforge-vault-1111"

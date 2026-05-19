@@ -3,7 +3,7 @@ name: Tag taxonómia
 type: reference
 tags: [memory, taxonomy, tags]
 created: 2026-04-23
-updated: 2026-05-08
+updated: 2026-05-19
 ---
 
 # Tag taxonómia
@@ -83,6 +83,64 @@ Használd a projekt-slug-ot (ami a `Projects/<slug>.md` fájlnév):
 | `#agent/codex` | Codex CLI |
 | `#agent/gemini` | Gemini CLI |
 
+### `#bmad/*` — BMAD module artifact-ok (2026-05-19 bővítés)
+
+A BMAD (Breakthrough Method for AI-Driven Development) workflow által generált doksik.
+
+| Tag | Mit jelöl |
+|-----|-----------|
+| `#bmad/prd` | Product Requirements Document |
+| `#bmad/architecture` | technikai architektúra-doksi |
+| `#bmad/ux-design` | UX-tervezési spec |
+| `#bmad/story` | story-fájl (sprint-implementációhoz) |
+| `#bmad/epic` | epic-bontás |
+| `#bmad/retrospective` | post-epic retro |
+| `#bmad/qa` | QA / test design / NFR |
+| `#bmad/gdd` | Game Design Document (GDS module) |
+| `#bmad/brief` | product-brief / game-brief |
+| `#bmad/research` | market/domain/technical research output |
+
+### `#cron/*` — cron-job futás-rytmus (2026-05-19 bővítés)
+
+A `vault-cron-flock`-kal és automatizált scriptekkel futó folyamatok.
+
+| Tag | Mit jelöl |
+|-----|-----------|
+| `#cron/10min` | 10 percenként (pl. `vault-autosave`) |
+| `#cron/hourly` | óránként |
+| `#cron/daily` | naponta (Daily-note autogen, embed-freshness) |
+| `#cron/weekly` | hetente (vault-cleanup vasárnap 04:00, adr-aging-watch) |
+| `#cron/monthly` | havonta |
+| `#cron/manual` | nem cron-on, csak kézi futtatás |
+
+### `#audit/*` — audit-doksi alkategória (2026-05-19 bővítés)
+
+A `06-Audits/`-ban élő pillanatkép-jelentéseket kategorizálja.
+
+| Tag | Mit jelöl |
+|-----|-----------|
+| `#audit/health` | rendszer-egészség (System_Health.md, host-állapot) |
+| `#audit/conflict` | konfliktus-detect (cross-source contradictions) |
+| `#audit/coverage` | lefedettség (wiki-quality, embed-coverage, kapcs.) |
+| `#audit/adr` | ADR-pipeline-tracker, status-distribution |
+| `#audit/cost` | költség-rollup, vault-cost |
+| `#audit/security` | biztonsági-audit (server hardening, secret-scan) |
+| `#audit/performance` | perf-audit (web vitals, lighthouse) |
+| `#audit/seo` | SEO-audit |
+| `#audit/research` | research-driven audit (NotebookLM-driven, deep-research) |
+
+### `#dashboard/*` — dashboard-komponens hivatkozás (2026-05-19 bővítés)
+
+A MyForge OS dashboard widget/tab/view-okhoz.
+
+| Tag | Mit jelöl |
+|-----|-----------|
+| `#dashboard/widget` | widget-szintű komponens (skill-card, run-history, heatmap) |
+| `#dashboard/tab` | top-level tab (chat, skills, projects, audits) |
+| `#dashboard/view` | view/route szintű |
+| `#dashboard/spec` | dashboard-specifikus PRD/spec/design |
+| `#dashboard/wave` | Wave-A..K roadmap-szakasz (MyForge OS) |
+
 ## Konvenciók
 
 - **Egyszerű** pont-nélküli tageket is használhatsz (pl. `#wordpress`, `#vault`) ha gyakori téma — de a strukturáltak **elsőbbséget** élveznek
@@ -101,6 +159,18 @@ tags: ["#type/project", "#env/prod", "#tech/docker", "#tech/postgres"]
 
 # Audits/*.md:
 tags: ["#type/audit", "#env/prod", "#env/dev"]
+
+# 06-Audits/wiki-quality-trend.md (auto-generated, coverage audit):
+tags: ["#type/audit", "#audit/coverage", "#cron/weekly"]
+
+# 06-Audits/adr-status.md:
+tags: ["#type/audit", "#audit/adr", "#cron/weekly"]
+
+# BMAD PRD output:
+tags: ["#type/decision", "#bmad/prd", "#project/<slug>"]
+
+# MyForge OS Wave-K spec:
+tags: ["#type/project", "#dashboard/wave", "#dashboard/spec", "#project/myforge-dashboard"]
 ```
 
 ## Frissítési protokoll

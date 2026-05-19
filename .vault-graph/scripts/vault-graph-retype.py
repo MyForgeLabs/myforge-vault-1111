@@ -111,6 +111,9 @@ import mgclient
 import yaml
 from tqdm import tqdm
 
+sys.path.insert(0, '/root/obsidian-vault/.vault-tools/lib')
+from vault_atomic import atomic_write_json  # noqa: E402
+
 # ─── CONFIG ───────────────────────────────────────────────────────────────
 
 MEMGRAPH_HOST = os.environ.get("MEMGRAPH_HOST", "127.0.0.1")
@@ -1002,7 +1005,7 @@ def run_llm_extract_phase(conn, args, audit_path: Path) -> dict:
                     "skipped": ["<name>"],
                 },
             }
-            (pending_dir / f"{buid}.json").write_text(json.dumps(req, ensure_ascii=False, indent=2))
+            atomic_write_json(pending_dir / f"{buid}.json", req)
         print(f"[llm-extract] emitted {len(batches)} pending request(s) → {pending_dir}", file=sys.stderr)
         write_audit(audit_path, {
             "phase": "llm-extract",
