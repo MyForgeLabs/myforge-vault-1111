@@ -13,13 +13,16 @@
 .vault-agents/
 ├── README.md
 ├── prompts/
-│   ├── orchestrator.md            Elem 1: Planner (Sonnet/Opus)
-│   ├── worker.md                  Elem 2: Subagent (Haiku default)
+│   ├── orchestrator.md            Elem 1: Planner (Sonnet/Opus) — prompt-template only
+│   ├── worker.md                  Elem 2: Subagent (Haiku default) — prompt-template
+│   ├── worker-system.md           Elem 2: System-prompt appended by worker.sh
 │   ├── critic.md                  Elem 3: Safeguard (Haiku, red-team minden 10.)
 │   └── summarizer.md              Elem 4: Convergent synthesis (Sonnet)
 └── scripts/
-    ├── 11.11worker.sh             Worker spawning (bash + claude-code subprocess)
-    └── event-log-monitor.py       Orchestrator event-log monitor (Filesystem-as-State)
+    ├── 11.11worker.sh             Worker spawning (Week 1 ÉLES, 2026-05-17)
+    ├── 11.11critic.sh             Critic 4-layer safety-gate (Week 2 ÉLES, 2026-05-19)
+    ├── 11.11summarizer.sh         Summarizer weekly + inputs (Week 2 ÉLES, 2026-05-19)
+    └── event-log-monitor.py       Audit-JSONL tail-monitor
 ```
 
 ## Status — 2026-05-17 (Phase B-6, Week 1 ÉLES)
