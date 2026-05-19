@@ -106,6 +106,7 @@ nav:
   - Bevezető: index.md
   - Dashboard: dashboard/index.html
   - Agentek: agents.md
+  - Demo: demo/index.md
   - Reproduction Guide: reproduction-guide.md
   - Knowledge Graph:
       - Áttekintés: wiki/vault-knowledge-graph-overview.md

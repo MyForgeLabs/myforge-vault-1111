@@ -10,9 +10,11 @@
 > **An open-source 8-axis methodology + working tooling for evolving a personal Obsidian-vault into a self-improving knowledge-system.**
 > Made by [MyForge Labs](mailto:11.11@myforgelabs.com). Augmented intelligence — NOT AGI, NOT hype. Hungarian+English docs, MIT.
 
-[📚 Live docs site](https://myforgelabs.github.io/myforge-vault-1111/) · [Magyar verzió](./README.hu.md) · [Roadmap](./07-Decisions/2026-05-12%20Superintelligent%20vault%20evolution%20roadmap.md) · [Cross-project synthesis](./06-Audits/2026-05-18%20vault-meta%20NotebookLM%20cross-projekt%20synthesis.md)
+[📚 Live docs site](https://myforgelabs.github.io/myforge-vault-1111/) · [▶ End-to-end demo](https://myforgelabs.github.io/myforge-vault-1111/demo/) · [Magyar verzió](./README.hu.md) · [Roadmap](./07-Decisions/2026-05-12%20Superintelligent%20vault%20evolution%20roadmap.md) · [Cross-project synthesis](./06-Audits/2026-05-18%20vault-meta%20NotebookLM%20cross-projekt%20synthesis.md)
 
-![MyForge Vault 11.11 — live docs site hero](./docs/assets/hero-screenshot.png)
+![MyForge Vault 11.11 — 8-axis Superintelligent Vault hero banner](./docs/assets/hero-banner.svg)
+
+![MyForge Vault 11.11 — live docs site screenshot](./docs/assets/hero-screenshot.png)
 
 ## What is this
 
