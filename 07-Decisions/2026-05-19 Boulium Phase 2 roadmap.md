@@ -119,11 +119,40 @@ Plus a **nemzetközi expanzió** (HU/EN i18n) megnyitná a "találj-meccset" fun
 ⚠ **Klub-mode komplexitás** — schema-change (új `club` + `clubMembership` table), 5-7 új route, migration the meglévő `player.club` szövegmező → `club_id` foreign-key
 ⚠ **i18n** — string-extract minden meglévő UI-ban (~150-200 kulcs), de modular: route-onként haladhatunk
 
+## Research-validation (2026-05-19 deep research)
+
+NotebookLM deep research 2 témakörben + custom report-artifact (`2026-05-19-phase2-deep-dive.md`, 7 szekció). 5 új source importálva (FPUSA hivatalos szabálykönyv, FBJB belga 2025-2026 season rule-book, FIPJP rules, 2 YouTube gameplay-tutorial, i18n-stack-comparison).
+
+### Schema-bővítések a research-findingek alapján
+
+A FIPJP rule-szövegek (Article 1-41) alapján a következő adatmodell-finomításokat kell végrehajtani Phase 2-höz:
+
+- **`match.boulesPerPlayer`** — integer, default 3 (single/double), triplette esetén 2 (FIPJP Article 1).
+- **`venue.pitchSize`** — enum (`standard_15x4` / `minimum_12x3` / `custom`) — FIPJP Article 5.
+- **`venue.circleType`** — enum (`drawn_35_50cm` / `prefab_50cm`) — FIPJP Article 7.
+- **`match.cochonnetDistance`** — integer 6-10m range (most hardcoded), külön mezővel statisztikákhoz.
+- **`tournament.targetScore`** — integer (11 liga / 13 standard / 15 long), most a `match.target` szinten van, érdemes tournament-szintre tolni hogy minden meccs konzisztens legyen.
+- **`tournament.timePerThrow`** — seconds, default null (no limit), hivatalos versenyen 60s.
+- Új tábla **`tournamentOfficial`** (Phase 3): `tournamentId`, `userId`, `role` (`umpire` / `jury_member`).
+
+### Mit NEM veszünk át a research-ből
+
+- **Yjs CRDT offline score-sync** — overkill 5-15 fős friend-MVP-nek; a meglévő `match_event` server-side log + 2s polling működik. Yjs visszahozható ha Phase 4-ben 50+ user offline-conflict gondot okoz.
+- **Apple Private Relay + Verified Identifier strategy** — Apple Sign In Phase 3+, ekkor nyúlunk vissza.
+- **Stream Chat (kommerciális SaaS, $499/mo entry)** — saját `chatMessage` table polling-on $0.
+- **BoulOmeter AR-mérés** — Phase 4 long-term.
+- **Clerk auth + serial-PK refaktor** — Better Auth + Drizzle pattern marad.
+
+### Liga-mode (Phase 2 P3 új tétel)
+
+Az FBJB belga + Pétanque Suisse liga-rendszerek alapján a Phase 2-be bekerül egy **liga-mode** toggle a `tournament` szintjén: `target=11`, fix résztvevő-szám, regular-season-szerű ütemezés. Phase 3-ban teljes "Liga (regular + playoffs)" formátum.
+
 ## References
 
 - Research output (2026-05-18): `/root/projektjeim/boulium/docs/research/2026-05-18-deep-research-{friends-mvp,advanced-features}.md`
+- Research output (2026-05-19): `/root/projektjeim/boulium/docs/research/2026-05-19-phase2-deep-dive.md` — FIPJP rule-szintézis + 7-szekciós briefing
 - Phase 1 foundation ADR: [[2026-05-18 Boulium-foundation Friends-MVP stack]]
 - Project state: [[../02-Projects/boulium]]
 - Session ahol született: [[../08-Sessions/2026-05-18-boulium-petanque-app-2]]
 - Cluster-context: [[../11-wiki/petanque-cluster-mapesz-cherry-pick]]
-- Pending NotebookLM deep research (2026-05-19): versenyform-szabálykönyvek régiónként
+- NotebookLM source-ok (boulium notebook `d5b163f1`): FPUSA condensed rules · FBJB Reglement CHN 2025-2026 · FIPJP rule references · 2 YouTube tutorial · localisation-platform-comparison
