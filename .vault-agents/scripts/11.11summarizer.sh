@@ -222,23 +222,33 @@ else
   cat "$WRAPPED"
 fi
 
-# --- JSONL audit ---
+# --- JSONL audit (env-var passing, safe) ---
 INPUTS_JSON=$(printf '%s\n' "${INPUT_FILES[@]}" | python3 -c 'import sys,json;print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))')
-python3 - "$AUDIT_FILE" <<PYEOF
-import json, sys, pathlib
+export _SU_UUID="$RUN_UUID"
+export _SU_MODE="$MODE"
+export _SU_SAMPLE="$SAMPLE_N"
+export _SU_COUNT="$INPUT_COUNT"
+export _SU_FILES="$INPUTS_JSON"
+export _SU_OUT="$OUTPUT_PATH"
+export _SU_STS="$START_TS"
+export _SU_ETS="$END_TS"
+export _SU_WS="$WALL_SEC"
+export _SU_RC="$RC"
+python3 - "$AUDIT_FILE" <<'PYEOF'
+import json, sys, pathlib, os
 audit = sys.argv[1]
 row = {
   "event": "summarizer_run",
-  "run_uuid": "${RUN_UUID}",
-  "mode": "${MODE}",
-  "sample_n": ${SAMPLE_N},
-  "input_count": ${INPUT_COUNT},
-  "input_files": json.loads('''${INPUTS_JSON}'''),
-  "output_path": "${OUTPUT_PATH}" or None,
-  "start_ts": "${START_TS}",
-  "end_ts": "${END_TS}",
-  "wall_clock_sec": ${WALL_SEC},
-  "exit_code": ${RC}
+  "run_uuid": os.environ["_SU_UUID"],
+  "mode": os.environ["_SU_MODE"],
+  "sample_n": int(os.environ["_SU_SAMPLE"]),
+  "input_count": int(os.environ["_SU_COUNT"]),
+  "input_files": json.loads(os.environ.get("_SU_FILES", "[]")),
+  "output_path": os.environ.get("_SU_OUT", "") or None,
+  "start_ts": os.environ["_SU_STS"],
+  "end_ts": os.environ["_SU_ETS"],
+  "wall_clock_sec": int(os.environ["_SU_WS"]),
+  "exit_code": int(os.environ["_SU_RC"])
 }
 pathlib.Path(audit).parent.mkdir(parents=True, exist_ok=True)
 with open(audit, 'a', encoding='utf-8') as f:
