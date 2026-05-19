@@ -80,13 +80,100 @@ Vault-egészség diagnosztika + javítási batch (A+B+C 3-axis): Quick wins + st
 
 ## Summary
 
+**~4 órás super-session, ~150 task LANDED, $0 cost, ~30 subagent-fanout iteráció.** A session a vault-egészség batch-csel indult, majd átesett 4 fő fejlesztési hullámon: (1) Round-1-2 wiki-bővülés, (2) public open-source release pipeline, (3) Round-3-4 finomítás + docs-site profibbá tétel, (4) komplett UX-fix (ezlinks, Index pages, audio + RSS).
+
+### Számszerű eredmények
+
+| Mérőszám | Reggel | Most | Δ |
+|---|---|---|---|
+| Vault wiki | 97 | **195** | +98 |
+| EN wiki | 0 | **38** | +38 (24.4% coverage) |
+| Memgraph typedness | 28.9% | **100%** | +71.1pp |
+| Memgraph Pattern entity | 0 | **646+** | new label |
+| ALIAS_OF edges | 26 | **300** | +274 |
+| Broken-link | 189 | **0** | -100% |
+| Vault audit public | 0 | **73** | +73 |
+| Audio MP3 | 0 | **20** (EN+HU) | new |
+| KO-DB facts | 13 801 | 13 801 | (sok új ingest-elendő) |
+| Public-repo commits | 3 | **50+** | folyamatos sync |
+
+### Új infrastruktúra ÉLES
+
+- `vault-public-sync` (30-perces cron, scrub-on)
+- `vault-broken-wikilinks-audit` (kanonikus broken-link scanner)
+- `vault-embed-freshness` batch-mode (single model-load × N files)
+- `vault-graph-query` autocommit-patched
+- `mkdocs-material` + 7 plugin (search HU+EN + ezlinks + rss + glightbox + git-revision + minify + awesome-pages)
+- GitHub Action auto-deploy → GitHub Pages
+- D3 induced-subgraph viewer (106 KB, 43× lighter than graphify-full)
+- Repo PRIVATE → **PUBLIC** + v1.0.0 release
+
+### Site ÉLES (mind HTTP 200)
+
+- 🌐 https://myforgelabs.github.io/myforge-vault-1111/
+- 📚 `/wiki/Index/`, `/audits/Index/`, `/sessions/Index/`, `/daily/Index/`
+- 📡 `/feed.xml` (RSS auto-subscribe)
+- 🕸️ `/graph/viewer.html` (D3 induced-subgraph)
+- 🎧 `/audio/` (10 EN + 10 HU MP3)
 
 ## Learnings → memória
 
+- **Cypher-direct >> subagent nested-loop graph-mutation-höz** — B-7 alias-deeper subagent 6+ perc time-out (Layer A nested loop 500×500 + per-iter vault-graph-query call), Cypher-direct EGY query + Python-filter ~50 sec. Reusable szabály minden Memgraph-bulk-mutation-höz (NER, alias-dedup, relation-extract): mindig direkt Cypher + Python apply, NEM subagent-iter.
+
+- **`mgclient` autocommit silent-rollback** kritikus bug-pattern — a default explicit-transaction mode-ban a `SET/CREATE/MERGE` statement-ek `conn.close()`-kor rollback-elnek, NEM error-t adnak. Fix: `conn.autocommit = True` az `mgclient.connect()` ELSŐ utasítás. **Wider lesson:** silent-rollback driver-defaultok más DB-driverekben (psycopg2, mariadb, oracle) szintén kockázat — MINDIG explicit set autocommit/commit/rollback policy.
+
+- **bge-reranker precision-driver** auto-cross-link pipeline-on — title-only similarity ~50% FP-rate, body-aware bge-reranker ~0% strict FP. Reusable: minden auto-link/suggestion pipeline-ban (cheap candidate-generator → reranker precision-gate → KO-DB cross-source-future-gate) 3-réteg.
+
+- **Audit-MD self-referential loop trap** — auditor-output (System_Health, broken-wikilinks-latest) `[[wikilink]]`-eket listáz a body-jában → következő scan re-flag-eli azokat. Fix: `is_excluded_path()` patch a scan-script-ben (`06-Audits/System_Health.md` self-exclude). Reusable minden recurring-audit script-hez.
+
+- **Batch-mode model-load 1× vs N×** — `vault-embed-freshness --refresh` régen fájlonként subprocess-t indított → 32× bge-m3 reload (8-12s overhead/fájl). Fix: `--file` `action="append"` + single subprocess.run all-files. ~3-4× speedup mérve. **Wider lesson:** bármely ML-encoder wrapper-script-ben single-process batching cost-floor megtervezendő.
+
+- **Concept multi-label séma sub-classification-höz** — 5223 Concept-ből 9.8% reclassified Pattern/Skill/Decision/SourceFile-re multi-label SET-tel (NEM remove). Additive, idempotens, re-run safe. Reusable: minden ontológia-refactor-nál multi-label > destructive replace.
+
+- **Wikilink-handler plugin** mkdocs-material-on — `[[X]]` syntax alap-mkdocs NEM kezeli, `mkdocs-ezlinks-plugin wikilinks: true` auto-resolveolja `<a href="...">`-re. Site UX-en kulcsfontosságú vault-natív tartalom-publikáláskor.
+
+- **`gitignore` + `always_skip` overlap** — egy mappa `02-Projects/`/`01-Daily/` `.gitignore`-ban ÉS scrub-rules.yaml `always_skip`-en gátolja a per-mappa-Index.md kivételt. Mindkét helyen `!negation` pattern kell.
+
+- **Cross-link FP-rate 50%→0% strict** body-aware rerank-szel; KO-DB cross-source-gate túl-sparse current state-ben (single-edge-kept-only) — érdemes B-7 entity-expansion után újra-kiértékelni.
+
+- **Round-N diminishing returns** — Round-3 után wiki-saturation pont elérve (165+), Round-4 csak 3-5 új wiki reális, Round-5 NEM ajánlott. A real-value innentől EN-translation, content-bővítés, frontier-research.
+
+- **Cron-os auto-sync 30-perces** + GitHub Action auto-deploy = **valódi "folyamatos közzététel"** pipeline. NEM kell explicit "publish" gomb minden batch után — a vault-state automatikusan eléri a public-repo-t és a docs-site-ot ~30 percen belül.
 
 ## Next session
 
+### Top-5 prioritás
+
+1. **HN-post valódi submit** — `subagent-fanout` (best-bet 15-25% front-page) **Tue 14:00 UTC** vagy hasonló. User-action, NEM agent.
+2. **Concept full-batch sub-classification** — most 1000-sample-en 9.8%, 5223 teljes-batch várhatóan 500+ reclassified (Pattern/Skill cluster sűrűbb)
+3. **B-7 entity-expansion** — 13801 SQLite fact → Memgraph `:Entity-[r]-:Entity` relation-edge (most ~6500 :MENTIONS edge), KO-DB cross-source-gate enable
+4. **`vault-embed-freshness`** újabb run — még 12 missing + 47 stale (a session közben keletkezett új wiki-k)
+5. **B-1 Aggressive 0.85 ramp** — W21 30+ applied bullet data (most ~4 applied), Conservative pass-rate methodológia
+
+### Backlog (alsóbb prioritás)
+
+- Wiki-saturation finomítás: maradék 22 cross-link edge body-aware-reranked (FP <20%)
+- `vault-embed-freshness` batch-encode (`encode(batch_list)` real 10× speedup)
+- Reranker score-gap smart-skip ramp (Week 6 task)
+- NLI Layer 2.5 default-shift (2-hét shadow után)
+- GEPA Week 3 real subagent reflection_lm + Critic-review gate
+
+### Cumulative state most
+
+- **Public docs site:** ÉLES (mkdocs-material + 7 plugin), search HU+EN, dark-mode default, mobile-responsive
+- **Wiki-stack:** 195 vault / 196 public, 38 EN translation (24.4%), 73 audit, 14 SV-session, 27 Daily
+- **Entity-graph:** 8997 entity / 100% typed / 300 alias / 646 Pattern / 808 Skill / 197 Decision
+- **Quality automation:** broken-link 0, frontmatter-konform mind, vault-cleanup heti cron
+- **Open-source:** PUBLIC, MIT, v1.0.0 release, GitHub Discussions, CONTRIBUTING, COC
+
 ## Propagation log
+
+> **A teljes session-tartalom már automatikusan közzétéve a public repo-ra** (cron-os 30-perces sync + ~50 explicit batch-sync). A klasszikus Learnings → vault propagation (wiki/ADR/MEMORY) **a session-záráskor** (`/11.11-zar-session`) történik a user-megerősítés alapján.
+
+> **Most még FOLYTATÁS — 3 subagent fut:**
+> - Concept full 5223-batch sub-classification
+> - B-7 entity-expansion + KO-DB cross-source-gate
+> - HN/Twitter/Reddit posts ready-to-submit (7 wiki final-draft)
 
 > **AGENT TENNIVALÓ:** SESSION ZÁRÁSKOR (11.11stop) a Crystallization-protocol
 > ([[11-wiki/Crystallization-protocol]]) szerint propagáld a Learnings bullet-eit:
