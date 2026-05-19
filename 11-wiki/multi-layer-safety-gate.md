@@ -130,8 +130,24 @@ Az első projekt, ami a 4-rétegű gate-et kombinálja:
 
 Plus 4 auto-disable trigger. Részletek: [[.vault-rsi/README.md]] + [[02-Projects/superintelligent-vault]].
 
+## Új minta-realizáció: flock-mutex + atomic-write komplementer (2026-05-19)
+
+A 4-rétegű safety-gate **infrastruktúra-szintű analógja** kialakult a Layer-1 vault-atomic projekt során:
+
+| Layer | Védi | Mechanizmus | Pattern |
+|---|---|---|---|
+| Cross-process race | két cron egyszerre indul → git-state ütközés | `flock -n` mutex | `vault-cron-flock` wrapper, 14 cron |
+| Same-process partial-write | cron SIGKILL mid-write → félig-írt fájl | `os.replace` POSIX atomic | `vault_atomic.py` modul, 15 site |
+| Process-restart dedup | daemon restart → state-loss | external store (Redis/SQLite) | heavyweight write-volume-ra |
+| Audit trail | "mi történt" debug | append-only JSONL | minden write-site |
+
+**Kulcs-tanulság:** **egyik réteg sem helyettesíti a másikat**. A flock cross-process race-t old, atomic-write same-process partial-write-ot. **Mindkettő szükséges**.
+
+**Reusable szabály:** új mutáló-script ELŐTT mind a 4-réteget végig kell gondolni (write race / partial-write / restart-dedup / audit-trail).
+
 ## Kapcsolódó
 
 - [[11-wiki/sprint-day-0-skeleton-first]] — Day 0 playbook
 - [[07-Decisions/2026-05-12 sv-2 recursive self-improvement arch]] — B-8 ADR, az első alkalmazás
 - [[07-Decisions/2026-05-12 sv-3 multi-agent orchestration arch]] — Critic-agent (4. réteg forrása)
+- [[11-wiki/rsi-tier2-constitutional-ai-pattern]] — RSI safety-gate konkrét megvalósítás (4-rétegű implementation)

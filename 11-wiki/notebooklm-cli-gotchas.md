@@ -281,3 +281,17 @@ report-okra.
 - [[11-wiki/notebooklm-deep-research-custom-report]] — Deep Research + custom report-flow
 - [[11-wiki/sv-08-notebooklm-cognitive-layer]] — research-cikk a NotebookLM cognitive-layer-paradigmaról
 - [[07-Decisions/2026-05-12 sv-8 notebooklm cognitive layer arch]] — Phase B-5 sprint ADR (vault-nb-sync + crystallize-hook + commute-podcast)
+
+## 11. Audio-overview bitrate gotcha (2026-05-19)
+
+**Tünet:** NotebookLM `generate audio --format deep-dive --length long` 2-host conversational podcast ÉLES (Alex+Jordan EN dialogue) — sokkal élvezhetőbb mint a Gemini-3.1 Flash TTS 1-voice TL;DR narrátor. **DE**: a downloaded MP3 ~**1200 kbps** AAC, **~45 MB egy 5-perces audio-ra**. 3 podcast = 121 MB total.
+
+**Megoldás (ffmpeg re-encode):**
+```bash
+ffmpeg -i input.mp3 -b:a 96k -ac 2 -ar 44100 output-96k.mp3
+# 45 MB → 4-5 MB, ~10× kisebb, voice-quality alig csökken
+```
+
+**Reusable szabály:** minden NotebookLM-downloaded audio-on `ffmpeg -b:a 96k` re-encode pipeline — public-repo bundle size kritikus a CDN-cost + mobile-bandwidth-on. NEM raw download.
+
+**Plus HU dubbing gap:** NotebookLM CLI csak EN audio-t generál. HU-first audience-nek subtitle (Whisper-transcribe → translate) + TTS-overlay combo pareto-jobb a két nyelvi sávra.

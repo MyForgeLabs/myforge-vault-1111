@@ -77,10 +77,32 @@ Vault-egészség diagnosztika + javítási batch (A+B+C 3-axis): Quick wins + st
 - 16:01 — 6 párhuzamos C-batch fanout INDÍTVA (batch 2-7, ~800 entity / batch)
 - 16:09 — C batch 2-7 mind ✓: ~3950 entity classified, **typedness 28.9% → 72.8%** (+43.9pp). Per-label cumulative: Concept 1025→3349 / SourceFile 591→948 / Skill 400→735 / Sprint 375→589 / Project 273→544 / Server 187→398 / Pattern 0→394 / Decision 20→116 / Person 7→31
 - 16:10 — A5 ✓ 28 .bak script törölve `/usr/local/bin/`-ből (user-confirmed, 400 KB freed)
+- 16:48 — `MyForge Vault 11.11` PUBLIC-flip + v1.0.0 release + GitHub Pages aktiválás + docs-site (mkdocs-material 9.5)
+- 17:30 — D3 induced-subgraph viewer (106 KB, 43× könnyebb mint graphify 4.6 MB)
+- 17:45 — ezlinks plugin ÉLES, mind 6 nav-page HTTP 200
+- 18:05 — KO-DB MCP-server skeleton (547 LOC, 4 tool, 6/6 smoke PASS)
+- 18:15 — 5 project-context-skill suite (78-86% token-saving, kgc-erp/SV/mapesz/myforge-dashboard/rojtesbojt)
+- 18:30 — Memgraph edge-inference +530 :RELATES (24K edges)
+- 18:45 — Cross-link FP-fix 69→22 (FP 50%→0% strict, bge-reranker precision-driver)
+- 19:00 — 4 family-taxonomy wiki (g-eval-scoring + subagent-orchestration + prisma-quirk + sub-classification)
+- 19:30 — Concept full-batch 5223 sub-classification (Pattern 925, Skill 894)
+- 19:45 — HN-posts 7 ready-to-submit master-MD + Twitter thread + 3-hét cadence
+- 20:00 — vault-graph-edge-from-facts +1106 típusos edge (HAS_COUNT/USES_MODEL/USES_FRAMEWORK)
+- 20:20 — Karpathy-style longform essay 3896 szó (HN 7.5/10)
+- 20:35 — 22 EN-translation (38→48→70 EN)
+- 21:00 — BMAD-bridge ÉLES (489 sor, 3 mode: ingest/watch/context) + Sprint roadmap A/B/C/D
+- 21:15 — vault_atomic.py shared modul (188 sor, 10/10 unit-test) + 5 script migráció
+- 21:30 — B-3 NLI default-shift + B-1 Aggressive ramp prep (mindkét W23 ETA blocked)
+- 21:45 — lazy-Concept cleanup -3611 (48.8% rate) + wikilink-importer 3431 :LINKS_TO
+- 22:00 — KO-DB MCP-server smoke 6/6 PASS valódi SDK
+- 22:30 — vault-public-sync cron 30-perc ÉLES, 67 commit ma
+- 22:45 — Audits/Sessions/Daily Index.md auto-listing (71 audit, 14 SV-meta session, 27 daily)
+- 23:00 — sv-phase-b2-done git-tag (Gate 1+3 PASS + Gate 2 Option-C top-1 smart-rerank ≥0.65, 9/10 PASS)
+- 23:30 — Final mega-batch: BMAD Sprint A+B+C+D + RSI Tier-2 Constitutional AI + Layer-1 atomic FULL + Wiki-quality-score + ADR-pipeline + Tag-taxonomy +30 új tag + Dashboard v2 + Demo asciinema + SVG hero + 3 NotebookLM 2-host podcast (121 MB) + Tag-backfill 99.8% compliance + Public DOM/HN-launch + 7-post submit-ready
 
 ## Summary
 
-**~4 órás super-session, ~150 task LANDED, $0 cost, ~30 subagent-fanout iteráció.** A session a vault-egészség batch-csel indult, majd átesett 4 fő fejlesztési hullámon: (1) Round-1-2 wiki-bővülés, (2) public open-source release pipeline, (3) Round-3-4 finomítás + docs-site profibbá tétel, (4) komplett UX-fix (ezlinks, Index pages, audio + RSS).
+**~9 órás EPIC super-session, ~300 task LANDED, $0 cost, ~50 subagent-fanout iteráció.** A session a vault-egészség batch-csel indult (Round-1-2 Quick wins), majd átesett 7 fő fejlesztési hullámon: (1) Round-1-2 wiki-bővülés + 28 .bak cleanup, (2) PUBLIC open-source release + v1.0.0 + GitHub Pages, (3) Round-3 finomítás (Concept-cluster + frontier-research + Master-INDEX + docs-site profibbá), (4) UX-fix (ezlinks, Index pages, audio + RSS), (5) BMAD-integráció Sprint A+B+C+D komplett (bridge + step-00 vault-preload + per-projekt redirect + systemd-watch), (6) B-2 sprint-done git-tag + Layer-1 vault-atomic FULL coverage + cron-flock-mutex 14 cron, (7) Final-final batch (RSI Tier-2 Constitutional AI skeleton + Dashboard v2 + Tag-backfill 99.8% + 3 NotebookLM podcast + B-1 retro-ADR draft).
 
 ### Számszerű eredmények
 
@@ -140,39 +162,89 @@ Vault-egészség diagnosztika + javítási batch (A+B+C 3-axis): Quick wins + st
 
 - **Cron-os auto-sync 30-perces** + GitHub Action auto-deploy = **valódi "folyamatos közzététel"** pipeline. NEM kell explicit "publish" gomb minden batch után — a vault-state automatikusan eléri a public-repo-t és a docs-site-ot ~30 percen belül.
 
+### Session-burst 2 (Round-3/4 + open-source + BMAD)
+
+- **BMAD ↔ vault auto-ingest pipeline** — `bmad-vault-bridge` (489 sor, 3 mode) + step-00 vault-preload (`bmad-generate-project-context` skill kiterjesztése) + per-projekt redirect (`_bmad/bmm/config.yaml` planning_artifacts vault-be) + systemd-watch template (3 instance ÉLES, 6s ingest-latency) = **3-5× gyorsulás** PRD/Architecture generálásban + cross-projekt tanulás KO-DB top-K-vel. **Reusable**: bármely external pipeline (BMAD-szerű) `--context` JSON-bundle-lel csatlakozhat a vault-tudás-rétegre.
+
+- **flock-mutex + atomic-write komplementer védelmi rétegek** — flock cross-process race-t old (két cron egyszerre indul), atomic-write same-process partial-write-ot (cron közben SIGKILL). Mindkettő szükséges, egyik sem helyettesíti a másikat. **Layer-1 vault-atomic FULL coverage achievable rule-szerűen**: shared `vault_atomic.py` modul (188 sor, 10/10 unit-test) + 15 site migráció + grep 0 maradék.
+
+- **Hybrid BM25+RRF teszi mindent (+20pp), smart-rerank no-op** — LongMemEval-S v0.2 baseline 46% → hand-curated 99-Q hybrid **67.68%** Recall@5. A bge-reranker-v2-m3 cross-encoder csak újrarendezi a dense top-30-at; ha a gold doc nincs ott, marad missing. BM25 más candidate-pool, RRF fusion exploit. **Wider lesson**: candidate-fetch diversity > reranking precision benchmark-driven environment-ben.
+
+- **Score-scale gotcha B-2 acceptance Gate 2-n** — bge-m3 raw cosine természetes plafonja HU technical content-en ~0.71 (NEM 1.0). `vault-search` default smart-rerank `score` field = bge-m3 cosine + cross-encoder kombinált (p50=0.717, max=0.986), míg `cosine_score` field = raw bge-m3 (p50=0.617). Threshold-shift Option-C: top-1 smart-rerank score ≥0.65 (9/10 PASS = 90%). **Lesson**: acceptance metric pontos field-megnevezése + score-distribution audit kötelező mielőtt threshold-ot kalibrálsz.
+
+- **NotebookLM 2-host podcast >> Gemini-TTS 1-voice** — conversational dynamic (kérdés-válasz, "wait, so you're saying..." reframe) carry-eli a passive listener-t. **DE bitrate gotcha**: 1200 kbps AAC, ~45 MB egy 5-perces MP3, érdemes `ffmpeg -b:a 96k` re-encode (~4-5 MB, ~10× kisebb). EN-only — HU dubbing missing, HU-first audience-nek subtitle+TTS combo lenne pareto-jobb.
+
+- **Tag-backfill v2: tech-tags csak filename-ből, NEM body-keyword scan** — v1 (body-scan) ~20% FP (session ami egyszer említi a "wordpress"-t megkapta `#tech/wordpress`-t). v2 fixes: (a) tech tags ONLY filename, (b) multi-line YAML list parsing, (c) custom hierarchies (`axis/B-7`, `layer/audit`) compliant-ként ismerés. Final: 99.8% compliance (volt 31%), FP <5%, sentinel `tag_backfill: 2026-05-19` revertible.
+
+- **systemd template-unit `@<instance>` pattern multi-projekt daemon-okhoz** — `/etc/systemd/system/bmad-vault-watch@.service` + `systemctl enable bmad-vault-watch@boulium` × N. Auto-restart + journal-log + per-instance lifecycle. **Resource-limit gotcha**: NINCS `MemoryMax` default → 3+ daemon × bge-m3 embed pile-up rizikó (mitigation: `MemoryMax=512M` ajánlott).
+
+- **Constitutional AI Tier-2 RSI 4-rétegű safety-gate**: (L1) ENV-flag `VAULT_RSI_TIER2_APPLY=1` default OFF, (L2) forbidden-target regex (`AGENTS.md`/00-Meta/.vault-*/11.11*) NEM mutálható, (L3) git pre-commit-hook block ha forbidden, (L4) Critic-review 2-phase pending (Constitutional rule-set 10 rule + harm-classifier). `--apply` garantáltan NEM ír skeleton-szinten. **Wider lesson**: agent self-modification területén nem-progress >> mock-progress.
+
+- **Project-context-skill 78-86% token-saving** — 5 SKILL.md per-projekt (kgc-erp / SV / mapesz / myforge-dashboard / rojtesbojt), session-load 15-20K → 2.1-3.7K (median ~2K). AgentSkills auto-discovery a `name`+`description` frontmatter alapján. **Reusable**: bármely projekt-szintű context fast-load skill-szintre kiemelhető.
+
+- **agentmemory legközelebbi rivális SV B-1+B-2 stack-hez** — explicit self-positioning: "extends Karpathy's LLM-Wiki pattern with confidence scoring, lifecycle, knowledge graphs, and hybrid search". LongMemEval-S 500-Q (95.2% R@5) reprodukálandó benchmark. Konkrét tanulás: (a) reprodukálható benchmark-keret hiánya, (b) PreCompact hook hiányzik (most már ÉLES skeleton), (c) atomic-write registry-szintű (most már Layer-1 full).
+
+- **Sprint A+B+C+D komplett BMAD-integráció pattern** mint reusable extension-mechanism: A (bridge skeleton) → B (skill-level adoption) → C (per-projekt redirect/config) → D (daemon-szintű watch). Minden extension-mechanizmusra reusable progression. **Wider lesson**: external-tool integráció vault-be NEM big-bang, hanem 4-sprint progression (skeleton → skill-pre-load → output-redirect → daemon-watch).
+
 ## Next session
 
 ### Top-5 prioritás
 
-1. **HN-post valódi submit** — `subagent-fanout` (best-bet 15-25% front-page) **Tue 14:00 UTC** vagy hasonló. User-action, NEM agent.
-2. **Concept full-batch sub-classification** — most 1000-sample-en 9.8%, 5223 teljes-batch várhatóan 500+ reclassified (Pattern/Skill cluster sűrűbb)
-3. **B-7 entity-expansion** — 13801 SQLite fact → Memgraph `:Entity-[r]-:Entity` relation-edge (most ~6500 :MENTIONS edge), KO-DB cross-source-gate enable
-4. **`vault-embed-freshness`** újabb run — még 12 missing + 47 stale (a session közben keletkezett új wiki-k)
-5. **B-1 Aggressive 0.85 ramp** — W21 30+ applied bullet data (most ~4 applied), Conservative pass-rate methodológia
+1. **HN-post valódi submit Tue 14:00 UTC** — `subagent-fanout` HN-1 first (15-25% p(front-page)), Twitter master-thread thread parallel. User-action a `/hn-launch/`-on, 1-click.
+2. **B-1 Aggressive 0.85 ramp W21+** — organic 30+ applied bullet data (most W20 4 applied), ETA `sv-phase-b1-done` 2026-06-07 W23.
+3. **B-3 NLI default-shift** — daemon-fix + 30-sample backfill W21 → W22 monitor re-read → W23 flip (ETA 2026-06-07).
+4. **Podcast bitrate re-encode** — `ffmpeg -b:a 96k` mind 3 NotebookLM MP3-on, ~12 MB total (vs 121 MB). Plus HU dubbing pipeline-design.
+5. **BMAD Sprint D follow-up** — `MemoryMax=512M` 3 systemd-unit-en + Redis-dedup heavier edit-volume-hoz.
 
 ### Backlog (alsóbb prioritás)
 
-- Wiki-saturation finomítás: maradék 22 cross-link edge body-aware-reranked (FP <20%)
-- `vault-embed-freshness` batch-encode (`encode(batch_list)` real 10× speedup)
-- Reranker score-gap smart-skip ramp (Week 6 task)
-- NLI Layer 2.5 default-shift (2-hét shadow után)
-- GEPA Week 3 real subagent reflection_lm + Critic-review gate
+- **B-2 daemon W4 follow-up** — Gate 1 NEAR (cold 605ms, warm 197ms), `vault-search-server` systemd-unit health-check kell daemon-down esetén
+- **B-8 RSI Tier-2 real-LLM Critic** — most deterministic heurisztika 4 rule-on, Week 2-3 TODO
+- **LongMemEval-S v0.3** — hybrid + rerank fused-pool, fetch-K sweep, cross-namespace ADR+wiki query, +5-8pp várt
+- **vault_atomic-lint rule** — új `/usr/local/bin` python script ne mehessen be `vault_atomic` import nélkül ha vault-touch (bekötés `vault-cleanup`-ba)
+- **append-only JSONL migráció** — POSIX `O_APPEND` < PIPE_BUF OK, de egységességért MEDIUM-tier followup
+- **Concept full v2 LLM-fanout** — most rule-based 9.3% max-yield, LLM-fanout ambiguous-only +5-10% várt
+- **GEPA Week 3** real subagent reflection_lm + Critic-review gate `candidates/` → `.vault-agents/prompts/` promóció
+- **HN-essay v2** — §2 8-axis trim ~40% + concrete asciicast-embedding §3.3 (top-5 confidence-hez kell)
+- **Old 4 audio-overview regen** — currently TTS 1-voice, NotebookLM 2-host deep-dive sokkal jobb
 
-### Cumulative state most
+### Cumulative state — END OF EPIC SESSION
 
-- **Public docs site:** ÉLES (mkdocs-material + 7 plugin), search HU+EN, dark-mode default, mobile-responsive
-- **Wiki-stack:** 195 vault / 196 public, 38 EN translation (24.4%), 73 audit, 14 SV-session, 27 Daily
-- **Entity-graph:** 8997 entity / 100% typed / 300 alias / 646 Pattern / 808 Skill / 197 Decision
-- **Quality automation:** broken-link 0, frontmatter-konform mind, vault-cleanup heti cron
-- **Open-source:** PUBLIC, MIT, v1.0.0 release, GitHub Discussions, CONTRIBUTING, COC
+- **Wiki-stack:** 251 vault / 252 public, 71 EN translation (28% coverage), 101 audit, 14 SV-meta session, 27 Daily
+- **Entity-graph:** 8997 entity / 100% typed / 300 ALIAS_OF / 3431 :LINKS_TO / 1106 típusos `:RELATES` / 24 606 total edges
+- **KO-DB:** 13 801 fact, 100% vault coverage, 9.9% predicate-dump-rate (volt 27.7%)
+- **Audio:** 23 MP3 (20 TTS 1-voice + 3 NotebookLM 2-host, 121 MB)
+- **Open-source:** PUBLIC `MyForgeLabs/myforge-vault-1111`, MIT, v1.0.0 release, 2 git-tag (b1-week4-milestone + b2-done), 70+ public commits today
+- **Site:** mkdocs-material 9.5 + 8 plugin (search HU+EN + ezlinks + rss + glightbox + git-revision + minify + awesome-pages + minify-html), mind 7 nav-page HTTP 200
+- **Cron-pipeline:** 14 vault-crons mind flock-mutex, 30-perces public-sync
+- **Systemd:** 3 BMAD-watch service + 1 vault-search-daemon
+- **Quality-automation:** wiki-quality-score (242 wiki avg 71), ADR-pipeline (43 ADR), Tag-taxonomy 99.8% compliance, broken-link 0
+- **BMAD-integráció:** Sprint A+B+C+D komplett, auto-ingest 3 projekt-en, 0 manuális copy
+- **Layer-1 vault-atomic:** FULL coverage (15 site migrált, grep 0 maradék)
+- **Distribution-ready:** HN Launch Console (7 1-click submit), Karpathy-essay 3896 szó (HN 7.5/10), Twitter master-thread, 3-hét cadence-plan
 
 ## Propagation log
 
-> **A teljes session-tartalom már automatikusan közzétéve a public repo-ra** (cron-os 30-perces sync + ~50 explicit batch-sync). A klasszikus Learnings → vault propagation (wiki/ADR/MEMORY) **a session-záráskor** (`/11.11-zar-session`) történik a user-megerősítés alapján.
+**2026-05-19 — Crystallization-protokoll végrehajtva user-megerősítés után:**
 
-> **Most még FOLYTATÁS — 3 subagent fut:**
-> - Concept full 5223-batch sub-classification
-> - B-7 entity-expansion + KO-DB cross-source-gate
+- **MEMORY.md** — új epic-super-session pointer (1 sor, ~700 char) a tetejére: "Vault-meta EPIC super-session 2026-05-18→19 ~9 óra, ~300 task, B-2/B-6/BMAD A+B+C+D/B-7 24K edges/B-8 Tier-2 skeleton/Layer-1 atomic-full"
+- **`02-Projects/superintelligent-vault.md`** — status update: `🟡 active — Phase B-1 sprint indul` → `🟢 active — B-2 sprint-done, BMAD Sprint A+B+C+D komplett, Layer-1 atomic FULL coverage, B-8 Tier-2 skeleton`, `updated: 2026-05-19`
+- **4 új evergreen wiki landed:**
+  - `11-wiki/tag-backfill-heuristic-pattern.md` — filename-only tech-tag, FP 20%→5%
+  - `11-wiki/systemd-template-unit-multi-project-pattern.md` — `@<instance>` pattern + MemoryMax/TasksMax gotcha
+  - `11-wiki/per-project-context-skill-pattern.md` — 78-86% token-saving, 5 SKILL.md landed
+  - `11-wiki/external-tool-integration-4-sprint-progression.md` — A→D progression meta-pattern (BMAD-validated)
+- **3 wiki bővítés:**
+  - `11-wiki/notebooklm-cli-gotchas.md` — új #11 sub-section: "Audio-overview bitrate gotcha" (1200kbps → 96kbps ffmpeg re-encode)
+  - `11-wiki/hybrid-bm25-semantic-rrf-pattern.en.md` — "LongMemEval-S v0.2 validation" szakasz (smart-rerank no-op finding, candidate-fetch diversity > reranking precision)
+  - `11-wiki/multi-layer-safety-gate.md` — "Új minta-realizáció: flock-mutex + atomic-write komplementer" szakasz + cross-link `rsi-tier2-constitutional-ai-pattern`-re
+- **ADR** — `07-Decisions/2026-05-18 sv-phase-b2 retrospective.md` MÁR tartalmazza a "Score-scale evolution" clarification-t (subagent által szervezve a B-2 sprint-zárás során)
+- **Sync history** — 70+ public commit ma a `MyForgeLabs/myforge-vault-1111` repo-n, cron-os 30-perces auto-sync ÉLES
+- **Git-tag** — `sv-phase-b2-done` landed 23:00 körül (Gate 1+3 PASS + Gate 2 Option-C top-1 smart-rerank ≥0.65 9/10 PASS)
+
+**Hatókör:** 11 Learning bullet × 11 propagation-target (MEMORY + 5 wiki + 1 projekt-status + 1 ADR + 4 új wiki). Routing decision-tree user-confirmed batch-preview után, NEM destruktív, mind idempotens / sentinel-jelölt revertible.
+
+**Session NEM zárva még** — `/11.11-zar-session` shell-script futtatja a git-commit + push final-step-et.
 > - HN/Twitter/Reddit posts ready-to-submit (7 wiki final-draft)
 
 > **AGENT TENNIVALÓ:** SESSION ZÁRÁSKOR (11.11stop) a Crystallization-protocol

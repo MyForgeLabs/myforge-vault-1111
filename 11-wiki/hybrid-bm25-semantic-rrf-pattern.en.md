@@ -73,3 +73,17 @@ query ──► BM25 corpus (in-RAM)  ──► top-K_bm25 (3-12ms)
 - [[memgraph-ce-feature-limits]] — native vector-index (fast search half)
 - [[sv-01-memory-architecture]] — retrieval architecture research
 - [[smart-trigger-cost-pattern]] — related retrieval pipeline pattern
+
+## LongMemEval-S v0.2 validation (2026-05-19)
+
+A `vault-search` 3-mode head-to-head, 20-Q first-batch, same gold set:
+
+| Mode | Recall@5 | Δ vs cosine-only |
+|---|---:|---:|
+| cosine-only baseline | 40.0% (8/20) | – |
+| smart-rerank (bge-reranker-v2-m3) | 40.0% (8/20) | **+0 pp** |
+| **hybrid (BM25+RRF)** | **60.0% (12/20)** | **+20 pp** |
+
+**Mechanism:** smart-rerank reorders the dense-cosine top-30. If gold isn't in that initial pool, reranking can't recover it. BM25 fetches a different candidate pool (lexical-match driven), RRF fusion combines both ranked lists. **Candidate-fetch diversity > reranking precision** — inverts the conventional "rerank for precision" narrative.
+
+**Default-shift:** `longmemeval-vault-variant.py` default mode `cosine-only` → `hybrid`. 99-Q hand-curated benchmark: **67.68% Recall@5** (2.3pp short of 70% target, but on a strictly harder dataset than v0.1's 50-Q).
