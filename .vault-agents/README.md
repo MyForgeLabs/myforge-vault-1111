@@ -40,11 +40,15 @@
   - **Symlink:** `/usr/local/bin/11.11worker` → script
   - **Smoke:** SV B-1 Week 1-4 50-szavas summary (skill bmad-distillator, max-tokens 200) → 33s wall-clock, exit 0, 52 magyar szó, audit JSONL OK
   - Audit-MD: [[../06-Audits/2026-05-17 B-6 Week 1 worker + smoke]]
-- [ ] **Week 1-β:** B-4 dependency check — MCP-server működik? Critic-hook integration előfeltétele
-- [ ] **Week 1-γ:** Orchestrator prompt v0.2 — első manuális orchestrated-task smoke (2-3 worker fan-out)
-- [ ] **Week 2 Day 1-2:** Critic-agent hookolva minden MCP-mutation előtt (B-4 reuse)
-- [ ] **Week 2 Day 3:** Red-team mode trigger (minden 10. mutation) + escalation-test
-- [ ] **Week 2 Day 4-5:** Summarizer integráció — 3 worker-task batch + merged summary
+- [x] **Week 2 (2026-05-19):** Critic + Summarizer skeleton ÉLES (skeleton-on-day-0 → end-to-end smoke 47s, exit 0)
+  - `11.11critic.sh` — 4-layer safety-gate (ENV-flag, forbidden-target, git-hook, LLM-review). Mock-mode + red-team flag. Exit codes 0/2/3/124. Audit JSONL.
+  - `11.11summarizer.sh` — két mód (`--weekly --sample N` cron-kandidát + `--inputs <csv>` orchestrator use-case). Convergent-synthesis output [S1]/[S2] citation. Audit JSONL.
+  - E2E smoke 2026-05-19: Worker (12s, 60 token) → Critic (12s, verdict=approve, conf=0.92) → Summarizer (32s, 2 source, useful synthesis surfacing 2 open questions). Forbidden-target reject path VERIFIED (exit 2).
+  - Audit-MD: [[../06-Audits/2026-05-18 B-6 11.11worker orchestration ÉLES]]
+- [ ] **Week 2-β:** Worker → Critic auto-hook (worker.sh post-exec)
+- [ ] **Week 2-γ:** Cron-deploy weekly Summarizer (`0 6 * * 0`)
+- [ ] **Week 3 Day 1-3:** Orchestrator MVP (`11.11orchestrator.sh` — fan-out → critic-each → summarize)
+- [ ] **Week 3 Day 4-5:** B-4 MCP-server pre-mutation-hook integráció (Critic mint pre-write gate, NEM post-hoc review)
 - [ ] **Week 3 Day 1-3:** First production multi-agent task (e.g. full-stack feature kgc-berles-en)
 - [ ] **Week 3 Day 4-5:** Acceptance gate — task-completion ~70%+, summary-quality user-rated >4/5
 
