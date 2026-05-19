@@ -143,6 +143,40 @@ updated: 2026-04-23
 ---
 ```
 
+### BMAD-artifact típusok ([[02-Projects/<slug>/bmad/]] mappa)
+
+Az `bmad-vault-bridge --ingest` script ezekkel a `type:` enum-értékekkel stempeli a BMAD-skill-output-okat. A 3 extra `bmad_*` mező kötelezően kerül a frontmatterbe, hogy a vault tudja melyik BMAD-fázisból érkezett az artifact.
+
+| `type:` | BMAD-skill forrása | Tipikus `bmad_phase:` |
+|---|---|---|
+| `product-brief` | `bmad-bmm-create-product-brief` | `discovery` |
+| `prd` | `bmad-bmm-create-prd`, `bmad-create-prd`, `gds-create-prd` | `planning` |
+| `gdd` | `bmad-gds-create-gdd`, `gds-create-gdd` | `planning` |
+| `ux-design` | `bmad-bmm-create-ux-design`, `bmad-create-ux-design` | `planning` |
+| `architecture` | `bmad-create-architecture`, `bmad-bmm-create-architecture` | `planning` |
+| `tech-spec` | `bmad-bmm-quick-spec`, `gds-quick-spec` | `planning` |
+| `epic` | `bmad-create-epics-and-stories`, `bmad-bmm-create-epics-and-stories` | `dev` |
+| `story` | `bmad-create-story`, `bmad-bmm-create-story`, `bmad-gds-create-story` | `dev` |
+| `sprint` | `bmad-sprint-planning`, `bmad-sprint-status`, `bmad-bmm-sprint-planning` | `dev` |
+| `retro` | `bmad-retrospective`, `bmad-bmm-retrospective`, `gds-retrospective` | `retro` |
+
+```yaml
+---
+name: Boulium Friends-MVP Phase 2 PRD
+type: prd                            # enum a fenti táblából
+bmad_version: v0.1                   # BMAD-skill-szuit verziója (env: BMAD_VERSION)
+bmad_project: boulium                # linker a 02-Projects/boulium.md-hez
+bmad_phase: planning                 # enum: discovery | planning | dev | qa | retro
+project: boulium                     # legacy alias, backward-compat
+created: 2026-05-19
+updated: 2026-05-19
+tags: ["#type/prd", "#bmad", "#source/bmad"]
+source: bmad
+---
+```
+
+**Auto-ingest pipeline:** új `*.md` a `02-Projects/<slug>/bmad/` alatt → `bmad-vault-bridge --watch` detektálja → type-detect (filename + body-marker) → frontmatter-patch a fenti séma szerint → `vault-ko-ingest` + `vault-embed` chain → audit `/06-Audits/bmad-vault-bridge-log.jsonl`. Részletek: [[11-wiki/bmad-vault-integration-pattern]].
+
 ### `type: research-summary` ([[07-Decisions/]] kutatási desztillátumok)
 
 ```yaml
