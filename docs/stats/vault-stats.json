@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T18:00:09Z",
+  "generated_at": "2026-05-19T18:30:07Z",
   "wiki": {
     "total": 193,
     "en": 70,
@@ -11,7 +11,7 @@
     "public": 122
   },
   "memgraph": {
-    "total_nodes": 27841,
+    "total_nodes": 27956,
     "total_edges": 19215,
     "entities": 8913,
     "concepts": 6544,
@@ -23,8 +23,8 @@
   },
   "crons": 22,
   "public_commits": {
-    "all_time": 104,
-    "today": 71
+    "all_time": 105,
+    "today": 72
   },
   "health": {
     "status": "good",
