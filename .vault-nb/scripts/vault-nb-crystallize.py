@@ -62,6 +62,9 @@ import time
 from datetime import datetime
 from pathlib import Path
 
+sys.path.insert(0, '/root/obsidian-vault/.vault-tools/lib')
+from vault_atomic import atomic_write, atomic_write_json  # noqa: E402
+
 VAULT_ROOT = Path(os.environ.get("VAULT_ROOT", "/root/obsidian-vault"))
 PROJECTS_DIR = VAULT_ROOT / "02-Projects"
 SESSIONS_DIR = VAULT_ROOT / "08-Sessions"
@@ -237,7 +240,7 @@ def write_crystallize_raw(slug: str, nb_id: str, answer: str, week_tag: str) -> 
         answer,
         "",
     ]
-    out_path.write_text("\n".join(fm), encoding="utf-8")
+    atomic_write(out_path, "\n".join(fm))
     return out_path
 
 
@@ -249,10 +252,10 @@ def queue_ko_extraction(path: Path, provenance: str, dry_run: bool = False) -> P
     safe = provenance.replace("/", "_").replace(" ", "_")
     req = KO_PENDING / f"{safe}.request.json"
     text = path.read_text(encoding="utf-8")
-    req.write_text(json.dumps(
+    atomic_write_json(
+        req,
         {"provenance": provenance, "text": text, "source_type": "nb-crystallize"},
-        ensure_ascii=False, indent=2,
-    ))
+    )
     return req
 
 
@@ -469,7 +472,7 @@ def enrich_session_bullets(session_path: Path, nb_id: str, dry_run: bool,
 def write_bullet_enrich_pending(slug: str, payload: dict) -> Path:
     NB_PENDING.mkdir(parents=True, exist_ok=True)
     out = NB_PENDING / f"{slug}.bullet-enrich.json"
-    out.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    atomic_write_json(out, payload)
     return out
 
 
