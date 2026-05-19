@@ -181,4 +181,4 @@ Bármely tengely kikapcsolható ENV-flag-gel (lásd `~/.vault-config/env-default
 
 - [README HU](../README.hu.md) · [README EN](../README.en.md)
 - [8-axis architecture roadmap](../07-Decisions/2026-05-12%20Superintelligent%20vault%20evolution%20roadmap.md)
-- [Karpathy LLM-Wiki pattern](../11-wiki/Karpathy-LLM-Wiki-pattern.md) — kiinduló minta
+- [Karpathy LLM-Wiki pattern](wiki/Karpathy-LLM-Wiki-pattern.md) — kiinduló minta

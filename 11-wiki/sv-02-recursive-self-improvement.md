@@ -324,6 +324,18 @@ A B-8 Week 2 subagent élesítette a **valós Pareto-improvement loopot** (audit
 
 **Week 3 follow-up:** `mode='auto-fill'` (deterministic mutator) → `mode='subagent'` (real reflection-LLM-fanout) + Critic-review gate `candidates/<id>` → `.vault-agents/prompts/` promóció ELŐTT.
 
+## 2026-05-19 — Real-LLM Critic skeleton landed
+
+A 4-rétegű safety-gate Layer 4 Critic mostantól **real-LLM** is lehet a `VAULT_CRITIC_ACTIVE=1` opt-in env-flag mögött. Részletes architektúra + activation: [[sv-rsi-tier2-real-critic]].
+
+- **Pattern:** 2-phase pending (request.json → Claude subagent → response.json), `crystallize-pending` skill mintáján
+- **Rubric:** 5-dim (`factuality`, `novelty`, `durability`, `vault_fit`, `safety`), 0.0-1.0 float
+- **Threshold:** 3 mode (`strict` default / `default` / `lenient`), `safety >= 0.9` mindig hard-gate
+- **Cost:** $0 (subagent-fanout), nincs Anthropic API-key
+- **Files:** `.vault-ko/safety/critic-review.py` + `.vault-ko/prompts/critic-review-template.md` (5-dim rubric + 5 anchor) + `.vault-ko/safety/git-pre-commit-hook.sh` (Layer 4 integráció) + `.vault-ko/tests/test_critic_review.py` (5 pytest test, mind PASS)
+- **Audit-log:** `06-Audits/critic-review-log.jsonl` (JSONL, mode=stub/strict/default/lenient)
+- **Back-compat:** `VAULT_CRITIC_ACTIVE` nem set → marad a deterministic 4-rule Critic-stub
+
 ## Akció-pontok ehhez a tengelyhez
 
 - [x] **W1 sprint:** Sandbox-mappa + git-pre-commit-hook + rollback-script ✓ ([[../06-Audits/2026-05-17 B-8 GEPA prompt-mutator skeleton]])

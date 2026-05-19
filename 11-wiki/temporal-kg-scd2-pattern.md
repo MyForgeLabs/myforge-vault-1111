@@ -163,9 +163,87 @@ Facts valid as of 2026-05-15T00:00:00Z:
 
 A pre-ingest dátum **helyesen üres** → time-travel queries ÉLES.
 
+## 2026-05-19 EXECUTED — `_scd2_insert_or_supersede` integration
+
+A skeleton-szintű `scd2.insert_with_version` MELLETT most már él egy ingest-path entry-point is, a **brainstorm idea #9** szerinti 3-osztályú konfliktus-kezeléssel:
+
+```py
+from scd2 import scd2_insert_or_supersede
+
+result = scd2_insert_or_supersede(
+    "Memgraph", "uses_algorithm", "native-vector-index",
+    provenance="11-wiki/memgraph-ce-feature-limits.md",
+    source_type="wiki",
+    confidence=0.95,
+)
+# result.action ∈ {"insert", "supersede", "noop", "skip"}
+```
+
+### Patched fájlok (2026-05-19)
+
+| Fájl | LOC delta | Mit változott |
+|---|---|---|
+| `/root/obsidian-vault/.vault-ko/scd2.py` | +~270 | `SupersessionResult` dataclass + `scd2_insert_or_supersede` + `_insert_provenance_row` + `_insert_new_fact_row` + schema-feature detect + log-skipped helper |
+| `/root/obsidian-vault/.vault-ko/scripts/vault-ko-ingest.py` | +~75 | `VAULT_KO_SCD2_ACTIVE` env-gate + `_scd2_insert_or_supersede(fact)` wrapper + `ingest_file` SCD2-aware counter logic |
+| `/usr/local/bin/11.11crystallize` | +30 / -10 | `lookup_kodb_context` schema-agnostic read (post-#34 `fact_provenance` table támogatás) + docstring note hogy ITT nincs fact-INSERT, csak read |
+| `/root/obsidian-vault/.vault-ko/tests/test_scd2_ingest.py` | új, ~230 sor | 5 új pytest (insert / noop / supersede / skip / wrapper) |
+
+### Conflict-osztályozás (3+1 osztály)
+
+A `scd2_insert_or_supersede` minden új `(s, p, o)` tripletre 4 ágra fut:
+
+1. **Identical no-op** (`action="noop"`). Live `(s, p, o)` row létezik (`hash` match + `valid_until IS NULL`). Action: **NEM** új facts-row; CSAK `fact_provenance` insert új (`provenance`, `source_type`)-pal. Ez a **cross-source corroboration** path — több source ugyanazt mondja, mindegyik bekerül a provenance-táblába, és a `provenance_count` ennek tükre lesz a `vault-ko-query --top-k` ranking-ben.
+2. **Supersession close-and-replace** (`action="supersede"`). Live `(s, p)` row létezik, de `o` eltér. Action: `UPDATE old SET valid_until = NOW` ÉS `INSERT new row valid_from = NOW, valid_until = NULL`. Ez a klasszikus SCD2-pattern — a `fact_history(s, p)` többé NEM 1-elemű.
+3. **New insert** (`action="insert"`). Nincs live `(s, p)` match. Action: standard insert + provenance-row.
+4. **Hash-collision skip** (`action="skip"`). A live `UNIQUE(hash)` constraint blokkolja a supersession-t flip-flop esetben (A → B → A). Action: **NO-OP a DB-n** + JSON-line log a `$VAULT_KO_SCD2_LOG_DIR/supersession-skipped.log`-ba (default `/tmp/vault-ko-scd2/`).
+
+### A `UNIQUE(hash)` ütközés és a "Option-X draft-mode"
+
+A migration-prerequisite szakasz (fentebb) **deferred** marad: a `facts.hash` még mindig `UNIQUE NOT NULL`. Ez **csak a flip-flop A → B → A** esetén jelentkezik — a "B" supersedeli az "A"-t, az "A"-row most `valid_until = NOW`, és ha újra "A"-t akarunk insertálni, az `INSERT INTO facts` az ugyanazon hash-en `IntegrityError`-ra fut.
+
+A kód **detektálja előre** (`SELECT id FROM facts WHERE hash = ?`) és **skip-eli** (Option-X). A skip-log production-mode-ban heti-szinten reviewable; ha 10+ skip / hét, az a jel hogy az **Option-Y migration** (UNIQUE(hash) drop + partial-index `WHERE valid_until IS NULL`) érdemes elvégezni.
+
+### Env-flag aktiválás
+
+```bash
+# Per-shell, opt-in:
+export VAULT_KO_SCD2_ACTIVE=1
+
+# vagy CLI-szintű:
+VAULT_KO_SCD2_ACTIVE=1 vault-ko-ingest --backfill 11-wiki/
+
+# Opcionális log-dir override:
+export VAULT_KO_SCD2_LOG_DIR=/root/obsidian-vault/06-Audits/scd2-skipped
+```
+
+A default `OFF`: existing 13,801-row ingest-flow változatlan, amíg explicit nincs flag.
+
+### Test státusz
+
+```
+$ pytest .vault-ko/tests/ -x -v
+========== 14 passed in 0.46s ==========
+  · 5 ÚJ:  test_scd2_ingest.py
+  · 9 LEGACY: test_scd2_skeleton.py — regression-zero
+```
+
+### Critical edge-case-ek (3+1)
+
+1. **`fact_provenance` PK duplicate** — ugyanaz a `(fact_hash, provenance)` második-ingest nem hiba: a `_insert_provenance_row` `IntegrityError`-t fog és `False`-t ad vissza. Caller-szempontból `provenance_added=False` jelzi.
+2. **Race a precheck és insert között** — két párhuzamos ingest ugyanazt a `(s, p, o)`-t küldené supersession-be ÉS éppen történik egy másik writer. Defensive: az `INSERT INTO facts` `try/except IntegrityError` ágában rollback-eljük a `valid_until` close-t és skip-elünk. Production-kockázat alacsony (SQLite egy-író modell), de tesztben nem kötelező.
+3. **`UNIQUE(hash)` collision flip-flop** — fent tárgyalt; `action="skip"`. **Több, mint 10 / hét** = Option-Y migration ETA ~1h (table-rebuild SQLite-on, ~150 ms 13.8K row-n).
+4. **Legacy schema (with `provenance` column)** — a `scd2.py` és `lookup_kodb_context` is schema-agnostic; ha `provenance` column létezik (régi DB), azt írja; ha nem (post-#34), a `fact_provenance` side-table-t használja.
+
+### Következő lépés-javaslat
+
+- **Most**: `VAULT_KO_SCD2_ACTIVE=1` a következő live ingest előtt, monitorozni a `supersession-skipped.log`-ot 1-2 hétig.
+- **Ha skip-rate < 5 / hét**: maradhat Option-X. Az ad-hoc skip-ek nem érintenek kritikus knowledge-okat.
+- **Ha skip-rate ≥ 10 / hét**: Option-Y migration (`migrate-unique-hash-drop-2026-XX-XX.sql`), table-rebuild ~150 ms, partial-index `WHERE valid_until IS NULL` átveszi a uniqueness-garantálást.
+
 ## Kapcsolódó
 
 - [[Crystallization-protocol]] — itt lesz `scd2.insert_with_version` a write-path, ha a B-9 follow-up zöld
 - [[append-only-event-log-undo-prune]] — alternatív minta (event-sourcing) ami szintén megfontolásra került
 - [[../07-Decisions/2026-05-12 sv-5 crystallization automation arch]] — eredeti KO-DB schema-döntés
 - [[../06-Audits/2026-05-19 Temporal-KG SCD2 skeleton]] — eredeti skeleton-audit (Round 5)
+- [[../06-Audits/2026-05-19 Wave-2 follow-up designs (SCD2 LongMemEval Critic)]] — Design A SCD2 patch ETA + 3-class conflict-table

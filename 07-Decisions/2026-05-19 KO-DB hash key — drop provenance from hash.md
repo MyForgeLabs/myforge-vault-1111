@@ -1,21 +1,26 @@
 ---
 name: KO-DB hash key — drop provenance from hash
 type: decision
-status: 🟡 proposed (pending implementation Round 11+)
+status: 🟢 LANDED 2026-05-19 (next-day implementation, synthetic verify PASS)
 created: 2026-05-19
 updated: 2026-05-19
 tags: ["#type/decision", "#project/sv", "sv-1", "ko-db", "schema-change"]
 related:
   - "[[../11-wiki/append-only-jsonl-migration]]"
   - "[[../06-Audits/2026-05-19 mega-session summary]]"
+  - "[[../08-Sessions/2026-05-19-obsidian-vault-2]]"
 ---
 
 # KO-DB hash key — drop provenance from hash
 
-> [!info] Status: 🟡 PROPOSED
-> Surfaced by the Round 8 Bayesian belief-update finding (vault-ko-belief).
-> Implementation NOT done; this ADR documents the decision shape so it can
-> be ratified + executed in a follow-up session.
+> [!success] Status: 🟢 LANDED 2026-05-19
+> Migration `migrate-hash-refactor-2026-05-19.py` executed on `facts.db`
+> (13,801 rows + 13,801 `fact_provenance` rows, elapsed ~190ms, 0 collapse).
+> `vault-ko-belief` patched to JOIN `fact_provenance`. Synthetic 3-source
+> verify: `confident-consensus: 1` reached (posterior 0.9825). Math now works.
+> Empirical reality: 0/1115 confident-consensus in the historical DB simply
+> because no (s,p,o) was ingested from multiple provenances yet — the
+> architecture is enabled, going-forward multi-source ingests will populate.
 
 ## Context
 
@@ -113,9 +118,25 @@ Post-migration, re-run `vault-ko-belief --all-contested --json`:
 
 If the new distribution doesn't show meaningful `confident-consensus` count, the dedup logic has a bug — investigate before applying further changes.
 
+## Implementation result (2026-05-19 12:50 UTC)
+
+- **Script:** `.vault-ko/scripts/migrate-hash-refactor-2026-05-19.py` (executable, dry-run default, `VAULT_KO_MIGRATE_APPLY=1 --apply` double-gate).
+- **Pre-flight check** (dry-run output): 13,801 rows, all (s,p,o)-distinct, 0 legacy hash-mismatches, 0 collapses expected. Empirical confirmation that the live ingest already hashed on (s,p,o) only despite the schema-comment claiming otherwise.
+- **Migration elapsed:** ~190ms (within ETA prediction range of 50-200ms; SCD2-equivalent).
+- **Schema delta:**
+  - Dropped `facts.provenance` column
+  - Added `facts.provenance_count INTEGER NOT NULL DEFAULT 1`
+  - Created `fact_provenance(fact_hash, provenance, source_type, confidence, ingested_at) PRIMARY KEY(fact_hash, provenance)` + 2 supporting indexes
+  - Backfilled `fact_provenance` 1:1 from existing rows (13,801 rows)
+- **Bugfix during implementation:** Original script used `conn.executescript()` in 3 places which silently implicit-COMMITs and broke the explicit BEGIN IMMEDIATE transaction. Replaced with individual `conn.execute()` calls. See [[../11-wiki/sqlite-executescript-implicit-commit]] (TBD wiki).
+- **Patched:** `vault-ko-belief` `fetch_pair_facts` now JOINs `fact_provenance` (with COALESCE fallback to legacy `facts.confidence`/`facts.source_type`/`facts.created_at` columns that are kept for back-compat).
+- **Verification gate:** Initial `vault-ko-belief --all-contested` = 0 confident-consensus, 846 weak, 146 contested, 123 flip-recommended (vs pre-migration 0/845/147/123 — within noise). Synthetic verify on a chosen pair `(--with-context flag, produces, per-bullet keyword-extraction regex)`: added 2 extra provenances → `confident-consensus` reached (posterior 0.9825). Math is sound. Synthetic rows cleaned afterwards.
+- **Known limitation deferred (decision point #1):** `UNIQUE(hash)` constraint retained — table-rebuild deferred to next migration when SCD2 close-and-reinsert use-cases materialize.
+- **Rollback path:** `cp facts.db.pre-hash-refactor-2026-05-19.bak facts.db` (snapshot is 4.0 MB, instant restore).
+
 ## Status & next-step
 
-🟡 **PROPOSED.** This ADR is the design doc. Implementation in Round 11 OR a dedicated follow-up session. Tagged in [[../04-Tasks/Backlog]] as 🔴 sürgős.
+🟢 **LANDED.** Next: trigger multi-provenance ingest sources (#14 GitHub bridge, browser-history, multi-session re-crystallize) to build empirical confident-consensus over weeks. Re-run `vault-ko-belief --all-contested --json` weekly and track the `calibration.confident_consensus` count as a memory-quality KPI. Recommended cron: Sunday 04:45 next to the existing `vault-ko-conflicts-audit`.
 
 ## Kapcsolódó
 
