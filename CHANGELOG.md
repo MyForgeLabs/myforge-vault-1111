@@ -2,6 +2,35 @@
 
 All notable changes to MyForge Vault 11.11.
 
+## [1.0.4] — 2026-05-19 (late evening)
+
+Round 6 — four more brainstorm ideas land. All read-only / additive; no
+behaviour changes to existing scripts.
+
+### Added — 4 new CLIs
+
+- **`vault-explain "<query>"`** (idea #2) — retrieval introspection trace. Runs the full pipeline (bge-m3 → native vector → smart-rerank → KO-DB corroboration → Memgraph entity-graph) and emits a per-result trace with cosine score, token-overlap, KO-DB cross-source count, entity-graph neighbours, AND a Mermaid `flowchart LR` diagram of the trace. Markdown + JSON output. Graceful fallback if Memgraph unreachable. Source: `.vault-memory/scripts/vault-explain.py`.
+- **`vault-ko-decay`** (idea #3) — predicate-aware freshness-decay scoring. 38-predicate half-life table (`is_a` = ∞, `uses_database` = 730d, `currently` = 7d, etc.). Uses source-file mtime, falls back to `facts.created_at`. Read-only — decay applied at query-time. `--calibrate` shows the predicate × half-life × count distribution.
+- **`vault-daily-rollup`** (idea #4) — extractive 5-bullet summarizer that prepends a `## Yesterday` block to each morning's `01-Daily/<date>.md`. Ranks session highlights by bold-prefix, numeric content, and `LANDED`/`ÉLES`/`DONE` markers. Idempotent re-runs replace the existing `## Yesterday` block. Cron entry installed: `0 6 * * *`. Subagent-mode pending-file interface stubbed for future LLM upgrade.
+- **`vault-ko-anki`** (idea #5) — KO-DB → Anki/Mochi cloze-deletion deck export. Filters for "evergreen" predicates (`is_a`, `defined_as`, `defined_in`, etc.) at confidence ≥ 0.9, optionally weighted by decayed confidence (`--include-decay`). 3 output formats: CSV (Anki native import), `.apkg` (genanki), Mochi JSON. **1,668 cards available** at conf ≥ 0.85.
+
+### Added — wikis
+
+- `11-wiki/vault-explain-pattern.en.md` — retrieval-introspection pattern docs
+- `11-wiki/daily-rollup-auto-summarize.en.md` — extractive vs subagent mode trade-offs
+
+### Numbers (post-1.0.4)
+
+- **5 brainstorm ideas LANDED today** (was 4): #1 RAGAS, #9 Temporal-KG SCD2, #13 Browser-history, #15 Sleep-consolidation, #20 Vault-MCP, **+#2 vault-explain, #3 freshness-decay, #4 daily-rollup, #5 Anki export**
+- **9 brainstorm ideas total** (of 22), 13 remaining
+- **+4 new `/usr/local/bin` scripts** (vault-explain, vault-ko-decay, vault-daily-rollup, vault-ko-anki)
+- **+1 new cron** (vault-daily-rollup 06:00)
+- Lint state: ruff 0, frontmatter 0, atomic-write 0
+- KO-DB: 13,801 facts, 1,668 evergreen-eligible
+- Daily-note narrative gap CLOSED — every morning now gets an auto-summary
+
+Full diff: https://github.com/MyForgeLabs/myforge-vault-1111/compare/v1.0.3...v1.0.4
+
 ## [1.0.3] — 2026-05-19 (evening)
 
 Quality-debt cleanup + new capabilities. Same launch-day; this is the polish-the-polish pass.
