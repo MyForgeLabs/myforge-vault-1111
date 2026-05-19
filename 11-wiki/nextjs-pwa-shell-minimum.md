@@ -1,8 +1,7 @@
 ---
 name: nextjs-pwa-shell-minimum
 description: A "natívnak érződő" mobil-app PWA-shell minimuma egy Next.js app-on — manifest.webmanifest + apple-touch-icon + appleWebApp meta + theme-color → Add to Home Screen full-screen ikonnal
-metadata:
-  type: project
+type: project
 created: 2026-05-12
 updated: 2026-05-19
 tags: ["#type/reference", "#tech/nextjs"]

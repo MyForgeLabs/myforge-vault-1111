@@ -1,8 +1,7 @@
 ---
 name: svg-img-overlay-aspect-ratio
 description: img + SVG overlay különböző aspect-ratio-n szétcsúszik max-h + overflow-auto-val. Fix - aspectRatio CSS-szel az inner wrapper-re, preserveAspectRatio=none az SVG-re.
-metadata:
-  type: wiki
+type: wiki
 created: 2026-05-12
 tags: ["#tech/react", "#type/reference", "#project/superintelligent-vault"]
 tag_backfill: 2026-05-19

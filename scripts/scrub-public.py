@@ -17,7 +17,6 @@ Algoritmus:
 """
 import argparse
 import fnmatch
-import json
 import re
 import shutil
 import sys
@@ -208,7 +207,7 @@ def main():
     # Process publish-candidates
     stats = process_publish(publish, rules, target, args.apply)
 
-    print(f'\n=== STATS ===')
+    print('\n=== STATS ===')
     print(f'  Written:                  {stats["written"]}')
     print(f'  Replacements applied:     {stats["replaced_lines"]}')
     print(f'  Forbidden-violations:     {len(stats["forbidden_violations"])}')
@@ -235,7 +234,7 @@ def main():
         for rel, err in stats['errors'][:5]:
             print(f'  {rel}: {err}')
 
-    print(f'\n[SUCCESS] Scrub complete. ' + ('Files written.' if args.apply else 'Dry-run only, NO files written.'))
+    print('\n[SUCCESS] Scrub complete. ' + ('Files written.' if args.apply else 'Dry-run only, NO files written.'))
 
 
 if __name__ == '__main__':

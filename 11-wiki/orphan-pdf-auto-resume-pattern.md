@@ -1,8 +1,7 @@
 ---
 name: orphan-pdf-auto-resume-pattern
 description: Self-healing pipeline pattern — filesystem = source-of-truth, DB = derived state. Backend-startup-handler scan-eli az orphan input-fájlokat és újra-feldolgozza háttér task-ban.
-metadata:
-  type: wiki
+type: wiki
 created: 2026-05-12
 tags: ["#type/reference"]
 tag_backfill: 2026-05-19

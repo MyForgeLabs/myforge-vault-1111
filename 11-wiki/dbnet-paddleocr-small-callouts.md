@@ -1,8 +1,7 @@
 ---
 name: dbnet-paddleocr-small-callouts
 description: PaddleOCR DBNet detektor (v2.10) Tesseract LSTM helyett — `det_limit_side_len=4096` a downsampling-eltűnés ellen. 95% → 98% match kis (5-10 px) callout-okra.
-metadata:
-  type: wiki
+type: wiki
 created: 2026-05-12
 tags: ["#type/reference"]
 tag_backfill: 2026-05-19

@@ -1,8 +1,7 @@
 ---
 name: demo-fallback-readonly-guard
 description: Bemutató/preview módban a demo-fallback session NEM lehet írható — különben a seed user valódi adatait módosítja. isDemo flag a session-modellben, guard minden mutation route-on
-metadata:
-  type: project
+type: project
 created: 2026-05-12
 updated: 2026-05-19
 tags: ["#type/reference"]

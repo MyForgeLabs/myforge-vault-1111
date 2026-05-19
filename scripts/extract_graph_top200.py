@@ -1,7 +1,6 @@
 #!/root/.notebooklm-venv/bin/python3
 """Extract top-200 hub entities + intra-edges to JSON for D3 viewer."""
 import json
-import os
 import sys
 from pathlib import Path
 
@@ -19,7 +18,7 @@ LABEL_PRIORITY = [
 
 def pick_label(labels):
     """Pick most-specific label from list (Entity stripped)."""
-    candidates = [l for l in labels if l != "Entity"]
+    candidates = [label for label in labels if label != "Entity"]
     if not candidates:
         return "Entity"
     for pri in LABEL_PRIORITY:
