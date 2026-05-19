@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-05-19T07:43:51Z",
+  "generated_at": "2026-05-19T08:30:07Z",
   "wiki": {
-    "total": 184,
+    "total": 185,
     "en": 70,
-    "hu_only": 114,
-    "coverage_pct": 38.0
+    "hu_only": 115,
+    "coverage_pct": 37.8
   },
   "audit": {
-    "total": 106,
-    "public": 100
+    "total": 108,
+    "public": 102
   },
   "memgraph": {
     "total_nodes": 31386,
@@ -21,10 +21,10 @@
   "ko_db": {
     "total_facts": 13801
   },
-  "crons": 14,
+  "crons": 16,
   "public_commits": {
-    "all_time": 71,
-    "today": 38
+    "all_time": 72,
+    "today": 39
   },
   "health": {
     "status": "good",

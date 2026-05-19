@@ -34,22 +34,24 @@ This essay is what I learned in the 5 hours it took to actually get there.
 
 ---
 
-## 2. The 8-axis architecture (one paragraph each, then we move on)
+## 2. The 8-axis architecture, in 50 words per axis
 
-I'm not going to bury the lede with architecture porn. The system is organized into 8 evolutionary axes (B-1 through B-8 in my project notes), each shipped as a 2-week sprint, scaffolded in a single Day-0 commit and then filled in over subsequent sessions. Brief tour:
+Eight evolutionary axes, each shipped as a 2-week sprint, each scaffolded in a single Day-0 commit. The full table of contents:
 
-- **B-1 Crystallization automation** ([[sv-05-crystallization-automation]]) — `/11.11stop` hook at session-end. The agent re-reads the session log, writes a structured Summary + Learnings + Next, then proposes where each Learning should propagate (ADR, wiki, glossary, infra, task, etc.). User confirms in batch. **Status: live, threshold currently 1.0 (shadow), ramp-protocol drafted.**
-- **B-2 Memory architecture** ([[sv-01-memory-architecture]]) — instead of the 15-20K-token aggressive context-load, a lean ~5K working set: top-K episodic from the [[top-k-cross-source-corroboration|KO-DB]] structured facts table + semantic search on-demand against the vault. **Status: B-1↔B-2 bridge landed, `vault-ko-query --top-k --semantic` works.**
-- **B-3 Continuous evaluation** — G-Eval-style LLM-as-judge for every crystallized Learning. See § 5.2 — this is where I learned the hardest lesson of the week.
-- **B-4 Tool composition** ([[sv-04-tool-composition]]) — MCP-bridges; the agents share the same skill registry.
-- **B-5 NotebookLM cognitive layer** ([[sv-08-notebooklm-cognitive-layer]]) — Google's NotebookLM as a deep-research subroutine, driven from CLI via [[notebooklm-cli-gotchas|a headless wrapper]].
-- **B-6 Multi-agent orchestration** ([[sv-03-multi-agent-orchestration]]) — Claude / Codex / Gemini share the vault via symlinks; each writes to `08-Sessions/` with an `AGENT=` env-var stamped in commits.
-- **B-7 World-model knowledge graph** ([[sv-07-entity-graph]]) — Memgraph 3.9 CE with native vector-index, 9004 :Concept nodes, 24,606 edges, 72.8% typed (post-fix).
-- **B-8 Recursive self-improvement** ([[sv-02-recursive-self-improvement]]) — gated behind a 4-layer safety system ([[multi-layer-safety-gate]]). The agent can propose to mutate the vault, but `VAULT_CRYSTALLIZE_REAL=1` is required for actual writes, sandbox branches mandatory, AGENTS.md is on a forbidden-target list.
+| # | Axis | One-line shape |
+|---|---|---|
+| **B-1** | Crystallization automation ([[sv-05-crystallization-automation]]) | `/11.11stop` hook → agent writes Summary + Learnings + Next, proposes propagation targets, user batch-confirms |
+| **B-2** | Memory architecture ([[sv-01-memory-architecture]]) | 15-20K aggressive context-load → ~5K lean (top-K KO-DB facts + semantic on-demand) |
+| **B-3** | Continuous evaluation | G-Eval LLM-as-judge for every Learning — see § 5.2, where I learned the hardest lesson of the week |
+| **B-4** | Tool composition ([[sv-04-tool-composition]]) | MCP-bridges; the three CLI agents share one skill registry |
+| **B-5** | NotebookLM cognitive layer ([[sv-08-notebooklm-cognitive-layer]]) | Google NotebookLM as a CLI-driven deep-research subroutine |
+| **B-6** | Multi-agent orchestration ([[sv-03-multi-agent-orchestration]]) | Claude / Codex / Gemini share the vault via symlinks, `AGENT=` env-var stamps commits |
+| **B-7** | World-model knowledge graph ([[sv-07-entity-graph]]) | Memgraph 3.9 CE, native vector-index, 9004 nodes, 24,606 edges, 100% typed |
+| **B-8** | Recursive self-improvement ([[sv-02-recursive-self-improvement]]) | 4-layer safety-gate ([[multi-layer-safety-gate]]); `VAULT_CRYSTALLIZE_REAL=1` + sandbox branch + forbidden-target list |
 
-The measurable result after the 5-hour burst: **vault grew from ~120 wikis to 219, KO-DB grew from 604 facts to 13,675, Memgraph grew from 0 to 24,606 edges, all 8 axes have a live Day-0 scaffold, and the total marginal cost of LLM inference was $0**.
+After the 5-hour burst: 219 wikis (from ~120), KO-DB 13,675 facts (from 604), Memgraph 24,606 edges (from 0), $0 marginal inference cost.
 
-The honest result: most of those numbers don't matter. What matters is that 5 specific things almost broke the project, and four of them were silent. Here they are.
+Most of those numbers don't matter. What matters is that 5 specific things almost broke the project, and four of them were silent. Here they are.
 
 ---
 
@@ -125,6 +127,8 @@ Full writeup: [[g-eval-bias-mitigation-pattern]].
 
 This one is the closest the vault gets to a free lunch, but it has a sharp edge.
 
+> ▶ **Watch it live:** [3-min terminal demo](https://myforgelabs.github.io/myforge-vault-1111/demo/) on the docs-site — six real CLI commands including a fanout run, recorded with asciinema.
+
 I needed to mutate 267 wiki files in a single pass — add a `description:` field to the frontmatter, generate `tags:` and `trigger_keywords:` fields based on the body content. Classic per-file independent LLM-aided mutation. Naive estimate: 267 files × ~10K tokens each × $3/M Sonnet input = ~$8, plus ~$10 for output. Twenty bucks, an hour of API time, manageable.
 
 But I already had a Claude Code subscription. Could I just do this **inside** the subscription?
@@ -139,6 +143,25 @@ Turns out yes. Claude Code's `Task` tool lets you spawn `general-purpose` subage
                         ├── Agent8 (30 files) ──┤
                         └── Agent9 (27 files) ──┘
                               all background
+```
+
+The transcript looks roughly like this (six of the eight branches elided for length):
+
+```
+$ vault-fanout-mutate --batch wiki-frontmatter --files 267 --agents 8
+[parent] partitioning 267 files into 9 batches of 30, 1 reserve
+[parent] spawning 8 subagents (general-purpose)…
+[12:04:11] agent#2  ← 30 files queued
+[12:04:11] agent#3  ← 30 files queued
+[12:04:11] agent#4  ← 30 files queued
+            …
+[12:05:38] agent#2  ✓ 30/30 written (87s)  yaml-valid:30/30
+[12:05:42] agent#3  ✓ 30/30 written (91s)  yaml-valid:30/30
+[12:05:51] agent#4  ✓ 30/30 written (100s) yaml-valid:30/30
+            …
+[12:06:14] agent#9  ✓ 27/27 written (123s) yaml-valid:27/27
+[parent] all branches returned. total:267/267 yaml-valid, audit:534/534 PASS
+[parent] wall-clock: 4m 53s · marginal cost: $0.00 · subagent calls: 8
 ```
 
 Results:
