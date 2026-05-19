@@ -1,0 +1,5 @@
+# Dev / CI Python deps.
+# Runtime mkdocs deps live in requirements.txt.
+pytest>=8.0
+pyyaml>=6.0
+ruff>=0.6

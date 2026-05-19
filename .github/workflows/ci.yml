@@ -1,0 +1,188 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-python:
+    name: Lint Python (ruff)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install ruff
+        run: pip install ruff
+      - name: Run ruff check
+        run: |
+          if [ -z "$(find . -name '*.py' -not -path './site/*' -not -path './.git/*' -print -quit)" ]; then
+            echo "No Python files found — skipping."
+            exit 0
+          fi
+          ruff check --output-format=github --exclude site --exclude .git .
+      - name: vault-atomic sanity check
+        run: |
+          if [ -f .vault-tools/lib/vault_atomic.py ]; then
+            python3 <<'PY'
+          import ast, sys, pathlib
+          bad = []
+          for p in pathlib.Path('.').rglob('*.py'):
+              if any(s in str(p) for s in ('site/', '.git/')):
+                  continue
+              try:
+                  ast.parse(p.read_text(encoding='utf-8', errors='ignore'))
+              except Exception:
+                  continue
+              text = p.read_text(encoding='utf-8', errors='ignore')
+              if 'vault_atomic' in text and 'write_text_atomic' not in text and 'atomic_write' not in text:
+                  bad.append(str(p))
+          if bad:
+              print('Files importing vault_atomic without using atomic-write API:')
+              for b in bad:
+                  print(' -', b)
+              sys.exit(1)
+          print('vault-atomic sanity OK')
+          PY
+          else
+            echo "vault_atomic.py not present in mirror — skipping."
+          fi
+
+  lint-markdown:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install markdownlint-cli2
+        run: npm install -g markdownlint-cli2@0.13.0
+      - name: Write lax config
+        run: |
+          cat > .markdownlint.jsonc <<'EOF'
+          {
+            "default": true,
+            "MD013": false,
+            "MD033": false,
+            "MD034": false,
+            "MD036": false,
+            "MD041": false,
+            "MD024": { "siblings_only": true },
+            "MD025": { "front_matter_title": "" },
+            "MD026": false,
+            "MD029": false,
+            "MD031": false,
+            "MD032": false,
+            "MD040": false
+          }
+          EOF
+      - name: Run markdownlint
+        run: |
+          markdownlint-cli2 \
+            "11-wiki/**/*.md" \
+            "07-Decisions/**/*.md" \
+            "06-Audits/**/*.md" \
+            || { echo "::warning::markdownlint found issues (non-blocking on lax preset)"; exit 0; }
+
+  lint-frontmatter:
+    name: Lint Frontmatter (11-wiki/)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install pyyaml
+        run: pip install pyyaml
+      - name: Validate required frontmatter keys
+        run: python3 .github/scripts/lint_frontmatter.py
+
+  test-regression:
+    name: Pytest (regression -m fast)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install test deps
+        run: pip install pytest pyyaml
+      - name: Run regression tests (fast)
+        run: |
+          if [ ! -d .vault-eval/regression ]; then
+            echo "No .vault-eval/regression/ in mirror — skipping."
+            exit 0
+          fi
+          if [ -z "$(find .vault-eval/regression -name 'test_*.py' -print -quit)" ]; then
+            echo "No test_*.py under .vault-eval/regression/ — skipping."
+            exit 0
+          fi
+          set +e
+          pytest .vault-eval/regression -m fast -v --tb=short
+          code=$?
+          if [ "$code" = "5" ]; then
+            echo "No fast-marker tests collected — soft-skip."
+            exit 0
+          fi
+          exit $code
+
+  check-broken-wikilinks:
+    name: Broken wikilinks budget
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      # Baseline in the public OSS mirror as of 2026-05-19:
+      # broken_references=232, broken_targets=168 (see
+      # `.github/scripts/broken_wikilinks_check.py` — it skips private vault
+      # dirs (02-Projects/, 05-Memory/, 08-Sessions/, .vault-nb/ etc.) and
+      # bash-bracket lookalikes, so this count is genuine link rot inside
+      # the published `11-wiki/`, `07-Decisions/`, `06-Audits/` set.
+      # Budget gives ~8% headroom; tighten as the count goes down.
+      BROKEN_REF_BUDGET: "250"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Scan for broken wikilinks
+        run: python3 .github/scripts/broken_wikilinks_check.py
+
+  build-docs:
+    name: mkdocs build --strict
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install mkdocs deps
+        run: pip install -r requirements.txt
+      - name: Strict-build the site
+        run: mkdocs build --strict --site-dir _ci_site

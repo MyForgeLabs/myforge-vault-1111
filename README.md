@@ -3,14 +3,17 @@
 [![Docs](https://img.shields.io/badge/docs-myforgelabs.github.io-blue?logo=mkdocs)](https://myforgelabs.github.io/myforge-vault-1111/)
 [![Deploy](https://github.com/MyForgeLabs/myforge-vault-1111/actions/workflows/docs.yml/badge.svg)](https://github.com/MyForgeLabs/myforge-vault-1111/actions/workflows/docs.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
-[![Wiki pages](https://img.shields.io/badge/wiki-140%2B-orange)](./11-wiki/)
-[![ADRs](https://img.shields.io/badge/ADR-41-purple)](./07-Decisions/)
+[![Release](https://img.shields.io/github/v/release/MyForgeLabs/myforge-vault-1111?color=blueviolet&label=release)](https://github.com/MyForgeLabs/myforge-vault-1111/releases/latest)
+[![Wiki pages](https://img.shields.io/badge/wiki-258-orange)](./11-wiki/)
+[![ADRs](https://img.shields.io/badge/ADR-45-purple)](./07-Decisions/)
+[![Audits](https://img.shields.io/badge/audits-104-yellow)](./06-Audits/)
 [![Language](https://img.shields.io/badge/lang-HU%2BEN-red)](./README.hu.md)
+[![Star History](https://img.shields.io/github/stars/MyForgeLabs/myforge-vault-1111?style=social)](https://github.com/MyForgeLabs/myforge-vault-1111/stargazers)
 
 > **An open-source 8-axis methodology + working tooling for evolving a personal Obsidian-vault into a self-improving knowledge-system.**
 > Made by [MyForge Labs](mailto:11.11@myforgelabs.com). Augmented intelligence — NOT AGI, NOT hype. Hungarian+English docs, MIT.
 
-[📚 Live docs site](https://myforgelabs.github.io/myforge-vault-1111/) · [▶ End-to-end demo](https://myforgelabs.github.io/myforge-vault-1111/demo/) · [Magyar verzió](./README.hu.md) · [Roadmap](./07-Decisions/2026-05-12%20Superintelligent%20vault%20evolution%20roadmap.md) · [Cross-project synthesis](./06-Audits/2026-05-18%20vault-meta%20NotebookLM%20cross-projekt%20synthesis.md)
+[📚 Docs site](https://myforgelabs.github.io/myforge-vault-1111/) · [🎬 3-min demo](https://myforgelabs.github.io/myforge-vault-1111/demo/) · [🇭🇺 Magyar](./README.hu.md) · [📋 FAQ](./11-wiki/faq.en.md) · [🗺️ Architecture](./11-wiki/architecture-overview.en.md) · [📖 The build story (3,900 words)](./11-wiki/what-i-learned-building-self-improving-vault.en.md)
 
 ![MyForge Vault 11.11 — 8-axis Superintelligent Vault hero banner](./docs/assets/hero-banner.svg)
 
@@ -18,7 +21,12 @@
 
 ## What is this
 
-**MyForge Vault 11.11** (internal codename: SV) is an **8-axis architecture** + **35+ production scripts** + **87+ evergreen wiki pages** + **28 ADRs** that turns a classic Obsidian-vault into a **self-improving knowledge-system**. With measurable numeric results and clear open-source publishing scope.
+**MyForge Vault 11.11** (internal codename: SV) is an **8-axis architecture** + **70+ production scripts** + **258 evergreen wiki pages** + **45 ADRs** + **104 audits** that turns a classic Obsidian-vault into a **self-improving knowledge-system shared by three CLI AI agents** (Claude Code, Codex, Gemini). Measurable numeric results, clear OSS scope, MIT-licensed, $0 marginal cost.
+
+> If you have 90 seconds: read the [FAQ](./11-wiki/faq.en.md). If you have 5
+> minutes: read the [architecture overview](./11-wiki/architecture-overview.en.md).
+> If you have 15 minutes: read [what I learned building it in 5
+> hours](./11-wiki/what-i-learned-building-self-improving-vault.en.md).
 
 The **11.11** in the name carries two meanings:
 - 🏢 **MyForge Labs founding signal** — the company's `11.11@myforgelabs.com` email predates this vault
@@ -49,56 +57,133 @@ The methodology starts from [Karpathy's LLM-Wiki pattern](./11-wiki/Karpathy-LLM
 6. **[4-layer Safety-Gate](./11-wiki/multi-layer-safety-gate.md)** — ENV + script + git-hook + Critic review (RSI guardrail)
 7. **[Sprint Day-0 Skeleton-first](./11-wiki/sprint-day-0-skeleton-first.md)** — ~5× faster Week 1 implementation
 
-## Measured results (2026-04-23 → 2026-05-18, 26 days)
+## Measured results (2026-04-23 → 2026-05-19, 27 days)
 
 | Metric | Value |
 |---|---|
-| **Cost** | **$0** (Claude Code + NotebookLM subscription, NOT Anthropic API) |
-| Session history | **76 closed sessions** indexed, 73 frontmatter eval-fields |
-| Knowledge objects | **13890 facts** in Memgraph |
-| Entity graph | 8997 entities / 28.9% typed |
-| Skill pool | **462 SKILL.md** Memgraph native vector-index |
-| Wiki | 87+ evergreen wikis |
-| ADR | 28 Architecture Decision Records |
-| Cross-project synthesis | 63-source NotebookLM + 3-query Q1+Q2+Q3 executed |
-| Subagent-fanout iterations | 7 super-sessions (5 → 14 → 13 parallel) |
+| **Cost** | **$0** marginal (Claude Code + NotebookLM subscription, NOT Anthropic API) |
+| Session history | **~80 closed sessions** indexed |
+| Knowledge objects (KO-DB) | **13,800+** structured triplets (SQLite) |
+| Entity graph | **8,997 entities / 24,606 edges / 100% typed** (Memgraph CE 3.9) |
+| Skill pool | **962** SkillChunks Memgraph native vector-index |
+| Wiki | **258** evergreen wikis, **71** English translations (28% coverage) |
+| ADR | **45** Architecture Decision Records |
+| Audits | **104** one-shot reports |
+| Cross-project synthesis | 63-source NotebookLM + 3 podcast episodes |
+| Subagent-fanout iterations | 8+ super-sessions (5–14 parallel) |
 | Memgraph vector-index speedup | **280× vs numpy-cosine** (sub-ms p95) |
+| Smart-rerank latency (Round 3) | **18.6s → 8.7s** (-55%) via daemon keepalive + delegation |
 | GEPA Pareto improvement | **+14.3%** (baseline 0.541 → 0.619) |
-| G-Eval bias-mitigation effect | conf 0.880 → 0.760 (-0.12) |
+| LongMemEval-S Recall@5 | **67.68%** hybrid BM25+semantic+RRF (up from 46% baseline) |
+| G-Eval verdict-agreement | **96.7%** on 30-sample gold-label set |
+| Atomic-write compliance | **66/66** scripts lint-clean (`vault-atomic-lint --quiet`) |
 
-## What's DIFFERENT (NOT competition — composite)
+## Compare to other memory + agent-OSS projects
+
+This is an honest, opinionated map of where SV sits. Each project below is
+excellent at what it does; SV is a **composite** built around a different
+shape (markdown-vault first, three-CLI-agent-shared, local-by-default).
+
+| Feature | [mem0](https://github.com/mem0ai/mem0) | [Letta](https://github.com/letta-ai/letta) | [GraphRAG](https://github.com/microsoft/graphrag) | [agentmemory](https://github.com/rohitg00/agentmemory) | **MyForge Vault 11.11** |
+|---|:---:|:---:|:---:|:---:|:---:|
+| **Markdown-first store** | ❌ JSON | ❌ DB | ❌ DB | ❌ DB | ✅ Obsidian-compatible |
+| **3-CLI-agent bridge** | ❌ | ❌ | ❌ | ❌ | ✅ Claude+Codex+Gemini |
+| **Karpathy LLM-Wiki pattern** | ❌ | ❌ | ❌ | partial | ✅ explicit 10-raw/11-wiki split |
+| **Local-first, $0 marginal** | partial | ❌ (LLM API) | partial | ✅ | ✅ |
+| **Knowledge-graph** | ❌ | ❌ | ✅ | ❌ | ✅ Memgraph + 100% typed |
+| **Native vector-index** | ✅ Qdrant | ✅ Chroma | ❌ | ❌ | ✅ Memgraph 280× speedup |
+| **G-Eval LLM-as-judge** | ❌ | ❌ | partial | ❌ | ✅ 96.7% verdict-agreement |
+| **NLI 2.5/2.6/2.7 cascade** | ❌ | ❌ | ❌ | ❌ | ✅ smart-trigger optional |
+| **GEPA Pareto RSI** | ❌ | ❌ | ❌ | ❌ | ✅ +14.3% verified |
+| **NotebookLM cognitive layer** | ❌ | ❌ | ❌ | ❌ | ✅ 2-host podcast layer |
+| **Constitutional 4-layer safety** | ❌ | ❌ | ❌ | ❌ | ✅ atomic + flock + git + critic |
+| **Session-orchestration CLI** | ❌ | ❌ | ❌ | ❌ | ✅ `11.11*` family |
+| **MCP server** | ❌ | ❌ | ❌ | ❌ | ✅ 7 read-only tools (Round 3) |
+
+**Where SV is NOT the right pick:**
+
+- If you want a **hosted memory SaaS** with multi-tenant isolation and a
+  Python SDK, use mem0
+- If you want a **persistent agent runtime** with full state checkpointing,
+  use Letta
+- If you want **GraphRAG specifically** (Microsoft's community-detection +
+  hierarchical summarization), use the original GraphRAG
+- If you want a **simple key-value memory** with confidence scoring and zero
+  graph infrastructure, use agentmemory
+
+**Where SV IS the right pick** (after evaluating the above):
+
+- you run multiple CLI agents on one machine
+- you already use Obsidian and the markdown-first format matters
+- you want the build-as-you-go vault to BE the artifact, not a side-effect
+- you want a reference implementation of Karpathy's LLM-Wiki pattern that
+  actually runs
+
+## Compare to other agent-skill repos
+
+Different category — `Pocock/skills`, `obra/superpowers`,
+`tinyhumansai/openhuman` are **skill-libraries** that any agent loads. SV
+shares this property (`962` indexed SkillChunks) but doesn't compete on the
+skill-library axis. Use these alongside SV:
 
 | Feature | Pocock/skills | obra/superpowers | tinyhumansai/openhuman | **MyForge Vault 11.11** |
 |---|:---:|:---:|:---:|:---:|
 | Skill share | ✅ | ✅ | ✅ | ✅ + Memgraph vector |
-| Cross-project synthesis | ❌ | ❌ | ❌ | ✅ NotebookLM 63 source |
-| Auto-skill distillation | ❌ | ❌ | ❓ | ✅ vault-skill-distill |
-| Persistent knowledge-graph | ❌ | ❌ | ❌ | ✅ Memgraph 8997 entities |
-| LLM-eval cascade (3-layer) | ❌ | ❌ | ❓ | ✅ G-Eval+NLI+Coherence |
-| RSI (GEPA Pareto) | ❌ | ❌ | ❌ | ✅ +14.3% verified |
-| 8-axis ADR | ❌ | ❓ | ❓ | ✅ explicit per-axis |
-| Multi-agent orchestration | ❌ | ❓ | ❌ | ✅ 11.11worker LIVE |
-| **11.11 session orchestration** | ❌ | ❌ | ❌ | ✅ unique CLI family |
+| Persistent knowledge-graph | ❌ | ❌ | ❌ | ✅ Memgraph 8,997 entities |
+| Markdown-vault as the substrate | ❌ | ❌ | ❌ | ✅ Obsidian-native |
+| `11.11*` session-orchestration | ❌ | ❌ | ❌ | ✅ unique CLI family |
 
-## Quick start
+## Quick start (≈ 15 min, all-deps fresh)
 
 ```bash
-# 1. Vault clone (this repo)
-git clone https://github.com/<owner>/superintelligent-vault.git
-cd superintelligent-vault
+# 1. Clone
+git clone https://github.com/MyForgeLabs/myforge-vault-1111.git
+cd myforge-vault-1111
 
 # 2. Memgraph CE (Docker)
 docker run -d --name memgraph -p 7687:7687 memgraph/memgraph:latest
 
-# 3. Python venv + bge-m3
-python3 -m venv .notebooklm-venv
-.notebooklm-venv/bin/pip install sentence-transformers transformers mgclient pymgclient
+# 3. Python deps
+make install          # or: pip install -r requirements.txt
 
-# 4. Embed vault
+# 4. Embed the wiki content
 ./scripts/vault-embed.py --backfill 11-wiki/
 
-# 5. Search
-./scripts/vault-search "G-Eval bias mitigation"
+# 5. Try a search
+./scripts/vault-search "Karpathy LLM-Wiki pattern"
+```
+
+Verify:
+
+```bash
+make test             # runs the LongMemEval-S fast regression-gate
+make build-docs       # mkdocs build --strict
+```
+
+`make help` lists everything. See [the FAQ](./11-wiki/faq.en.md) for the
+"works on my machine" checklist (OS support, Python version, common
+friction).
+
+## Architecture in one diagram
+
+A full Mermaid diagram lives in [`11-wiki/architecture-overview.en.md`](./11-wiki/architecture-overview.en.md).
+The short version:
+
+```
+   📥 INPUT          🔮 CRYSTALLIZE        🧠 MEMORY          ✨ DISTILLED
+   sessions    ──▶   /11.11stop hook  ──▶  KO-DB (SQLite) ──▶ 11-wiki/
+   raw/external      G-Eval scorer         Memgraph CE        07-Decisions/
+   browser-hist      Constitutional       (vector + graph)    06-Audits/
+   3 CLI agents      Critic gate (4-lyr)   bge-m3 + reranker  02-Projects/
+                          │                      │
+                          ▼                      ▼
+                     🛠️ TOOLING (vault-search · vault-mcp · 962 skills)
+                          │
+                          ▼
+                     📊 EVAL + RSI (LongMemEval-S gate · GEPA · Tier-2 RSI)
+                          │
+                          ▼
+                     🎙️ COGNITIVE (NotebookLM cross-project synthesis)
 ```
 
 ## Reproducibility
@@ -112,6 +197,37 @@ MyForge Vault 11.11 is **NOT** a "Pocock-skills alternative" or "openhuman chall
 ## Who's behind it
 
 [**MyForge Labs**](mailto:11.11@myforgelabs.com) — small Hungarian engineering shop building agent-skill infrastructure, multilingual web platforms, and AI-augmented operational tooling. Founded around 11.11.
+
+Maintainer: **Peti Markovics** ([@petimarkovics](https://github.com/petimarkovics) · `peti.markovics@gmail.com`).
+
+## Contributors
+
+This project is **AI-aided by design**, not by accident. The three CLI agents
+listed below are co-collaborators, not tools. Every commit is stamped with an
+`AGENT=` env-var so you can `git log --grep='AGENT='` to see which agent did
+which work.
+
+| Contributor | Role | Touched |
+|---|---|---|
+| **Peti Markovics** ([@petimarkovics](https://github.com/petimarkovics)) | Maintainer, vision, architecture decisions | everywhere |
+| **Claude Code** (Anthropic, Opus + Sonnet) | Primary implementor; subagent-fanout dispatcher; long-form writing | scripts, wikis, the Karpathy-style essay, this README |
+| **Codex CLI** (OpenAI) | Code review second opinion; refactor passes; alt-perspective ADRs | refactors, ADR reviews |
+| **Gemini CLI** (Google) | Multimodal pre-processing; session-context patterns | NotebookLM-bridge work, image-handling tooling |
+| **NotebookLM** (Google) | Cross-project synthesis subroutine; 2-host podcast generation | `06-Audits/*-NotebookLM-*` and `.vault-nb/audio-overviews/` |
+
+If you want to be listed here, [open a PR](./CONTRIBUTING.md). Human OR
+agent contributors welcome.
+
+## Acknowledgements
+
+- **Andrej Karpathy** — for the [original LLM-Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+  this whole project is built on
+- **Memgraph team** — for shipping a CE with native vector-index and no
+  licensing wall
+- **BAAI** — for `bge-m3` and `bge-reranker-v2-m3` (multilingual, CC-BY)
+- **Anthropic / OpenAI / Google** — for the CLI agents that made the
+  AI-aided-build feasible
+- **The Obsidian community** — for normalizing markdown-first knowledge work
 
 ## License
 

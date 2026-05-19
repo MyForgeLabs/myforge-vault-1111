@@ -1,0 +1,10 @@
+# GitHub CODEOWNERS — repo maintainership signals.
+# Lightweight on purpose: a single maintainer, all areas.
+# When the project grows, split by area:
+#   /11-wiki/   @wiki-team
+#   /docs/      @docs-team
+#   .vault-ko/  @memory-team
+#   etc.
+
+# Default — Peti reviews everything
+* @petimarkovics

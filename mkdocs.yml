@@ -115,7 +115,7 @@ nav:
   - Evergreen Wiki:
       - Áttekintés: wiki/Index.md
   - Audio Overviews: audio/Index.md
-  - HN Launch Console: hn-launch/index.html
+  # - HN Launch Console: hn-launch/index.html  # hidden from public nav (launch-internal)
   - ADR (Decisions):
       - Áttekintés: decisions/Index.md
   - Meta:

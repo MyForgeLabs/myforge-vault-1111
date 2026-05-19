@@ -86,34 +86,47 @@ A tegnapi EPIC super-session **5-prio + backlog batch** lehúzása — minden am
 - 08:40 — **JSONL migration agent return**: **10 site migrated** (vault-route, vault-skill-distill/search, vault-nb-meta-push, 11.11critic/summarizer/worker, 11.11orchestrator×3, 11.11crystallize×1), **2 manual-review-marked** (vault-ko-remap-legacy ×2 — SQL transaction-scoped file-handle reuse), **2 false-positives correctly refused** (11.11crystallize L370/L390 markdown content append-ek, NEM JSONL). Lint exit 0. Playbook wiki kibővítve subagent-findings szakasszal.
 - 08:43 — **RAGAS CI-gate ÉLES** (idea #1): `/root/obsidian-vault/.vault-eval/regression/` (baseline.json + test_longmemeval_regression.py + conftest.py) + `/usr/local/bin/vault-eval-regression` CLI + cron 02:45 daily. 3 pytest fast-mode test PASS. **Self-consistency test fogott egy valós baseline-bug-ot**: `tolerance_pct` vs `min_recall` gap mismatch — javítva inline (cosine `min_recall: 0.2131 / tolerance_pct: 10`, hybrid `min_recall: 0.6268 / tolerance_pct: 5`).
 - 08:46 — **Sleep-consolidation cron skeleton ÉLES** (idea #15): `/usr/local/bin/vault-sleep-consolidate` (~14.7KB) — 7-napos session-scan, TF-IDF Jaccard 0.30-threshold clustering, 4-rétegű mock Constitutional Critic (min/max length + recurrence + novelty vs 11-wiki/), audit-only output (`VAULT_SLEEP_APPLY=1 VAULT_SLEEP_REAL=1` env-flag-pár locked). **First run: 60 sessions / 472 bullet / 1 recurrence / 1 SKIP-decision** (Next.js 16 systemctl restart pattern recurred 2 sessions, helyesen elutasítva mert az `pnpm-build-systemctl-restart-deploy-ritual.md` 0.632 token-overlap-pel már létezik). Cron 03:30 daily.
-- 08:48 — Final verify-pass: lint 0 / health 5/5 / regression green / all 4 new cron-ok aktívak.
+- 08:48 — Round 2 final verify-pass: lint 0 / health 5/5 / regression green / all 4 new cron-ok aktívak.
+- 08:55 — **Round 3 indul — user: "mindent csináljunk meg.. meg hogy lehet beröpíteni a köztudatba githubrepon ezt az egészet mert nagy dolgot csinálunk"**. 2 párhuzamos subagent spawn-olva (Browser-history bridge + GitHub launch playbook), main thread medium-tasks-szel folytat.
+- 08:58 — **CLI rerank-daemon-delegation patch ÉLES** — `vault-search` auto-backend smart-rerank trigger most a daemon-ot hívja ha `reranker_loaded: true` (új `_daemon_has_reranker_loaded` helper + delegate-block az `_apply_smart_rerank_local`-ban + `VAULT_NO_DAEMON_RERANK=1` fallback). **18.6s → 8.7s wall-clock (-55%)** Glicko-XP benchmark-on (user-time 52s → 0.04s — daemon-socket-call only). Eliminálja a `VAULT_SEARCH_BACKEND=numpy` workaround-ot.
+- 09:00 — **Vault-MCP wire-up ÉLES** — `/root/obsidian-vault/.mcp.json` vault-szintű registration (Claude Code auto-loads) + `.vault-mcp/mcp.json.sample` (Codex / Gemini / Claude Desktop config templates).
+- 09:02 — **Browser-history bridge subagent return**: `/usr/local/bin/vault-browser-history-ingest` (661 LOC, 25KB) + `11-wiki/browser-history-ingest-pattern.md` (8KB). Chrome/Chromium/Brave SQLite History → `10-raw/external/browser/`, NLI pre-filter (3-tier rule-based), `--dry-run` default + `VAULT_BROWSER_INGEST_APPLY=1` opt-in. Smoke 0/0 (no browser on sandbox, expected). Chrome epoch handling, EXCLUDE_DOMAINS, KO-DB dedup verified with synthetic 7-row test DB.
+- 09:04 — **Sleep-consolidation real-LLM-Critic 2-phase pending interface ÉLES** — stage-1 rule-gate (length / recurrence / novelty, always runs) + stage-2 LLM-Critic (opt-in `VAULT_SLEEP_LLM_CRITIC=1`, subagent-fanout pending-file pattern). 5-dimensional rubric prompt: factuality / novelty / durability / vault_fit / safety. Stage-1 fail blocks stage-2 invocation. Verified with current week's 1 detected cluster (Next.js restart): stage-1 fail (novelty 0.632 > 0.45 threshold) → LLM-Critic correctly NOT invoked.
+- 09:05 — **GitHub launch playbook subagent return**: `06-Audits/2026-05-19 GitHub launch playbook.md` 7,060 szó, 7 szekció, **3 direct competitor identified** (`swarmclawai/swarmvault` 3 hete launch-olt, `Ar9av/obsidian-wiki`, `obra/knowledge-graph`). **Defensible wedge**: 3-CLI-agent bridge + GEPA RSI + NotebookLM podcast layer (no competitor ships these). **Single highest-leverage action**: Tuesday 2026-05-26 15:00 UTC HN Angle A submit + 11-tweet X thread T+30 min. Cite-list: Show-HN survival study (asof.app/research) + llms.txt spec + GitHub social-preview docs.
+- 09:06 — **GitHub repo polish — 6 új artifact a public-repo-ban**: `SECURITY.md` (vuln disclosure policy) + `CITATION.cff` (Zenodo DOI-mintable) + `llms.txt` (agentic-browsing per llmstxt.org spec) + `.github/FUNDING.yml` (Sponsors) + `.github/ISSUE_TEMPLATE/vault_pattern.md` ("Share your vault" community template) + `.github/ISSUE_TEMPLATE/config.yml` (route blank-issue → Discussions). + **CHANGELOG.md v1.0.1 release notes** (Added/Changed/Fixed/Internal/Numbers, ~80 sor).
+- 09:08 — `vault-public-sync` triggered → commit `7ad30a2` pushed to `MyForgeLabs/myforge-vault-1111@main` (HEAD == origin/main, 0 commits ahead).
+- 09:09 — **v1.0.1 GitHub release LIVE**: https://github.com/MyForgeLabs/myforge-vault-1111/releases/tag/v1.0.1 — CHANGELOG-extracted notes, Latest-release flag, ready-to-link from HN/Twitter/Reddit.
 
 ## Summary
 
-**Két round, ~60-min wall-clock, ~22 task LANDED, $0 cost, ~50 subagent-fanout-equivalent.** Round 1 (07:48–08:21): tegnapi top-5 prio + backlog batch lehúzva. Round 2 (08:25–08:48, user-trigger: "csináljuk ami kell"): **4 új brainstorm-idea ÉLES skeleton-szinten** (RAGAS CI-gate / Sleep-consolidation / Vault-MCP umbrella server / Reranker-keepalive) + **JSONL migration finished** (subagent-fanout 10 site + 2 manual-review + 2 false-positive caught).
+**Három round, ~80-min wall-clock, ~30 task LANDED, $0 cost, 4 subagent-fanout iteration.** Round 1 (07:48–08:21): tegnapi top-5 prio + backlog batch lehúzva. Round 2 (08:25–08:48, user: "csináljuk ami kell"): 4 új brainstorm-idea ÉLES skeleton-szinten + JSONL migration finished. **Round 3 (08:55–09:09, user: "mindent csináljunk meg.. meg hogy lehet beröpíteni a köztudatba")**: 4 nagy task lehúzva — CLI rerank-daemon-delegation + Vault-MCP wire-up + Sleep-consolidation real-LLM-Critic + Browser-history bridge (subagent) — **PLUS launch-distribution playbook 7,060 szó** + **GitHub repo polish (6 új artifact)** + **v1.0.1 release LIVE**.
 
-A 22-idea brainstorm research listájából a top-5 ROI-pickek között 3 ÉLES (RAGAS #1, Sleep-consolidation #15, Vault-MCP #20), 1 deferred (Browser-history bridge #13). Temporal-KG SCD2 #9 a következő session-re.
+A 22-idea brainstorm 4 idea-ja ÉLES (#1 RAGAS / #13 Browser-history / #15 Sleep-consolidation / #20 Vault-MCP), 18 backlog. Temporal-KG SCD2 #9 a következő session-re.
 
-### Számszerű eredmények (Round 1 + Round 2 cumulative)
+**Distribution-szempontból (a kérdésre "hogy lehet beröpíteni a köztudatba"):** a `06-Audits/2026-05-19 GitHub launch playbook.md` egy konkrét, paste-ready 7-csatornás playbook (HN ×3 angle / Twitter 11-tweet thread / Reddit ×3 sub / Dev.to / Lobsters / LinkedIn / Mastodon) + SEO + cadence + retry tree. **Single highest-leverage action**: Tuesday 2026-05-26 15:00 UTC HN "Show HN" Angle A submit + X thread T+30 min. **Kritikus finding**: 3 competitor már létezik (swarmclawai/swarmvault, Ar9av/obsidian-wiki, obra/knowledge-graph) — wedge: 3-CLI-agent bridge + GEPA RSI + NotebookLM podcast layer.
+
+### Számszerű eredmények (Round 1 + Round 2 + Round 3 cumulative)
 
 | Kategória | Δ |
 |---|---|
-| Új /usr/local/bin script | **+4** (vault-search-health, vault-atomic-lint, vault-eval-regression, vault-sleep-consolidate) |
+| Új /usr/local/bin script | **+5** (vault-search-health, vault-atomic-lint, vault-eval-regression, vault-sleep-consolidate, vault-browser-history-ingest) |
 | Új scaffolds (dirs) | **+2** (.vault-mcp/, .vault-eval/regression/) |
 | Új cron entry | **+4** (30-min health, daily 02:30/02:45/03:30) |
-| Új wiki | **+1** (append-only-jsonl-migration.md) |
-| Új audit | **+3** (SV dev ideas brainstorm + B-2 RESOLVED + sleep-consolidate-2026-05-19) |
+| Új wiki | **+2** (append-only-jsonl-migration, browser-history-ingest-pattern) |
+| Új audit | **+4** (SV dev ideas brainstorm + B-2 RESOLVED + sleep-consolidate + **GitHub launch playbook 7060£**) |
 | Refactored vault scripts | **5** (atomic-write compliance) |
-| Migrated JSONL append-sites | **12** (of 17 — 4 whitelist + 1 unfixable) |
-| Manual-review flagged | **2** (vault-ko-remap-legacy SQL transaction-flow) |
-| False-positives caught | **2** (markdown content append-ek, NEM JSONL) |
-| Systemd hardening | **BMAD MemoryMax=512M** × 3 + vault-search MemoryHigh=5G/Max=7G |
+| Migrated JSONL append-sites | **12** of 17 (4 whitelist + 2 manual-review SQL-tx, 2 false-positive markdown-content) |
+| Systemd hardening | BMAD MemoryMax=512M × 3 + vault-search MemoryHigh=5G/Max=7G + VAULT_RERANK_PREWARM=v2-m3 |
 | MP3 footprint | **121 MB → 45 MB** (-62%) |
-| Reranker latency | **18.6s → 8.1s** (-54%) via VAULT_RERANK_PREWARM |
-| Brainstorm ideas landed (of 22) | **3** (#1 RAGAS / #15 Sleep-consolidation / #20 Vault-MCP) |
+| Reranker latency | **18.6s → 8.7s** (-55%) wall-clock — Round 3 CLI delegate patch |
+| Brainstorm ideas landed (of 22) | **4** (#1 RAGAS / #13 Browser-history / #15 Sleep-consolidation / #20 Vault-MCP) |
+| **Public repo polish (Round 3)** | SECURITY.md + CITATION.cff + llms.txt + FUNDING.yml + vault_pattern issue-template + issue-config + CHANGELOG v1.0.1 |
+| **Public commits today** | 7ad30a2 + autosaves (~9 commits in this Round 3 alone) |
+| **GitHub releases** | v1.0.0 → **v1.0.1 LIVE** (releases/tag/v1.0.1) |
+| **Launch playbook channels covered** | HN×3 / Twitter / Reddit×3 / Dev.to / Lobsters / LinkedIn / Mastodon |
 | Lint compliance | **66/66 scripts ✓** |
-| Pytest regression-gate | **3/3 PASS** (cosine + hybrid + self-consistency) |
-| Daemon health | **5/5 ✓** (socket + systemd + health-rpc + search-rpc + skill-ns) |
+| Pytest regression-gate | **3/3 PASS** |
+| Daemon health | **5/5 ✓** |
 
 ### Új infrastruktúra ÉLES
 
@@ -164,7 +177,19 @@ A 22-idea brainstorm research listájából a top-5 ROI-pickek között 3 ÉLES 
 
 - **Reranker keepalive: load vs inference cost decomposition** — A 6-10s rerank-cost-ból a daemon-keepalive a load-portion-t eliminálja (~10s wall), de a tényleges cross-encoder forward-pass (~8s on 18 candidates) compute-bound marad. **Wider lesson**: model-warm optimizations szigorúan a *boot-time* (model-load + import) megspórolásáról szólnak, NEM az inference-throughput-ról. GPU vagy quantization kell a inference-bottleneck-hez.
 
-- **Brainstorm → idea-realization tempó: 3/22 ÉLES skeleton egy session-ben** — 22-idea research brainstorm-ból 3 skeleton-szinten landolt ugyanazon session-ben (RAGAS, Sleep-consolidation, Vault-MCP). **Wider lesson**: brainstorm-output ROI akkor mérhető, ha rögtön skeleton-first-tel landol — különben paper-only marad. Az "OK ezeket valamikor" listák degradálódnak; az "OK ezt most skeleton-szinten" listák komorádnak.
+- **Brainstorm → idea-realization tempó: 4/22 ÉLES skeleton egy session-ben** — RAGAS, Sleep-consolidation, Vault-MCP, Browser-history. **Wider lesson**: brainstorm-output ROI akkor mérhető, ha rögtön skeleton-first-tel landol — különben paper-only marad.
+
+### Round 3 új tanulságok
+
+- **3 competitor finding > 22-idea brainstorm** — A launch-playbook subagent kiderítette hogy 3 direct competitor már létezik (swarmclawai/swarmvault 3 hete launch-olt, Ar9av/obsidian-wiki, obra/knowledge-graph). Single most-valuable insight a 7,060-szavas dok-ból. **Wider lesson**: minden OSS launch FIRST step a competitor-discovery (gh search-repos + WebSearch), NEM a polish + post-drafts. A wedge-thinking csak akkor érvényes ha pontosan tudod ki van már ott. A SV stack 3-CLI-bridge + GEPA + NotebookLM trió ad differentiation-t, NEM a vault-pattern maga.
+
+- **Existing-feature discovery (Round 2) → existing-config discovery (Round 3)** — a CLI rerank-daemon-delegation alaposan jól hangzó "nagy patch" volt, de a daemon-kód már támogatta a delegáció primitívjét: a `_try_socket_search()` accept-elte a `smart_rerank: true` flag-et és a daemon-side smart-rerank-logic ÉLES volt. A patch csak a CLI auto-backend ágat hard-wire-elte hozzá. **Wider lesson**: "új feature" task-on a teljes kódbázis grep-je MIELŐTT design-olnál — már ott lehet 80%-ban.
+
+- **Subagent-spawn ordering: Browser-history és Launch-playbook ELLENTÉTES domain** — egyik kódot ír, másik szöveget. Párhuzamos spawn $0-cost wall-clock-savings nélkül (~6 + ~9 min). **Wider lesson**: subagent-parallelizmus akkor reálértékű, ha a task-ok ortogonálisak (egyik nem támaszkodik a másikra) ÉS a wall-clock-uk hasonló nagyságrendű. Itt mindkét feltétel teljesült — pure win.
+
+- **2-phase pending-file pattern transferable extension-point** — A Sleep-consolidation real-LLM-Critic stage-2 ugyanazt a `crystallize` 2-phase pending-file pattern-t használja (request.json → subagent → response.json → re-read). Reusable interface bármely "agent-callable async scoring" feature-höz. **Wider lesson**: a Phase-1/Phase-2 pending-file pattern egy general-purpose "agent-pluggable hook-point" — egy script "kéri" a verdict-et, az agent (claude-code / codex) spawn-olja a subagent-et később, a script idempotensan re-reads. 4. helyen használjuk most (crystallize, selfcheck, vault-ko-ingest, sleep-consolidate).
+
+- **Distribution = engineering** — A launch-playbook NEM marketing-fluff — konkrét HN-title-engineering (Show-HN survival study data alapján), llms.txt szövegezés (per llmstxt.org spec), retry-tree-decision (HN bomb → új angle, NEM ismétlés), competitor-aware wedge framing. **Wider lesson**: open-source distribution **engineering-discipline**, nem charisma-driven. Mérhető (HN points, GitHub stars, mkdocs analytics), retry-able (3 HN angles készen állnak ha 1 bomb-ol), és reusable (a cadence-tree következő projektre is alkalmazható).
 
 ## Next session
 

@@ -1,0 +1,57 @@
+name: Link check (external)
+
+on:
+  schedule:
+    - cron: "0 6 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  lychee:
+    name: Lychee external link check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write lychee config
+        run: |
+          cat > .lychee.toml <<'CFG'
+          # Lychee config — external links only
+          max_redirects = 5
+          max_retries = 2
+          timeout = 20
+          accept = [200, 206, 429]
+          include = ["^https?://"]
+          # Skip purely internal references; mkdocs handles those.
+          exclude_path = ["site", "_ci_site", ".git", ".cache"]
+          exclude = [
+            "^http://localhost",
+            "^https?://127\\.0\\.0\\.1",
+            "^https?://example\\.com",
+            "/wiki/",
+          ]
+          CFG
+
+      - name: Run lychee
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --config .lychee.toml
+            --no-progress
+            --format markdown
+            --output ./lychee-report.md
+            './**/*.md'
+          fail: true
+
+      - name: Create issue on link failures
+        if: failure() && steps.lychee.outcome == 'failure'
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Broken external links detected"
+          content-filepath: ./lychee-report.md
+          labels: link-rot, automated

@@ -1,0 +1,43 @@
+# Label mapping for actions/labeler@v5.
+# Format: <label>: list of match rules. Each rule matches changed files.
+
+area:wiki:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "11-wiki/**"
+
+area:adr:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "07-Decisions/**"
+
+area:audit:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "06-Audits/**"
+
+area:cli:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".vault-*/scripts/**"
+          - ".vault-tools/lib/**"
+
+area:docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "docs/**"
+          - "mkdocs.yml"
+          - "*.md"
+
+i18n:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.en.md"
+          - "**/*.de.md"
+          - "**/*.es.md"
+          - "**/*.fr.md"
+          - "**/*.hu.md"
+          - "**/*.it.md"
+          - "**/*.ja.md"
+          - "**/*.pt.md"
+          - "**/*.zh.md"
