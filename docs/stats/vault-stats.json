@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T10:43:22Z",
+  "generated_at": "2026-05-19T10:49:22Z",
   "wiki": {
     "total": 187,
     "en": 70,
@@ -7,8 +7,8 @@
     "coverage_pct": 37.4
   },
   "audit": {
-    "total": 114,
-    "public": 106
+    "total": 117,
+    "public": 109
   },
   "memgraph": {
     "total_nodes": 31386,
@@ -23,8 +23,8 @@
   },
   "crons": 19,
   "public_commits": {
-    "all_time": 89,
-    "today": 56
+    "all_time": 90,
+    "today": 57
   },
   "health": {
     "status": "good",

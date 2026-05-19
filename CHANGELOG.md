@@ -2,6 +2,34 @@
 
 All notable changes to MyForge Vault 11.11.
 
+## [1.0.8] — 2026-05-19/20 (round 10 — consolidation)
+
+Round 10 — consolidation pass. ColBERT skeleton + the comprehensive **mega-session summary audit** tying together all 9 rounds in a single document.
+
+### Added
+
+- **`vault-colbert-fallback`** (idea #6 — skeleton-only) — ColBERTv2 late-interaction retrieval CLI. The model + index (~2 GB + ~30 min compute) are NOT downloaded today; `--check` gracefully reports the install state and prints the exact `pip install pylate` command. When the user enables it, integration with `vault-search` is via a `--fallback-colbert` flag triggered when bge-m3 top-1 < 0.55 AND query has ≥3 tokens.
+- **`06-Audits/2026-05-19 mega-session summary.md`** — comprehensive single-document review of all 9 rounds, 22 brainstorm ideas, 8 GitHub releases, cross-cutting findings, and the open user-action queue.
+
+### Findings consolidated
+
+The summary doc surfaces **5 cross-cutting findings worth tracking**:
+
+1. **KO-DB ingest hashes on (s,p,o,provenance)** — makes Bayesian multi-source corroboration math (#21) mathematically dead. 1,115 contested pairs, 0 confident-consensus. Ingest dedup fix needed.
+2. **Memgraph entity-graph has grown to 12,778** with Jaccard 0.0070 vs the deterministic graphify graph (#18) — LLM-extraction is capturing noise (quoted strings, hex colors). Graph cleanup signal.
+3. **127 unique predicates** vs canonical 38-vocab (#10). 87 orphans; top-4 (`prevents` 248, `fixes` 240, `defaults_to` 186, `motivated_by` 172) ready for promotion.
+4. **0/12,778 entities have bilingual annotation** (#7). The HU↔EN skeleton is in place; one 8-way parallel subagent run (~3h) would canonicalize the whole graph.
+5. **6 NotebookLM reports in `06-Audits/`** not the canonical `10-raw/external/notebooklm/` (#22). Discovery heuristic handles both; consider standardizing the download path.
+
+### Numbers (post-1.0.8 — true session total)
+
+- **19 brainstorm ideas LANDED** of 22 (86%), 1 still in-flight (#14), 2 deferred (#6 model not downloaded, #17 RSI Tier-3 caution)
+- **83+** total `/usr/local/bin/vault-*` + `11.11*` scripts (was ~65 pre-session)
+- **8 GitHub releases** v1.0.0 → v1.0.8 in <4 hours
+- Engineering invariants: ruff 0, frontmatter 0, atomic-write 0, daemon 5/5 healthy
+
+Full diff: https://github.com/MyForgeLabs/myforge-vault-1111/compare/v1.0.7...v1.0.8
+
 ## [1.0.7] — 2026-05-19/20 (round 9)
 
 Round 9 — three more ideas land (two main-thread + one subagent). **16 of 22 brainstorm ideas LANDED** this session; only 6 remaining (GitHub-Linear bridge still in flight, ColBERT/HopRAG-extended/RSI-Tier-3 deferred).
