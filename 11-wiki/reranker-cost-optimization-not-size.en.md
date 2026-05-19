@@ -12,6 +12,10 @@ status: stable
 
 # Reranker cost optimization — NOT size, trigger rate
 
+## 🎧 Audio overview
+
+- **Deep-dive podcast** (NotebookLM 2-host, ~5 min, EN): [reranker-cost-optimization-not-size.en-podcast.mp3](../.vault-nb/audio-overviews/reranker-cost-optimization-not-size.en-podcast.mp3) (39 MB) — *"Why Smaller AI Models Worsen Search"*
+
 ## The problem
 
 Cross-encoder reranker (`bge-reranker-v2-m3`, 568MB) takes **warm wall-clock 20s / 30 candidates × max_length=256** on CPU. The naive mitigation: **smaller model**. **But an A/B test refuted this:** `bge-reranker-base` (277MB) gives a 3.84× speedup (warm-median 5.4s), BUT **the <500ms target is UNREACHABLE** on CPU with any XLM-R-base model.

@@ -96,10 +96,20 @@ Gemini TTS (entries 1-4):     TL;DR (200 words) → single-voice MP3
 - [x] 3 new notebooks created
 - [x] 3 wiki sources uploaded
 - [x] 3 audio gen tasks queued
-- [ ] Audio download → vault `.vault-nb/audio-overviews/`
-- [ ] Audio copy → public `myforge-vault-1111/docs/audio/`
-- [ ] `Index.md` updated with podcast column
-- [ ] Per-wiki audio link added to EN wiki `## Related` section
+- [x] Audio download → vault `.vault-nb/audio-overviews/` (2026-05-19 07:22)
+- [x] Audio copy → public `myforge-vault-1111/docs/audio/`
+- [x] `Index.md` updated with podcast column
+- [x] Per-wiki audio link added (`## 🎧 Audio overview` section in 3 EN wikis)
+
+## Download completion (2026-05-19 07:22)
+
+| Wiki | NB ID | Artifact Title | Size | Status |
+|---|---|---|---:|---|
+| memgraph-multi-labeling-edge-case | `19e89b17` | "The 88.4 Percent Data Illusion" | 44 MB | ✅ |
+| reranker-cost-optimization-not-size | `3c2f2729` | "Why Smaller AI Models Worsen Search" | 39 MB | ✅ |
+| layered-eval-cascading-pattern | `6f5ef7a4` | "Slash AI evaluation costs with layered cascades" | 38 MB | ✅ |
+
+Total: **121 MB** across 3 deep-dive podcasts. All artifacts status `completed`, generation ~5-15 min after enqueue. Download time: ~30s per MP3 over notebooklm CLI.
 
 ## Related
 

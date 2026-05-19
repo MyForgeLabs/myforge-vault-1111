@@ -12,6 +12,10 @@ status: stable
 
 # Layered eval-cascading pattern
 
+## 🎧 Audio overview
+
+- **Deep-dive podcast** (NotebookLM 2-host, ~5 min, EN): [layered-eval-cascading-pattern.en-podcast.mp3](../.vault-nb/audio-overviews/layered-eval-cascading-pattern.en-podcast.mp3) (38 MB) — *"Slash AI evaluation costs with layered cascades"*
+
 ## The problem
 
 A robust crystallization or quality-gate pipeline often stacks multiple LLM-based evaluators: **G-Eval (Layer 2) + NLI (Layer 2.5) + Coherence (Layer 2.6) + SelfCheckGPT (Layer 2.7)**. Running every layer on every input bullet leads to cost explosion. In our production deployment, however, the pipeline runs with near-zero latency overhead because **each subsequent layer only fires on the previous layer's positive (auto-prop candidate)**.

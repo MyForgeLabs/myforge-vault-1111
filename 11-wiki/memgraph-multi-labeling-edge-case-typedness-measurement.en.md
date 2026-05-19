@@ -11,6 +11,10 @@ status: stable
 
 # Memgraph multi-labeling typedness metric
 
+## 🎧 Audio overview
+
+- **Deep-dive podcast** (NotebookLM 2-host, ~5 min, EN): [memgraph-multi-labeling-edge-case-typedness-measurement.en-podcast.mp3](../.vault-nb/audio-overviews/memgraph-multi-labeling-edge-case-typedness-measurement.en-podcast.mp3) (44 MB) — *"The 88.4 Percent Data Illusion"*
+
 Memgraph entities (and Neo4j, and Cypher graph-DBs generally) can carry **multiple labels** (`SET n:Concept; SET n:Pattern;`). Typedness metrics (typed-rate, label-distribution, multi-label-overlap) suffer from a **double-counting bug** if the script naively does `count(:Label1) + count(:Label2) + ...` SUM — the resulting number **can exceed the entity count**, which is misleading in reports.
 
 ## TL;DR

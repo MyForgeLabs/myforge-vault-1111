@@ -242,9 +242,42 @@ Plus a `notebooklm artifact poll` szintaxis is változott:
 
 Az `audio generate` parancs visszaadja a `Started: <TASK_ID>` UUID-t — azt kell tárolni és pollolni. Nem notebook-szinten kérdezhető le.
 
+## 14. `download report` szintaxis — pozicionális output-path, NEM `-o` flag (2026-05-19)
+
+**Tünet:**
+```bash
+notebooklm download report -a 5f282621 -o /target/report.md
+# Error: No such option: -o
+```
+
+**Helyes:**
+```bash
+notebooklm download report -a 5f282621 /target/report.md
+# OUTPUT_PATH pozicionális argumentum (akárcsak download audio óta v0.3.4)
+```
+
+Konzisztens a `download audio` 2026-05-15-i változással (lásd #13).
+
+## 15. `research wait --import-all` az ÖSSZES running research-re vár (2026-05-19)
+
+`source add-research <q> --mode deep --no-wait` többször hívható egymás után —
+queue-szerűen feláll. A `notebooklm research wait --import-all` aztán
+**mind**re vár (NEM csak az utolsóra) és import-álja a source-okat.
+
+A `notebooklm research status` csak az utolsó (vagy `current`) task-ot mutatja
+— a többit egyenesen csak a `wait` látja.
+
+## 16. `artifact wait --timeout 600` — default 60s sokszor kevés (2026-05-19)
+
+Custom report-artifact generation 5-10 perc deep research-output-on. A
+`notebooklm artifact wait <id>` default `--timeout 60` simán lefut anélkül hogy
+befejezte volna a generálás. **Mindig `--timeout 600` minimum** custom
+report-okra.
+
 ## Kapcsolódó
 
 - [[11-wiki/notebooklm-headless-login-fifo]] — auth-pattern (foundation)
 - [[11-wiki/notebooklm-seo-competitor-research-pattern]] — 17×7 workflow
+- [[11-wiki/notebooklm-deep-research-custom-report]] — Deep Research + custom report-flow
 - [[11-wiki/sv-08-notebooklm-cognitive-layer]] — research-cikk a NotebookLM cognitive-layer-paradigmaról
 - [[07-Decisions/2026-05-12 sv-8 notebooklm cognitive layer arch]] — Phase B-5 sprint ADR (vault-nb-sync + crystallize-hook + commute-podcast)
