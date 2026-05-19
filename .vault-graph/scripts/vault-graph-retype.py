@@ -1093,17 +1093,17 @@ def run_llm_extract_phase(conn, args, audit_path: Path) -> dict:
           f"({100*sum(per_label.values())/max(1,len(names)):.1f}%)")
     print(f"  remaining Generic    : {len(names) - sum(per_label.values()):,}")
     print("\n  per-label distribution:")
-    for l in TYPE_LABELS:
-        c = per_label.get(l, 0)
+    for label in TYPE_LABELS:
+        c = per_label.get(label, 0)
         if c:
-            print(f"    :{l:<11} {c:>5,}")
+            print(f"    :{label:<11} {c:>5,}")
     print("\n  per-rule distribution:")
     for r, c in per_rule.most_common():
         print(f"    {r:<28} {c:>5,}")
     print("\n  samples (first 3 per label):")
-    for l, ss in samples_per_label.items():
+    for label, ss in samples_per_label.items():
         if ss:
-            print(f"    :{l}")
+            print(f"    :{label}")
             for s in ss[:3]:
                 print(f"      {s!r}")
 
@@ -1123,10 +1123,10 @@ def run_llm_extract_phase(conn, args, audit_path: Path) -> dict:
 
     # Apply
     apply_labels(conn, plan)
-    readback = {l: count_label(conn, l) for l in TYPE_LABELS}
+    readback = {label: count_label(conn, label) for label in TYPE_LABELS}
     print("\n=== Memgraph read-back (post-apply) ===")
-    for l in TYPE_LABELS:
-        print(f"  :{l:<11} {readback[l]:>6,}")
+    for label in TYPE_LABELS:
+        print(f"  :{label:<11} {readback[label]:>6,}")
 
     # Final typed-ratio
     cur = conn.cursor()
