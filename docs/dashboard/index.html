@@ -245,111 +245,124 @@
 
     <div class="section-title">Tudástár</div>
     <div class="grid">
-      <div class="tile accent">
+      <a class="tile accent" href="../wiki/Index/">
         <div>
           <div class="label">Wiki összesen</div>
           <div class="value" id="wiki-total">—</div>
         </div>
         <div class="sub">evergreen koncepció</div>
-      </div>
-      <div class="tile">
+      </a>
+      <a class="tile" href="../wiki/Index/">
         <div>
           <div class="label">Angol fordítás</div>
           <div class="value" id="wiki-en">—</div>
         </div>
         <div class="sub"><strong id="wiki-coverage">—</strong> coverage</div>
-      </div>
-      <div class="tile">
+      </a>
+      <a class="tile" href="../wiki/Index/">
         <div>
           <div class="label">Csak HU</div>
           <div class="value" id="wiki-hu-only">—</div>
         </div>
         <div class="sub">fordításra vár</div>
-      </div>
-      <div class="tile accent">
+      </a>
+      <a class="tile accent" href="../audits/Index/" id="audit-tile">
         <div>
           <div class="label">Auditok</div>
           <div class="value" id="audit-public">—</div>
         </div>
-        <div class="sub">publikus / <strong id="audit-total">—</strong> total</div>
-      </div>
+        <div class="sub">publikus / <strong id="audit-total">—</strong> total<span id="audit-privacy" class="privacy-hint" style="display:none"></span></div>
+      </a>
     </div>
 
     <div class="section-title">Knowledge Graph (Memgraph)</div>
     <div class="grid">
-      <div class="tile accent">
+      <a class="tile accent" href="https://github.com/MyForgeLabs/myforge-vault-1111#knowledge-graph" target="_blank" rel="noopener">
         <div>
           <div class="label">Total node</div>
           <div class="value" id="mg-nodes">—</div>
         </div>
         <div class="sub">graph total</div>
-      </div>
-      <div class="tile">
+      </a>
+      <a class="tile" href="https://github.com/MyForgeLabs/myforge-vault-1111#knowledge-graph" target="_blank" rel="noopener">
         <div>
           <div class="label">Total edge</div>
           <div class="value" id="mg-edges">—</div>
         </div>
         <div class="sub">tipusos relációk</div>
-      </div>
-      <div class="tile">
+      </a>
+      <a class="tile" href="https://github.com/MyForgeLabs/myforge-vault-1111#knowledge-graph" target="_blank" rel="noopener">
         <div>
           <div class="label">Entity</div>
           <div class="value" id="mg-entities">—</div>
         </div>
         <div class="sub">subject + object</div>
-      </div>
-      <div class="tile">
+      </a>
+      <a class="tile" href="https://github.com/MyForgeLabs/myforge-vault-1111#knowledge-graph" target="_blank" rel="noopener">
         <div>
           <div class="label">Concept</div>
           <div class="value" id="mg-concepts">—</div>
         </div>
         <div class="sub">absztrakt</div>
-      </div>
-      <div class="tile">
+      </a>
+      <a class="tile" href="https://github.com/MyForgeLabs/myforge-vault-1111#knowledge-graph" target="_blank" rel="noopener">
         <div>
           <div class="label">ALIAS_OF</div>
           <div class="value small" id="mg-alias">—</div>
         </div>
         <div class="sub">canonicalize</div>
-      </div>
-      <div class="tile">
+      </a>
+      <a class="tile" href="https://github.com/MyForgeLabs/myforge-vault-1111#knowledge-graph" target="_blank" rel="noopener">
         <div>
           <div class="label">LINKS_TO</div>
           <div class="value small" id="mg-links">—</div>
         </div>
         <div class="sub">wikilink edge</div>
-      </div>
+      </a>
     </div>
 
     <div class="section-title">KO-DB &amp; üzem</div>
     <div class="grid">
-      <div class="tile accent">
+      <a class="tile accent" href="https://github.com/MyForgeLabs/myforge-vault-1111#ko-db" target="_blank" rel="noopener">
         <div>
           <div class="label">KO-DB facts</div>
           <div class="value" id="ko-facts">—</div>
         </div>
         <div class="sub">structured triplet</div>
-      </div>
-      <div class="tile">
+      </a>
+      <a class="tile" href="https://github.com/MyForgeLabs/myforge-vault-1111#automation" target="_blank" rel="noopener">
         <div>
           <div class="label">Aktív cronok</div>
           <div class="value" id="crons">—</div>
         </div>
         <div class="sub">vault-* automation</div>
-      </div>
-      <div class="tile good">
+      </a>
+      <a class="tile good" href="https://github.com/MyForgeLabs/myforge-vault-1111/commits/main" target="_blank" rel="noopener">
         <div>
           <div class="label">Public commits</div>
           <div class="value" id="commits-total">—</div>
         </div>
         <div class="sub"><strong id="commits-today">—</strong> ma</div>
-      </div>
-      <div class="tile">
+      </a>
+      <a class="tile" id="health-tile" href="../wiki/crystallize-health/" target="_self">
         <div>
-          <div class="label">Build status</div>
-          <div class="value small" id="status">LIVE</div>
+          <div class="label">Crystallize health</div>
+          <div class="value small" id="status">…</div>
         </div>
-        <div class="sub" id="last-update">just now</div>
+        <div class="sub" id="health-detail">betöltés…</div>
+      </a>
+    </div>
+
+    <div class="trend">
+      <h3>30-napos trend</h3>
+      <svg class="trend-chart" id="trend-chart" viewBox="0 0 600 120" preserveAspectRatio="none"></svg>
+      <div class="trend-legend">
+        <span style="color: var(--accent)">Wiki</span>
+        <span style="color: var(--good)">Audits (public)</span>
+        <span style="color: var(--warn)">Memgraph edges</span>
+      </div>
+      <div id="trend-empty" class="trend-empty" style="display:none">
+        Még nincs elég time-series adat — minimum 2 snapshot szükséges trendhez.
       </div>
     </div>
   </main>

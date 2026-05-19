@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-19T07:12:23Z",
+  "generated_at": "2026-05-19T07:13:00Z",
   "wiki": {
-    "total": 172,
+    "total": 173,
     "en": 70,
-    "hu_only": 102,
-    "coverage_pct": 40.7
+    "hu_only": 103,
+    "coverage_pct": 40.5
   },
   "audit": {
     "total": 103,
@@ -23,8 +23,8 @@
   },
   "crons": 14,
   "public_commits": {
-    "all_time": 63,
-    "today": 30
+    "all_time": 64,
+    "today": 31
   },
   "health": {
     "status": "good",
