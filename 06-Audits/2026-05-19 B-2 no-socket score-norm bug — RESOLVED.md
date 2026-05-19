@@ -72,19 +72,51 @@ invariant that is now enforced upstream.
 - [x] Open-followup #2 in [[../07-Decisions/2026-05-18 sv-phase-b2 retrospective]]: **CLOSE**
 - [x] B-2 final `sv-phase-b2-done` git-tag remains valid
 
-## New follow-up surfaced
+## New follow-up surfaced — RESOLVED same session
 
 While verifying, a separate B-2 performance gap emerged: **bge-reranker-v2-m3
-is NOT kept warm in the daemon** (`reranker_loaded: false` per
-`vault-search-health`). Smart-rerank-triggered queries cold-load the model
-every time → ~6.2s latency penalty.
+was NOT kept warm in the daemon** (`reranker_loaded: false`). Smart-rerank
+queries cold-loaded the model every time → ~6-10s wall-clock per trigger.
 
-Proposed: add `reranker_keepalive: true` toggle to `vault-search-server`,
-pre-load `bge-reranker-v2-m3` (~277MB) at daemon start. Trade-off: +277MB
-process RSS, -6s on first rerank-trigger.
+**Resolution applied 2026-05-19 08:30 UTC**:
 
-Backlog item: `vault-search-server reranker-warm`, owner: SV B-2 follow-up,
-target: post-B-1 W23 (no rush — smart-rerank-trigger isn't hot-path).
+- Discovered: daemon already supports `VAULT_RERANK_PREWARM=<spec>` env-var
+  (`vault-search-server` lines 582-594)
+- Added `Environment=VAULT_RERANK_PREWARM=v2-m3` + `MemoryHigh=5G` / `MemoryMax=7G`
+  to `/etc/systemd/system/vault-search.service`
+- `systemctl daemon-reload` + `restart vault-search.service` → ~20s prewarm
+  (loaded_at: 1779179409, `reranker_loaded: true` confirmed in health-rpc)
+
+### Latency improvement — measured
+
+| Backend | Wall-clock | `rerank_ms` reported | Notes |
+|---|---|---|---|
+| `--backend=native` (default `auto`) | **18.6s** | 7908ms | In-process CLI reranker cold-loads bge-reranker every time |
+| `--backend=numpy` (daemon-routed) | **8.1s** | 8070ms | Daemon's pre-warmed reranker; CLI just makes socket call |
+
+**Wall-clock savings: ~10s per smart-rerank-triggered query (54% reduction).**
+
+The 8s `rerank_ms` itself is the actual cross-encoder forward pass on ~18
+candidates × ~512 tokens — that's compute-bound, not load-bound. Keepalive
+fixes the **load** cost (full benefit), not the inference cost.
+
+### Outstanding optimization (NEW backlog)
+
+The CLI shim `/usr/local/bin/vault-search` `auto` backend prefers native +
+in-process reranker. When `smart_rerank` triggers, it still loads
+bge-reranker locally instead of delegating to the keepalive daemon.
+
+**Proposed:** in `vault-search` auto-backend smart-rerank path, after
+native first-pass detects a trigger, route the rerank step through the
+daemon socket (`{"method":"rerank_candidates", "candidates":[...]}`) if
+`reranker_loaded: true`. Falls back to in-process if daemon unavailable.
+
+Effort: ~1-2h (new daemon RPC method + CLI path-switch). Effect: every
+smart-rerank-triggered query benefits from keepalive without explicit
+`VAULT_SEARCH_BACKEND=numpy` export.
+
+Workaround until then: set `export VAULT_SEARCH_BACKEND=numpy` for shells
+where smart-rerank is hot-path (e.g. `bmad-vault-bridge --context` shells).
 
 ## Kapcsolódó
 

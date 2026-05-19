@@ -65,6 +65,9 @@ import time
 from datetime import datetime
 from pathlib import Path
 
+sys.path.insert(0, "/root/obsidian-vault/.vault-tools/lib")
+from vault_atomic import atomic_append_jsonl  # noqa: E402
+
 VAULT_ROOT = Path(os.environ.get("VAULT_ROOT", "/root/obsidian-vault"))
 MEMGRAPH_HOST = os.environ.get("MEMGRAPH_HOST", "127.0.0.1")
 MEMGRAPH_PORT = int(os.environ.get("MEMGRAPH_PORT", "7687"))
@@ -508,15 +511,13 @@ def backfill(*, dry_run: bool = False, force: bool = False,
 
     # Audit log (JSONL)
     if audit_path:
-        audit_path.parent.mkdir(parents=True, exist_ok=True)
-        with audit_path.open("a", encoding="utf-8") as f:
-            for r in audit_records:
-                f.write(json.dumps(r, ensure_ascii=False) + "\n")
-            # Also write parse + write errors
-            for e in parse_errors:
-                f.write(json.dumps({"ts": ts, "event": "parse_error", **e}) + "\n")
-            for e in write_errors:
-                f.write(json.dumps({"ts": ts, "event": "write_error", **e}) + "\n")
+        for r in audit_records:
+            atomic_append_jsonl(audit_path, r)
+        # Also write parse + write errors
+        for e in parse_errors:
+            atomic_append_jsonl(audit_path, {"ts": ts, "event": "parse_error", **e})
+        for e in write_errors:
+            atomic_append_jsonl(audit_path, {"ts": ts, "event": "write_error", **e})
 
     elapsed = time.time() - t0
     print(f"[BACKFILL] discovered={len(files)} embedded={written} "

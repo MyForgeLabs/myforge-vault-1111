@@ -92,14 +92,14 @@ START_EPOCH="$(date +%s)"
 # --- ENV-flag short-circuit ---
 if [[ "${ORCHESTRATOR_DISABLED:-0}" == "1" ]]; then
   python3 - "$AUDIT_FILE" "$RUN_UUID" "$START_TS" "$TASK" <<'PYEOF'
-import json, sys, pathlib
+import sys
+sys.path.insert(0, "/root/obsidian-vault/.vault-tools/lib")
+from vault_atomic import atomic_append_jsonl
 audit, uuid, ts, task = sys.argv[1:]
-pathlib.Path(audit).parent.mkdir(parents=True, exist_ok=True)
-with open(audit, 'a', encoding='utf-8') as f:
-  f.write(json.dumps({
-    "event": "orchestrator_run", "run_uuid": uuid, "status": "disabled",
-    "start_ts": ts, "task": task[:200]
-  }, ensure_ascii=False) + "\n")
+atomic_append_jsonl(audit, {
+  "event": "orchestrator_run", "run_uuid": uuid, "status": "disabled",
+  "start_ts": ts, "task": task[:200]
+})
 PYEOF
   echo "[11.11orchestrator] ORCHESTRATOR_DISABLED=1 → no-op (audit: $AUDIT_FILE)" >&2
   exit 0
@@ -186,9 +186,10 @@ if [[ "$FINAL_STATUS" == "worker_ok" ]]; then
     batch_preview)
       PREVIEW_FILE="${RUNS_DIR}/preview-${RUN_UUID}.jsonl"
       python3 - "$PREVIEW_FILE" "$RUN_UUID" "$WORKER_OUT" "$CRITIC_OUT" "$TASK" "$PUBLISH_PATH" <<'PYEOF'
-import json, sys, pathlib
+import json, sys
+sys.path.insert(0, "/root/obsidian-vault/.vault-tools/lib")
+from vault_atomic import atomic_append_jsonl
 pf, uuid, wo, co, task, pub = sys.argv[1:]
-pathlib.Path(pf).parent.mkdir(parents=True, exist_ok=True)
 try:
   with open(co) as f: critic = json.load(f)
 except Exception:
@@ -204,8 +205,7 @@ row = {
   "confidence": critic.get("confidence"),
   "reasoning": (critic.get("reasoning") or "")[:300],
 }
-with open(pf, 'a', encoding='utf-8') as f:
-  f.write(json.dumps(row, ensure_ascii=False) + "\n")
+atomic_append_jsonl(pf, row)
 print(pf)
 PYEOF
       echo "[11.11orchestrator] BATCH_PREVIEW → $PREVIEW_FILE (user-confirm required)" >&2
@@ -249,7 +249,9 @@ export _OR_FE="$FINAL_EXIT" _OR_SR="$SUMMARIZER_RAN" _OR_SO="$SUMMARIZER_OUT"
 export _OR_SRC="$SUMMARIZER_RC" _OR_STS="$START_TS" _OR_ETS="$END_TS" _OR_WS="$WALL_SEC"
 export _OR_RT="$RED_TEAM" _OR_MC="$MOCK_CRITIC"
 python3 - <<'PYEOF'
-import json, os, pathlib
+import os, sys
+sys.path.insert(0, "/root/obsidian-vault/.vault-tools/lib")
+from vault_atomic import atomic_append_jsonl
 row = {
   "event": "orchestrator_run",
   "run_uuid": os.environ["_OR_UUID"],
@@ -273,9 +275,7 @@ row = {
   "wall_clock_sec": int(os.environ["_OR_WS"]),
 }
 audit = os.environ["_OR_AUDIT"]
-pathlib.Path(audit).parent.mkdir(parents=True, exist_ok=True)
-with open(audit, 'a', encoding='utf-8') as f:
-  f.write(json.dumps(row, ensure_ascii=False) + "\n")
+atomic_append_jsonl(audit, row)
 PYEOF
 
 echo "[11.11orchestrator] DONE | status=${FINAL_STATUS} | wall=${WALL_SEC}s | audit=$AUDIT_FILE" >&2

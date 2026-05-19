@@ -338,7 +338,9 @@ fi
 export _CR_TARGETS="$TARGETS"
 export _CR_MOCK="$MOCK"
 python3 - "$AUDIT_FILE" <<'PYEOF'
-import json, sys, pathlib, os
+import sys, os
+sys.path.insert(0, "/root/obsidian-vault/.vault-tools/lib")
+from vault_atomic import atomic_append_jsonl
 audit = sys.argv[1]
 row = {
   "event": "critic_review",
@@ -358,9 +360,7 @@ row = {
   "end_ts": os.environ["_CR_ETS"],
   "wall_clock_sec": int(os.environ["_CR_WS"])
 }
-pathlib.Path(audit).parent.mkdir(parents=True, exist_ok=True)
-with open(audit, 'a', encoding='utf-8') as f:
-  f.write(json.dumps(row, ensure_ascii=False) + "\n")
+atomic_append_jsonl(audit, row)
 PYEOF
 
 echo "[11.11critic] audit: $AUDIT_FILE (verdict=${FINAL_VERDICT}, wall=${WALL_SEC}s)" >&2

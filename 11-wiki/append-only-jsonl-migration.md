@@ -58,7 +58,7 @@ from vault_atomic import atomic_append_jsonl
 atomic_append_jsonl(AUDIT_LOG, entry)
 ```
 
-## Migration sites — 2026-05-19 audit
+## Migration sites — 2026-05-19 audit + post-migration
 
 | Script | Sites | Status |
 |---|---|---|
@@ -66,18 +66,37 @@ atomic_append_jsonl(AUDIT_LOG, entry)
 | `bmad-vault-bridge` | 1 (L109) | ✅ migrated |
 | `vault-auto-disable-check` | 1 (L208) | 🟡 whitelisted (well-tested append path) |
 | `vault-stats-generator` | 1 (L207) | 🟡 whitelisted (public-repo state, not vault) |
-| `vault-route` | 1 (L269) | ⏳ todo |
-| `vault-skill-distill` | 1 (L482) | ⏳ todo |
-| `vault-skill-search` | 1 (L512) | ⏳ todo |
-| `vault-nb-meta-push` | 1 (L171) | ⏳ todo |
-| `vault-ko-remap-legacy` | 2 (L296, L529) | ⏳ todo |
-| `11.11critic` | 1 (L362) | ⏳ todo |
-| `11.11crystallize` | 3 (L370, L390, L866) | ⏳ todo |
-| `11.11summarizer` | 1 (L254) | ⏳ todo |
-| `11.11worker` | 1 (L269) | ⏳ todo |
-| `11.11orchestrator` | 3 (L98, L207, L277) | ⏳ todo |
+| `vault-route` | 1 (L269) | ✅ migrated |
+| `vault-skill-distill` | 1 (L482) | ✅ migrated (`vault_atomic` import expanded) |
+| `vault-skill-search` | 1 (L512 → 3 atomic appends) | ✅ migrated |
+| `vault-nb-meta-push` | 1 (L171, embedded heredoc) | ✅ migrated |
+| `vault-ko-remap-legacy` | 2 (L296, L529) | 🟡 manual-review-marked (file-handle reuse inside `BEGIN`/`COMMIT`/`ROLLBACK` SQL transaction blocks — converting to one-shot append breaks the transactional contract) |
+| `11.11critic` | 1 (L362, .sh heredoc) | ✅ migrated |
+| `11.11crystallize` | 1 (L866 audit) + 2 false-positives | ✅ 1 migrated; L370/L390 are **markdown content appends** to `MEMORY.md` / wiki `.md` (NOT JSONL — JSON-encoding prose would be semantically wrong, correctly refused) |
+| `11.11summarizer` | 1 (L254, .sh heredoc) | ✅ migrated |
+| `11.11worker` | 1 (L269, .sh heredoc) | ✅ migrated |
+| `11.11orchestrator` | 3 (L98, L207, L277, .sh heredocs) | ✅ migrated |
 
-**Total: ~17 sites, 2 migrated, 2 whitelisted, ~13 outstanding.**
+**Final totals:** 12 sites migrated (10 from the W21 batch + 2 from the W20
+landing), 2 whitelisted state-files, 2 manual-review-flagged for transactional
+contract, 2 false-positives correctly refused as non-JSONL. **0 outstanding.**
+
+## Subagent-fanout finding (2026-05-19)
+
+The W21 batch (10 sites) was migrated by a single `general-purpose` subagent
+in ~8 min, ~108K tokens. Surfaced two non-obvious patterns:
+
+1. **JSONL vs markdown content append disambiguation** — line 370 and 390 of
+   `11.11crystallize` matched the `open(p,"a")` pattern but were appending
+   *markdown prose* into `MEMORY.md` / wiki files. The agent correctly
+   refused to JSON-encode them. **Lesson for any "convert all open(...,'a')
+   sites" rule:** verify the payload SHAPE, not just the file extension.
+2. **Transaction-scoped file-handle reuse** — `vault-ko-remap-legacy` opens
+   the audit log once per SQL transaction (`BEGIN ... COMMIT`) and writes
+   multiple rows inside, sharing the handle. Converting each write to a
+   one-shot `atomic_append_jsonl` would break transactional atomicity
+   (audit rows could persist even if the SQL rollback). Flagged for manual
+   refactor — needs a transaction-aware variant.
 
 ## Whitelist criteria
 

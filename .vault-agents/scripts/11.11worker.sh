@@ -235,7 +235,9 @@ fi
 python3 - "$AUDIT_FILE" "$RUN_UUID" "$WORKER_ID" "$AGENT" "$PROMPT_SOURCE" "$SKILL" \
   "$MAX_TOKENS" "$START_TS" "$END_TS" "$WALL_SEC" "$RC" "$STDOUT_BYTES" "$EST_TOKENS" \
   "$OUTPUT_PATH" "${TMP_OUT}.formatted" <<'PYEOF'
-import json, sys, pathlib
+import json, sys
+sys.path.insert(0, "/root/obsidian-vault/.vault-tools/lib")
+from vault_atomic import atomic_append_jsonl
 (audit_file, run_uuid, worker_id, agent, prompt_source, skill, max_tokens,
  start_ts, end_ts, wall_sec, rc, stdout_bytes, est_tokens,
  output_path, formatted_out) = sys.argv[1:]
@@ -265,9 +267,7 @@ row = {
     "output_path": output_path or None,
     "output_head_400": stdout_head,
 }
-pathlib.Path(audit_file).parent.mkdir(parents=True, exist_ok=True)
-with open(audit_file, 'a', encoding='utf-8') as f:
-    f.write(json.dumps(row, ensure_ascii=False) + "\n")
+atomic_append_jsonl(audit_file, row)
 PYEOF
 
 rm -f "$TMP_OUT" "$TMP_ERR" "${TMP_OUT}.formatted"

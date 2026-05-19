@@ -311,6 +311,44 @@ def _get_reranker(model_id: str | None = None):
     return models[resolved]
 
 
+def _daemon_has_reranker_loaded(model_id: str | None = None) -> bool:
+    """Probe vault-search-server health; True if reranker_loaded for this model.
+
+    Why this exists: in-process bge-reranker cold-load is ~10s wall-clock.
+    The daemon (vault-search.service) keeps reranker warm via
+    VAULT_RERANK_PREWARM. When this returns True, the auto-backend smart-rerank
+    path delegates to the daemon instead of cold-loading locally.
+    See 06-Audits/2026-05-19 B-2 no-socket score-norm bug — RESOLVED.md.
+
+    Returns False on any failure (socket-down / timeout / model-mismatch) —
+    caller must fall back to in-process rerank.
+    """
+    resolved = _resolve_reranker_model(model_id)
+    for sock_path in SOCKET_CANDIDATES:
+        try:
+            s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+            s.settimeout(0.5)
+            s.connect(sock_path)
+            s.sendall(b'{"method":"health"}\n')
+            buf = b""
+            while b"\n" not in buf:
+                chunk = s.recv(65536)
+                if not chunk:
+                    break
+                buf += chunk
+                if len(buf) > 64 * 1024:
+                    break
+            s.close()
+            resp = json.loads(buf.split(b"\n", 1)[0].decode())
+        except Exception:
+            continue
+        if not resp.get("reranker_loaded"):
+            return False
+        loaded = resp.get("reranker_models_loaded") or []
+        return resolved in loaded
+    return False
+
+
 def _rerank_in_process(query: str, candidates: list[dict], top_k: int,
                        model_id: str | None = None) -> list[dict]:
     """Score (query, doc.text) with cross-encoder; return top_k. In-place mutation.
@@ -588,7 +626,30 @@ def _apply_smart_rerank_local(candidates: list[dict], query: str, top_k: int,
         skip_reason = "score-gap"
     gap_out = round(score_gap, 4) if score_gap != float("inf") else None
     if should_rerank:
-        # Trigger rerank
+        # Daemon-delegation: if vault-search-server has the requested
+        # reranker warm (via VAULT_RERANK_PREWARM), delegate the whole
+        # smart-rerank call there — saves ~10s wall-clock vs in-process
+        # cold-load. Disable with VAULT_NO_DAEMON_RERANK=1.
+        # Fall through to in-process on any daemon-side failure.
+        delegate_disabled = os.environ.get("VAULT_NO_DAEMON_RERANK") == "1"
+        if (not delegate_disabled
+                and _daemon_has_reranker_loaded(reranker_model)):
+            try:
+                resp = _try_socket_search(
+                    query, top_k, "content",
+                    rerank=False, smart_rerank=True,
+                    trigger_threshold=trigger_threshold,
+                    score_gap_threshold=score_gap_threshold,
+                    reranker_model=reranker_model,
+                )
+                if resp and resp.get("results") is not None:
+                    # Tag the delegation path so callers can observe it
+                    resp["backend"] = f"{backend_label}+daemon-rerank"
+                    return resp
+            except Exception:
+                # Silently fall through to in-process
+                pass
+        # In-process rerank (cold-load if first call this CLI invocation)
         reranked = _rerank_in_process(query, candidates, top_k,
                                       model_id=reranker_model)
         return {"results": reranked, "namespace": "content", "query": query,

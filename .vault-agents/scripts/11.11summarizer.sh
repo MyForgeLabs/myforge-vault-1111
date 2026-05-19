@@ -235,7 +235,9 @@ export _SU_ETS="$END_TS"
 export _SU_WS="$WALL_SEC"
 export _SU_RC="$RC"
 python3 - "$AUDIT_FILE" <<'PYEOF'
-import json, sys, pathlib, os
+import json, sys, os
+sys.path.insert(0, "/root/obsidian-vault/.vault-tools/lib")
+from vault_atomic import atomic_append_jsonl
 audit = sys.argv[1]
 row = {
   "event": "summarizer_run",
@@ -250,9 +252,7 @@ row = {
   "wall_clock_sec": int(os.environ["_SU_WS"]),
   "exit_code": int(os.environ["_SU_RC"])
 }
-pathlib.Path(audit).parent.mkdir(parents=True, exist_ok=True)
-with open(audit, 'a', encoding='utf-8') as f:
-  f.write(json.dumps(row, ensure_ascii=False) + "\n")
+atomic_append_jsonl(audit, row)
 PYEOF
 
 rm -f "$PROMPT_FILE" "$TMP_OUT" "$TMP_ERR" "$WRAPPED"
