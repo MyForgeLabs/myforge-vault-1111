@@ -1,0 +1,23 @@
+{
+  "repo": "Alishahryar1/free-claude-code",
+  "ingested_at": "2026-05-19T04:18:13.841297",
+  "head_commit": "54a9dc4e341e0591d48cabb83970bcde9e1ceff8",
+  "head_commit_short": "54a9dc4",
+  "files": [
+    {
+      "repo_path": "README.md",
+      "vault_path": "10-raw/external/Alishahryar1_free-claude-code/README.md",
+      "chars": 18481
+    },
+    {
+      "repo_path": "AGENTS.md",
+      "vault_path": "10-raw/external/Alishahryar1_free-claude-code/AGENTS.md",
+      "chars": 3989
+    },
+    {
+      "repo_path": "CLAUDE.md",
+      "vault_path": "10-raw/external/Alishahryar1_free-claude-code/CLAUDE.md",
+      "chars": 103
+    }
+  ]
+}

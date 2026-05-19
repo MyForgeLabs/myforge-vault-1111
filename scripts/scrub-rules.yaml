@@ -27,6 +27,7 @@ include_paths:
   - ".vault-ko/prompts/**"
   - ".vault-ko/safety/**"
   - ".vault-ko/schema/**"
+  - ".vault-ko/mcp-server/**"
   - ".vault-memory/README.md"
   - ".vault-memory/scripts/**.py"
   - ".vault-eval/README.md"

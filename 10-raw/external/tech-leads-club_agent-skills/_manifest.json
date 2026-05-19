@@ -1,0 +1,38 @@
+{
+  "repo": "tech-leads-club/agent-skills",
+  "ingested_at": "2026-05-19T04:18:08.227877",
+  "head_commit": "81e7e0dd3abe314aa004ec276c1d64643d2bd6c0",
+  "head_commit_short": "81e7e0d",
+  "files": [
+    {
+      "repo_path": "README.md",
+      "vault_path": "10-raw/external/tech-leads-club_agent-skills/README.md",
+      "chars": 14431
+    },
+    {
+      "repo_path": "AGENTS.md",
+      "vault_path": "10-raw/external/tech-leads-club_agent-skills/AGENTS.md",
+      "chars": 6498
+    },
+    {
+      "repo_path": "CHANGELOG.md",
+      "vault_path": "10-raw/external/tech-leads-club_agent-skills/CHANGELOG.md",
+      "chars": 54736
+    },
+    {
+      "repo_path": "CLAUDE.md",
+      "vault_path": "10-raw/external/tech-leads-club_agent-skills/CLAUDE.md",
+      "chars": 6498
+    },
+    {
+      "repo_path": "SECURITY.md",
+      "vault_path": "10-raw/external/tech-leads-club_agent-skills/SECURITY.md",
+      "chars": 11039
+    },
+    {
+      "repo_path": "CONTRIBUTING.md",
+      "vault_path": "10-raw/external/tech-leads-club_agent-skills/CONTRIBUTING.md",
+      "chars": 9796
+    }
+  ]
+}
