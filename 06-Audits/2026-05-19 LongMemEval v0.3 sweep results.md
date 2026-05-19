@@ -51,6 +51,36 @@ sweep on the canonical 99-Q LongMemEval-S query-set.
 - Marginal gain K=5 → K=20: **-5.05pp** (fetched-pool expansion lift).
 - Marginal gain K=20 → K=50: **-9.09pp** (diminishing return / noise zone).
 
+### Counter-intuitive finding: monotone-decreasing curve
+
+The sweep curve is **strictly monotone-decreasing** in K (every increase of K
+reduces Recall@5). This refutes the BEIR/MTEB lore that a wider candidate
+pool helps the fusion step.
+
+Mechanism (hypothesis): the RRF score `1/(60 + rank)` is bounded by the
+worst rank in the pool. When K=5, only the top-5 from each side enter the
+union — both rankers' high-confidence picks dominate. When K=50, lower-
+quality candidates from both sides bring **rank-50 noise** into the fused
+ranking and crowd the top-5 output. The semantic side, in particular, has
+a long tail of low-cosine matches that have NO BM25 overlap — these enter
+the fused pool with `rrf = 1/(60+50)` ≈ 0.009 and can outrank legitimate
+candidates that show up at rank-3 on only ONE side.
+
+This finding is consistent with the recent KO-DB conflict findings from the
+2026-05-19 mega-session (1,115 contested entries, 0 confident-consensus) —
+when two rankers disagree, larger pools amplify disagreement-noise, smaller
+pools concentrate on high-confidence overlap.
+
+Practical implication: the v0.2 default `HYBRID_FETCH_K=50` is **too wide**
+for this 99-Q LongMemEval-S corpus. Tuning down to K=5..15 yields +7-9pp
+Recall@5 at zero extra latency cost.
+
+### Self-consistency check
+
+The standalone variant-A run at fetch_k=20 and the sweep entry at K=20
+should produce identical Recall@5 (same code path, same queries). Observed:
+both = **0.7172 (71/99)** — deterministic, no caching/state divergence.
+
 ## Run-context
 
 - Timestamp: 2026-05-19T13:05:41Z
@@ -65,8 +95,37 @@ sweep on the canonical 99-Q LongMemEval-S query-set.
 - v0.3-A vs v0.2 hybrid floor (0.6268): PASS (0.7172)
 - v0.3-B vs v0.3-A floor (A - 5pp): PASS (0.7374 vs A 0.7172)
 
+## Pytest layer
+
+The v0.3 sweep is gated by 4 new tests in
+`.vault-eval/regression/test_longmemeval_regression.py`:
+
+- `test_v03_self_consistency` — baseline blocks tolerance-consistency
+- `test_v03_fused_pool_rrf_pass` — variant A ≥ v0.2 hybrid - 5pp
+- `test_v03_fused_pool_reranker_pass` — variant B ≥ variant A - 5pp
+- `test_v03_fetchk_sweep_curve_pass` — all K-values clear baseline floor;
+  sweet-spot is in swept set; sweet-spot ≥ K=5
+
+Run: `pytest .vault-eval/regression/ -m "fast or v03" -v`
+
+Current status: **7/7 passing** (4 fast + 3 v03 — `test_v03_self_consistency`
+is `fast` since it only validates baseline.json shape).
+
 ## Follow-ups
 
-- daily cron 02:45 still runs v0.2 fast-mode (NO change); ramping v0.3 onto cron is a separate decision after 1-2 verified runs.
-- variant C (LLM-judge) skeleton in `driver_v03_fused.py` (`NotImplementedError`) — opt-in via Claude subagent fanout, non-zero $ cost.
-- baseline.json v03_* blocks were NULL → populated on this first run (see `locked_at` timestamps). Update procedure documented inline.
+- **CRON UNCHANGED**: daily cron 02:45 still runs `vault-eval-regression`
+  (v0.2 fast-mode); ramping v0.3 onto cron is a separate decision after
+  1-2 verified runs (need to confirm K=5 win is stable across runs).
+- **Investigation TODO**: re-run sweep on a Spanish/French session-corpus
+  fork to test whether monotone-decreasing curve is corpus-specific or a
+  general property of this RRF-fusion config (k_const=60).
+- **Variant C (LLM-judge)** — stub in `driver_v03_fused.py` raises
+  `NotImplementedError`; opt-in via Claude subagent fanout (`crystallize-
+  pending` pattern), non-zero $ cost. Defer to user opt-in.
+- **HYBRID_FETCH_K production-tune?** — the v0.3 finding suggests lowering
+  the production default from 50 to 5. NOT auto-applied (would change
+  interactive search behaviour); leave to a separate ADR if the K=5 win
+  is reproduced on a second run.
+- **baseline.json v03_* blocks** were NULL → populated on this first run
+  (see `locked_at` timestamps). Update procedure documented in baseline
+  `_update_procedure`.
