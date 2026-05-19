@@ -2,6 +2,43 @@
 
 All notable changes to MyForge Vault 11.11.
 
+## [1.0.5] — 2026-05-19 (very late evening)
+
+Round 7 — four more brainstorm ideas land. Now at **9 of 22 brainstorm ideas LANDED** (45 days into the v1.0 lifecycle, on launch-day itself).
+
+### Added — 4 new CLIs
+
+- **`vault-ko-triangulate`** (idea #19) — semantic triangulation score using bge-reranker as NLI proxy. Given a (subject, predicate, object) triplet, finds related chunks via Memgraph + KO-DB, then scores entailment via the warm reranker. **4 verdicts**: `support` (≥0.65), `weak` (0.40-0.65), `neutral` (0.20-0.40), `no-evidence` (<0.20). Validated by catching a hallucinated fact in the smoke-test — string-corroboration alone passed it; triangulation correctly flagged 0.00. Orthogonal to the existing `confidence` field; combine via min() at downstream use.
+- **`vault-nb-ingest`** (idea #22) — NotebookLM deep-research → KO-DB triplet-extraction pipeline. Scans `10-raw/external/notebooklm/` + `06-Audits/` for NotebookLM-style reports, parses the 7-section structure, pre-filters anchor-only/reference-only/question-only blocks, writes Phase-1 subagent-fanout pending files. Dry-run default; `--apply` requires `VAULT_NB_INGEST_APPLY=1` env-var as the second gate. Already detected **6 reports** on this vault (Q4-Q5 vault-meta synthesis, top-7 EN podcast plan, KGC-4 integration research, etc.).
+- **`vault-entity-trace`** (idea #8) — "When did I first learn X" provenance timeline. For any entity name, queries KO-DB (substring across subject + object) + Memgraph (entity-graph 1-hop) and emits a chronological source-list with predicates used per source. Validated on `Memgraph` (128 facts, first 2026-05-12, most recent 2026-05-18) and `KGC-4` (17 facts, first 2026-04-30 ADR).
+- **`vault-search-rewrite`** (idea #12) — HyDE-style query reformulation when `vault-search` returns weak hits. **Two modes**: rule-based expansion (deterministic, $0, uses 13-token EXPANSION_HINTS + KO-DB alias lookup) and subagent-mode (pending-file pattern for LLM-generated HyDE paragraph). Threshold-triggered: rewrite kicks in only if top-1 cosine < 0.4 (or `--always-rewrite`). Validated +0.050 improvement on `"agent fanout"` (0.611 → 0.660).
+
+### Added — wikis
+
+- `11-wiki/triangulation-score-pattern.en.md` — when string-corroboration isn't enough, when bge-reranker as NLI proxy is OK vs production deberta-v3
+- `11-wiki/notebooklm-ingest-pipeline.en.md` — 7-section parsing heuristic + pre-filter rules + idempotency contract
+- `11-wiki/entity-trace-provenance-pattern.en.md` — Karpathy "provenance = trust" principle in CLI form
+
+### Numbers (post-1.0.5)
+
+- **9 brainstorm ideas LANDED** of 22 (Round 6: #2/3/4/5 + Round 7: #8/12/19/22), 13 remaining
+- **+4 new `/usr/local/bin` scripts** (vault-ko-triangulate, vault-nb-ingest, vault-entity-trace, vault-search-rewrite)
+- **+3 new wikis** + audit docs
+- **75** total `/usr/local/bin/vault-*` + `11.11*` scripts (up from 70)
+- **23** cron entries (no new this round; existing ones still all flock-mutex)
+- Lint state: ruff 0, frontmatter 0, atomic-write 0
+- Wiki count: 262 (up from 258)
+- EN translations: 75 (up from 71)
+- All-green CI
+
+### Internal
+
+- 2 parallel subagent-fanout runs (triangulate + nb-ingest scaffolds) ~12 min total wall-clock, $0 cost
+- Main thread parallel: vault-entity-trace + vault-search-rewrite ~30 min hand-written
+- Total Round 7: ~45 min for 4 production-quality CLIs
+
+Full diff: https://github.com/MyForgeLabs/myforge-vault-1111/compare/v1.0.4...v1.0.5
+
 ## [1.0.4] — 2026-05-19 (late evening)
 
 Round 6 — four more brainstorm ideas land. All read-only / additive; no
