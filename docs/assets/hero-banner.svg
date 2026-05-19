@@ -58,8 +58,8 @@
 
   <!-- Top-right meta line -->
   <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="12" fill="#7e8cb3">
-    <text x="1220" y="92" text-anchor="end">v1.0.8 · MIT · myforgelabs.github.io/myforge-vault-1111</text>
-    <text x="1220" y="110" text-anchor="end">265 wiki · 12,778 entities · 13,801 facts · 962 skills</text>
+    <text x="1220" y="92" text-anchor="end">v1.0.9 · MIT · myforgelabs.github.io/myforge-vault-1111</text>
+    <text x="1220" y="110" text-anchor="end">274 wiki · 8,913 entities · 13,800+ facts · 962 skills</text>
   </g>
 
   <!-- ============== 8-axis radial diagram (left half) ============== -->
@@ -167,12 +167,12 @@
       <!-- Card 2: WIKI 122×66 -->
       <rect x="142" width="122" height="66" rx="10" fill="#0c1740" stroke="#1d2a52"/>
       <text x="158" y="22" font-size="10" fill="#9ce8ff" letter-spacing="1.3">WIKI PAGES</text>
-      <text x="158" y="50" font-size="22" font-weight="800" fill="#e8eeff">265</text>
+      <text x="158" y="50" font-size="22" font-weight="800" fill="#e8eeff">274</text>
 
       <!-- Card 3: ADRs 122×66 -->
       <rect x="284" width="122" height="66" rx="10" fill="#0c1740" stroke="#1d2a52"/>
       <text x="300" y="22" font-size="10" fill="#9ce8ff" letter-spacing="1.3">ADRs</text>
-      <text x="300" y="50" font-size="22" font-weight="800" fill="#e8eeff">45</text>
+      <text x="300" y="50" font-size="22" font-weight="800" fill="#e8eeff">46</text>
 
       <!-- Card 4: CRON 122×66 -->
       <rect x="426" width="104" height="66" rx="10" fill="#0c1740" stroke="#1d2a52"/>
@@ -182,7 +182,7 @@
 
     <!-- Bottom tagline (under the cards, breathable spacing) -->
     <g transform="translate(0 252)">
-      <text x="0" y="0" font-size="13" fill="#cfd6ea" font-weight="600">8 independently-developable axes · 83+ production scripts</text>
+      <text x="0" y="0" font-size="13" fill="#cfd6ea" font-weight="600">8 independently-developable axes · 85+ production scripts</text>
       <text x="0" y="22" font-size="11" fill="#9aa6c2" font-family="ui-monospace, SFMono-Regular, Consolas, monospace">11.11start · 11.11note · 11.11focus · 11.11stop · 11.11crystallize · 11.11worker</text>
     </g>
   </g>

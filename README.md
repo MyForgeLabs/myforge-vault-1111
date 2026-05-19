@@ -4,9 +4,9 @@
 [![Deploy](https://github.com/MyForgeLabs/myforge-vault-1111/actions/workflows/docs.yml/badge.svg)](https://github.com/MyForgeLabs/myforge-vault-1111/actions/workflows/docs.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 [![Release](https://img.shields.io/github/v/release/MyForgeLabs/myforge-vault-1111?color=blueviolet&label=release)](https://github.com/MyForgeLabs/myforge-vault-1111/releases/latest)
-[![Wiki pages](https://img.shields.io/badge/wiki-258-orange)](./11-wiki/)
-[![ADRs](https://img.shields.io/badge/ADR-45-purple)](./07-Decisions/)
-[![Audits](https://img.shields.io/badge/audits-104-yellow)](./06-Audits/)
+[![Wiki pages](https://img.shields.io/badge/wiki-274-orange)](./11-wiki/)
+[![ADRs](https://img.shields.io/badge/ADR-46-purple)](./07-Decisions/)
+[![Audits](https://img.shields.io/badge/audits-126-yellow)](./06-Audits/)
 [![Language](https://img.shields.io/badge/lang-HU%2BEN-red)](./README.hu.md)
 [![Star History](https://img.shields.io/github/stars/MyForgeLabs/myforge-vault-1111?style=social)](https://github.com/MyForgeLabs/myforge-vault-1111/stargazers)
 
@@ -21,7 +21,7 @@
 
 ## What is this
 
-**MyForge Vault 11.11** (internal codename: SV) is an **8-axis architecture** + **70+ production scripts** + **258 evergreen wiki pages** + **45 ADRs** + **104 audits** that turns a classic Obsidian-vault into a **self-improving knowledge-system shared by three CLI AI agents** (Claude Code, Codex, Gemini). Measurable numeric results, clear OSS scope, MIT-licensed, $0 marginal cost.
+**MyForge Vault 11.11** (internal codename: SV) is an **8-axis architecture** + **85+ production scripts** + **274 evergreen wiki pages** + **46 ADRs** + **126 audits** that turns a classic Obsidian-vault into a **self-improving knowledge-system shared by three CLI AI agents** (Claude Code, Codex, Gemini). Measurable numeric results, clear OSS scope, MIT-licensed, $0 marginal cost.
 
 > If you have 90 seconds: read the [FAQ](./11-wiki/faq.en.md). If you have 5
 > minutes: read the [architecture overview](./11-wiki/architecture-overview.en.md).
@@ -44,7 +44,7 @@ The methodology starts from [Karpathy's LLM-Wiki pattern](./11-wiki/Karpathy-LLM
 | **B-4** | Tool composition | Discoverable skill-pool | `vault-skill-search` 462 SKILL Memgraph native |
 | **B-5** | NotebookLM cognitive layer | Cross-project synthesis | 63-source vault-meta NB + 3-query synthesis |
 | **B-6** | Multi-agent orchestration | Worker + Critic + Summarizer | `11.11worker.sh` claude-code subprocess |
-| **B-7** | World-model / knowledge graph | Typed entity-extraction | 8997 entities / 28.9% typed (Concept/Decision/Sprint/etc) |
+| **B-7** | World-model / knowledge graph | Typed entity-extraction | 8,913 entities / 19,215 edges (post-cleanup -30.2% noise) |
 | **B-8** | Recursive self-improvement | GEPA prompt mutation | `gepa.optimize()` real loop, Pareto +14.3% |
 
 ## The 7 most important artifacts (NotebookLM-recommended)
@@ -64,17 +64,17 @@ The methodology starts from [Karpathy's LLM-Wiki pattern](./11-wiki/Karpathy-LLM
 | **Cost** | **$0** marginal (Claude Code + NotebookLM subscription, NOT Anthropic API) |
 | Session history | **~80 closed sessions** indexed |
 | Knowledge objects (KO-DB) | **13,800+** structured triplets (SQLite) |
-| Entity graph | **8,997 entities / 24,606 edges / 100% typed** (Memgraph CE 3.9) |
+| Entity graph | **8,913 entities / 19,215 edges** (Memgraph CE 3.9, post-cleanup -30.2% nodes / -21.9% edges) |
 | Skill pool | **962** SkillChunks Memgraph native vector-index |
-| Wiki | **258** evergreen wikis, **71** English translations (28% coverage) |
-| ADR | **45** Architecture Decision Records |
-| Audits | **104** one-shot reports |
+| Wiki | **274** evergreen wikis, **71** English translations (26% coverage) |
+| ADR | **46** Architecture Decision Records |
+| Audits | **126** one-shot reports |
 | Cross-project synthesis | 63-source NotebookLM + 3 podcast episodes |
 | Subagent-fanout iterations | 8+ super-sessions (5–14 parallel) |
 | Memgraph vector-index speedup | **280× vs numpy-cosine** (sub-ms p95) |
 | Smart-rerank latency (Round 3) | **18.6s → 8.7s** (-55%) via daemon keepalive + delegation |
 | GEPA Pareto improvement | **+14.3%** (baseline 0.541 → 0.619) |
-| LongMemEval-S Recall@5 | **67.68%** hybrid BM25+semantic+RRF (up from 46% baseline) |
+| LongMemEval-S Recall@5 | **73.74%** v0.3-B (BGE-reranker-v2-m3, K=20); **76.77%** K=5 sweet-spot; 67.68% v0.2 hybrid baseline; 46% IDF-only baseline |
 | G-Eval verdict-agreement | **96.7%** on 30-sample gold-label set |
 | Atomic-write compliance | **66/66** scripts lint-clean (`vault-atomic-lint --quiet`) |
 
@@ -129,7 +129,7 @@ skill-library axis. Use these alongside SV:
 | Feature | Pocock/skills | obra/superpowers | tinyhumansai/openhuman | **MyForge Vault 11.11** |
 |---|:---:|:---:|:---:|:---:|
 | Skill share | ✅ | ✅ | ✅ | ✅ + Memgraph vector |
-| Persistent knowledge-graph | ❌ | ❌ | ❌ | ✅ Memgraph 8,997 entities |
+| Persistent knowledge-graph | ❌ | ❌ | ❌ | ✅ Memgraph 8,913 entities |
 | Markdown-vault as the substrate | ❌ | ❌ | ❌ | ✅ Obsidian-native |
 | `11.11*` session-orchestration | ❌ | ❌ | ❌ | ✅ unique CLI family |
 
@@ -235,9 +235,9 @@ MIT — see [LICENSE](./LICENSE). Cherry-pick freely, attribution-friendly.
 
 ## Related
 
-- [Architecture decision records (45)](./07-Decisions/)
-- [Evergreen wikis (258)](./11-wiki/)
-- [Audits (104)](./06-Audits/)
+- [Architecture decision records (46)](./07-Decisions/)
+- [Evergreen wikis (274)](./11-wiki/)
+- [Audits (126)](./06-Audits/)
 - [FAQ](./11-wiki/faq.en.md)
 - [Architecture overview (with Mermaid diagram)](./11-wiki/architecture-overview.en.md)
 - [Hungarian README](./README.hu.md)
@@ -270,7 +270,7 @@ If you use this in research, please cite via [CITATION.cff](./CITATION.cff). Bib
   title        = {{myforge-vault-1111: A self-improving Obsidian
                    vault for CLI AI agents}},
   year         = 2026,
-  version      = {1.0.1},
+  version      = {1.0.9},
   url          = {https://github.com/MyForgeLabs/myforge-vault-1111}
 }
 ```

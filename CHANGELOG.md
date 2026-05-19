@@ -2,6 +2,37 @@
 
 All notable changes to MyForge Vault 11.11.
 
+## [1.0.9] — 2026-05-19 PM (follow-up consolidation)
+
+PM follow-up to the mega-session. The remaining 3 brainstorm ideas land (now **22/22 = 100%**), the KO-DB hash provenance refactor migrates clean, Memgraph noise gets pruned, and a LongMemEval K-sweep surfaces a counter-intuitive sweet-spot.
+
+### Added — 2 new CLIs
+
+- **`vault-gh-bridge`** (idea #14) — GitHub commit-history bridge. Per-project `git log` → 10-raw/gh-history → KO-DB triplet-extraction. Closes the last brainstorm gap.
+- **`migrate-hash-refactor-2026-05-19.py`** — KO-DB hash refactor: hash by `(s,p,o)` only with `fact_provenance` as a 1:N side-table. 190 ms migration on the live `facts.db`. Unblocks Bayesian multi-source corroboration (#21).
+
+### Findings (post-1.0.9)
+
+1. **LongMemEval-S v0.3 sweep** — counter-intuitive monotone-decreasing curve. K=5 sweet-spot at **76.77% Recall@5** (+9.09pp vs v0.2 hybrid baseline 67.68%). BGE-reranker-v2-m3 on K=20 reaches **73.74%** but at 62× wall-clock cost. Default shipped: v0.3-A K=5, reranker opt-in.
+2. **Memgraph cleanup** — 12,778 → **8,913 entities** (-30.2%), 24,606 → **19,215 edges** (-21.9%). Noise-extraction pruned (quoted strings, hex colors, code fragments).
+3. **#34 KO-DB hash refactor LANDED** — synthetic verify now reaches `confident-consensus`, math-soundness gate PASS.
+4. **B-8 RSI Critic skeleton** + **Sleep-Critic stage-2 activation** + **SCD2 fact-versioning hook** (5 + 9 + 14 pytest = 28/28 PASS).
+5. **22/22 brainstorm ideas LANDED** (was 19/22 after 1.0.8) — #14 ships here, #9 SCD2 hook activates, #6/#17 deferred items reclassified to skeleton-ready.
+
+### Numbers (post-1.0.9 — cumulative across 2 days)
+
+- **22/22 brainstorm ideas LANDED** (100%)
+- **85+** total `/usr/local/bin/vault-*` + `11.11*` scripts (+2 in this release; **16 new CLIs across 2 days**)
+- **274** evergreen wikis (+3 today: temporal-KG, NotebookLM-ingest, triangulation)
+- **126** audits (sweep result, cleanup execution, hash-refactor postmortem)
+- **46** ADRs
+- Memgraph: **8,913 entities / 19,215 edges** (post-cleanup)
+- Pytest: **28/28 PASS** cumulative (14 SCD2 + 5 Critic + 9 Sleep-Critic)
+- Engineering invariants: ruff 0, frontmatter 0, atomic-write 0, daemon 5/5 healthy
+- **$0** marginal cost (Claude Code subscription)
+
+Full diff: https://github.com/MyForgeLabs/myforge-vault-1111/compare/v1.0.8...v1.0.9
+
 ## [1.0.8] — 2026-05-19/20 (round 10 — consolidation)
 
 Round 10 — consolidation pass. ColBERT skeleton + the comprehensive **mega-session summary audit** tying together all 9 rounds in a single document.
