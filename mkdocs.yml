@@ -104,6 +104,7 @@ markdown_extensions:
 
 nav:
   - Bevezető: index.md
+  - Dashboard: dashboard/index.html
   - Agentek: agents.md
   - Reproduction Guide: reproduction-guide.md
   - Knowledge Graph:

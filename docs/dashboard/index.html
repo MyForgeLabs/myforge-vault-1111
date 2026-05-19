@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MyForge Vault 11.11 — Live Dashboard</title>
+<meta name="description" content="Live vault-state snapshot: wiki, audits, knowledge graph, KO-DB facts, public-repo activity." />
+<style>
+  :root {
+    --bg: #0f1115;
+    --bg-tile: #181c24;
+    --bg-tile-hover: #1f2530;
+    --border: #2a3140;
+    --accent: #ffb74d;
+    --accent-dim: #ff9800;
+    --text: #e6e8ec;
+    --text-dim: #9aa0aa;
+    --good: #66bb6a;
+    --warn: #ffa726;
+    --bad: #ef5350;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.45;
+  }
+  header {
+    padding: 32px 24px 16px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  header .accent { color: var(--accent); }
+  header p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  header .meta {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  header .meta span { color: var(--accent); }
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 16px 60px;
+  }
+  .section-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin: 24px 4px 12px;
+    font-weight: 600;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+  }
+  .tile {
+    background: var(--bg-tile);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 14px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background 0.15s, transform 0.15s, border-color 0.15s;
+    box-shadow: var(--shadow);
+  }
+  .tile:hover {
+    background: var(--bg-tile-hover);
+    border-color: var(--accent-dim);
+    transform: translateY(-1px);
+  }
+  .tile .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .tile .value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    font-feature-settings: "tnum";
+    line-height: 1.05;
+  }
+  .tile .value.small { font-size: 22px; }
+  .tile .sub {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .tile .sub strong { color: var(--accent); font-weight: 600; }
+  .tile.good .value { color: var(--good); }
+  .tile.warn .value { color: var(--warn); }
+  .tile.accent .value { color: var(--accent); }
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .nav {
+    text-align: center;
+    margin-top: 16px;
+  }
+  .nav a {
+    display: inline-block;
+    margin: 0 8px;
+    padding: 6px 14px;
+    background: var(--bg-tile);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .nav a:hover {
+    background: var(--bg-tile-hover);
+    border-color: var(--accent-dim);
+  }
+  .error {
+    background: rgba(239, 83, 80, 0.12);
+    border: 1px solid var(--bad);
+    color: var(--bad);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 20px 16px;
+    font-size: 14px;
+  }
+  .pulse {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--good);
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+    vertical-align: middle;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  @media (max-width: 480px) {
+    header h1 { font-size: 22px; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .tile { min-height: 100px; padding: 12px 10px; }
+    .tile .value { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>MyForge Vault 11.11 <span class="accent">— Live</span></h1>
+    <p>Real-time snapshot a superintelligent vault aktuális állapotáról</p>
+    <div class="meta">
+      <span class="pulse"></span>
+      Generálva: <span id="generated-at">betöltés…</span>
+      &nbsp;·&nbsp;
+      Auto-refresh: <span>60s</span>
+    </div>
+    <div class="nav">
+      <a href="../">← Áttekintés</a>
+      <a href="../wiki/Index/">Evergreen Wiki</a>
+      <a href="../audits/Index/">Audits</a>
+      <a href="https://github.com/MyForgeLabs/myforge-vault-1111" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <main>
+    <div id="error-banner" style="display:none" class="error"></div>
+
+    <div class="section-title">Tudástár</div>
+    <div class="grid">
+      <div class="tile accent">
+        <div>
+          <div class="label">Wiki összesen</div>
+          <div class="value" id="wiki-total">—</div>
+        </div>
+        <div class="sub">evergreen koncepció</div>
+      </div>
+      <div class="tile">
+        <div>
+          <div class="label">Angol fordítás</div>
+          <div class="value" id="wiki-en">—</div>
+        </div>
+        <div class="sub"><strong id="wiki-coverage">—</strong> coverage</div>
+      </div>
+      <div class="tile">
+        <div>
+          <div class="label">Csak HU</div>
+          <div class="value" id="wiki-hu-only">—</div>
+        </div>
+        <div class="sub">fordításra vár</div>
+      </div>
+      <div class="tile accent">
+        <div>
+          <div class="label">Auditok</div>
+          <div class="value" id="audit-public">—</div>
+        </div>
+        <div class="sub">publikus / <strong id="audit-total">—</strong> total</div>
+      </div>
+    </div>
+
+    <div class="section-title">Knowledge Graph (Memgraph)</div>
+    <div class="grid">
+      <div class="tile accent">
+        <div>
+          <div class="label">Total node</div>
+          <div class="value" id="mg-nodes">—</div>
+        </div>
+        <div class="sub">graph total</div>
+      </div>
+      <div class="tile">
+        <div>
+          <div class="label">Total edge</div>
+          <div class="value" id="mg-edges">—</div>
+        </div>
+        <div class="sub">tipusos relációk</div>
+      </div>
+      <div class="tile">
+        <div>
+          <div class="label">Entity</div>
+          <div class="value" id="mg-entities">—</div>
+        </div>
+        <div class="sub">subject + object</div>
+      </div>
+      <div class="tile">
+        <div>
+          <div class="label">Concept</div>
+          <div class="value" id="mg-concepts">—</div>
+        </div>
+        <div class="sub">absztrakt</div>
+      </div>
+      <div class="tile">
+        <div>
+          <div class="label">ALIAS_OF</div>
+          <div class="value small" id="mg-alias">—</div>
+        </div>
+        <div class="sub">canonicalize</div>
+      </div>
+      <div class="tile">
+        <div>
+          <div class="label">LINKS_TO</div>
+          <div class="value small" id="mg-links">—</div>
+        </div>
+        <div class="sub">wikilink edge</div>
+      </div>
+    </div>
+
+    <div class="section-title">KO-DB &amp; üzem</div>
+    <div class="grid">
+      <div class="tile accent">
+        <div>
+          <div class="label">KO-DB facts</div>
+          <div class="value" id="ko-facts">—</div>
+        </div>
+        <div class="sub">structured triplet</div>
+      </div>
+      <div class="tile">
+        <div>
+          <div class="label">Aktív cronok</div>
+          <div class="value" id="crons">—</div>
+        </div>
+        <div class="sub">vault-* automation</div>
+      </div>
+      <div class="tile good">
+        <div>
+          <div class="label">Public commits</div>
+          <div class="value" id="commits-total">—</div>
+        </div>
+        <div class="sub"><strong id="commits-today">—</strong> ma</div>
+      </div>
+      <div class="tile">
+        <div>
+          <div class="label">Build status</div>
+          <div class="value small" id="status">LIVE</div>
+        </div>
+        <div class="sub" id="last-update">just now</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>
+      Forrás:
+      <a id="json-link" href="../stats/vault-stats.json" target="_blank" rel="noopener">vault-stats.json</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/MyForgeLabs/myforge-vault-1111" target="_blank" rel="noopener">MyForgeLabs / myforge-vault-1111</a>
+      &nbsp;·&nbsp;
+      <a href="../">Vissza a vaulthoz</a>
+    </p>
+  </footer>
+
+  <script>
+    const STATS_URL = "../stats/vault-stats.json";
+
+    function fmt(n) {
+      if (n === null || n === undefined) return "—";
+      return Number(n).toLocaleString("hu-HU");
+    }
+    function setText(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    }
+    function timeAgo(iso) {
+      try {
+        const then = new Date(iso);
+        const sec = Math.max(0, Math.round((Date.now() - then.getTime()) / 1000));
+        if (sec < 60) return sec + "s ago";
+        if (sec < 3600) return Math.round(sec / 60) + "m ago";
+        if (sec < 86400) return Math.round(sec / 3600) + "h ago";
+        return Math.round(sec / 86400) + "d ago";
+      } catch (e) { return iso; }
+    }
+    function showError(msg) {
+      const banner = document.getElementById("error-banner");
+      banner.style.display = "block";
+      banner.textContent = "⚠️ " + msg;
+    }
+    function hideError() {
+      document.getElementById("error-banner").style.display = "none";
+    }
+
+    async function loadStats() {
+      try {
+        const res = await fetch(STATS_URL + "?t=" + Date.now(), { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const s = await res.json();
+        hideError();
+
+        setText("generated-at", s.generated_at + " (" + timeAgo(s.generated_at) + ")");
+
+        // Wiki
+        setText("wiki-total", fmt(s.wiki?.total));
+        setText("wiki-en", fmt(s.wiki?.en));
+        setText("wiki-coverage", (s.wiki?.coverage_pct ?? 0) + "%");
+        setText("wiki-hu-only", fmt(s.wiki?.hu_only));
+
+        // Audit
+        setText("audit-public", fmt(s.audit?.public));
+        setText("audit-total", fmt(s.audit?.total));
+
+        // Memgraph
+        const mg = s.memgraph || {};
+        setText("mg-nodes", fmt(mg.total_nodes));
+        setText("mg-edges", fmt(mg.total_edges));
+        setText("mg-entities", fmt(mg.entities));
+        setText("mg-concepts", fmt(mg.concepts));
+        setText("mg-alias", fmt(mg.alias_of));
+        setText("mg-links", fmt(mg.links_to));
+
+        // KO-DB
+        setText("ko-facts", fmt(s.ko_db?.total_facts));
+        setText("crons", fmt(s.crons));
+
+        // Commits
+        setText("commits-total", fmt(s.public_commits?.all_time));
+        setText("commits-today", fmt(s.public_commits?.today));
+
+        setText("status", "LIVE");
+        setText("last-update", "frissítve " + timeAgo(s.generated_at));
+      } catch (err) {
+        showError("Nem sikerült betölteni a stats-fájlt: " + err.message);
+        setText("status", "STALE");
+      }
+    }
+
+    loadStats();
+    setInterval(loadStats, 60_000);
+  </script>
+</body>
+</html>
