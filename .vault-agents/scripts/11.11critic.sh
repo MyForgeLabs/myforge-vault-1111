@@ -334,27 +334,29 @@ else
   echo "$VERDICT_JSON"
 fi
 
-# --- JSONL audit ---
-python3 - "$AUDIT_FILE" <<PYEOF
-import json, sys, pathlib
+# --- JSONL audit (env-var passing, safe) ---
+export _CR_TARGETS="$TARGETS"
+export _CR_MOCK="$MOCK"
+python3 - "$AUDIT_FILE" <<'PYEOF'
+import json, sys, pathlib, os
 audit = sys.argv[1]
 row = {
   "event": "critic_review",
-  "run_uuid": "${RUN_UUID}",
-  "review_id": "${REVIEW_ID}",
-  "input_file": "${INPUT}",
-  "targets": """${TARGETS}""",
-  "red_team": bool(int("${RED_TEAM}")),
-  "mock": bool(int("${MOCK}")),
-  "verdict": "${FINAL_VERDICT}",
-  "confidence": float("${LLM_CONFIDENCE}"),
-  "layer1_env_flag": "${LAYER1}",
-  "layer2_forbidden_target": "${LAYER2}",
-  "layer3_git_hook": "${LAYER3}",
-  "layer4_llm_review": "${LAYER4}",
-  "start_ts": "${START_TS}",
-  "end_ts": "${END_TS}",
-  "wall_clock_sec": ${WALL_SEC}
+  "run_uuid": os.environ["_CR_UUID"],
+  "review_id": os.environ["_CR_RID"],
+  "input_file": os.environ["_CR_IN"],
+  "targets": os.environ.get("_CR_TARGETS", ""),
+  "red_team": bool(int(os.environ.get("_CR_RT", "0"))),
+  "mock": bool(int(os.environ.get("_CR_MOCK", "0"))),
+  "verdict": os.environ["_CR_VERDICT"],
+  "confidence": float(os.environ.get("_CR_CONF", "0.0") or 0.0),
+  "layer1_env_flag": os.environ["_CR_L1"],
+  "layer2_forbidden_target": os.environ["_CR_L2"],
+  "layer3_git_hook": os.environ["_CR_L3"],
+  "layer4_llm_review": os.environ["_CR_L4"],
+  "start_ts": os.environ["_CR_STS"],
+  "end_ts": os.environ["_CR_ETS"],
+  "wall_clock_sec": int(os.environ["_CR_WS"])
 }
 pathlib.Path(audit).parent.mkdir(parents=True, exist_ok=True)
 with open(audit, 'a', encoding='utf-8') as f:
