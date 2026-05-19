@@ -4,6 +4,7 @@ description: Yoast SEO Premium /llms.txt fizikai fájlt generál — hogyan szű
 type: wiki
 created: 2026-05-04
 tags: ["#tech/wordpress", "#tech/yoast-seo", "#tech/seo", "#ai"]
+updated: 2026-05-19
 ---
 
 # Yoast llms.txt szabály-tisztítás

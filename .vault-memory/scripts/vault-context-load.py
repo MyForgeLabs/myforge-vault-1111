@@ -18,8 +18,7 @@ import argparse
 import json
 import os
 import re
-import sys
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 
 VAULT_ROOT = Path(os.environ.get("VAULT_ROOT", "/root/obsidian-vault"))

@@ -6,6 +6,7 @@ metadata:
 created: 2026-05-12
 tags: ["#type/reference"]
 tag_backfill: 2026-05-19
+updated: 2026-05-19
 ---
 # DBNet (PaddleOCR) vs Tesseract LSTM kis callout-detektálásra
 

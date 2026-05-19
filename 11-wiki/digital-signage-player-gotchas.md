@@ -4,6 +4,7 @@ description: HTML5 video/iframe-alapú signage player buktatói (canplay re-fire
 type: wiki
 created: 2026-05-03
 tags: ["#type/wiki", "#topic/digital-signage", "#topic/web-debugging"]
+updated: 2026-05-19
 ---
 
 # Digital signage player — debugging gotchas

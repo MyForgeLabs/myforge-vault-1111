@@ -7,7 +7,10 @@ tags: ["#type/wiki", "#topic/knowledge-graph", "#topic/scale", "sv-2", "memgraph
 source: vault-meta NotebookLM Q4#4 / Q5#4 (2026-05-18, 63-source synthesis)
 status: evergreen
 project: [[../02-Projects/superintelligent-vault]]
-related: [[memgraph-ce-feature-limits]], [[vendor-feature-verify-before-workaround]], [[sv-02-recursive-self-improvement]]
+related:
+  - "[[memgraph-ce-feature-limits]]"
+  - "[[vendor-feature-verify-before-workaround]]"
+  - "[[sv-02-recursive-self-improvement]]"
 ---
 
 # Memgraph MAGE vector-search scale trade-off

@@ -4,6 +4,7 @@ description: WP-site áttelepítése egyik Hostinger-staging-ről másikra Updra
 type: wiki
 created: 2026-05-04
 tags: ["#tech/wordpress", "#tech/hostinger", "#tech/updraftplus"]
+updated: 2026-05-19
 ---
 
 # Hostinger UpdraftPlus staging-migráció — 4 buktató

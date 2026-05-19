@@ -9,7 +9,10 @@ status: evergreen
 lang: en
 translated_from: multi-agent-pointer-ownership-lock.md
 project: [[../02-Projects/superintelligent-vault]]
-related: [[claude-code-session-id-per-chat-isolation]], [[cli-session-id-env-var-matrix]], [[sv-03-multi-agent-orchestration]]
+related:
+  - "[[claude-code-session-id-per-chat-isolation]]"
+  - "[[cli-session-id-env-var-matrix]]"
+  - "[[sv-03-multi-agent-orchestration]]"
 ---
 
 # Multi-agent pointer ownership lock pattern

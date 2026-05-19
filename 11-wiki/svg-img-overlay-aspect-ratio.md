@@ -6,6 +6,7 @@ metadata:
 created: 2026-05-12
 tags: ["#tech/react", "#type/reference", "#project/superintelligent-vault"]
 tag_backfill: 2026-05-19
+updated: 2026-05-19
 ---
 # SVG-overlay az `<img>` fölött — aspect-ratio CSS layout bug
 

@@ -90,7 +90,7 @@ def main():
         if args.dry_run or result["stub"]:
             print(f"  [stub] {proj_slug} → {result['out_path']}")
 
-    print(f"  (skeleton — Week 1: notebooklm CLI integration; AirDrop-kompatibilis iCloud-sync)")
+    print("  (skeleton — Week 1: notebooklm CLI integration; AirDrop-kompatibilis iCloud-sync)")
 
 
 if __name__ == "__main__":

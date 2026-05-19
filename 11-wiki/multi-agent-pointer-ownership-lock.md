@@ -7,7 +7,10 @@ tags: ["#type/wiki", "#topic/orchestration", "#topic/concurrency", "sv-3", "mult
 source: vault-meta NotebookLM Q4#5 / Q5#3 (2026-05-18, 63-source synthesis)
 status: evergreen
 project: [[../02-Projects/superintelligent-vault]]
-related: [[claude-code-session-id-per-chat-isolation]], [[cli-session-id-env-var-matrix]], [[sv-03-multi-agent-orchestration]]
+related:
+  - "[[claude-code-session-id-per-chat-isolation]]"
+  - "[[cli-session-id-env-var-matrix]]"
+  - "[[sv-03-multi-agent-orchestration]]"
 ---
 
 # Multi-agent pointer ownership lock pattern

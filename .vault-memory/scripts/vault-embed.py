@@ -202,7 +202,7 @@ def main():
     elapsed = time.time() - t0
     print(f"[EMBED] files={len(files)} chunks={total_chunks} errors={len(errors)} elapsed={elapsed:.1f}s")
     if errors:
-        print(f"\nFirst 5 errors:", file=sys.stderr)
+        print("\nFirst 5 errors:", file=sys.stderr)
         for f, e in errors[:5]:
             print(f"  {f}: {e}", file=sys.stderr)
 

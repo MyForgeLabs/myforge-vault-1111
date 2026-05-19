@@ -19,7 +19,7 @@ Usage:
 import argparse
 import os
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 
 VAULT_ROOT = Path(os.environ.get("VAULT_ROOT", "/root/obsidian-vault"))
@@ -59,7 +59,7 @@ def main():
     args = ap.parse_args()
 
     days = 7 if args.week else 30 if args.month else 7
-    content = reflect_stub(days)
+    _ = reflect_stub(days)  # side-effect-only stub until B-8 RSI Réteg 3 lands
 
     REFLECT_DIR.mkdir(parents=True, exist_ok=True)
     out = REFLECT_DIR / f"{datetime.utcnow().strftime('%Y-%m-%d')}.md"

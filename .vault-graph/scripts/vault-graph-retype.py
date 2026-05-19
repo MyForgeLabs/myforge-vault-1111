@@ -868,7 +868,7 @@ def run_classifier_phase(conn, args, audit_path: Path) -> dict:
     print(f"[stats] :Entity nodes fetched: {len(names):,}", file=sys.stderr)
 
     plan: list[tuple[str, str]] = []
-    per_type_samples: dict[str, list[str]] = {l: [] for l in TYPE_LABELS}
+    per_type_samples: dict[str, list[str]] = {label: [] for label in TYPE_LABELS}
     for n in names:
         t = classify(n)
         if t:
@@ -1047,7 +1047,7 @@ def run_llm_extract_phase(conn, args, audit_path: Path) -> dict:
             })
             return {"would_apply": dict(per_label)}
         apply_labels(conn, plan)
-        readback = {l: count_label(conn, l) for l in TYPE_LABELS}
+        readback = {label: count_label(conn, label) for label in TYPE_LABELS}
         write_audit(audit_path, {
             "phase": "llm-extract",
             "mode": "consume-pending-apply",
@@ -1062,7 +1062,7 @@ def run_llm_extract_phase(conn, args, audit_path: Path) -> dict:
     plan: list[tuple[str, str]] = []
     per_label = _C()
     per_rule = _C()
-    samples_per_label: dict[str, list[str]] = {l: [] for l in TYPE_LABELS}
+    samples_per_label: dict[str, list[str]] = {label: [] for label in TYPE_LABELS}
     batch_stats = []
 
     for bi, batch in enumerate(batches, 1):

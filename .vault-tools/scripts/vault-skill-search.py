@@ -599,8 +599,8 @@ def search(query: str, top_k: int = DEFAULT_TOP_K,
     fetch_k = max(top_k * 2, 10)
     cur.execute(
         "CALL vector_search.search($idx, $k, $qv) YIELD node, similarity "
-        f"RETURN node.path AS path, node.name AS name, "
-        f"node.description AS description, node.source_root AS source_root, "
+        "RETURN node.path AS path, node.name AS name, "
+        "node.description AS description, node.source_root AS source_root, "
         "similarity AS score",
         {"idx": VECTOR_INDEX_NAME, "k": fetch_k, "qv": q_vec},
     )

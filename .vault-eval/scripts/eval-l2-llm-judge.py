@@ -87,7 +87,7 @@ def smoke_test():
         ("bge-m3 is a 768-dimensional embedding.",
          "bge-m3 produces 1024-dimensional multilingual sentence embeddings."),
     ]
-    pipe = get_nli_pipeline()
+    _ = get_nli_pipeline()  # pre-warm cache so first nli_score doesn't print download bars mid-loop
     print("# NLI smoke test (5 claims):")
     for claim, evidence in pairs:
         scores = nli_score(claim, evidence)

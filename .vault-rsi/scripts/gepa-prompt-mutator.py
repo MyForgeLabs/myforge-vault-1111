@@ -77,10 +77,10 @@ def main():
         ap.print_help()
         sys.exit(1)
 
-    result = gepa_mutate_stub(args.target, args.iter)
+    _ = gepa_mutate_stub(args.target, args.iter)
     print(f"[stub] GEPA mutation target={args.target} iter={args.iter}")
     print(f"       Sandbox-commit tag pattern: rsi-mutation-prompt-{args.target}-{args.iter}")
-    print(f"       Critic-review (B-6) mandatory before write-back.")
+    print("       Critic-review (B-6) mandatory before write-back.")
 
 
 if __name__ == "__main__":

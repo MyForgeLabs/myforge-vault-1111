@@ -4,6 +4,7 @@ description: Yoast-on túl gazdag JSON-LD strukturált adat (Dentist/LocalBusine
 type: wiki
 created: 2026-05-04
 tags: ["#tech/wordpress", "#tech/seo", "#tech/schema-org"]
+updated: 2026-05-19
 ---
 
 # Schema.org bővítés WordPress-ben mu-plugin-nel

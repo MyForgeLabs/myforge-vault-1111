@@ -9,6 +9,7 @@ source:
 related:
   - "`notebooklm` (CLI-skill)"
   - "[[02-Projects/foxxi-seo-research-2026-05-04]]"
+updated: 2026-05-19
 ---
 
 # NotebookLM SEO competitor research pattern

@@ -18,8 +18,7 @@ Usage:
 import argparse
 import json
 import os
-import sys
-from collections import Counter, defaultdict
+from collections import Counter
 from datetime import datetime, timedelta
 from pathlib import Path
 

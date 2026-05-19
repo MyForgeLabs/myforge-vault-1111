@@ -216,8 +216,8 @@ def write_crystallize_raw(slug: str, nb_id: str, answer: str, week_tag: str) -> 
     today = datetime.utcnow().strftime("%Y-%m-%d")
     fm = [
         "---",
-        f"type: raw",
-        f"source: notebooklm-crystallize",
+        "type: raw",
+        "source: notebooklm-crystallize",
         f"source_nb_id: {nb_id}",
         f"source_project: {slug}",
         f"week: {week_tag}",

@@ -9,7 +9,11 @@ status: evergreen
 lang: en
 translated_from: session-end-auto-crystallization-hook.md
 project: [[../02-Projects/superintelligent-vault]]
-related: [[Crystallization-protocol]], [[Karpathy-LLM-Wiki-pattern]], [[sv-05-crystallization-automation]], [[crystallize-threshold-ramp]]
+related:
+  - "[[Crystallization-protocol]]"
+  - "[[Karpathy-LLM-Wiki-pattern]]"
+  - "[[sv-05-crystallization-automation]]"
+  - "[[crystallize-threshold-ramp]]"
 ---
 
 # Session-end auto-crystallization hook pattern

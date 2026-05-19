@@ -7,7 +7,11 @@ tags: ["#type/wiki", "#topic/memory-architecture", "#topic/crystallization", "sv
 source: vault-meta NotebookLM Q4#1 / Q5#2 (2026-05-18, 63-source synthesis)
 status: evergreen
 project: [[../02-Projects/superintelligent-vault]]
-related: [[Crystallization-protocol]], [[Karpathy-LLM-Wiki-pattern]], [[sv-05-crystallization-automation]], [[crystallize-threshold-ramp]]
+related:
+  - "[[Crystallization-protocol]]"
+  - "[[Karpathy-LLM-Wiki-pattern]]"
+  - "[[sv-05-crystallization-automation]]"
+  - "[[crystallize-threshold-ramp]]"
 ---
 
 # Session-end auto-crystallization hook pattern

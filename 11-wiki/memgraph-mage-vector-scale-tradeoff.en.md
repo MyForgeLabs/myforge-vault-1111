@@ -9,7 +9,10 @@ status: evergreen
 lang: en
 translated_from: memgraph-mage-vector-scale-tradeoff.md
 project: [[../02-Projects/superintelligent-vault]]
-related: [[memgraph-ce-feature-limits]], [[vendor-feature-verify-before-workaround]], [[sv-02-recursive-self-improvement]]
+related:
+  - "[[memgraph-ce-feature-limits]]"
+  - "[[vendor-feature-verify-before-workaround]]"
+  - "[[sv-02-recursive-self-improvement]]"
 ---
 
 # Memgraph MAGE vector-search scale trade-off

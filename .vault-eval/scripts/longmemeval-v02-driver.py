@@ -397,7 +397,7 @@ def main() -> int:
         f"- Queries: **{len(queries)}** ({len(idf_queries)} IDF-mined + {len(curated_queries)} hand-curated cross-session-distinct)",
         f"- Seed: {args.seed} (IDF), {args.seed+1} (curated)",
         f"- top-K: {args.topk}",
-        f"- Backend: `vault-search` (Memgraph native vector-index, bge-m3)",
+        "- Backend: `vault-search` (Memgraph native vector-index, bge-m3)",
         "",
         "## v0.1 vs v0.2 delta",
         "",
@@ -412,7 +412,7 @@ def main() -> int:
         # Per-mining breakdown
         idf_hits = sum(1 for t in cosine_run["traces"] if t["mining"] == "idf" and t["hit"])
         curated_hits = sum(1 for t in cosine_run["traces"] if t["mining"] == "hand-curated" and t["hit"])
-        lines.append(f"- **v0.1 baseline (50-Q IDF, cosine-only):** R@5 = 46.00%")
+        lines.append("- **v0.1 baseline (50-Q IDF, cosine-only):** R@5 = 46.00%")
         lines.append(
             f"- **v0.2 cosine-only (100-Q):** R@5 = {cosine_run['recall']:.2%} "
             f"({cosine_run['n_hits']}/{cosine_run['n_queries']})"

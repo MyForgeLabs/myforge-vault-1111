@@ -60,7 +60,7 @@ def main():
     patterns = detect_pattern_stub(sorted(SESSIONS_DIR.glob("*.md")))
 
     if not patterns:
-        print(f"[skeleton] No pattern detection yet — Phase C+ implementation")
+        print("[skeleton] No pattern detection yet — Phase C+ implementation")
         return
 
     for p in patterns:
