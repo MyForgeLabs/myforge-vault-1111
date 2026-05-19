@@ -33,13 +33,11 @@ jobs:
         run: pip install ruff
       - name: Run ruff check (budget-tunable)
         env:
-          # Baseline 2026-05-19: ~45 issues across .vault-eval/.vault-rsi/etc
-          # (F541 f-string-without-placeholder, F401 unused-import, F841
-          # unused-local, E741 ambiguous single-letter var). Mostly style-only;
-          # not breaking-bug-class. Budget = baseline + ~25% headroom; ratchet
-          # down as scripts are migrated. Job is `continue-on-error: true`, so
-          # exceeding the budget surfaces as ⚠️ in the dashboard only.
-          RUFF_BUDGET: "60"
+          # Round 5 (2026-05-19): full lint-debt cleanup pass landed —
+          # public repo at 0 ruff issues. Budget tightened from 60 → 5 with
+          # small headroom for future syncs that bring in private-excluded
+          # files. Tighten to 2 once we're confident no new debt creeps in.
+          RUFF_BUDGET: "5"
         run: |
           if [ -z "$(find . -name '*.py' -not -path './site/*' -not -path './.git/*' -print -quit)" ]; then
             echo "No Python files found — skipping."

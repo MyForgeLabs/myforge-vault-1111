@@ -1,6 +1,14 @@
+---
+name: 11-wiki — Distilled knowledge layer
+type: index
+created: 2026-04-23
+updated: 2026-05-19
+tags: ["#type/index", "wiki-overview"]
+---
+
 # 11-wiki/ — Distilled knowledge layer
 
-**125 evergreen wiki articles, clustered into 10 themes.**
+**258+ evergreen wiki articles, clustered into 10 themes.**
 
 This is the **wiki layer** of the MyForge Vault — Karpathy's LLM-Wiki pattern in action. Each article is **rewritten in our own words** (not copy-paste), evergreen, and AI-agent-compatible. Raw sources live in [`10-raw/`](../10-raw/) for reference; knowledge **crystallizes** here.
 
