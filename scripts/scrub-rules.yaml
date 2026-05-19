@@ -214,4 +214,4 @@ forbidden_strings:
 
 # === STATS / VERIFICATION ===
 expected_min_files: 100    # below this → SCRUB FAIL, missing content
-expected_max_files: 800    # above this → SCRUB FAIL, too permissive (raised 2026-05-18: vault grew to 126 wiki + 41 ADR + audits)
+expected_max_files: 1200    # raised 2026-05-18: vault grew with audits + EN-translations    # above this → SCRUB FAIL, too permissive (raised 2026-05-18: vault grew to 126 wiki + 41 ADR + audits)

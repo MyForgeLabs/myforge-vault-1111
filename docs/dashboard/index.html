@@ -380,6 +380,7 @@
 
   <script>
     const STATS_URL = "../stats/vault-stats.json";
+    const HISTORY_URL = "../stats/history.jsonl";
 
     function fmt(n) {
       if (n === null || n === undefined) return "—";
@@ -407,6 +408,93 @@
     function hideError() {
       document.getElementById("error-banner").style.display = "none";
     }
+    function clearChildren(el) {
+      while (el && el.firstChild) el.removeChild(el.firstChild);
+    }
+
+    function updateHealth(health) {
+      const tile = document.getElementById("health-tile");
+      const status = (health && health.status) || "unknown";
+      const map = {
+        good: { text: "GOOD",    cls: "good",   detail: (h) => `revert-rate ${(h.revert_rate*100).toFixed(0)}% / action: ${h.action}` },
+        warn: { text: "WARN",    cls: "warn",   detail: (h) => `action: ${h.action} / week: ${h.latest_week || "—"}` },
+        bad:  { text: "BAD",     cls: "bad",    detail: (h) => `revert-rate ${(h.revert_rate*100).toFixed(0)}% — vizsgálat kell` },
+        unknown: { text: "UNKNOWN", cls: "",    detail: (h) => h && h.reason ? h.reason : "no signal" },
+      };
+      const m = map[status] || map.unknown;
+      setText("status", m.text);
+      setText("health-detail", m.detail(health || {}));
+      tile.classList.remove("good", "warn", "bad");
+      if (m.cls) tile.classList.add(m.cls);
+    }
+
+    function updateAuditPrivacy(audit) {
+      const hint = document.getElementById("audit-privacy");
+      if (!audit || !hint) return;
+      const priv = (audit.total || 0) - (audit.public || 0);
+      if (priv > 0) {
+        hint.textContent = "+" + priv + " privát";
+        hint.style.display = "inline-block";
+      } else {
+        hint.style.display = "none";
+      }
+    }
+
+    function drawTrend(rows) {
+      const svg = document.getElementById("trend-chart");
+      const empty = document.getElementById("trend-empty");
+      if (!svg) return;
+      clearChildren(svg);
+      const data = rows.slice(-30);
+      if (data.length < 2) {
+        empty.style.display = "block";
+        return;
+      }
+      empty.style.display = "none";
+      const W = 600, H = 120, P = 8;
+      const series = [
+        { key: "wiki_total",   color: "#ffb74d" },
+        { key: "audit_public", color: "#66bb6a" },
+        { key: "mg_edges",     color: "#ffa726" },
+      ];
+      for (const s of series) {
+        const vals = data.map(r => r[s.key]).filter(v => v != null);
+        if (vals.length < 2) continue;
+        const min = Math.min(...vals);
+        const max = Math.max(...vals);
+        const range = (max - min) || 1;
+        const stepX = (W - 2*P) / (data.length - 1);
+        let d = "";
+        data.forEach((r, i) => {
+          const v = r[s.key];
+          if (v == null) return;
+          const x = P + i * stepX;
+          const y = H - P - ((v - min) / range) * (H - 2*P);
+          d += (d ? " L" : "M") + x.toFixed(1) + "," + y.toFixed(1);
+        });
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", d);
+        path.setAttribute("stroke", s.color);
+        path.setAttribute("stroke-width", "1.5");
+        path.setAttribute("fill", "none");
+        path.setAttribute("vector-effect", "non-scaling-stroke");
+        svg.appendChild(path);
+      }
+    }
+
+    async function loadHistory() {
+      try {
+        const res = await fetch(HISTORY_URL + "?t=" + Date.now(), { cache: "no-store" });
+        if (!res.ok) { drawTrend([]); return; }
+        const text = await res.text();
+        const rows = text.trim().split("\n").filter(Boolean).map(line => {
+          try { return JSON.parse(line); } catch (e) { return null; }
+        }).filter(Boolean);
+        drawTrend(rows);
+      } catch (err) {
+        drawTrend([]);
+      }
+    }
 
     async function loadStats() {
       try {
@@ -417,17 +505,15 @@
 
         setText("generated-at", s.generated_at + " (" + timeAgo(s.generated_at) + ")");
 
-        // Wiki
         setText("wiki-total", fmt(s.wiki?.total));
         setText("wiki-en", fmt(s.wiki?.en));
         setText("wiki-coverage", (s.wiki?.coverage_pct ?? 0) + "%");
         setText("wiki-hu-only", fmt(s.wiki?.hu_only));
 
-        // Audit
         setText("audit-public", fmt(s.audit?.public));
         setText("audit-total", fmt(s.audit?.total));
+        updateAuditPrivacy(s.audit);
 
-        // Memgraph
         const mg = s.memgraph || {};
         setText("mg-nodes", fmt(mg.total_nodes));
         setText("mg-edges", fmt(mg.total_edges));
@@ -436,16 +522,13 @@
         setText("mg-alias", fmt(mg.alias_of));
         setText("mg-links", fmt(mg.links_to));
 
-        // KO-DB
         setText("ko-facts", fmt(s.ko_db?.total_facts));
         setText("crons", fmt(s.crons));
 
-        // Commits
         setText("commits-total", fmt(s.public_commits?.all_time));
         setText("commits-today", fmt(s.public_commits?.today));
 
-        setText("status", "LIVE");
-        setText("last-update", "frissítve " + timeAgo(s.generated_at));
+        updateHealth(s.health);
       } catch (err) {
         showError("Nem sikerült betölteni a stats-fájlt: " + err.message);
         setText("status", "STALE");
@@ -453,7 +536,9 @@
     }
 
     loadStats();
+    loadHistory();
     setInterval(loadStats, 60_000);
+    setInterval(loadHistory, 5 * 60_000);
   </script>
 </body>
 </html>
