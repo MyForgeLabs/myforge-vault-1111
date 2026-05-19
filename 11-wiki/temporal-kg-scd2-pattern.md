@@ -124,8 +124,48 @@ A `vault-ko-ingest` és `crystallize` pipeline-ok mostani `INSERT OR IGNORE` vis
 - **TG-RAG** (Time-Sensitive RAG, Temporal Graphs) — [arxiv:2510.13590](https://arxiv.org/abs/2510.13590)
 - Kimball: *The Data Warehouse Toolkit* — SCD Type 2 az alap
 
+## 2026-05-19 — migráció EXECUTED on real `facts.db`
+
+A skeleton-first ETA "<2 sec" konzervatív volt **20×-osan**. A tényleges futás:
+
+```
+$ time sqlite3 -bail /root/obsidian-vault/.vault-ko/facts.db \
+    < /root/obsidian-vault/00-Meta/migrations/2026-05-19-scd2-facts.sql
+real    0m0.093s
+user    0m0.032s
+sys     0m0.048s
+Exit: 0
+```
+
+**93 milliszekundum** mindössze a következőkre:
+
+1. `ALTER TABLE ADD COLUMN valid_from` (metadata-only, ~ms)
+2. `ALTER TABLE ADD COLUMN valid_until` (metadata-only, ~ms)
+3. `UPDATE facts SET valid_from = created_at WHERE valid_from IS NULL` (13,801 rows)
+4. Sanity-check temp-table + CHECK constraint
+5. 3 `CREATE INDEX`: compound `(valid_from, valid_until)` + partial `WHERE valid_until IS NULL` + composite `(subject, valid_from)`
+
+**Wider lesson**: SQLite schema-evolution **nem rate-limit a normál-méretű KO-DB-knél**. 13,801 row + 2 column + 3 index < 100ms. Ne becsüld túl a migration-időt single-digit-K row-szám esetén. A "skeleton-first ETA <2s" konzervatív tervezés volt — a valódi cost ~20×-osan kisebb. Production-grade gyorsság.
+
+Post-migration verification (`vault-ko-temporal as-of`):
+
+```
+$ vault-ko-temporal as-of "2026-05-19T11:03:13Z" --subject "Memgraph"
+Facts valid as of 2026-05-19T11:03:13Z:
+  · #13588  Memgraph | has_count | 977 chunks  from=2026-05-17T17:32:54  until=—
+  · #12804  Memgraph | produces | beépített vector-search  from=2026-05-17T17:30:44  until=—
+  ...
+
+$ vault-ko-temporal as-of "2026-05-15T00:00:00Z" --subject "Memgraph"
+Facts valid as of 2026-05-15T00:00:00Z:
+  (no rows)
+```
+
+A pre-ingest dátum **helyesen üres** → time-travel queries ÉLES.
+
 ## Kapcsolódó
 
 - [[Crystallization-protocol]] — itt lesz `scd2.insert_with_version` a write-path, ha a B-9 follow-up zöld
 - [[append-only-event-log-undo-prune]] — alternatív minta (event-sourcing) ami szintén megfontolásra került
 - [[../07-Decisions/2026-05-12 sv-5 crystallization automation arch]] — eredeti KO-DB schema-döntés
+- [[../06-Audits/2026-05-19 Temporal-KG SCD2 skeleton]] — eredeti skeleton-audit (Round 5)

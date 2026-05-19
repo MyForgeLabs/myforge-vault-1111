@@ -86,9 +86,26 @@ Egy XLM-R-base cross-encoder 30-candidate × 256-token reranking-ja CPU-n **fund
 
 A `vault-search --reranker-model {v2-m3|base|auto}` flag élesedett a B-2 Week 4 sprint-ben (2026-05-17). Multi-model cache `RerankerSingleton` per-HF-id lazy-load. Smart-trigger threshold 0.65 marad változatlan. Week 5 follow-up: score-gap smart-skip + ONNX-INT8 + query-cache.
 
+## 2026-05-19 — keepalive ≠ inference-cost
+
+A Round 5 (mega-session) bevezette a `VAULT_RERANK_PREWARM=v2-m3` daemon-env-et + a Round 6 a CLI-side daemon-delegation patch-et. Wall-clock mérés a `Glicko XP achievement` benchmark-on:
+
+| Mode | Wall-clock | `rerank_ms` | User-time |
+|---|---:|---:|---:|
+| Cold-load (in-process) | **18.6s** | 7,908 | 52s |
+| Daemon-delegated (keepalive) | **8.7s** | 8,070 | 0.04s |
+| Δ | **-9.9s (-55%)** | +160 (noise) | -52s |
+
+**A megfigyelés**: a daemon-keepalive eliminálja a **load-cost-ot** (~10s sentence-transformers + model-init), de a `rerank_ms` ~**8 sec marad** (compute-bound cross-encoder forward-pass on 18 candidates × 512 tokens). A wall-clock-megtakarítás 10s ennek a 10s load-time-nak elkerülése.
+
+**Wider lesson**: model-warm keepalive-szel egy alacsony, **load-time határt** veszünk le; a maradék inference-cost compute-bound és GPU vagy quantization kell hozzá. Ne becsüld túl a keepalive-savings-et: a "keep model in RAM" pattern segít a cold-start UX-en, **NEM** a steady-state throughput-on.
+
+Pattern komplementer: [[smart-trigger-cost-pattern]] elkerüli a rerank-et szelektíven (top-1 cosine ≥ 0.65 ⇒ skip), tehát a 8 sec compute-bound ágat is csak akkor kell fizetni, ha tényleg szükség van rá.
+
 ## Kapcsolódó
 
 - [[smart-trigger-cost-pattern]] — cheap-baseline + expensive-second-pass alap-pattern
 - [[memgraph-ce-feature-limits]] — native vector-index (cosine first-pass)
 - [[sv-01-memory-architecture]] — B-2 search-axis research
 - [[vendor-feature-verify-before-workaround]] — analogous lesson (release-cycle check)
+- [[llm-daemon-warm-pattern]] — sibling pattern: warm-keep encoder (bge-m3) ugyanezzel a load-vs-compute tradeoff-fel

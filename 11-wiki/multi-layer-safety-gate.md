@@ -145,9 +145,29 @@ A 4-rétegű safety-gate **infrastruktúra-szintű analógja** kialakult a Layer
 
 **Reusable szabály:** új mutáló-script ELŐTT mind a 4-réteget végig kell gondolni (write race / partial-write / restart-dedup / audit-trail).
 
+## 2026-05-19 — Mega-session apply-discipline validation
+
+A 7-órás `2026-05-19-obsidian-vault` mega-session **19 új CLI-t** vezetett be a vault-on, és csak **1 valódi data-mutation** történt az egész session alatt (SCD2 migration). Mind a 19 új script:
+
+- **Dry-run default** — `--apply` flag KÖTELEZŐ a side-effect-hez
+- **Double-gated apply** — `--apply` flag + `VAULT_<X>_APPLY=1` env-var
+- **Forbidden-target list** — `AGENTS.md` / `00-Meta/` / `.vault-*` / `11.11*` sosem mutálható
+- **Audit-log append** atomic_append_jsonl-pattern-nel minden write után
+
+Konkrét példák a session-ből:
+- `vault-sleep-consolidate` — `VAULT_SLEEP_APPLY=1 && --apply`
+- `vault-browser-history-ingest` — `VAULT_BROWSER_INGEST_APPLY=1 && --apply`
+- `vault-nb-ingest` — `VAULT_NB_INGEST_APPLY=1 && --apply`
+- `vault-entity-link` — `VAULT_ENTITY_LINK_APPLY=1 && --apply`
+- `vault-ko-belief` — `VAULT_BELIEF_APPLY=1 && --apply`
+- `vault-ko-schema-evolve` — `VAULT_SCHEMA_APPLY=1 && --apply`
+
+**Wider lesson**: skeleton-first apply-gate discipline teszi lehetővé hogy egy 7-órás "keep going" session-ben 19 idea-CLI **biztonságosan ship-eljen** anélkül hogy a vault-ot risk-eled. Az ELLENPÉLDA: ha egy script default-on mutál a vault-ban, akkor minden round-ban "csináld meg mindent" command-ot tudatosan re-evaluate-elni kell. A skeleton-first → "go" command **explicit-és-szándékos**, NEM accidental side-effect.
+
 ## Kapcsolódó
 
 - [[11-wiki/sprint-day-0-skeleton-first]] — Day 0 playbook
 - [[07-Decisions/2026-05-12 sv-2 recursive self-improvement arch]] — B-8 ADR, az első alkalmazás
 - [[07-Decisions/2026-05-12 sv-3 multi-agent orchestration arch]] — Critic-agent (4. réteg forrása)
 - [[11-wiki/rsi-tier2-constitutional-ai-pattern]] — RSI safety-gate konkrét megvalósítás (4-rétegű implementation)
+- [[subagent-fanout-for-planning-artifact.en]] — sibling pattern: planning-artifact also safety-discipline-applicable

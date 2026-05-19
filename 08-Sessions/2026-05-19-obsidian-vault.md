@@ -310,10 +310,49 @@ A tegnapi EPIC super-session **5-prio + backlog batch** lehúzása — minden am
 
 ## Propagation log
 
-> **AGENT TENNIVALÓ:** SESSION ZÁRÁSKOR (11.11stop) a Crystallization-protocol
-> ([[11-wiki/Crystallization-protocol]]) szerint propagáld a Learnings bullet-eit:
-> 1. Routing decision tree minden bullet-re
-> 2. Batch preview a user-nek (összes egyszerre)
-> 3. User-megerősítés után végrehajtás
-> 4. Időbélyegezve írd be ide mit hova propagáltál
+**2026-05-19 11:50–12:00 UTC** — Crystallization-protocol végrehajtva user-megerősítés után ("ok"):
+
+### 5 új evergreen wiki landed
+
+- [[../11-wiki/subagent-fanout-for-planning-artifact.en]] — "subagent-fanout for the PLANNING artifact" pattern (Round 1 → 19-idea-ship enabler)
+- [[../11-wiki/stale-numbers-in-static-artifacts-pattern.en]] — hero-banner 5-stale-number trap + auto-gen pattern
+- [[../11-wiki/visual-iteration-bug-spotting-pattern.en]] — "name the bug-spot" > "make it better" iterations
+- [[../11-wiki/github-social-preview-web-only.en]] — REST 404 + GraphQL verify-only API gotcha
+- [[../11-wiki/launch-readiness-audit-subagent-pattern.en]] — stop-the-launch detection asymmetric value
+
+### 4 wiki bővítés (append-only, evergreen 2026-05-19 section)
+
+- [[../11-wiki/two-tier-graph-extraction]] — "2026-05-19 — Jaccard 0.0070 finding (LLM-noise signal)" szakasz: real cross-validation numbers + heurisztika-classifier output
+- [[../11-wiki/multi-layer-safety-gate]] — "Mega-session apply-discipline validation" szakasz: 19 új CLI mind double-gated, 1 valódi mutation az egész session alatt
+- [[../11-wiki/reranker-cost-optimization-not-size]] — "keepalive ≠ inference-cost" szakasz: 18.6s → 8.7s (-55%) wall-clock, de a 8s compute-bound marad
+- [[../11-wiki/temporal-kg-scd2-pattern]] — "migráció EXECUTED on real facts.db" szakasz: 93ms / 20×-os túlbecsült skeleton-ETA
+
+### 1 új ADR
+
+- [[../07-Decisions/2026-05-19 KO-DB hash key — drop provenance from hash]] — Round 8 Bayesian belief-update finding (1,115 contested, 0 confident-consensus) → 3-option migration plan + Option-C recommended
+
+### 1 új Backlog task (🔴 sürgős)
+
+- [[../04-Tasks/Backlog#SV B-1 — KO-DB ingest hash refactor (2026-05-19 mega-session finding)]] — #34 KO-DB hash refactor, ETA 2-3h
+
+### MEMORY.md update (auto-memory)
+
+- Új mile-stone pointer (1 sor) a tetején: "Vault-meta MEGA super-session 2026-05-19 — 7 óra, 10+ round, 19/22 brainstorm, 8 release, SCD2 EXECUTED, hero-v2 LIVE, 5 top-findings"
+- Új feedback-memory pointer: "Visual-artifact verify-before-push"
+
+### Új feedback-memory
+
+- `feedback_visual_artifact_verify_before_push.md` — minden public-facing SVG/PNG ELŐTT explicit user-OK; cross-link `visual-iteration-bug-spotting-pattern.en`-re
+
+### SV projekt status
+
+- [[../02-Projects/superintelligent-vault]] már updated: "v1.0.8 LIVE, 19/22 brainstorm ideas LANDED (86%), 10 round single-day mega-session, $0 cost"
+
+### GitHub side (user-action wins this session)
+
+- SCD2 migration on real `facts.db` — 93ms (13,801 rows + 3 indexes) — `time-travel queries` verified working
+- Hero-banner v2 (1280×640, 397 KB) — uploaded via Web UI to GitHub Settings → Social preview, MD5-verified — `usesCustomOpenGraphImage: true` per GraphQL
+- 8 GitHub releases LIVE (v1.0.0 → v1.0.8)
+
+**Hatókör**: 11 Learning bullet × 12 propagation-target (5 új wiki + 4 wiki-bővítés + 1 ADR + 1 task + 2 MEMORY pointer + 1 feedback-memory). User-confirmed batch-preview után, NEM destruktív, mind idempotens / atomic_write-szal.
 

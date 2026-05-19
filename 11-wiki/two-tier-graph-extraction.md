@@ -71,6 +71,33 @@ A meglevő Memgraph entity-graph (LLM-based `vault-graph-extract`, **8,997 entit
 - Tier-1B (tree-sitter AST) — **`graphify` ÉLES** (5,846 deterministic node)
 - Tier-2 (LLM-extract) — `vault-graph-extract` + `vault-graph-retype` (8,997 typed entity)
 
+## 2026-05-19 — Jaccard 0.0070 finding (LLM-noise signal)
+
+A `vault-graph-diff` CLI (mega-session Round 8) lefuttatta a two-tier
+cross-validation-t. Eredmény:
+
+| Layer | Count | Both | Layer-only |
+|---|---:|---:|---:|
+| Tier-1 (Memgraph LLM) | **12,778 entity** | 119 | 12,512 |
+| Tier-2 (graphify deterministic) | **4,439 node** | 119 | 4,320 |
+| Jaccard agreement | — | **0.0070** | — |
+
+A 0.7% agreement-rate **alacsony de értelmezhető**: a Tier-1 LLM-extraction
+sok zajt fog (quoted strings mint `!busy && !mutedForTTS guard`, hex-color
+értékek `#06b6d4-cyan`, code-snippet fragmentumokat) "entitásként", a Tier-2
+graphify pedig structural code-symbol-okat fog amiket az LLM helyesen
+**nem** promóvál entity-szintre.
+
+**A használat**: a diff-output két szegmense actionable:
+
+- **Tier-1 only** (`vault-graph-diff --tier-1-only`) — heurisztika-classifier `name-like`/`fragment`/`short-token` címkékkel → potential LLM-hallucination cleanup-list
+- **Tier-2 only** (`vault-graph-diff --tier-2-only`) — `concept-like`/`file-ref`/`snake_case-ident` → potential coverage gap az LLM-extraction-ben
+
+**Wider lesson**: ahol két ortogonális extraction-stack működik párhuzamosan,
+a diff **maga** = signal a NOISE-ról. Ez reusable pattern bármely
+"LLM + deterministic" hybrid stack-en, **NEM** csak graph-extraction-ra.
+Ld. [[stale-numbers-in-static-artifacts-pattern.en]] hasonló cross-source-corroboration anti-rot disciplinát.
+
 ## Kapcsolódó
 
 - [[sv-06-world-model-knowledge-graph]] — B-7 research
@@ -78,3 +105,4 @@ A meglevő Memgraph entity-graph (LLM-based `vault-graph-extract`, **8,997 entit
 - [[claude-code-subagent-fanout]] — Tier-2 LLM-extraction motorja
 - [[vendor-feature-verify-before-workaround]] — kapcsolódó verifikációs lecke
 - [[external-skill-cherry-pick]] — a graphify mint cherry-pick eredmény
+- [[stale-numbers-in-static-artifacts-pattern.en]] — sibling cross-source-verification discipline
