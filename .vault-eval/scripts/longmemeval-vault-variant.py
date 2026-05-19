@@ -125,11 +125,22 @@ def build_global_df(session_files: list[Path]) -> tuple[Counter, int]:
     return df, len(session_files)
 
 
-def run_search(query: str, top_k: int, timeout: int = 30) -> list[dict]:
-    """Call vault-search CLI; return parsed results list or []."""
+def run_search(query: str, top_k: int, timeout: int = 30,
+               mode: str = "hybrid", hybrid: bool = True) -> list[dict]:
+    """Call vault-search CLI; return parsed results list or [].
+
+    v0.2 (2026-05-19): default switched cosine-only → hybrid (BM25+RRF)
+    after the v0.2 benchmark showed +36 pp on the 99-Q query-set.
+    See 06-Audits/2026-05-19 LongMemEval-S vault-variant v0.2.md.
+    """
+    cmd = [VAULT_SEARCH, query, "--top-k", str(top_k), "--json"]
+    if hybrid:
+        cmd.append("--hybrid")
+    else:
+        cmd.extend(["--mode", mode])
     try:
         out = subprocess.run(
-            [VAULT_SEARCH, query, "--top-k", str(top_k), "--mode", "cosine-only", "--json"],
+            cmd,
             capture_output=True, text=True, timeout=timeout,
         )
         if out.returncode != 0:
