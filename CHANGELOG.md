@@ -2,6 +2,41 @@
 
 All notable changes to MyForge Vault 11.11.
 
+## [1.0.2] — 2026-05-19 (later)
+
+Repo-audit-driven launch-readiness pass. No code-behaviour changes; everything below is OSS infrastructure, documentation, or distribution polish.
+
+### Added
+
+- **`.github/workflows/ci.yml`** — main CI pipeline: ruff lint + markdown lint (lax) + frontmatter lint + broken-wikilink scan + pytest regression + mkdocs strict build (6 parallel jobs, 10-min timeout each)
+- **`.github/workflows/pr-labeler.yml`** + **`.github/labeler.yml`** — auto-label PRs by area (wiki / adr / audit / cli / docs / i18n / breaking-change)
+- **`.github/workflows/stale.yml`** — gentle 60/30-day stale-marker on issues / PRs, with `pinned`/`roadmap`/`community-pattern` exemptions
+- **`.github/workflows/link-check.yml`** — weekly external-link check via `lycheeverse/lychee-action`, auto-files issue on 404s
+- **`.github/scripts/lint_frontmatter.py`** + **`broken_wikilinks_check.py`** — CI-helper scripts, locally runnable, budget-tunable
+- **`Makefile`** — `make {help,install,lint,test,docs,build-docs,clean}` developer-friendly targets
+- **`requirements-dev.txt`** — `pytest`, `pyyaml`, `ruff`
+- **`.devcontainer/`** — GitHub Codespaces / VS Code dev-container: Python 3.12 + Docker-in-Docker + auto-Memgraph + 8 IDE extensions pre-configured + post-create banner
+- **`.github/CODEOWNERS`** — single-maintainer signal
+- **`docs/assets/hero-banner.png`** — 1280×640 PNG rasterized from the SVG, ready for GitHub social-preview upload (Settings → Options → Social preview)
+- **`11-wiki/architecture-overview.en.md`** — full Mermaid architecture diagram + the 8 axes mapped end-to-end + per-axis deep-dive links
+- **`11-wiki/faq.en.md`** — 13 launch-FAQ questions answered up front
+- **`06-Audits/2026-05-19 repo improvement audit.md`** — ~3,250-word benchmark vs mem0/lancedb/qdrant/microsoft-graphrag/agno/crewai/langfuse/litellm
+- **`06-Audits/2026-05-19 GitHub launch playbook.md`** — ~7,060-word channel-by-channel playbook (HN×3 / Twitter / Reddit×3 / Dev.to / Lobsters / LinkedIn / Mastodon) with paste-ready post drafts
+
+### Changed
+
+- **README rewrite** — corrected stale counts (87 → **258** wikis, 28 → **45** ADRs, 76 → ~80 sessions), fixed broken quickstart URL (`<owner>/superintelligent-vault.git` → `MyForgeLabs/myforge-vault-1111.git` — caught by the audit as a stop-the-launch finding), added memory-OSS competitor comparison table (mem0 / Letta / GraphRAG / agentmemory), added Contributors section honestly listing AI agents as named co-collaborators, added Architecture diagram block, added Star History + Built-with + Cite-this-work collapsible sections, added FAQ + architecture-overview links
+- **Repo topics** added 8 new (now 20 total): `ai-agents`, `rag`, `vector-search`, `embedding`, `llm-eval`, `personal-knowledge-management`, `local-first`, `bge-m3`
+- **`mkdocs.yml`** — hid `HN Launch Console` from public nav (it's launch-internal, optics risk)
+
+### Fixed
+
+- **Stop-the-launch:** README quickstart had a `<owner>/superintelligent-vault.git` placeholder URL pointing at the legacy repo name. Fixed pre-Tuesday launch.
+
+### User-action remaining
+
+- **Social-preview PNG upload** — `docs/assets/hero-banner.png` is ready in the repo; upload via Settings → Options → Social preview (no REST API for this; must use web UI)
+
 ## [1.0.1] — 2026-05-19
 
 Two days of post-launch polish on top of v1.0.0. No breaking changes.

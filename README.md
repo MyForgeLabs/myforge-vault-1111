@@ -235,7 +235,44 @@ MIT — see [LICENSE](./LICENSE). Cherry-pick freely, attribution-friendly.
 
 ## Related
 
-- [Architecture decision records (28)](./07-Decisions/)
-- [Evergreen wikis (87+)](./11-wiki/)
-- [Cross-project synthesis audit](./06-Audits/2026-05-18%20vault-meta%20NotebookLM%20cross-projekt%20synthesis.md)
+- [Architecture decision records (45)](./07-Decisions/)
+- [Evergreen wikis (258)](./11-wiki/)
+- [Audits (104)](./06-Audits/)
+- [FAQ](./11-wiki/faq.en.md)
+- [Architecture overview (with Mermaid diagram)](./11-wiki/architecture-overview.en.md)
 - [Hungarian README](./README.hu.md)
+- [The Karpathy-style build story (3,909 words)](./11-wiki/what-i-learned-building-self-improving-vault.en.md)
+
+<details>
+<summary>⭐ Star history</summary>
+
+[![Star History Chart](https://api.star-history.com/svg?repos=MyForgeLabs/myforge-vault-1111&type=Date)](https://star-history.com/#MyForgeLabs/myforge-vault-1111&Date)
+
+</details>
+
+<details>
+<summary>🛠️ Built with</summary>
+
+[Memgraph CE 3.9](https://memgraph.com) · [bge-m3](https://huggingface.co/BAAI/bge-m3) · [bge-reranker-v2-m3](https://huggingface.co/BAAI/bge-reranker-v2-m3) · [Claude Code](https://www.anthropic.com/claude-code) · [Codex CLI](https://github.com/openai/codex) · [Gemini CLI](https://github.com/google/gemini-cli) · [NotebookLM](https://notebooklm.google.com) · [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) · [Obsidian](https://obsidian.md) · [SQLite](https://www.sqlite.org/) · [graphify](https://github.com/grafify/grafify) · [Anthropic API SDK](https://docs.anthropic.com)
+
+Released under MIT — see [LICENSE](./LICENSE).
+
+</details>
+
+<details>
+<summary>📄 Cite this work</summary>
+
+If you use this in research, please cite via [CITATION.cff](./CITATION.cff). BibTeX:
+
+```bibtex
+@software{markovics_2026_myforge_vault,
+  author       = {Markovics, Peti},
+  title        = {{myforge-vault-1111: A self-improving Obsidian
+                   vault for CLI AI agents}},
+  year         = 2026,
+  version      = {1.0.1},
+  url          = {https://github.com/MyForgeLabs/myforge-vault-1111}
+}
+```
+
+</details>

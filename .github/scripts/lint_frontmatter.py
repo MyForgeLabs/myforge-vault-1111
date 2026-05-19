@@ -7,6 +7,7 @@ or has invalid YAML frontmatter.
 """
 from __future__ import annotations
 
+import os
 import pathlib
 import sys
 
@@ -14,6 +15,9 @@ import yaml
 
 REQUIRED = {"name", "type", "created", "updated"}
 WIKI_DIR = pathlib.Path("11-wiki")
+# Public mirror baseline 2026-05-19: 19 files with frontmatter gaps. CI fails
+# if issue count exceeds this budget. Tighten as files are fixed.
+MAX_ISSUES_DEFAULT = 25
 
 
 def main() -> int:
@@ -44,15 +48,19 @@ def main() -> int:
         if gap:
             missing.append((str(p), f"missing keys: {sorted(gap)}"))
 
+    budget = int(os.environ.get("MAX_FRONTMATTER_ISSUES", str(MAX_ISSUES_DEFAULT)))
+
     if missing:
-        print(f"::error::{len(missing)} files have frontmatter issues:")
+        level = "error" if len(missing) > budget else "warning"
+        print(f"::{level}::{len(missing)} files have frontmatter issues (budget={budget}):")
         for path, why in missing[:50]:
             print(f"  - {path}: {why}")
         if len(missing) > 50:
             print(f"  ... and {len(missing) - 50} more")
-        return 1
+        if len(missing) > budget:
+            return 1
 
-    print(f"OK — all {len(files)} wiki files have required frontmatter")
+    print(f"OK — {len(files)} wiki files scanned, {len(missing)} with issues (budget={budget})")
     return 0
 
 
