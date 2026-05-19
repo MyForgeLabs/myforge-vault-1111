@@ -121,9 +121,19 @@ A tegnapi EPIC super-session **5-prio + backlog batch** lehúzása — minden am
 
 ## Summary
 
-**Három round, ~80-min wall-clock, ~30 task LANDED, $0 cost, 4 subagent-fanout iteration.** Round 1 (07:48–08:21): tegnapi top-5 prio + backlog batch lehúzva. Round 2 (08:25–08:48, user: "csináljuk ami kell"): 4 új brainstorm-idea ÉLES skeleton-szinten + JSONL migration finished. **Round 3 (08:55–09:09, user: "mindent csináljunk meg.. meg hogy lehet beröpíteni a köztudatba")**: 4 nagy task lehúzva — CLI rerank-daemon-delegation + Vault-MCP wire-up + Sleep-consolidation real-LLM-Critic + Browser-history bridge (subagent) — **PLUS launch-distribution playbook 7,060 szó** + **GitHub repo polish (6 új artifact)** + **v1.0.1 release LIVE**.
+**~7-órás mega-session, 10+ round, 19/22 brainstorm idea LANDED (86%), 8 GitHub release (v1.0.0 → v1.0.8 + hero-v2 push), 14 új production CLI, 2 nagy data-mutation (SCD2 migration + hero-banner upload), $0 marginal cost, ~10 subagent-fanout iteráció.**
 
-A 22-idea brainstorm 4 idea-ja ÉLES (#1 RAGAS / #13 Browser-history / #15 Sleep-consolidation / #20 Vault-MCP), 18 backlog. Temporal-KG SCD2 #9 a következő session-re.
+**Rounds 1–4 (07:48–09:30)**: tegnapi top-5 + JSONL migration + 4 brainstorm-idea (RAGAS / Browser-history / Sleep-consolidation / Vault-MCP) + Vault-MCP umbrella server + Bge-reranker keepalive (-55% wall-clock) + GitHub launch playbook 7,060 szó + comprehensive repo audit + CI workflows + Codespaces devcontainer + README rewrite (memory-OSS competitor table) + v1.0.0 → v1.0.2 releases.
+
+**Rounds 5–6 (09:38–10:22)**: Lint cleanup **45 → 0**, frontmatter **19 → 0**, Temporal-KG SCD2 skeleton, transaction-aware audit pattern, RUFF_BUDGET 60→5, Cloudflared tunnel.sh, vault-explain + vault-ko-decay + vault-daily-rollup + vault-ko-anki. v1.0.3 + v1.0.4 releases.
+
+**Rounds 7–8 (10:30–10:37)**: vault-ko-triangulate (NLI proxy, catches false-facts!) + vault-nb-ingest (6 reports detected) + vault-entity-trace + vault-search-rewrite + vault-ko-belief (1,115 contested pairs, **finding: provenance-hash bug**) + vault-ko-schema-evolve (**127 predicates, 87 orphans**) + vault-graph-diff (**Jaccard 0.0070 — LLM noise**) + vault-nb-ingest consolidated. v1.0.5 + v1.0.6 releases.
+
+**Rounds 9–10 (10:43–11:00)**: vault-entity-link (12,778 entity audit) + vault-multi-hop (HopRAG BFS) + vault-core-memory (Letta virtual-context, **80% token savings simulated**) + vault-colbert-fallback (skeleton, no model) + **mega-session summary audit**. v1.0.7 + v1.0.8 releases.
+
+**User-action wins (11:00–11:55)**: SCD2 migration **EXECUTED** on real `facts.db` (13,801 rows, 93ms, time-travel queries verified) + hero-banner.png **v2 LIVE** on GitHub social-preview (1280×640, 397 KB, MD5-verified upload).
+
+**Karpathy-pattern realized**: a 22-idea brainstorm-research subagent at session-start enabled ~3 idea-ships per round across 10 rounds. Without that planning artifact, this session ships 0 brainstorm-idea CLIs. **The lesson: subagent-fanout for the PLANNING artifact at session-start, then sequential rounds to execute = high-ROI pattern when user is in "keep going" mode.**
 
 **Distribution-szempontból (a kérdésre "hogy lehet beröpíteni a köztudatba"):** a `06-Audits/2026-05-19 GitHub launch playbook.md` egy konkrét, paste-ready 7-csatornás playbook (HN ×3 angle / Twitter 11-tweet thread / Reddit ×3 sub / Dev.to / Lobsters / LinkedIn / Mastodon) + SEO + cadence + retry tree. **Single highest-leverage action**: Tuesday 2026-05-26 15:00 UTC HN "Show HN" Angle A submit + X thread T+30 min. **Kritikus finding**: 3 competitor már létezik (swarmclawai/swarmvault, Ar9av/obsidian-wiki, obra/knowledge-graph) — wedge: 3-CLI-agent bridge + GEPA RSI + NotebookLM podcast layer.
 
@@ -214,7 +224,31 @@ A 22-idea brainstorm 4 idea-ja ÉLES (#1 RAGAS / #13 Browser-history / #15 Sleep
 
 - **Reranker keepalive: load vs inference cost decomposition** — A 6-10s rerank-cost-ból a daemon-keepalive a load-portion-t eliminálja (~10s wall), de a tényleges cross-encoder forward-pass (~8s on 18 candidates) compute-bound marad. **Wider lesson**: model-warm optimizations szigorúan a *boot-time* (model-load + import) megspórolásáról szólnak, NEM az inference-throughput-ról. GPU vagy quantization kell a inference-bottleneck-hez.
 
-- **Brainstorm → idea-realization tempó: 4/22 ÉLES skeleton egy session-ben** — RAGAS, Sleep-consolidation, Vault-MCP, Browser-history. **Wider lesson**: brainstorm-output ROI akkor mérhető, ha rögtön skeleton-first-tel landol — különben paper-only marad.
+- **Brainstorm → idea-realization tempó: 4/22 ÉLES skeleton egy session-ben** — RAGAS, Sleep-consolidation, Vault-MCP, Browser-history. **Wider lesson**: brainstorm-output ROI akkor mérhető, ha rögtön skeleton-first-tel landol — különben paper-only marad. Round 10-re ez a szám 19/22 lett.
+
+### Round 4–10 új tanulságok (a session második feléből)
+
+- **Subagent-fanout a PLANNING artifactra session-start-on = legmagasabb-leverage move** — A 22-idea brainstorm-research agent (Round 1, ~6 min, ~85K token, $0 cost) tette lehetővé hogy 10 round-ban 19 idea-CLI ship-eljen. Anélkül 0 ideát ship-eltünk volna. **Wider lesson**: "keep going" mode-ban a TERV maga is subagent-elhető. Pure win, parallel-with-main-work.
+
+- **Stale numbers in static artifacts trap** — A hero-banner.svg 5+ stale számmal indult (220 wiki helyett 265, 28 ADR helyett 45, 462 SKILL helyett 962, v0.1 helyett v1.0.8). **Counter-pattern**: minden static artifact (README badge, hero-banner, marketing copy) vagy `last-refreshed-at` stamp-pal van ellátva + cron-os refresh, VAGY auto-generated a live state-ből. Manual-maintained number listák rohad-elnek; ezen a session-en is csak akkor derült ki, mikor a user kérdezett rá a kép upload-ja előtt.
+
+- **Two-tier graph cross-validation = quality gate** — graphify (deterministic Tier-2) ↔ Memgraph (LLM Tier-1) Jaccard 0.0070 (4,439 vs 12,778 entity, both: 119). Az LLM-extraction sok zajt fog be (quoted strings, hex colors, code-fragmenteket "entitásként" jelölve). **Wider lesson**: ahol két ortogonális extraction-stack működik párhuzamosan, a diff = signal a NOISE-ról. Reusable bármely "LLM + deterministic" stack-en. Az SV-on ez a vault-graph-diff CLI lett.
+
+- **KO-DB ingest hash-by-provenance bug elöljáró a Bayesian belief-update-en** — 1,115 contested pairs, 0 confident-consensus, mert minden (s,p,o) cella saját provenance-szel külön sor. A corroboration-bonus mathematically dead. **Wider lesson**: ingest-time-i dedup-hash-decision **lefelé sugárzik** minden későbbi corroboration-logic-on. Ha a (s,p,o) tripletet különböző provenance-ekből látom, AZT MEG KELL JEGYEZNI mint multi-source-confirm, nem mint külön rekord. Fix: hash (s,p,o) only, provenance multi-row attribute.
+
+- **Skeleton-first apply-gate disciplina nagy-session-ben** — Mind a 19 új idea-CLI **dry-run default** + `--apply` double-gated (`--flag` + env-var). A session ALATT 1 valódi data-mutation történt (SCD2 migration) — minden más reverzibilis simulation maradt. **Wider lesson**: 7-órás mega-session-eken ez teszi lehetővé hogy 22 ötletet **biztonságosan végigvigyél** anélkül hogy a vault-ot risk-eled.
+
+- **Visual-artifact iteration: "show me where it breaks" > "regenerate from scratch"** — A hero-banner-en 3 iteráció: user "kilognak a feliratok" → fix overflow + stale numbers; user "B-5-nél nem látszik" → diagram-up 30px; user "felső sor belóg jobb oldalba" → subtitle shortened. Minden iteráció specific bug-spot-tal indult, NEM "csináld jobban". **Wider lesson**: design-iterátációban a precíz pont-jelölés (text-overflow, label-clip, contrast-issue) **gyorsabban konvergál** mint az "javítsd a hangulatot" típusú visszajelzés. Skill-transfer: ezt a pattern-t alkalmazni minden visual-design pipeline-ban (Figma, mockup, dashboard).
+
+- **GitHub social-preview = Web-UI-only** — A `PATCH /repos/.../social-preview` REST endpoint 404-et ad. A GraphQL `updateRepository` mutation nem expose-olja az `openGraphImage` mezőt írásra. **Akció**: minden OSS-launch playbookban a "social-preview upload" mint **user-action** szerepel, NEM automatizálható. Verify a `gh api graphql` `openGraphImageUrl`/`usesCustomOpenGraphImage`-szel + a HTML `<meta name="twitter:image">` scrape-pel.
+
+- **bge-reranker keepalive ≠ inference-cost** — A `VAULT_RERANK_PREWARM=v2-m3` daemon-env eliminálja a 10s cold-load-ot, **de NEM a 8s cross-encoder forward-pass-t** 18 candidate × 512 token-en. Keepalive = load-cost-mitigation, NEM inference-throughput. **Wider lesson**: model-warm optimization keepalive-szel egy alacsony határt vesz le, a maradék compute-bound. GPU vagy quantization kell a inference-bottleneck-hez. Ez session 5-ben jött elő mikor a daemon-side rerank-delegation patch-eltünk, és a wall-clock 18.6s → 8.7s lett — a maradék 8s a kompresszálhatatlan compute.
+
+- **SCD2 migration on 13,801 rows: 93ms** — Production-grade SQLite speed: ALTER TABLE ADD COLUMN (metadata-only, ~ms) + UPDATE 13.8K rows + 3 CREATE INDEX (partial + compound) belefért **<100ms**-be. **Wider lesson**: SQLite schema-evolution **nem** rate-limit a normal-sized KO-DB-knél. A skeleton-first felmérés (Round 5 ETA: "<2 sec") konzervatív volt 20× — ne becsüld túl a migration-időt SQLite-on.
+
+- **Stop-the-launch findings catch-rate: 1 out of ~4 hours work** — A repo-audit subagent (Round 4) **1 stop-the-launch problémát fogott**: `<owner>/superintelligent-vault.git` placeholder URL a README quickstart-jában. Anélkül a HN-első kattintásban 404-et kapott volna minden első-látogató. **Wider lesson**: launch-előkészítés egy dedicated audit-subagent **rögtön** + user-független **megéri** a hopjelvény-számot, mert a stop-the-launch findings asszimmetrikusan-pusztítóak (egy 404 a HN-en → bombázás).
+
+- **The "csak akkor látom mikor megnézed" iterations** — A user 4 ponton bejelentett vizuális bug-ot ami csak az ő szemén látszik (hero-banner overflow, B-5 label clip, subtitle benyúl, "hol látom"). **Wider lesson**: agent-side rendering = ASCII text preview, NEM teljes vizuális ellenőrzés. Mindig hagy a user-nek lehetőséget kérdezni "OK így?" mielőtt push-ol a public artifact-ra. Bullet-proof: a PNG-t a user GitHub-ról letöltse, lokálisan ránézzen, THEN upload. Workflow-discipline > auto-everything.
 
 ### Round 3 új tanulságok
 
@@ -230,19 +264,25 @@ A 22-idea brainstorm 4 idea-ja ÉLES (#1 RAGAS / #13 Browser-history / #15 Sleep
 
 ## Next session
 
-### Top-5 prioritás (frissítve a Round 2 után — sokat lerövidült)
+### Top-5 prioritás (frissítve a Round 10 + user-action wins után)
 
-1. **HN-post valódi submit Tue 14:00 UTC** — még mindig **user-action gated**. Nem futtatható ma.
-2. **Vault-MCP wire-up + cloudflared tunnel** — a skeleton ÉLES, most kell .mcp.json-be regisztrálni a Claude Code-on, és Tailscale-funnel/`cloudflared` bridge a claude.ai web/mobile számára. ETA: 1-2h.
-3. **Sleep-consolidation real Constitutional Critic** — most mock-rule-based gate, idea-rep promotion-decision rule-by-LLM verifikációs csere. ETA: 2-3h, opt-in `VAULT_SLEEP_REAL=1` után.
-4. **vault-ko-remap-legacy 2 manual-review-marked site refactor** — `transaction-aware atomic_append_jsonl` variant kell (`BEGIN ... ROLLBACK` atomicity preserve). ETA: 1-2h.
-5. **CLI rerank-daemon-delegation** — `vault-search auto`-backend smart-rerank trigger → daemon socket route ha `reranker_loaded`. Eliminate `VAULT_SEARCH_BACKEND=numpy` workaround. ETA: 1-2h.
+1. **Tuesday 2026-05-26 15:00 UTC HN-submit** — minden artifact ready a `06-Audits/2026-05-19 GitHub launch playbook.md`-ben (3 angle final pick + 11-tweet thread + 3-sub Reddit bodies). **User-action gated** — csak te tudsz submit-elni.
+2. **vault-entity-link batch (12,778 entity HU↔EN annotation)** — skeleton ÉLES, batch-pending interface működik. **~3 órás subagent-fanout pass** Memgraph SET-tel egyszer elvégzendő. Opt-in.
+3. **KO-DB ingest hash bug fix** — Round 8 Bayesian-finding: `hash(s,p,o,provenance)` miatt 0 confident-consensus. Fix: hash (s,p,o) only, provenance multi-row attribute. ETA: ~2h refactor + re-ingest.
+4. **Memgraph entity-graph cleanup** — 12,778 entity-ből Jaccard 0.0070 graphify-vel = sok zaj (quoted strings, hex colors mint "entitások"). Cleanup pass + extraction-prompt tightening. ETA: 2-3h.
+5. **`11.11start` virtual-context migration** — Round 9-ben landolt a `vault-core-memory` skeleton, **80% token savings simulated**. A 11.11* CLI család aktuálisan aggressive-pre-load, migration: `VAULT_CONTEXT_MODE=virtual` env-gate + per-session `--virtual` flag, 2 hét shadow-mode, flip default ha gate passes. ETA: 1-2 nap careful 11.11start touch + monitoring.
 
-### Big bets a 22-ötlet brainstormból (még nem startolt)
+### Big bets a maradék 3 brainstorm-ideából + új follow-up-ok
 
-- **#9 Temporal-KG SCD2 layer** — `valid_from/valid_until` KO-DB fact-eken, time-travel query ("what did I know on date X"). Highest-confidence reasoner-feature, T-GRAG/STAR-RAG 2026 papers.
-- **#13 Browser-history bridge** — Chrome History SQLite → 10-raw NLI pre-filter. Passive ingest, zero-friction, high cross-source-corroboration win.
-- **Temporal-KG + Sleep-consolidation kombináció** — a két idea ortogonálisan kombinálható: SCD2 fact-versioning + REM-style cross-session promotion → real time-aware semantic memory.
+- **#6 ColBERT late-interaction** — skeleton ÉLES (`vault-colbert-fallback`), **pylate install + 2 GB model + ~30 min index build kell**. Opt-in ha a hybrid retrieval-pipeline pontossága lapos lesz.
+- **#14 GitHub commit-history + Linear bridge** — szubagent B még futott a session zárásakor, lehet hogy landolt v1.0.9-be. Per-projekt gh CLI history → KO-DB.
+- **#17 RSI Tier-3 agent-on-agent meta-policy** — explicit safety-cautious deferral. Tier-2 Constitutional skeleton (319 LOC, --apply blocked) a felelős posture. Tier-3 Critic-Critic-Critic feedback-loop tervezést igényel, semmiképp nem rohanva.
+
+### Nyitott user-action queue
+
+- **Tuesday HN-launch sequence** (3 angle ready, click-by-click playbook a launch-playbook-audit-ban)
+- **Optional: trigger SCD2 fact-versioning a 11.11crystallize-ban** — most a migration ÉLES, de a `vault-ko-ingest` még NEM állít `valid_until`-t a régi-conflict facts-en. Nem-blocking, de tisztább lenne.
+- **Optional: pylate install + ColBERT index build** — csak ha a retrieval-pontosság benchmark-ja konkrét gap-et mutat.
 
 ### Backlog (alsóbb prio, ma kibővítve)
 
