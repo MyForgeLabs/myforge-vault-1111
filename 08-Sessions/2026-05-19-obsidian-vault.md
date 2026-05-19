@@ -2,9 +2,9 @@
 name: obsidian-vault
 type: session
 project: obsidian-vault
-status: open
+status: closed
 started: 2026-05-19T07:48+00:00
-ended:
+ended: 2026-05-19T12:11+00:00
 agent: claude
 tags: ["#type/session", "#project/obsidian-vault"]
 ---
