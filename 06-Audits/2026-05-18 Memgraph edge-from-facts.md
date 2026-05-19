@@ -3,9 +3,9 @@ name: 2026-05-18 Memgraph edge-from-facts
 type: audit
 created: 2026-05-19
 updated: 2026-05-19
-tags: [memgraph, kodb, b-7, edge-materialization]
+tags: ["#type/audit", "#tech/memgraph"]
+tag_backfill: 2026-05-19
 ---
-
 # Memgraph edge-from-facts — B-7 follow-up
 
 Goal: close the typed-edge gap by materializing predicate-typed edges directly

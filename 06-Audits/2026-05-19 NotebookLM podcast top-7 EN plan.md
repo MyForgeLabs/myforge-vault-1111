@@ -3,10 +3,10 @@ title: NotebookLM podcast top-7 EN — generation plan
 type: audit
 created: 2026-05-19
 updated: 2026-05-19
-tags: [audit, notebooklm, podcast, audio, en-wiki]
+tags: ["#type/audit"]
 status: in-progress
+tag_backfill: 2026-05-19
 ---
-
 # NotebookLM podcast top-7 EN — generation plan
 
 ## Goal

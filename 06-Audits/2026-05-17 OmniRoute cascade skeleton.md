@@ -2,11 +2,11 @@
 name: OmniRoute cascade skeleton
 type: audit
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-19
 status: skeleton-week-1-alpha
-tags: [audit, sv-b3, sv-b6, cascade, routing, omniroute, cost-savings]
+tags: ["#type/audit"]
+tag_backfill: 2026-05-19
 ---
-
 # OmniRoute model-cascade routing skeleton (B-3 + B-6 cross-cut)
 
 > [!info] Status

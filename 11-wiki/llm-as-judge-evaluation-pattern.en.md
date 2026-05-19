@@ -4,10 +4,10 @@ type: wiki
 lang: en
 translated_from: llm-as-judge-evaluation-pattern
 created: 2026-05-18
-updated: 2026-05-18
-tags: [pattern, evaluation, llm, g-eval, quality-gate, critique-shadowing]
+updated: 2026-05-19
+tags: ["#type/reference"]
+tag_backfill: 2026-05-19
 ---
-
 # LLM-as-judge evaluation pattern
 
 > [!info] What it solves

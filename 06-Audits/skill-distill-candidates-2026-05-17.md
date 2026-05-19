@@ -1,11 +1,11 @@
 ---
 name: skill-distill-candidates-2026-05-17
 type: audit
-tags: [audit, sv-b4, sv-b8, auto-distill, skeleton]
+tags: ["#type/audit"]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-19
+tag_backfill: 2026-05-19
 ---
-
 # Skill-distill candidates — 2026-05-17
 
 > SV B-4 + B-8 cross-axis sprint, **skeleton mode** (Week 1).

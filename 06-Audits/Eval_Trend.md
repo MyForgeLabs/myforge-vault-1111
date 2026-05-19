@@ -1,11 +1,11 @@
 ---
 name: Eval Trend — heti session-quality riport
 type: audit
-tags: [audit, eval, b-3, weekly]
-updated: 2026-05-13 09:27
+tags: ["#type/audit"]
+updated: 2026-05-19
 author: eval-l3-aggregator
+tag_backfill: 2026-05-19
 ---
-
 # Eval Trend — last 7 days
 
 Generálva: 2026-05-13 09:27 UTC

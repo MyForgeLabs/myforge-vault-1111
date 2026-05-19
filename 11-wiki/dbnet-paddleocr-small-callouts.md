@@ -4,9 +4,9 @@ description: PaddleOCR DBNet detektor (v2.10) Tesseract LSTM helyett — `det_li
 metadata:
   type: wiki
 created: 2026-05-12
-tags: [ocr, paddleocr, tesseract, technical-drawings, callout-detection]
+tags: ["#type/reference"]
+tag_backfill: 2026-05-19
 ---
-
 # DBNet (PaddleOCR) vs Tesseract LSTM kis callout-detektálásra
 
 ## A tanulság

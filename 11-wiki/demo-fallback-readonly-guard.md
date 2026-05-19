@@ -4,9 +4,10 @@ description: Bemutató/preview módban a demo-fallback session NEM lehet írhat�
 metadata:
   type: project
 created: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-19
+tags: ["#type/reference"]
+tag_backfill: 2026-05-19
 ---
-
 # Demo-fallback session = read-only mirror
 
 ## A pattern

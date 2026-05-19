@@ -3,14 +3,13 @@ name: 2026-05-18 atomic-write 11.11crystallize + MEDIUM-2
 type: audit
 created: 2026-05-19
 updated: 2026-05-19
-tags:
-  - audit
+tags: ["#type/audit"]
   - atomic-write
   - vault-tools
   - sv-b1
   - crystallize
+tag_backfill: 2026-05-19
 ---
-
 # atomic-write 11.11crystallize + MEDIUM-2 wrap-up
 
 Az [[2026-05-18 atomic-write HIGH-3 migration]] follow-up: a fennmaradó **8 write-site** atomic-write migrációja **4 scriptben**. Ezzel a Layer-1 atomic-write védelem a vault-cluster **fő mutátorain** komplett (kivéve a tudatosan SKIP-elt LOW-rizikó site-okat).

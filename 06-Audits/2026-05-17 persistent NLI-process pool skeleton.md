@@ -2,12 +2,12 @@
 name: persistent NLI-process pool skeleton
 type: audit
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-19
 sprint: B-3
 week: 6
-tags: [audit, sv-7, sv-b3, nli, perf, daemon, systemd]
+tags: ["#type/audit", "#tech/systemd"]
+tag_backfill: 2026-05-19
 ---
-
 # Persistent NLI-process pool skeleton (B-3 Week 6)
 
 > [!info] Status

@@ -2,10 +2,10 @@
 name: 2026-05-17 B-6 Week 1 worker + smoke
 type: audit
 created: 2026-05-17
-updated: 2026-05-17
-tags: [audit, sv-b6, multi-agent, worker, smoke-test]
+updated: 2026-05-19
+tags: ["#type/audit"]
+tag_backfill: 2026-05-19
 ---
-
 # 2026-05-17 B-6 Week 1 — `11.11worker.sh` real impl + első orchestrated-task smoke
 
 **Sprint:** SV B-6 (Multi-Agent Orchestration)

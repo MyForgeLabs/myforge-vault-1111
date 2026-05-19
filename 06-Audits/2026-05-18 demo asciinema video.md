@@ -3,9 +3,9 @@ name: 2026-05-18 demo asciinema video
 type: audit
 created: 2026-05-19
 updated: 2026-05-19
-tags: [audit, demo, asciinema, hero-banner, marketing]
+tags: ["#type/audit"]
+tag_backfill: 2026-05-19
 ---
-
 # 2026-05-18 demo asciinema video + README hero-image
 
 ## Cél

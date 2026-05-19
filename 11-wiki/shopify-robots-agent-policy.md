@@ -2,10 +2,10 @@
 name: shopify-robots-agent-policy
 type: wiki
 created: 2026-05-12
-updated: 2026-05-12
-tags: [shopify, robots-txt, ai-agent, scraping-policy]
+updated: 2026-05-19
+tags: ["#type/reference"]
+tag_backfill: 2026-05-19
 ---
-
 # Shopify built-in agent-policy a robots.txt-ben (2025-26)
 
 Shopify 2025 H2-től **default robots.txt-ben** ASCII-art szekciót renderel ki, ami explicit megtiltja az **AI-agent vásárlást** (Operator, Computer Use, agent-checkout) anélkül, hogy human-review-step lenne a flow-ban.

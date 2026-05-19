@@ -2,10 +2,10 @@
 name: Filesystem-as-state pattern
 type: wiki
 created: 2026-05-18
-updated: 2026-05-18
-tags: [pattern, agent-architecture, anthropic, ssot, durability]
+updated: 2026-05-19
+tags: ["#type/reference"]
+tag_backfill: 2026-05-19
 ---
-
 # Filesystem-as-state pattern
 
 > [!info] Mit hív életre

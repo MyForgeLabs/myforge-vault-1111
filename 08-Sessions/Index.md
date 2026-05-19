@@ -1,11 +1,11 @@
 ---
 name: SV-meta Sessions index
 type: index
-tags: [sessions, index, sv-meta]
+tags: ["#type/index", "#type/session"]
 created: 2026-04-23
-updated: 2026-05-18
+updated: 2026-05-19
+tag_backfill: 2026-05-19
 ---
-
 # SV-meta Sessions
 
 Az SV (Superintelligent Vault) **meta-session-ök** — a 8-axis sprint fejlesztési története. Minden session a `11.11start`/`11.11stop` workflow-val nyílt és záródott, plus crystallization-protokoll a Learnings → wiki/ADR/MEMORY propagáció.

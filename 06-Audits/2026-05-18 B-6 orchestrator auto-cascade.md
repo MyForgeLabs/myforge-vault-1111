@@ -2,10 +2,10 @@
 name: B-6 orchestrator auto-cascade
 type: audit
 created: 2026-05-19T04:40:00Z
-updated: 2026-05-19T04:40:00Z
-tags: [audit, b-6, orchestration, sv]
+updated: 2026-05-19
+tags: ["#type/audit", "#project/superintelligent-vault"]
+tag_backfill: 2026-05-19
 ---
-
 # B-6 follow-up — `11.11orchestrator` auto-cascade ÉLES (2026-05-19)
 
 > [!success] Production-ready

@@ -3,14 +3,13 @@ name: Memgraph edge-inference closure (B-7 typed-edge gap)
 type: audit
 created: 2026-05-19
 updated: 2026-05-19
-tags:
-  - "#audit"
+tags: ["#type/audit", "#tech/memgraph"]
   - "#graph"
   - "#memgraph"
   - "#b-7"
   - "#sv-b1"
+tag_backfill: 2026-05-19
 ---
-
 # Memgraph edge-inference closure — 2026-05-19
 
 > [!success] Result

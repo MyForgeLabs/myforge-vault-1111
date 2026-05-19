@@ -2,10 +2,10 @@
 name: lighthouse-agentic-browsing
 type: wiki
 created: 2026-05-12
-updated: 2026-05-13
-tags: [seo, lighthouse, ai-agent, a11y, llms-txt]
+updated: 2026-05-19
+tags: ["#type/reference", "#audit/seo"]
+tag_backfill: 2026-05-19
 ---
-
 # Lighthouse "Agentic Browsing" score
 
 Új Lighthouse kategória (megjelent kb 2025 H2-ben), ami azt méri **mennyire jól tudja egy AI agent** (Claude, ChatGPT, Perplexity, Gemini, Brave Leo) **értelmezni és navigálni** az oldalon. Pontozza a `0-100`-as skálán.

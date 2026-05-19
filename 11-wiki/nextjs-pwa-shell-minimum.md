@@ -4,9 +4,10 @@ description: A "natívnak érződő" mobil-app PWA-shell minimuma egy Next.js ap
 metadata:
   type: project
 created: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-19
+tags: ["#type/reference", "#tech/nextjs"]
+tag_backfill: 2026-05-19
 ---
-
 # Next.js PWA-shell minimum
 
 A "telepíthető, app-szerű" élmény (saját ikonos, full-screen, address-bar nélküli) NEM kell EAS Build / TestFlight / Play Store / App Store-t. Egy Next.js web-app **5 perc** alatt PWA-shell-é alakítható, és iOS Safari "Hozzáadás a kezdőképernyőhöz" / Android Chrome "Telepítés" után **95%-ban "native-feeling"** lesz egy bemutatóra.

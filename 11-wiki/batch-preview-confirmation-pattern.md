@@ -2,10 +2,10 @@
 name: Batch-preview confirmation pattern
 type: wiki
 created: 2026-05-18
-updated: 2026-05-18
-tags: [pattern, ux, ai-agent, propagation, safety]
+updated: 2026-05-19
+tags: ["#type/reference"]
+tag_backfill: 2026-05-19
 ---
-
 # Batch-preview confirmation pattern
 
 > [!info] Mit hív életre

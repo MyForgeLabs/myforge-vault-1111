@@ -2,14 +2,13 @@
 name: Concept sub-classification — 1000-sample heuristic refactor
 type: audit
 created: 2026-05-18
-updated: 2026-05-18
-tags:
-  - audit
+updated: 2026-05-19
+tags: ["#type/audit"]
   - graph
   - typedness
   - sv-b7
+tag_backfill: 2026-05-19
 ---
-
 # Concept sub-classification — 5223 → multi-label refactor
 
 ## Cél

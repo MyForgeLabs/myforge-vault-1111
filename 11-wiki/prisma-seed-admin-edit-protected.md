@@ -2,11 +2,11 @@
 name: prisma-seed-admin-edit-protected
 description: Prisma seed `upsert.update`-jét csak biztonsági (flag) mezőkre korlátozzuk admin-edit-védelemhez — gotcha hogy data-frissítés külön SQL script
 type: wiki
-tags: [prisma, seed, db, gotcha, pattern]
+tags: ["#type/reference", "#tech/prisma"]
 created: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-19
+tag_backfill: 2026-05-19
 ---
-
 # Prisma seed admin-edit-védett upsert + külön data-update flow
 
 ## Probléma

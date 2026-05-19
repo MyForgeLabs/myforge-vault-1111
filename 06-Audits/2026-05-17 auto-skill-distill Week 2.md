@@ -1,11 +1,11 @@
 ---
 name: 2026-05-17 auto-skill-distill Week 2
 type: audit
-tags: [audit, sv-b4, sv-b8, auto-distill, week2]
+tags: ["#type/audit"]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-19
+tag_backfill: 2026-05-19
 ---
-
 # Auto-skill desztilláció Week 2 — `--distill` flag + 2-phase pending + bge-m3 dedup
 
 ## TL;DR

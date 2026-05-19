@@ -1,11 +1,11 @@
 ---
 name: Puppeteer PDF render with system Chrome + token auth
 type: wiki
-tags: [wiki, pdf, puppeteer, nextjs, auth]
+tags: ["#type/reference", "#tech/nextjs"]
 created: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-19
+tag_backfill: 2026-05-19
 ---
-
 # Puppeteer PDF render — system Chrome + token-only auth
 
 Server-belüli HTML-ből PDF készítése úgy, hogy ne kelljen 280MB Chromium-ot letölteni a függőségbe, és ne kelljen session-cookie-t smuggle-elni a puppeteer browser context-be.

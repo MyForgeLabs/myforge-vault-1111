@@ -2,10 +2,10 @@
 name: Skill-projekt successful pattern
 type: wiki
 created: 2026-05-18
-updated: 2026-05-18
-tags: [pattern, project-management, sprint, productivity, meta]
+updated: 2026-05-19
+tags: ["#type/reference"]
+tag_backfill: 2026-05-19
 ---
-
 # Skill-projekt successful pattern
 
 > [!info] Mit hív életre

@@ -5,14 +5,13 @@ lang: en
 translated_from: vault-knowledge-graph-overview.md
 created: 2026-05-18
 updated: 2026-05-19
-tags:
-  - knowledge-graph
+tags: ["#type/reference", "#tech/memgraph"]
   - memgraph
   - graphify
   - viz
   - karpathy-llm-wiki
+tag_backfill: 2026-05-19
 ---
-
 # Vault Knowledge Graph — Overview
 
 > [!info] Two complementary extraction layers

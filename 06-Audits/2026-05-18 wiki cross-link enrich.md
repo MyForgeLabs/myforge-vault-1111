@@ -2,10 +2,10 @@
 name: 2026-05-18 wiki cross-link enrich
 type: audit
 created: 2026-05-18
-updated: 2026-05-18
-tags: [audit, vault, wiki, cross-link, semantic]
+updated: 2026-05-19
+tags: ["#type/audit", "#type/reference"]
+tag_backfill: 2026-05-19
 ---
-
 # 2026-05-18 — Wiki cross-link enrich
 
 **Cél:** a 11-wiki/ 145 file-ja közül a kevés-inbound (≤1 incoming-link) "isolated" wiki-ket szemantikus-rokon kandidátusokkal feltölteni, hogy a vault-on belüli navigálhatóság javuljon.

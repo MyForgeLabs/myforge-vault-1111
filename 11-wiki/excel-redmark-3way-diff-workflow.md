@@ -2,11 +2,11 @@
 name: excel-redmark-3way-diff-workflow
 description: Excel-csere katalógus-frissítés flow — piros-font detekció openpyxl-lel + 3-way diff (új xlsx ↔ régi xlsx ↔ json) + SQL gen + Zsuzsi/Zoli-stílusú kérdés-doc
 type: wiki
-tags: [excel, openpyxl, diff, workflow, catalog-update, kgc-berles, foxxi]
+tags: ["#type/reference", "#project/kgc-berles", "#project/foxxi"]
 created: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-19
+tag_backfill: 2026-05-19
 ---
-
 # Excel-csere katalógus-frissítés flow
 
 ## Mikor

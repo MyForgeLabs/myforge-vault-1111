@@ -4,9 +4,9 @@ description: Self-healing pipeline pattern — filesystem = source-of-truth, DB 
 metadata:
   type: wiki
 created: 2026-05-12
-tags: [architecture, fastapi, self-healing, background-tasks, resilience]
+tags: ["#type/reference"]
+tag_backfill: 2026-05-19
 ---
-
 # Orphan-fájl auto-resume pattern
 
 ## A tanulság

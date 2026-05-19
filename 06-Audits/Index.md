@@ -1,11 +1,11 @@
 ---
 name: Audits index
 type: index
-tags: [audits, index]
+tags: ["#type/index", "#type/audit"]
 created: 2026-04-23
-updated: 2026-05-18
+updated: 2026-05-19
+tag_backfill: 2026-05-19
 ---
-
 # Audits
 
 Pillanatkép-jelentések a teljes vault-stack + SV-meta sprint-ekről. Minden audit önmagában teljes, nem élő dokumentum (nem frissítjük utólag) — kivéve a `System_Health.md` ami heti cron-nal regenerálódik.

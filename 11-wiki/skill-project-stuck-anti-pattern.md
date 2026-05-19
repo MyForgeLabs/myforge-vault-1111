@@ -2,10 +2,10 @@
 name: Skill-projekt stuck anti-pattern
 type: wiki
 created: 2026-05-18
-updated: 2026-05-18
-tags: [pattern, anti-pattern, project-management, stuck, debugging-skill]
+updated: 2026-05-19
+tags: ["#type/reference"]
+tag_backfill: 2026-05-19
 ---
-
 # Skill-projekt stuck anti-pattern
 
 > [!info] Mit hív életre

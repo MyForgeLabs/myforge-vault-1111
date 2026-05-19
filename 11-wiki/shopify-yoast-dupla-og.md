@@ -2,10 +2,10 @@
 name: shopify-yoast-dupla-og
 type: wiki
 created: 2026-05-12
-updated: 2026-05-12
-tags: [shopify, yoast, seo, og-tags, social-share]
+updated: 2026-05-19
+tags: ["#type/reference", "#audit/seo"]
+tag_backfill: 2026-05-19
 ---
-
 # Shopify default + Yoast Shopify dupla OG description tag konfliktus
 
 Tipikus konfiguráció-hiba **Yoast SEO for Shopify app**-pal: az alap Shopify-theme Liquid template-jei (`theme.liquid`, `collection.liquid`) **saját** OG / Twitter meta-tag-eket renderelnek, és a Yoast app **fölülírja** őket — de NEM törli az eredetit. Eredmény: **két `<meta property="og:description">`** a `<head>`-ben.

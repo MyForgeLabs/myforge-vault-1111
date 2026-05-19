@@ -1,13 +1,13 @@
 ---
 name: 2026-05-17 B-4 auto-skill distillation skeleton
 type: audit
-tags: [audit, sv-b4, sv-b8, auto-distill, skeleton, voyager, recreate, skillrl]
+tags: ["#type/audit"]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-19
 sprint: SV B-4 + B-8 cross-axis
 status: skeleton-landed
+tag_backfill: 2026-05-19
 ---
-
 # SV B-4 + B-8 — Auto-skill desztilláció skeleton (Week 1)
 
 > NotebookLM-mining (sv-02 + sv-04 cross-cut) HIGH-prioritású ajánlása alapján: sikeres trajektória (≥5× repetált tool/skill-pattern egy session-en belül vagy session-ek között) → új skill-draft autonóm létrehozása `~/.claude/skills/auto-distilled/queue/<slug>.md`-be. **Voyager skill-library + ReCreate TTE + SAGE/SkillRL** kombináció, **safety-first sorrendben** (queue → manual flip → active).

@@ -3,13 +3,12 @@ name: 2026-05-18 atomic-write HIGH-3 migration
 type: audit
 created: 2026-05-19
 updated: 2026-05-19
-tags:
-  - audit
+tags: ["#type/audit"]
   - atomic-write
   - vault-tools
   - sv-b1
+tag_backfill: 2026-05-19
 ---
-
 # atomic-write HIGH-3 migráció
 
 A `vault_atomic.py` shared modul (10/10 unit-test PASS, [[2026-05-18 vault_atomic.py shared modul]]) bevezetését követő második hullám: 3 HIGH-rizikó script migrálása, ahol a nem-atomic `Path.write_text(...)` reader-collision-t okozhatott session-fájlokon / audit-MD-n / fanout request-JSON-eken.

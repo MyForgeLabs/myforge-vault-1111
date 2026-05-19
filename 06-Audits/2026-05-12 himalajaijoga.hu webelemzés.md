@@ -5,10 +5,10 @@ target: https://himalajaijoga.hu/
 target-type: website
 audit-axes: [seo, a11y, performance, ux, conversion, stack]
 created: 2026-05-12
-updated: 2026-05-12
-tags: [audit, seo, ux, wordpress, woocommerce, jóga]
+updated: 2026-05-19
+tags: ["#type/audit", "#audit/seo", "#tech/wordpress"]
+tag_backfill: 2026-05-19
 ---
-
 # Webelemzés — himalajaijoga.hu
 
 > [!info] Kontextus

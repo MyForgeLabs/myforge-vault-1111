@@ -4,10 +4,10 @@ type: wiki
 lang: en
 translated_from: filesystem-as-state-pattern
 created: 2026-05-18
-updated: 2026-05-18
-tags: [pattern, agent-architecture, anthropic, ssot, durability]
+updated: 2026-05-19
+tags: ["#type/reference"]
+tag_backfill: 2026-05-19
 ---
-
 # Filesystem-as-state pattern
 
 > [!info] What it solves

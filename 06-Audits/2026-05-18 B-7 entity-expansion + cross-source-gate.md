@@ -3,9 +3,9 @@ name: B-7 entity-expansion + cross-source-gate
 type: audit
 created: 2026-05-19
 updated: 2026-05-19
-tags: [audit, sv-b-7, memgraph, ko-db, cross-link]
+tags: ["#type/audit", "#tech/memgraph"]
+tag_backfill: 2026-05-19
 ---
-
 # B-7 entity-expansion + KO-DB cross-source-gate
 
 > Time-budget: 8 perc. Cél: relation-extract bővítés Memgraph-on + `--co-occurrence` flag + spot-check, hogy a cross-link auto-suggest-pipeline használhassa a KO-DB cross-source-evidence-jelét.

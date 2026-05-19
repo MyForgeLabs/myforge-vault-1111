@@ -4,9 +4,9 @@ description: img + SVG overlay különböző aspect-ratio-n szétcsúszik max-h 
 metadata:
   type: wiki
 created: 2026-05-12
-tags: [css, svg, react, frontend, layout-bug]
+tags: ["#tech/react", "#type/reference", "#project/superintelligent-vault"]
+tag_backfill: 2026-05-19
 ---
-
 # SVG-overlay az `<img>` fölött — aspect-ratio CSS layout bug
 
 ## A tanulság

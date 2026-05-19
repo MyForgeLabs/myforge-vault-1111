@@ -1,11 +1,11 @@
 ---
 name: Next.js 16 — useSearchParams needs force-dynamic (or Suspense)
 type: wiki
-tags: [wiki, nextjs, turbopack, gotcha]
+tags: ["#type/reference", "#tech/nextjs"]
 created: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-19
+tag_backfill: 2026-05-19
 ---
-
 # Next.js 16 — `useSearchParams()` build-error a statikusan prerendert route-on
 
 ## A tünet

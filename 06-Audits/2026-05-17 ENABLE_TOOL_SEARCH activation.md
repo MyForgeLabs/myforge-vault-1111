@@ -2,12 +2,12 @@
 name: ENABLE_TOOL_SEARCH activation
 type: audit
 created: 2026-05-17
-updated: 2026-05-17
-tags: ["sv-4", "tool-search", "settings"]
+updated: 2026-05-19
+tags: ["#type/audit"]
 project: superintelligent-vault
 axis: B-4
+tag_backfill: 2026-05-19
 ---
-
 # ENABLE_TOOL_SEARCH activation (SV B-4)
 
 > [!info] Cél

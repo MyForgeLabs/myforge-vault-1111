@@ -3,12 +3,12 @@ name: BMAD context-preload pattern
 type: wiki
 created: 2026-05-19
 updated: 2026-05-19
-tags: ["#bmad", "#vault", "#pattern", "#sprint-b"]
+tags: ["#type/reference"]
 aliases:
   - bmad-vault-preload
   - bmad-sprint-b
+tag_backfill: 2026-05-19
 ---
-
 # BMAD context-preload pattern (Sprint B)
 
 > [!success] ÉLES 2026-05-19-tól

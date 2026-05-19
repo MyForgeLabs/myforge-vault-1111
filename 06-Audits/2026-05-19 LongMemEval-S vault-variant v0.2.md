@@ -3,9 +3,9 @@ name: LongMemEval-S vault-variant v0.2
 type: audit
 created: 2026-05-19
 updated: 2026-05-19
-tags: [audit, eval, longmemeval, recall, sv-b-2, v0.2]
+tags: ["#type/audit"]
+tag_backfill: 2026-05-19
 ---
-
 # LongMemEval-S vault-variant — v0.2
 
 Benchmark-driven optimization sprint following v0.1 baseline (R@5=46%).

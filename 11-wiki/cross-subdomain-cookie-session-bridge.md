@@ -1,11 +1,11 @@
 ---
 name: Cross-subdomain cookie session bridge
 type: wiki
-tags: [wiki, auth, cookies, nextjs, multi-app]
+tags: ["#type/reference", "#tech/nextjs"]
 created: 2026-05-09
-updated: 2026-05-12
+updated: 2026-05-19
+tag_backfill: 2026-05-19
 ---
-
 # Cross-subdomain cookie session bridge
 
 Két különálló Next.js app (`beta.example-balance.local` és `balance.example-balance.local`) megosztja a `kinda_user` HMAC-aláírt session cookie-t — egy login a `beta.example-balance.local/belepes`-en, a user authentikáltan landol a `balance.example-balance.local/`-n.
