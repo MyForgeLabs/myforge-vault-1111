@@ -1,0 +1,8 @@
+# GitHub Sponsors / funding metadata.
+# Signals to GitHub's discovery algorithm that the project is funded-ready;
+# adds an unobtrusive "♡ Sponsor" link in the repo header.
+# Minimal on purpose — no tier rewards, no donation push in README.
+
+github: [petimarkovics]
+custom:
+  - https://myforgelabs.github.io/myforge-vault-1111/

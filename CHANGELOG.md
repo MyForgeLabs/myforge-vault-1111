@@ -2,6 +2,63 @@
 
 All notable changes to MyForge Vault 11.11.
 
+## [1.0.1] — 2026-05-19
+
+Two days of post-launch polish on top of v1.0.0. No breaking changes.
+
+### Added
+
+- **`SECURITY.md`** — vulnerability disclosure policy
+- **`CITATION.cff`** — academic citation metadata (Zenodo-compatible DOI mintable)
+- **`llms.txt`** at repo root — agentic-browsing discovery per [llmstxt.org](https://llmstxt.org)
+- **`.github/FUNDING.yml`** — GitHub Sponsors registration
+- **`.github/ISSUE_TEMPLATE/vault_pattern.md`** — "Share your vault pattern" community thread template
+- **`.github/ISSUE_TEMPLATE/config.yml`** — routes blank issues to Discussions instead
+- **`.vault-mcp/vault_mcp_server.py`** — umbrella STDIO MCP server (7 read-only tools: `search_vault`, `search_skills`, `ko_query`, `ko_top_k`, `memgraph_cypher`, `read_project`, `list_recent_sessions`); local-first, no auth, mutation keywords rejected in Cypher
+- **`.vault-mcp/mcp.json.sample`** — wire-up config for Claude Code / Claude Desktop / Codex / Gemini
+- **`.vault-eval/regression/`** — LongMemEval-S retrieval-quality CI gate (Pytest fast + slow modes, daily cron)
+- **`/usr/local/bin/vault-search-health`** — 5-step daemon probe (socket / systemd / health-rpc / search-rpc / skill-ns)
+- **`/usr/local/bin/vault-atomic-lint`** — AST-scan + whitelist-comment lint for atomic-write compliance
+- **`/usr/local/bin/vault-eval-regression`** — CLI wrapper for the LongMemEval-S regression gate
+- **`/usr/local/bin/vault-sleep-consolidate`** — REM-style cross-session learning consolidator (stage-1 rule gate + stage-2 LLM-Critic via subagent-fanout pending pattern, audit-only by default)
+- **`/usr/local/bin/vault-browser-history-ingest`** — Chrome/Chromium/Brave History → `10-raw/external/browser/` with NLI pre-filter, dry-run default, `VAULT_BROWSER_INGEST_APPLY=1` gate
+- **`11-wiki/append-only-jsonl-migration.md`** — 17-site migration playbook + subagent triage finding
+- **`11-wiki/browser-history-ingest-pattern.md`** — passive-ingest pipeline doc
+- **3 NotebookLM podcasts re-encoded** from 1200 kbps to 96 kbps: **121 MB → 45 MB** (-62%)
+
+### Changed
+
+- **`bmad-vault-watch@.service`** systemd template hardened: `MemoryMax=512M`, `MemoryHigh=384M`, `TasksMax=128`
+- **`vault-search.service`** patched: `VAULT_RERANK_PREWARM=v2-m3`, `MemoryHigh=5G`, `MemoryMax=7G`; bge-reranker now warm at daemon start
+- **`vault-search` CLI** auto-backend smart-rerank now **delegates to the daemon** when `reranker_loaded: true` — wall-clock **18.6 s → 8.7 s (-55%)**
+- **12 JSONL append-sites** migrated to the centralised `vault_atomic.atomic_append_jsonl` helper
+- **B-7 entity typing**: 28.9% → **72.8% (+43.9pp)** in one parallel subagent classification pass
+
+### Fixed
+
+- **B-2 no-socket score-norm bug RESOLVED** — daemon-vs-legacy score divergence eliminated by implicit chunk-vector re-normalization
+- **`mgclient` autocommit silent-rollback** — `conn.autocommit = True` enforced in all Memgraph writers
+- **`set -e` + `vault-detect-chat-id` exit-1 collision** in 5 of the `11.11*` family scripts
+- **Audit-MD self-referential loop** in the broken-wikilink scanner (~70% noise reduction)
+
+### Internal
+
+- **Layer-1 vault-atomic FULL coverage** across 15 sites + flock-mutex in 14+ cron jobs
+- **B-7 graph**: 24,606 typed edges, 100% typed, 3,431 `:LINKS_TO`, 300 `:ALIAS_OF`
+- **B-8 RSI Tier-2 Constitutional AI skeleton** (319 LOC, 10 rules, 4-layer safety, `--apply` blocked by default)
+- **4 new daily cron jobs** (all flock-mutex): vault-search-health 30-min, vault-atomic-lint 02:30, vault-eval-regression 02:45, vault-sleep-consolidate 03:30
+
+### Numbers (post-1.0.1)
+
+- 252 wikis (was 219), 71 EN translations
+- 13,800+ KO-DB facts, 8,997 entity-graph nodes / 24,606 edges / 100% typed
+- 67/99 Recall@5 hybrid (LongMemEval-S vault-variant v0.2)
+- 0 atomic-write violations (66 scripts lint-compliant)
+- 18.6s → 8.7s smart-rerank wall-clock (-55%)
+- 121 MB → 45 MB podcast footprint (-62%)
+
+Full diff: https://github.com/MyForgeLabs/myforge-vault-1111/compare/v1.0.0...v1.0.1
+
 ## [1.0.0] — 2026-05-18
 
 **Initial public release.** Repository flipped from PRIVATE to PUBLIC, MIT license, docs site live at <https://myforgelabs.github.io/myforge-vault-1111/>.
