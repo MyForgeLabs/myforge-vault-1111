@@ -52,14 +52,14 @@
   <!-- Brand wordmark, top-left -->
   <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto" font-weight="700">
     <text x="60" y="92" font-size="36" fill="url(#amber)" letter-spacing="0.5">MyForge Vault</text>
-    <text x="400" y="92" font-size="36" fill="url(#cyan)" letter-spacing="3">11.11</text>
+    <text x="338" y="92" font-size="36" fill="url(#cyan)" letter-spacing="3">11.11</text>
     <text x="60" y="120" font-size="13" fill="#9aa6c2" font-weight="500" letter-spacing="1.5">SELF-IMPROVING OBSIDIAN VAULT · KARPATHY LLM-WIKI PATTERN</text>
   </g>
 
   <!-- Top-right meta line -->
   <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="12" fill="#7e8cb3">
-    <text x="1220" y="92" text-anchor="end">v1.0.10 · MIT · myforgelabs.github.io/myforge-vault-1111</text>
-    <text x="1220" y="110" text-anchor="end">274 wiki · 9,517 entities · 15,835 facts · 962 skills</text>
+    <text x="1220" y="92" text-anchor="end">v1.0.9 · MIT · myforgelabs.github.io/myforge-vault-1111</text>
+    <text x="1220" y="110" text-anchor="end">274 wiki · 8,913 entities · 13,800+ facts · 962 skills</text>
   </g>
 
   <!-- ============== 8-axis radial diagram (left half) ============== -->
@@ -135,7 +135,7 @@
   <!-- ============== Right-side stats panel (wider, generous padding) ============== -->
   <g transform="translate(740 200)" font-family="ui-sans-serif, system-ui">
     <text x="0" y="0" font-size="22" font-weight="700" fill="#e8eeff">Augmented intelligence — NOT AGI</text>
-    <text x="0" y="28" font-size="13" fill="#9aa6c2" font-weight="500">$0 marginal cost · Claude Code · 28-day measured run</text>
+    <text x="0" y="28" font-size="13" fill="#9aa6c2" font-weight="500">$0 marginal cost · Claude Code · 27-day measured run</text>
 
     <!-- Stat cards row 1: 3 cards, generous widths -->
     <g transform="translate(0 56)">
@@ -172,17 +172,17 @@
       <!-- Card 3: ADRs 122×66 -->
       <rect x="284" width="122" height="66" rx="10" fill="#0c1740" stroke="#1d2a52"/>
       <text x="300" y="22" font-size="10" fill="#9ce8ff" letter-spacing="1.3">ADRs</text>
-      <text x="300" y="50" font-size="22" font-weight="800" fill="#e8eeff">48</text>
+      <text x="300" y="50" font-size="22" font-weight="800" fill="#e8eeff">46</text>
 
       <!-- Card 4: CRON 122×66 -->
       <rect x="426" width="104" height="66" rx="10" fill="#0c1740" stroke="#1d2a52"/>
       <text x="478" y="22" font-size="10" fill="#9ce8ff" text-anchor="middle" letter-spacing="1.3">CRON</text>
-      <text x="478" y="50" font-size="22" font-weight="800" fill="#e8eeff" text-anchor="middle">25</text>
+      <text x="478" y="50" font-size="22" font-weight="800" fill="#e8eeff" text-anchor="middle">23</text>
     </g>
 
     <!-- Bottom tagline (under the cards, breathable spacing) -->
     <g transform="translate(0 252)">
-      <text x="0" y="0" font-size="13" fill="#cfd6ea" font-weight="600">B-8 RSI Critic κ=0.708 ratified · 8 axes · 85+ scripts</text>
+      <text x="0" y="0" font-size="13" fill="#cfd6ea" font-weight="600">8 independently-developable axes · 85+ production scripts</text>
       <text x="0" y="22" font-size="11" fill="#9aa6c2" font-family="ui-monospace, SFMono-Regular, Consolas, monospace">11.11start · 11.11note · 11.11focus · 11.11stop · 11.11crystallize · 11.11worker</text>
     </g>
   </g>
