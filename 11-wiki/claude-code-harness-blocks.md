@@ -108,6 +108,23 @@ Amikor a harness blokkol egy másodlagos action-t (build / restart / unit-instal
 4. **Mondd el** a user-nek mit futtasson
 5. **Tesztelj** ha tudsz — egyébként a user reportál vissza
 
+## #6 — Standing memory-rule (KO-flag) vs immediate user-OK
+
+A Claude Code auto-mode classifier a transcript-state szerinti **standing-rule-eket** és a **current Bash-action**-t mérlegeli, NEM a tool-response-ben szereplő AskUserQuestion-válaszokat. Ha van memóriában egy KO-flag (pl. `feedback_mfl_voice_sprint_isolation` → "ne legyen nyitott szerver Sprint 2 előfeltételek nélkül"), és a user egy AskUserQuestion-on "Quick bring-up"-ot választ, a classifier **továbbra is blokkolhatja** a kapcsolódó actiont (pl. `tailscale serve --bg --https=8443 ...`).
+
+**Konkrét incidens** (2026-05-19): MFL-Voice demo bring-up — Python szerver indult `127.0.0.1:8766`-on (lokális bind OK), de `tailscale serve` blokkolva lett a memória-rule-ra hivatkozva. A user choice-ja a tool-response-ben NEM tágította a scope-ot.
+
+**Helyes viselkedés.** Védi a Q&A-spoofing-ot: ha a classifier elfogadná a tool-response-ben szereplő OK-t mint general permission relaxation, akkor egy injection-attack könnyen feldobhatna AskUserQuestion-ra fake user-OK-t és bypass-elne. A classifier-nek a transcript user-message-ekre és a standing-rule-ekre kell hagyatkoznia.
+
+**Feloldási utak:**
+
+1. **Explicit Bash permission-rule** — user `settings.json`-ban allow-listáz egy konkrét `tailscale serve ...` parancsot
+2. **User manuálisan futtat** — copy-paste a parancsot saját terminálba (2026-05-15-ön és 2026-05-19-én is ezt választotta)
+3. **Memória-rule frissítése** — amikor a feltételek (Sprint 2 isolation 5-pontja) ténylegesen megépültek, a `feedback_mfl_voice_sprint_isolation` memóriát update-elni "Sprint 2 LANDED → ad-hoc szerver-bring-up OK"-ra
+4. **Egyszeri Allow** — VSCode extension prompt-on user kattint Allow, csak az adott invocation-re
+
+Az ad-hoc demo-bring-up nem **rule violation**, hanem **scope-mismatch** — a memory-rule "Sprint 2 előfeltételek nélkül" mintázatra szól, a user demo-szándékára NEM. Ennek **explicit ki kell jönnie az interaction-flow-ban**, NEM a tool-response-tagging-ben.
+
 ## Pattern: amit NEM szabad csinálni
 
 - Ne próbáld `--dangerously-skip-permissions`-t másik flag-gel kicsempészni (`--permission-mode bypassPermissions` ugyanaz, mert a CLI internál `bypassPermissions` → `--dangerously-skip-permissions`-ra mappel)

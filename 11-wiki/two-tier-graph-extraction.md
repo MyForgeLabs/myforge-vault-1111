@@ -98,6 +98,41 @@ a diff **maga** = signal a NOISE-ról. Ez reusable pattern bármely
 "LLM + deterministic" hybrid stack-en, **NEM** csak graph-extraction-ra.
 Ld. [[stale-numbers-in-static-artifacts-pattern.en]] hasonló cross-source-corroboration anti-rot disciplinát.
 
+## 2026-05-19 PM — Cleanup did NOT lift Jaccard, structural vocab-merge required
+
+Tier-A + Tier-C noise-DELETE (12,778 → 8,913 entity, -30.2%) + extraction-prompt
+tightening (vocab v3, 7 anti-noise rule) — empirikus eredmény:
+
+| Phase | Memgraph entities | graphify entities | Jaccard |
+|---|---:|---:|---:|
+| Pre-cleanup | 12,778 | 4,439 | 0.0070 |
+| Post-cleanup | 8,913 | 4,439 | **0.0078** |
+
+**Δ Jaccard = +0.0008.** A Phase-4 acceptance gate (≥0.05) **NEM teljesül**.
+
+**Mechanism**: a két extraction-stack (LLM Tier-1 narrative vs tree-sitter
+Tier-2 code-symbol) **ortogonális vocabulary**-t termel. A noise-DELETE
+csak a denominator-t (Tier-1 ∪ Tier-2 méretét) csökkenti, a numerator-t
+(Tier-1 ∩ Tier-2 méretét) nem növeli. A maradék 8,913 narrative-concept
+és 4,439 code-symbol között **strukturálisan kevés** az átfedés.
+
+**Wider lesson**: cross-validation Jaccard két ortogonális-vocab stack
+között **soha** nem ér el >0.5-ös értéket pure-DELETE-tel; **structural
+vocab-merge KÖTELEZŐ**. Két opció:
+
+- **Option A (selective re-extract)** — tightened prompt → új extraction
+  → LLM-output átsoroldódik code-symbol szintre is. ETA ~3-4h.
+- **Option B (tree-sitter pre-pass)** — vault-ko-ingest hibrid-pass:
+  tree-sitter tokenize → symbol-extract (LLM-output ∪ tree-sitter-output).
+  Direct vocabulary-overlap-növelés. ETA 1 nap design + 2-3h impl.
+
+**Recommended sequence**: Option-A először (gyorsabb ROI), aztán Option-B
+ha Phase-4 gate még mindig nem teljesül. ETA acceptance: ~2026-06-02.
+
+Részletek: [[../06-Audits/2026-05-19 Memgraph cleanup execution result]]
++ [[../06-Audits/2026-05-19 Memgraph cleanup Phase-3 next-step plan]]
++ [[llm-graph-noise-cleanup-composite-filter]] (filter-pattern wiki).
+
 ## Kapcsolódó
 
 - [[sv-06-world-model-knowledge-graph]] — B-7 research
@@ -106,3 +141,5 @@ Ld. [[stale-numbers-in-static-artifacts-pattern.en]] hasonló cross-source-corro
 - [[vendor-feature-verify-before-workaround]] — kapcsolódó verifikációs lecke
 - [[external-skill-cherry-pick]] — a graphify mint cherry-pick eredmény
 - [[stale-numbers-in-static-artifacts-pattern.en]] — sibling cross-source-verification discipline
+- [[llm-graph-noise-cleanup-composite-filter]] — Tier-A + Tier-C composite filter pattern
+- [[vault-ko-ingest-prompt-tightening-2026-05-19]] — vocab v3 prompt-tightening

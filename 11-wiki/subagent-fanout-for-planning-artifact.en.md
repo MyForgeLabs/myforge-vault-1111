@@ -63,9 +63,26 @@ The fanout-planning pattern shifts the *planning* itself to the background, so t
 
 This pattern composes cleanly with the [[sprint-day-0-skeleton-first]] discipline: each idea picked from the brainstorm gets a Day-0 skeleton (CLI + tests + wiki), and Day-N filling-in happens in a follow-up session.
 
+## 2026-05-19 PM — Wave-based sequencing for >5 task batches
+
+In the same project, the next day's PM follow-up session (~2.5h) ran a **wave-based sequencing pattern**: 4 sequential waves, each spawning 3-5 independent parallel subagents:
+
+- **Wave-1 (5 subagents)** — discovery/analysis
+- **Wave-2 (3 subagents)** — build, in parallel with main-thread executing critical DB migration
+- **Wave-3 (2 subagents)** — critical-feature skeletons + main-thread quick-wins
+- **Wave-4 batch-A (4 subagents)** — follow-up tasks
+- **Wave-4 batch-B (2 subagents)** — pilots
+
+**Total**: ~17 subagent-spawn × $0 cost, **60+ tasks LANDED in 2.5h**, 0 outstanding background work.
+
+The wave-based structure adds **dependency-aware parallelism**: within a wave, all tasks are independent and run concurrently; between waves, the design output of wave N feeds the build input of wave N+1. Flat fanout (spawning all 17 at once) would fail because (e.g.) the SCD2 patch depends on the migration being executed first.
+
+**Wider lesson**: for >5-task batches, wave-orchestration > flat-fanout. Maximize parallelism within each wave (3-5 subagents) without violating dependencies between waves. The main thread fills the gap between waves with quick-wins or critical mutations that need careful sequencing.
+
 ## Related
 
 - [[claude-code-subagent-fanout]] — the underlying $0-cost subagent-fanout primitive
 - [[sprint-day-0-skeleton-first]] — the skeleton-first discipline applied to each idea
 - [[Karpathy-LLM-Wiki-pattern]] — the wider pattern of "compile knowledge incrementally"
+- [[subagent-collateral-bug-discovery]] — bugs caught by subagent run-time errors as a high-value signal
 - `06-Audits/2026-05-19 mega-session summary.md` — the empirical validation
