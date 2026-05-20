@@ -427,12 +427,12 @@ def cmd_size(args: argparse.Namespace) -> int:
     doc = load_core()
     rendered = render_core(doc)
     total = estimate_tokens(rendered)
-    print(f"Core-memory size estimate")
+    print("Core-memory size estimate")
     print(f"  rendered: {len(rendered):,} chars / ~{total} tokens")
     print(f"  budget:   {doc.get('budget_tokens', BUDGET_TOKENS_DEFAULT)} tokens (soft)")
     print(f"  ceiling:  {BUDGET_HARD_CEIL} tokens (hard)")
     print()
-    print(f"Per-block:")
+    print("Per-block:")
     for block_name in BLOCK_ORDER:
         block = doc.get("blocks", {}).get(block_name)
         if not block:
@@ -453,7 +453,7 @@ def cmd_simulate(args: argparse.Namespace) -> int:
 
     print(f"Query: {query!r}")
     print()
-    print(f"=== Core hit ===")
+    print("=== Core hit ===")
     print(f"Core size: ~{core_tokens} tokens (always loaded)")
     print()
 
@@ -468,10 +468,10 @@ def cmd_simulate(args: argparse.Namespace) -> int:
     if hit_blocks:
         print(f"Direct core matches: {', '.join(hit_blocks)}")
     else:
-        print(f"No direct core match — would page-fault to archival.")
+        print("No direct core match — would page-fault to archival.")
 
     print()
-    print(f"=== Archival page-fault simulation (vault-search) ===")
+    print("=== Archival page-fault simulation (vault-search) ===")
     # Try vault-search; fall back to a stub if unavailable.
     archival_chunks: list[dict[str, Any]] = []
     try:
@@ -523,7 +523,7 @@ def cmd_simulate(args: argparse.Namespace) -> int:
         print(f"  Stub: 5 × ~500 tokens = ~{archival_tokens} tokens of archival.")
 
     print()
-    print(f"=== Token-budget comparison ===")
+    print("=== Token-budget comparison ===")
     classic = 17000  # Empirical aggressive pre-load mean.
     virtual = core_tokens + archival_tokens
     print(
@@ -550,7 +550,7 @@ def cmd_diff(args: argparse.Namespace) -> int:
         return 1
     if not SNAPSHOT_PATH.exists():
         print(
-            f"✗ No snapshot yet — run `vault-core-memory init` to create one.",
+            "✗ No snapshot yet — run `vault-core-memory init` to create one.",
             file=sys.stderr,
         )
         return 1

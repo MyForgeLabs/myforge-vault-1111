@@ -40,7 +40,6 @@ import sys
 import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from typing import Iterable
 
 sys.path.insert(0, "/root/obsidian-vault/.vault-tools/lib")
 from vault_atomic import atomic_write, atomic_append_jsonl  # noqa: E402
@@ -671,7 +670,7 @@ def main(argv: list[str] | None = None) -> int:
             # Falls back to extractive so the daily note still gets *something*
             # — the subagent response can land in a later re-run.
             bullets, session_stats = extractive_rollup(target, sessions)
-            status = f"subagent-pending+extractive-fallback"
+            status = "subagent-pending+extractive-fallback"
         else:
             status = f"subagent-{sub_status}"
     else:

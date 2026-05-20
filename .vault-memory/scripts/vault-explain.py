@@ -267,7 +267,7 @@ def mg_detect_entities(conn, query: str, max_entities: int = 5) -> list[dict]:
             seen.add(name)
             out.append({
                 "name": name,
-                "labels": [l for l in labels if l != "Entity"],
+                "labels": [lab for lab in labels if lab != "Entity"],
                 "source_count": source_count or 0,
                 "matched_token": tok,
             })
