@@ -1,30 +1,30 @@
 {
-  "generated_at": "2026-05-20T09:00:09Z",
+  "generated_at": "2026-05-20T10:00:08Z",
   "wiki": {
-    "total": 198,
+    "total": 201,
     "en": 70,
-    "hu_only": 128,
-    "coverage_pct": 35.4
+    "hu_only": 131,
+    "coverage_pct": 34.8
   },
   "audit": {
-    "total": 135,
-    "public": 124
+    "total": 138,
+    "public": 126
   },
   "memgraph": {
-    "total_nodes": 33075,
-    "total_edges": 25518,
-    "entities": 13051,
-    "concepts": 6544,
-    "alias_of": 248,
+    "total_nodes": 29515,
+    "total_edges": 21171,
+    "entities": 9517,
+    "concepts": 0,
+    "alias_of": 0,
     "links_to": 3431
   },
   "ko_db": {
     "total_facts": 15835
   },
-  "crons": 22,
+  "crons": 23,
   "public_commits": {
-    "all_time": 120,
-    "today": 9
+    "all_time": 121,
+    "today": 10
   },
   "health": {
     "status": "good",

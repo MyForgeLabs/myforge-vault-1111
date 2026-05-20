@@ -66,6 +66,15 @@ def _connect() -> sqlite3.Connection:
 VALID_SOURCE_TYPES = {"session", "wiki", "adr", "notebooklm", "manual"}
 
 
+def _is_post34(conn) -> bool:
+    """Detect post-#34 (2026-05-19) schema: facts.provenance dropped to side-table."""
+    cols = {r[1] for r in conn.execute("PRAGMA table_info(facts)").fetchall()}
+    has_pv = bool(conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name='fact_provenance'"
+    ).fetchone())
+    return "provenance" not in cols and has_pv
+
+
 def tool_query(
     substring: str,
     top_k: int = 10,
@@ -80,18 +89,35 @@ def tool_query(
         )
     top_k = max(1, min(int(top_k), 200))
     like = f"%{substring}%"
-    where = ["(subject LIKE ? OR predicate LIKE ? OR object LIKE ?)"]
-    params: list[Any] = [like, like, like]
-    if source_type:
-        where.append("source_type = ?")
-        params.append(source_type)
-    sql = (
-        "SELECT id, subject, predicate, object, provenance, confidence, source_type "
-        "FROM facts WHERE " + " AND ".join(where) +
-        " ORDER BY confidence DESC, id ASC LIMIT ?"
-    )
-    params.append(top_k)
     with _connect() as conn:
+        post34 = _is_post34(conn)
+        if post34:
+            where = ["(f.subject LIKE ? OR f.predicate LIKE ? OR f.object LIKE ?)"]
+            params: list[Any] = [like, like, like]
+            if source_type:
+                where.append("f.source_type = ?")
+                params.append(source_type)
+            sql = (
+                "SELECT f.id, f.subject, f.predicate, f.object, "
+                "       COALESCE(GROUP_CONCAT(fp.provenance, '||'), '') AS provenance, "
+                "       f.confidence, f.source_type "
+                "FROM facts f LEFT JOIN fact_provenance fp ON fp.fact_hash = f.hash "
+                "WHERE " + " AND ".join(where) +
+                " GROUP BY f.id "
+                " ORDER BY f.confidence DESC, f.id ASC LIMIT ?"
+            )
+        else:
+            where = ["(subject LIKE ? OR predicate LIKE ? OR object LIKE ?)"]
+            params = [like, like, like]
+            if source_type:
+                where.append("source_type = ?")
+                params.append(source_type)
+            sql = (
+                "SELECT id, subject, predicate, object, provenance, confidence, source_type "
+                "FROM facts WHERE " + " AND ".join(where) +
+                " ORDER BY confidence DESC, id ASC LIMIT ?"
+            )
+        params.append(top_k)
         rows = conn.execute(sql, params).fetchall()
     return [dict(r) for r in rows]
 
@@ -99,6 +125,7 @@ def tool_query(
 def tool_stats() -> dict[str, Any]:
     """Aggregate counts: total, per source_type, top predicates, top provenance files."""
     with _connect() as conn:
+        post34 = _is_post34(conn)
         total = conn.execute("SELECT COUNT(*) AS n FROM facts").fetchone()["n"]
         by_type = [
             dict(r) for r in conn.execute(
@@ -112,12 +139,20 @@ def tool_stats() -> dict[str, Any]:
                 "GROUP BY predicate ORDER BY n DESC LIMIT 20"
             ).fetchall()
         ]
-        by_provenance = [
-            dict(r) for r in conn.execute(
-                "SELECT provenance, COUNT(*) AS n FROM facts "
-                "GROUP BY provenance ORDER BY n DESC LIMIT 10"
-            ).fetchall()
-        ]
+        if post34:
+            by_provenance = [
+                dict(r) for r in conn.execute(
+                    "SELECT provenance, COUNT(*) AS n FROM fact_provenance "
+                    "GROUP BY provenance ORDER BY n DESC LIMIT 10"
+                ).fetchall()
+            ]
+        else:
+            by_provenance = [
+                dict(r) for r in conn.execute(
+                    "SELECT provenance, COUNT(*) AS n FROM facts "
+                    "GROUP BY provenance ORDER BY n DESC LIMIT 10"
+                ).fetchall()
+            ]
     return {
         "db_path": str(KO_DB),
         "total_facts": total,
@@ -132,36 +167,62 @@ def tool_conflicts(predicate: str | None = None) -> list[dict[str, Any]]:
 
     If `predicate` is given, restrict to that predicate (LIKE).
     """
-    if predicate:
-        sql = """
-            SELECT subject, predicate,
-                   GROUP_CONCAT(DISTINCT object) AS objects,
-                   GROUP_CONCAT(DISTINCT provenance) AS sources,
-                   COUNT(*) AS n,
-                   COUNT(DISTINCT object) AS distinct_objects
-            FROM facts
-            WHERE predicate LIKE ?
-            GROUP BY subject, predicate
-            HAVING COUNT(DISTINCT object) > 1
-            ORDER BY distinct_objects DESC, n DESC
-            LIMIT 50
-        """
-        params = (f"%{predicate}%",)
-    else:
-        sql = """
-            SELECT subject, predicate,
-                   GROUP_CONCAT(DISTINCT object) AS objects,
-                   GROUP_CONCAT(DISTINCT provenance) AS sources,
-                   COUNT(*) AS n,
-                   COUNT(DISTINCT object) AS distinct_objects
-            FROM facts
-            GROUP BY subject, predicate
-            HAVING COUNT(DISTINCT object) > 1
-            ORDER BY distinct_objects DESC, n DESC
-            LIMIT 50
-        """
-        params = ()
     with _connect() as conn:
+        post34 = _is_post34(conn)
+        if post34:
+            base_select = (
+                "SELECT f.subject, f.predicate, "
+                "       GROUP_CONCAT(DISTINCT f.object) AS objects, "
+                "       GROUP_CONCAT(DISTINCT fp.provenance) AS sources, "
+                "       COUNT(*) AS n, "
+                "       COUNT(DISTINCT f.object) AS distinct_objects "
+                "FROM facts f LEFT JOIN fact_provenance fp ON fp.fact_hash = f.hash "
+            )
+            if predicate:
+                sql = base_select + (
+                    "WHERE f.predicate LIKE ? "
+                    "GROUP BY f.subject, f.predicate "
+                    "HAVING COUNT(DISTINCT f.object) > 1 "
+                    "ORDER BY distinct_objects DESC, n DESC LIMIT 50"
+                )
+                params: tuple = (f"%{predicate}%",)
+            else:
+                sql = base_select + (
+                    "GROUP BY f.subject, f.predicate "
+                    "HAVING COUNT(DISTINCT f.object) > 1 "
+                    "ORDER BY distinct_objects DESC, n DESC LIMIT 50"
+                )
+                params = ()
+        else:
+            if predicate:
+                sql = """
+                    SELECT subject, predicate,
+                           GROUP_CONCAT(DISTINCT object) AS objects,
+                           GROUP_CONCAT(DISTINCT provenance) AS sources,
+                           COUNT(*) AS n,
+                           COUNT(DISTINCT object) AS distinct_objects
+                    FROM facts
+                    WHERE predicate LIKE ?
+                    GROUP BY subject, predicate
+                    HAVING COUNT(DISTINCT object) > 1
+                    ORDER BY distinct_objects DESC, n DESC
+                    LIMIT 50
+                """
+                params = (f"%{predicate}%",)
+            else:
+                sql = """
+                    SELECT subject, predicate,
+                           GROUP_CONCAT(DISTINCT object) AS objects,
+                           GROUP_CONCAT(DISTINCT provenance) AS sources,
+                           COUNT(*) AS n,
+                           COUNT(DISTINCT object) AS distinct_objects
+                    FROM facts
+                    GROUP BY subject, predicate
+                    HAVING COUNT(DISTINCT object) > 1
+                    ORDER BY distinct_objects DESC, n DESC
+                    LIMIT 50
+                """
+                params = ()
         rows = conn.execute(sql, params).fetchall()
     out = []
     for r in rows:
@@ -187,27 +248,53 @@ def tool_top_k(
     top_k = max(1, min(int(top_k), 50))
     facts_per_subject = max(1, min(int(facts_per_subject), 20))
     like = f"%{token}%"
-    subject_sql = """
-        SELECT subject,
-               COUNT(DISTINCT provenance) AS sources,
-               MAX(confidence)            AS max_conf,
-               COUNT(*)                   AS fact_count
-        FROM facts
-        WHERE subject LIKE ? OR object LIKE ?
-        GROUP BY subject
-        ORDER BY sources DESC, max_conf DESC, fact_count DESC
-        LIMIT ?
-    """
     with _connect() as conn:
+        post34 = _is_post34(conn)
+        if post34:
+            subject_sql = """
+                SELECT subject,
+                       MAX(provenance_count) AS sources,
+                       MAX(confidence)        AS max_conf,
+                       COUNT(*)               AS fact_count
+                FROM facts
+                WHERE subject LIKE ? OR object LIKE ?
+                GROUP BY subject
+                ORDER BY sources DESC, max_conf DESC, fact_count DESC
+                LIMIT ?
+            """
+        else:
+            subject_sql = """
+                SELECT subject,
+                       COUNT(DISTINCT provenance) AS sources,
+                       MAX(confidence)            AS max_conf,
+                       COUNT(*)                   AS fact_count
+                FROM facts
+                WHERE subject LIKE ? OR object LIKE ?
+                GROUP BY subject
+                ORDER BY sources DESC, max_conf DESC, fact_count DESC
+                LIMIT ?
+            """
         subjects = conn.execute(subject_sql, (like, like, top_k)).fetchall()
         result = []
         for row in subjects:
-            facts = conn.execute(
-                "SELECT predicate, object, provenance, confidence, source_type "
-                "FROM facts WHERE subject = ? "
-                "ORDER BY confidence DESC, id ASC LIMIT ?",
-                (row["subject"], facts_per_subject),
-            ).fetchall()
+            if post34:
+                facts = conn.execute(
+                    "SELECT f.predicate, f.object, "
+                    "       COALESCE(GROUP_CONCAT(fp.provenance, '||'), '') AS provenance, "
+                    "       f.confidence, f.source_type "
+                    "FROM facts f LEFT JOIN fact_provenance fp ON fp.fact_hash = f.hash "
+                    "WHERE f.subject = ? "
+                    "GROUP BY f.id "
+                    "ORDER BY f.confidence DESC, f.id ASC LIMIT ?",
+                    (row["subject"], facts_per_subject),
+                ).fetchall()
+            else:
+                facts = conn.execute(
+                    "SELECT predicate, object, provenance, confidence, source_type "
+                    "FROM facts WHERE subject = ? "
+                    "ORDER BY confidence DESC, id ASC LIMIT ?",
+                    (row["subject"], facts_per_subject),
+                ).fetchall()
             result.append({
                 "subject": row["subject"],
                 "source_count": row["sources"],

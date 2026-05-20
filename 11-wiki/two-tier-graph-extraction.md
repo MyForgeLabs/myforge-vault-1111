@@ -133,6 +133,12 @@ Részletek: [[../06-Audits/2026-05-19 Memgraph cleanup execution result]]
 + [[../06-Audits/2026-05-19 Memgraph cleanup Phase-3 next-step plan]]
 + [[llm-graph-noise-cleanup-composite-filter]] (filter-pattern wiki).
 
+## 2026-05-20 — Option-B tree-sitter pre-pass design
+
+A Phase-3 result (post-`--reset` Memgraph: 9,517 Tier-1 vs 4,439 Tier-2, **Jaccard 0.0071**) megerősítette a 2026-05-19 PM finding-et: **pure prompt-tightening NEM emeli a Jaccard-ot**, mert a két extraction-stack ortogonális-vocabulary-t termel. A Tier-1 LLM-anti-noise rule #3 (code-keyword ban) és #6 (fenced-code-block exclusion) **szándékosan kihagyja** a code-symbol-okat — pontosan azokat, amiket a Tier-2 tree-sitter felfog. A két "fél" együtt fedi le a corpus-t, de a *metszetük* természetesen kicsi.
+
+A megoldás strukturális vocab-merge, **NEM** a két stack egyikének prompt-iterálása. Az Option-B (tree-sitter pre-pass) egy determinisztikus pre-pass-t ad a `vault-ko-ingest`-be: a markdown fenced-code-blokk-ok-at külön kezeli, tree-sitter-rel (vagy regex-fallback-kel Python/JS/Bash/SQL-re) parse-olja, és 8 új typed-predikátum (`defines_function`, `defines_class`, `defines_method`, `defines_constant`, `imports`, `exports`, `calls_function`, `declares_variable`) alá emit triple-eket. Ezek a triple-ek `source_type = "code-symbol"`-lal mennek a KO-DB-be, áramlanak a `vault-graph-extract`-en keresztül Memgraph-ba `:Entity` node-ként, és **byte-identikus szimbólumneveket** kapnak mint a graphify Tier-2 — a numerator (Tier-1 ∩ Tier-2) közvetlenül nő. Az LLM-pass érintetlen marad (anti-noise rule #3+#6 továbbra is aktív prózára), a pre-pass és az LLM-pass **diszjunkt felelősség-területeket** kap. Várt Jaccard-lift: 0.0071 → ~0.06-0.10 (átlépi az acceptance gate-et). Risk: code-block-only — narrative-only fájlok-on nem segít. Mitigation: opcionális **Tier-A+B HYBRID** layer, ami az LLM-et inline-backtick-symbol-okra (e.g. `` `extract_facts_subagent` ``) targetálja prózában — diszjunkt mandate a pre-pass-szal (fenced vs inline). ADR: [[../07-Decisions/2026-05-20 Option-B tree-sitter pre-pass for Memgraph extraction]]. Skeleton: `.vault-ko/scripts/vault-ko-treesitter-prepass.py`, smoke-test: `.vault-ko/tests/test_treesitter_prepass.py`.
+
 ## Kapcsolódó
 
 - [[sv-06-world-model-knowledge-graph]] — B-7 research
@@ -143,3 +149,4 @@ Részletek: [[../06-Audits/2026-05-19 Memgraph cleanup execution result]]
 - [[stale-numbers-in-static-artifacts-pattern.en]] — sibling cross-source-verification discipline
 - [[llm-graph-noise-cleanup-composite-filter]] — Tier-A + Tier-C composite filter pattern
 - [[vault-ko-ingest-prompt-tightening-2026-05-19]] — vocab v3 prompt-tightening
+- [[../07-Decisions/2026-05-20 Option-B tree-sitter pre-pass for Memgraph extraction]] — Option-B ADR

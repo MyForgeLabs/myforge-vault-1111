@@ -86,9 +86,14 @@ name: Döntés címe (pl. "Egységes agent memória")
 type: decision
 status: accepted                     # enum: proposed | accepted | rejected | superseded | in-progress
 date: 2026-04-23                     # mikor döntöttünk
+migration: true                      # OPT: schema-migration ADR-eknél kötelező
+                                     # → vault-schema-migration-victim-audit picks up
 tags: ["#type/decision", "#tech/..."]
 ---
 ```
+
+> [!info] `migration: true` mező (2026-05-20-tól)
+> Schema-migration ADR-eknek **kötelező** mező, mert a `vault-schema-migration-victim-audit` CLI ennek alapján gyűjti az ADR-eket (heti cron Mon 05:00 + pre-commit hook chain). Tartalom-triggerek (`DROP COLUMN`, `## Schema change`, "Dropped \`col\` column") is detektálják, de explicit `migration: true` egyértelműbb. Lásd: [[../11-wiki/schema-migration-downstream-grep-checklist]].
 
 ### `type: audit` ([[06-Audits/]] fájlok)
 

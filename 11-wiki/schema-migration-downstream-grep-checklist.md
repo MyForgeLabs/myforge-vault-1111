@@ -2,7 +2,7 @@
 name: Schema-migration downstream-grep checklist
 type: wiki
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-05-20
 tags: ["#type/wiki", "#concept/database", "#concept/refactor"]
 ---
 
@@ -53,8 +53,69 @@ The migration had its own pytest (`test_scd2_ingest.py` 14/14 PASS), but it test
 
 This is the **"collateral schema-bug"** pattern. The fix is procedural, not technical: **after any schema migration, run a full-codebase grep for the dropped/renamed identifier** and inspect every call-site, even ones the ADR's "affected callers" list doesn't enumerate.
 
+## 2026-05-20 — 15-victim case study + automation
+
+A 2026-05-19 incidens csak a JÉGHEGY-csúcsa volt. A 2026-05-20-i Wave-A systemic downstream-grep felfedte:
+
+| Victim type | Count | Examples |
+|---|---:|---|
+| Patcholt READER | 12 | `vault-ko-query`, `vault-ko-anki`, `vault-ko-conflicts-audit`, `vault-ko-decay`, `vault-ko-schema-evolve`, `vault-ko-report`, `vault-entity-trace`, `vault-graph-edge-inference`, `vault-graph-edge-from-facts`, `vault-ko-triangulate`, `vault-explain`, 2× MCP-tool |
+| Patcholt WRITER | 1 | `vault-nb-ingest.upsert_fact` |
+| Pre-patched (skip) | 4 | `vault-ko-ingest`, `vault-graph-extract`, `scd2.py`, `vault-ko-belief` |
+| Test fixtures (skip) | 2 | `test_scd2_skeleton`, `test_scd2_ingest` |
+| **Total silent victims** | **15** | (2 pre-found + 13 latent until Wave-A subagent-fanout) |
+
+**MCP-tools were broken too** — `vault_ko_mcp.tool_query`, `tool_top_k`, `tool_stats`, `tool_conflicts` mind silently returned errors/empty results on the user-thread. **Silent JSON-error-fallback masked the regression**.
+
+## Automation (post-2026-05-20)
+
+### Tool — `vault-schema-migration-victim-audit`
+
+```
+/usr/local/bin/vault-schema-migration-victim-audit [--json] [--quiet] [--print-cron] [--week YYYY-WWNN]
+```
+
+- Scans `07-Decisions/` for ADRs with frontmatter `migration: true` OR content-triggers (`DROP COLUMN`, `## Schema change/delta`, "Dropped \`x\` column").
+- For each, extracts dropped columns + greps the codebase using **qualified-reference matching** (`<table>.<col>` or `<alias>.<col>` via SQL-alias map).
+- Classifies hits: READER / WRITER / TEST / COMMENT / ALREADY-PATCHED.
+- Outputs `06-Audits/schema-migration-victim-audit-YYYY-WWNN.md`.
+- Exit 0 = GREEN, exit 2 = RED (any unpatched READER/WRITER).
+
+### Weekly cron (Mon 05:00 UTC)
+
+```
+0 5 * * 1 flock -n /tmp/vault-schema-migration-audit.lock vault-schema-migration-victim-audit --quiet \
+    || vault-schema-migration-victim-audit > /tmp/audit-fail-mail.txt
+```
+
+Telepítve 2026-05-20.
+
+### Git pre-commit hook chain
+
+`.git/hooks/pre-commit-schema-migration-watch.sh` — chained from the main `pre-commit` (Layer 3a, before Layer 3 forbidden-targets). Triggers only when an ADR or `migrate-*.py` is staged. Blocks commit if RED.
+
+### Frontmatter convention
+
+For unambiguous detection, future migration ADRs should have:
+
+```yaml
+---
+name: ...
+type: decision
+migration: true
+---
+```
+
+## Why fixed-classification matters
+
+The first-pass heuristic (bare-word + 5-line window) returned **46 false-positive READERs** — almost all `scd2.py`-style parameter-passing of a `provenance` variable that's now legitimately on the new side-table. The fix: **qualified-reference matching only** (`<alias>.<col>` via SQL-alias map). Final: 0 false-positives.
+
+This is a general lesson for schema-migration grep tools: **bare-word grep is too noisy; require SQL-context anchoring**.
+
 ## Related
 
 - [[sqlite-executescript-implicit-commit]] — sibling SQLite gotcha from the same migration
 - [[subagent-collateral-bug-discovery]] — subagent run-time errors as bug-finding signal
 - [[../07-Decisions/2026-05-19 KO-DB hash key — drop provenance from hash]] — the migration that triggered this learning
+- [[../06-Audits/2026-05-20 Wave-A schema-migration-victim sweep (13 silent victims patched)]] — 2026-05-20-i 15-victim audit
+- [[../06-Audits/schema-migration-victim-audit-2026-W21]] — first weekly audit (GREEN)

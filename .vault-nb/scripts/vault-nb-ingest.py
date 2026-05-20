@@ -640,9 +640,59 @@ def existing_hashes(conn: sqlite3.Connection,
 
 
 def upsert_fact(conn: sqlite3.Connection, fact: dict) -> str:
-    """Return one of: 'new', 'updated'."""
+    """Return one of: 'new', 'updated'.
+
+    Post-#34 schema (2026-05-19): `facts.provenance` column dropped;
+    provenance lives in side-table `fact_provenance`. Schema-detect to
+    handle both legacy + post-#34 (canonical pattern mirroring
+    vault-ko-ingest.upsert_fact:333-365).
+    """
     h = fact_hash(fact["subject"], fact["predicate"], fact["object"])
     now = datetime.now(timezone.utc).isoformat()
+    cur = conn.execute("PRAGMA table_info(facts)")
+    cols = {row[1] for row in cur.fetchall()}
+    has_pv = bool(conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name='fact_provenance'"
+    ).fetchone())
+    post34 = "provenance" not in cols and has_pv
+
+    if post34:
+        try:
+            conn.execute(
+                """INSERT INTO facts (hash, subject, predicate, object,
+                                      confidence, source_type, created_at, updated_at,
+                                      provenance_count)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0)""",
+                (h, fact["subject"], fact["predicate"], fact["object"],
+                 fact.get("confidence", 0.8), "notebooklm", now, now),
+            )
+            status = "new"
+        except sqlite3.IntegrityError:
+            conn.execute(
+                "UPDATE facts SET updated_at = ?, "
+                "    confidence = COALESCE(?, confidence) "
+                "WHERE hash = ?",
+                (now, fact.get("confidence"), h),
+            )
+            status = "updated"
+        # Add provenance row (idempotent via PK (fact_hash, provenance))
+        conn.execute(
+            """INSERT OR IGNORE INTO fact_provenance
+                  (fact_hash, provenance, source_type, confidence, ingested_at)
+               VALUES (?, ?, ?, ?, ?)""",
+            (h, fact["provenance"], "notebooklm",
+             fact.get("confidence", 0.8), now),
+        )
+        # Refresh provenance_count
+        conn.execute(
+            "UPDATE facts SET provenance_count = "
+            "(SELECT COUNT(*) FROM fact_provenance WHERE fact_hash = ?) "
+            "WHERE hash = ?",
+            (h, h),
+        )
+        return status
+
+    # Legacy pre-#34 schema (back-compat)
     try:
         conn.execute(
             """INSERT INTO facts (hash, subject, predicate, object, provenance,

@@ -3,7 +3,8 @@ name: KO-DB hash key — drop provenance from hash
 type: decision
 status: 🟢 LANDED 2026-05-19 (next-day implementation, synthetic verify PASS)
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-05-20
+migration: true
 tags: ["#type/decision", "#project/sv", "sv-1", "ko-db", "schema-change"]
 related:
   - "[[../11-wiki/append-only-jsonl-migration]]"

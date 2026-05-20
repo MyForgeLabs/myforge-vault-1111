@@ -148,30 +148,66 @@ def ko_corroboration_for_subject(conn: sqlite3.Connection, subject_token: str,
     if not subject_token:
         return {"source_count": 0, "fact_count": 0, "facts": []}
     cur = conn.cursor()
-    row = cur.execute(
-        """
-        SELECT subject,
-               COUNT(DISTINCT provenance) AS source_count,
-               COUNT(*)                   AS fact_count
-        FROM facts
-        WHERE subject LIKE ? OR object LIKE ?
-        GROUP BY subject
-        ORDER BY source_count DESC, fact_count DESC
-        LIMIT 1
-        """,
-        (f"%{subject_token}%", f"%{subject_token}%"),
-    ).fetchone()
+    # Schema-detect: post-#34 (2026-05-19) drops facts.provenance.
+    cols = {r[1] for r in conn.execute("PRAGMA table_info(facts)").fetchall()}
+    has_pv = bool(conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name='fact_provenance'"
+    ).fetchone())
+    post34 = "provenance" not in cols and has_pv
+    if post34:
+        row = cur.execute(
+            """
+            SELECT f.subject,
+                   MAX(f.provenance_count) AS source_count,
+                   COUNT(*)                AS fact_count
+            FROM facts f
+            WHERE f.subject LIKE ? OR f.object LIKE ?
+            GROUP BY f.subject
+            ORDER BY source_count DESC, fact_count DESC
+            LIMIT 1
+            """,
+            (f"%{subject_token}%", f"%{subject_token}%"),
+        ).fetchone()
+    else:
+        row = cur.execute(
+            """
+            SELECT subject,
+                   COUNT(DISTINCT provenance) AS source_count,
+                   COUNT(*)                   AS fact_count
+            FROM facts
+            WHERE subject LIKE ? OR object LIKE ?
+            GROUP BY subject
+            ORDER BY source_count DESC, fact_count DESC
+            LIMIT 1
+            """,
+            (f"%{subject_token}%", f"%{subject_token}%"),
+        ).fetchone()
     if not row:
         return {"source_count": 0, "fact_count": 0, "facts": [], "subject": None}
     subj = row["subject"]
-    facts = cur.execute(
-        """
-        SELECT predicate, object, provenance, source_type, confidence
-        FROM facts WHERE subject = ?
-        ORDER BY confidence DESC LIMIT ?
-        """,
-        (subj, limit),
-    ).fetchall()
+    if post34:
+        facts = cur.execute(
+            """
+            SELECT f.predicate, f.object,
+                   COALESCE(GROUP_CONCAT(fp.provenance, '||'), '') AS provenance,
+                   f.source_type, f.confidence
+            FROM facts f
+            LEFT JOIN fact_provenance fp ON fp.fact_hash = f.hash
+            WHERE f.subject = ?
+            GROUP BY f.id
+            ORDER BY f.confidence DESC LIMIT ?
+            """,
+            (subj, limit),
+        ).fetchall()
+    else:
+        facts = cur.execute(
+            """
+            SELECT predicate, object, provenance, source_type, confidence
+            FROM facts WHERE subject = ?
+            ORDER BY confidence DESC LIMIT ?
+            """,
+            (subj, limit),
+        ).fetchall()
     return {
         "subject": subj,
         "source_count": row["source_count"],

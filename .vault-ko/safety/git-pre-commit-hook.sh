@@ -73,6 +73,18 @@ if [[ -z "$STAGED" ]]; then
 fi
 
 # ---------------------------------------------------------------------------
+# Layer 3a — schema-migration victim-watch (post-2026-05-20)
+# Chains to the standalone schema-migration-watch hook if it exists. Triggers
+# only when a schema-migration ADR or migrate-*.py script is staged.
+# ---------------------------------------------------------------------------
+SCHEMA_HOOK="$VAULT_ROOT/.git/hooks/pre-commit-schema-migration-watch.sh"
+if [[ -x "$SCHEMA_HOOK" ]]; then
+  if ! bash "$SCHEMA_HOOK"; then
+    exit $?
+  fi
+fi
+
+# ---------------------------------------------------------------------------
 # Layer 3 — forbidden-target deny-list
 # ---------------------------------------------------------------------------
 VIOLATIONS=()

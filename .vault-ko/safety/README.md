@@ -49,7 +49,15 @@ VAULT_CRYSTALLIZE_APPLY=1 11.11crystallize <slug> --scorer claude-code \
     --apply --with-context
 ```
 
-When Layer 4 PENDING fires, the script writes `/tmp/vault-crystallize-critic-pending/<slug>.request.json`. Spawn a general-purpose Agent with the Critic prompt (`.vault-ko/prompts/critic-review-template.md`), write the response to `<slug>.response.json`, then re-run the same command.
+When Layer 4 PENDING fires, the runner (`critic-review.py:write_request`) writes `${VAULT_ROOT}/.vault-ko/safety/pending/<sha1-12>-request.json` per candidate bullet. The `crystallize-pending` Claude skill (`~/.claude/skills/crystallize-pending/SKILL.md`) handles Phase 2:
+
+- Detects pending `<hash>-request.json` files (no matching `<hash>-response.json`)
+- Guards on `VAULT_CRITIC_ACTIVE=1` — if `=0` (default pre-W23), logs and skips cleanly
+- Spawns ONE general-purpose Claude subagent per request (NOT batched — Critic-review is independent + low-volume)
+- Each subagent reads its assigned request + the prompt template, scores 5 dims, and writes `<hash>-response.json`
+- The `critic-review.py` runner polls (timeout 300s) and finalizes Phase 3 (threshold-apply + audit-log)
+
+Trigger the skill via "process pending critic" or by invoking the `crystallize-pending` skill explicitly. The same skill also handles the unrelated G-Eval bullet-extraction pending in `/tmp/vault-crystallize-pending/` — mode is auto-detected.
 
 ## Audit-log entries (in `06-Audits/crystallize-log.jsonl`)
 
@@ -68,9 +76,19 @@ Both have `executed: false` until Week N adds the real write step.
 - [ ] Auto-disable triggers (vault corruption detector, Critic reject-rate > 30%, eval pass-rate < 70%).
 - [ ] Backout: `crystallize-revert <bullet_hash>` to undo a specific auto-prop.
 
+## B-8 Critic-review activation matrix
+
+| `VAULT_CRITIC_ACTIVE` | `critic-review.py` write_request | `crystallize-pending` skill | Effect |
+|---|---|---|---|
+| unset / `0` (default pre-W23) | runs (still writes request.json) | skips dispatch (logs no-op) | Layer-4 falls through to deterministic 4-rule pre-commit stub |
+| `1` (W23 production-flip) | runs | dispatches one subagent per pending request | Real-LLM 5-dim verdict feeds threshold-policy + audit-log |
+
+The skill ALWAYS processes G-Eval bullet-extraction pending (`/tmp/vault-crystallize-pending/`) regardless of `VAULT_CRITIC_ACTIVE` — only the `.vault-ko/safety/pending/` path is gated.
+
 ## Related
 
 - `11-wiki/multi-layer-safety-gate.md` — the playbook this implements.
 - `07-Decisions/2026-05-12 sv-5 crystallization automation arch.md` — parent ADR.
-- `.vault-ko/prompts/critic-review-template.md` — Layer 4 prompt skeleton.
-- `02-Projects/superintelligent-vault.md` — sprint task `B-1 Week 3-4 PART 2`.
+- `.vault-ko/prompts/critic-review-template.md` — Layer 4 prompt (v0.2 5-dim).
+- `~/.claude/skills/crystallize-pending/SKILL.md` — Phase 2 subagent dispatcher (dual-mode).
+- `02-Projects/superintelligent-vault.md` — sprint task `B-1 Week 3-4 PART 2` + `B-8 Tier-2`.
