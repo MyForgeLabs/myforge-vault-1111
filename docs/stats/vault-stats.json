@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T08:00:09Z",
+  "generated_at": "2026-05-20T09:00:09Z",
   "wiki": {
     "total": 198,
     "en": 70,
@@ -7,24 +7,24 @@
     "coverage_pct": 35.4
   },
   "audit": {
-    "total": 133,
-    "public": 122
+    "total": 135,
+    "public": 124
   },
   "memgraph": {
-    "total_nodes": 27956,
-    "total_edges": 19215,
-    "entities": 8913,
+    "total_nodes": 33075,
+    "total_edges": 25518,
+    "entities": 13051,
     "concepts": 6544,
     "alias_of": 248,
     "links_to": 3431
   },
   "ko_db": {
-    "total_facts": 13801
+    "total_facts": 15835
   },
   "crons": 22,
   "public_commits": {
-    "all_time": 119,
-    "today": 8
+    "all_time": 120,
+    "today": 9
   },
   "health": {
     "status": "good",

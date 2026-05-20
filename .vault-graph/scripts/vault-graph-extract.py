@@ -69,9 +69,28 @@ def load_facts(db_path: Path):
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
-    cur.execute(
-        "SELECT hash, subject, predicate, object, confidence, provenance, source_type FROM facts"
-    )
+    # Schema-detect: post-#34 (2026-05-19) drops `facts.provenance`; provenance
+    # lives in side-table `fact_provenance`. GROUP_CONCAT keeps 1 edge per fact
+    # with `||`-joined provenance string (parseable downstream).
+    cols = {r[1] for r in conn.execute("PRAGMA table_info(facts)").fetchall()}
+    has_pv_table = bool(conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name='fact_provenance'"
+    ).fetchone())
+    post34 = "provenance" not in cols and has_pv_table
+
+    if post34:
+        cur.execute(
+            """SELECT f.hash, f.subject, f.predicate, f.object, f.confidence,
+                      COALESCE(GROUP_CONCAT(fp.provenance, '||'), '') AS provenance,
+                      f.source_type
+               FROM facts f
+               LEFT JOIN fact_provenance fp ON fp.fact_hash = f.hash
+               GROUP BY f.hash"""
+        )
+    else:
+        cur.execute(
+            "SELECT hash, subject, predicate, object, confidence, provenance, source_type FROM facts"
+        )
     rows = cur.fetchall()
     conn.close()
     return rows
