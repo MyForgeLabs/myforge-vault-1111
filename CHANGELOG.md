@@ -2,6 +2,68 @@
 
 All notable changes to MyForge Vault 11.11.
 
+## [1.0.10] — 2026-05-20 (Wave A-E: silent-victim cleanup + B-8 production-flip)
+
+A working session that started as a routine continuation of the 2026-05-19 mega-session, but uncovered **15 silent downstream-victims** of the #34 KO-DB hash-refactor — including the entire MCP-tool stack returning empty results silently. All patched. Plus the B-8 RSI Critic κ-validation crossed the production-flip threshold (κ=0.708 on a clean 100-bullet baseline).
+
+### Added — 2 new CLIs + 1 new safety-rail
+
+- **`vault-schema-migration-victim-audit`** (400 LOC) — ADR-scanner + downstream-grep + AST per-branch classifier. Detects unpatched READER/WRITER references to columns dropped in past schema migrations. Installed at `/usr/local/bin/`, with:
+  - Weekly cron Mon 05:00 UTC
+  - Git pre-commit hook chained into the existing forbidden-targets hook
+  - `--apply-patch` mode (dry-run + smoke-test + auto-revert) for canonical post-#34 schema-detect + GROUP_CONCAT JOIN pattern
+  - `migration: true` ADR frontmatter convention (added to `00-Meta/Frontmatter-schema.md`)
+- **`vault-ko-treesitter-prepass`** (399 LOC, skeleton) — code-symbol extractor for `defines_function`/`defines_class`/`imports` triples from markdown code-blocks. Tree-sitter + regex fallback. Sprint-2 integration into `vault-ko-ingest` planned to lift the Memgraph ↔ graphify Jaccard from 0.0071 toward the ≥0.05 acceptance gate (currently blocked on orthogonal-vocab structural limit).
+- **`vault-ko-report --dashboard`** mode — 4-week trend chart with per-route + per-scorer breakdown, ASCII bar-chart, `--scorer claude-code` filter to bypass mock-scorer-noise.
+
+### Fixed — 15 silent #34 downstream-victims
+
+The 2026-05-19 #34 hash-refactor dropped `facts.provenance`. Two patches landed same-day; today a systemic grep-pass uncovered **13 more silent victims**. All patched with canonical schema-detect + `GROUP_CONCAT(fp.provenance, '||')` JOIN pattern.
+
+**12 READERs patched** (PASS smoke-test):
+- `vault-ko-query` (5 functions: query_facts, stats, top_k_subjects, co_occurrence, find_conflicts)
+- `vault-ko-anki`, `vault-ko-conflicts-audit`, `vault-ko-decay`, `vault-ko-schema-evolve`, `vault-ko-report`
+- `vault-entity-trace`, `vault-graph-edge-inference`, `vault-graph-edge-from-facts`
+- `vault-ko-triangulate`, `vault-explain`
+- `vault_ko_mcp` (4 MCP tools), `vault_mcp_server` (2 MCP tools)
+
+**1 WRITER patched**: `vault-nb-ingest.upsert_fact`.
+
+**Plus**: `vault-graph-extract` (P0 patch — same root cause), `vault-ko-report --last KeyError 'session_slug'` (pre-existing bug, not provenance-related).
+
+### B-8 RSI Tier-2 Critic — production-flip ratified
+
+- **100-bullet clean re-sample**: 60 pass-expected / 40 fail-expected, content-classifier ground-truth (NOT mock-scorer-labeled).
+- **Default-mode**: agreement **86.00%**, Cohen's **κ = 0.708** ("substantial", Landis-Koch). Production-flip target ≥0.7 **MET**.
+- **Manual 10/10 false-accept inspection**: all 10 FAs were content-classifier over-trigger (HH:MM regex, "mai" word, IP-fragment), NOT Critic failures. Effective FA ≈ 0%, revised κ ≈ 0.85+ (almost-perfect).
+- **`VAULT_CRITIC_MODE=default`** rolled out to `~/.bashrc` + `/etc/environment`. `VAULT_CRITIC_ACTIVE=1` flip stays gated to W23 (2026-06-01..07) after 2-week shadow-monitoring.
+
+### Added — 2 new ADRs (proposed)
+
+- **`2026-05-20 Option-B tree-sitter pre-pass for Memgraph extraction`** — design doc for Sprint-2 implementation. Recommendation: tree-sitter pre-pass on markdown code-blocks emits `defines_*` triples that structurally match graphify Tier-2 vocabulary. Acceptance gate: Jaccard ≥0.05.
+- **`2026-05-20 B-1 NLI ensemble — second-opinion layer for Critic`** — `cross-encoder/nli-deberta-v3-large` as primary local NLI + Claude Sonnet escalation for ambiguous bullets. Critic-conservative-wins ensemble matrix. Phase 0 calibration in W22.
+
+### Numbers (post-1.0.10 — cumulative)
+
+- **KO-DB**: 13,801 → **15,835 facts** (+2,034), 15,957 fact_provenance rows, 122 multi-provenance facts
+- **Memgraph**: 13,051 → **9,517 entities** (post-`--reset` clean rebuild), 25,518 → **21,171 edges**, native vector-index 280× speedup retained
+- **274** evergreen wikis (+1 schema-migration-downstream-grep-checklist expansion)
+- **131** audits (+5 today: Phase-3, Wave-A, 50-bullet, 100-bullet, schema-migration-victim-audit-W21)
+- **48** ADRs (+2 today)
+- **25** weekly cron jobs (+schema-audit Mon 05:00 + graph-extract-reset Sun 03:30)
+- **Wave-E subagent-fanout**: 31 subagent across 5 waves (Phase-3 8× + B-8 50-bullet 7× + B-8 100-bullet 8× + Wave-A grep + mining + Wave-D 4×), $0 cost
+- **28-day measured run** ($0 marginal cost retained)
+
+### Visual
+
+Hero-banner v3 PNG regenerated with the 1.0.10 numbers. Source-of-truth SVG at `docs/assets/hero-banner.svg`, PNG export at `docs/assets/hero-banner.png` (1280×640, GitHub social-preview spec). v1.0.8 PNG + v2 SVG preserved as `-backup` files.
+
+### Migration notes
+
+- `VAULT_CRITIC_MODE=default` env-var is now the recommended default (shadow-mode-on, NOT apply-mode).
+- ADRs touching schema changes should now include `migration: true` in their frontmatter so `vault-schema-migration-victim-audit` picks them up.
+- The `--apply-patch` mode of the schema-audit CLI has documented limitations (~60-70% READER/WRITER coverage; multi-line + dynamic SQL falls back to flagging). Human review still required for edge cases.
+
 ## [1.0.9] — 2026-05-19 PM (follow-up consolidation)
 
 PM follow-up to the mega-session. The remaining 3 brainstorm ideas land (now **22/22 = 100%**), the KO-DB hash provenance refactor migrates clean, Memgraph noise gets pruned, and a LongMemEval K-sweep surfaces a counter-intuitive sweet-spot.
