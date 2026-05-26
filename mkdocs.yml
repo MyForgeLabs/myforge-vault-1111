@@ -51,7 +51,10 @@ plugins:
   # The language-switcher in the header lets visitors flip between the two.
   - i18n:
       docs_structure: suffix
-      fallback_to_default: true
+      # IMPORTANT: false → strict per-locale, NO HU fallback on EN pages or
+      # vice versa. Documents only appear in the locale where they exist.
+      # The language-switcher hides itself for untranslated pages.
+      fallback_to_default: false
       reconfigure_material: true
       reconfigure_search: true
       languages:
