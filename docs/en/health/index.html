@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MyForge Vault — live health dashboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="vault-doctor 8-axis health snapshot from the latest public-sync. Auto-refreshes on page-load.">
+<style>
+  :root { --bg: #0e1116; --fg: #d6dde6; --muted: #6b7585; --card: #181d24; --line: #2a313c; --green: #6fcf6f; --yellow: #f0c64a; --red: #e84c4c; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 40px 20px; background: var(--bg); color: var(--fg); font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 24px; margin: 0 0 4px; font-weight: 600; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); padding: 14px 16px; border-radius: 6px; }
+  .card .axis { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 600; }
+  .card .axis .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.green { background: var(--green); box-shadow: 0 0 8px rgba(111,207,111,0.5); }
+  .dot.yellow { background: var(--yellow); box-shadow: 0 0 8px rgba(240,198,74,0.5); }
+  .dot.red { background: var(--red); box-shadow: 0 0 8px rgba(232,76,76,0.5); }
+  .card .msg { font-size: 13px; line-height: 1.4; word-break: break-word; }
+  .meta { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+  .meta a { color: #8aa9d6; text-decoration: none; }
+  .meta a:hover { text-decoration: underline; }
+  .summary { padding: 14px 18px; background: var(--card); border-left: 3px solid var(--green); border-radius: 4px; margin-bottom: 20px; font-size: 14px; }
+  .summary.yellow { border-left-color: var(--yellow); }
+  .summary.red { border-left-color: var(--red); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>vault-doctor — live health snapshot</h1>
+  <div class="sub">8-axis system check · regenerated on each <code>vault-public-sync</code> · <span id="ts">loading…</span></div>
+
+  <div id="summary" class="summary">Loading…</div>
+  <div class="cards" id="cards"></div>
+
+  <div class="meta">
+    Sources: <a href="../typed-graph-viz/">typed-graph visualizer</a> ·
+    <a href="https://github.com/MyForgeLabs/myforge-vault-1111/blob/main/CHANGELOG.md">CHANGELOG</a> ·
+    <a href="../">all docs</a><br>
+    Snapshot raw JSON: <a href="doctor.json"><code>doctor.json</code></a>
+  </div>
+</div>
+
+<script>
+fetch("doctor.json").then(r => r.json()).then(d => {
+  const tsEl = document.getElementById("ts");
+  if (d.ts) tsEl.textContent = "snapshot " + d.ts;
+
+  const worst = d.worst === "🔴" ? "red" : d.worst === "🟡" ? "yellow" : "green";
+  const sum = document.getElementById("summary");
+  sum.className = "summary " + worst;
+  sum.textContent = worst === "green" ? "✓ all systems healthy" :
+                    worst === "yellow" ? "1+ warning — see below" :
+                    "1+ critical — see below";
+
+  const cards = document.getElementById("cards");
+  for (const [axis, r] of Object.entries(d.checks)) {
+    const color = r.status === "🔴" ? "red" : r.status === "🟡" ? "yellow" : "green";
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const axisDiv = document.createElement("div");
+    axisDiv.className = "axis";
+    const dot = document.createElement("span");
+    dot.className = "dot " + color;
+    axisDiv.appendChild(dot);
+    axisDiv.appendChild(document.createTextNode(axis));
+    card.appendChild(axisDiv);
+
+    const msgDiv = document.createElement("div");
+    msgDiv.className = "msg";
+    msgDiv.textContent = r.msg;
+    card.appendChild(msgDiv);
+
+    cards.appendChild(card);
+  }
+}).catch(e => {
+  const s = document.getElementById("summary");
+  s.textContent = "⚠ Could not load doctor.json — sync probably hasn't run yet.";
+});
+</script>
+</body>
+</html>

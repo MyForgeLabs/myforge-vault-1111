@@ -1,9 +1,30 @@
 # MyForge Vault 11.11
 
+[![Docs](https://img.shields.io/badge/docs-myforgelabs.github.io-blue?logo=mkdocs)](https://myforgelabs.github.io/myforge-vault-1111/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
+[![Release](https://img.shields.io/badge/release-v1.0.16-blueviolet)](https://github.com/MyForgeLabs/myforge-vault-1111/releases)
+[![Wiki pages](https://img.shields.io/badge/wiki-274-orange)](./wiki/)
+[![ADRs](https://img.shields.io/badge/ADR-46-purple)](./decisions/)
+[![Audits](https://img.shields.io/badge/audits-126-yellow)](./audits/)
+[![Language](https://img.shields.io/badge/lang-HU%2BEN-red)](./en/)
+
+**Élő metrikák** (minden `vault-public-sync`-en auto-regenerál):
+
+[![typed-coverage](./badges/typed-coverage.svg)](./typed-graph-viz/)
+[![LongMemEval R@5](./badges/longmemeval-r5.svg)](./audits/2026-05-25%20v1.0.11%20formal%20benchmark%20consolidated.md)
+[![latency](./badges/latency.svg)](./metrics/)
+[![cron-mutex](./badges/cron-mutex.svg)](./health/)
+[![cost](./badges/cost.svg)](./CHANGELOG.md)
+[![snapshot](./badges/generated.svg)](./CHANGELOG.md)
+
 > **8-tengelyű evolúciós módszer és working tooling egy személyes Obsidian-vault önfejlesztő tudásrendszerré alakítására.**
 > Készítette: [MyForge Labs](mailto:11.11@myforgelabs.com). Augmented intelligence — NEM AGI, NEM hype. Magyar+angol dokumentáció, MIT.
 
-[English version](./README.md) · [Roadmap](./07-Decisions/2026-05-12%20Superintelligent%20vault%20evolution%20roadmap.md) · [Cross-projekt synthesis](./06-Audits/2026-05-18%20vault-meta%20NotebookLM%20cross-projekt%20synthesis.md)
+[🇬🇧 English version](./en/) · [📚 Wiki](./wiki/Index/) · [🚀 Roadmap](./decisions/2026-05-12%20Superintelligent%20vault%20evolution%20roadmap.md)
+
+![MyForge Vault 11.11 — 8-tengelyű Superintelligent Vault hero banner](./assets/hero-banner.svg)
+
+![MyForge Vault 11.11 — élő dokumentációs oldal képernyőkép](./assets/hero-screenshot.png)
 
 ## Mi ez
 
@@ -13,7 +34,7 @@ A **11.11** a névben két jelentést hordoz:
 - 🏢 **MyForge Labs alapítási jel** — a `11.11@myforgelabs.com` email-cím a vault előtti
 - 🔧 **Session-orchestration primitív** — minden workflow a `11.11*` CLI-családon (mint `11.11start`, `11.11stop`, `11.11crystallize`, `11.11worker`) — ez a "kötőszövet" ami a 8 tengelyt egy rendszerré teszi
 
-A módszer kiindulópontja [Karpathy LLM-Wiki pattern](./11-wiki/Karpathy-LLM-Wiki-pattern.md)-je: a "raw input" (10-raw) → "desztillált tudás" (11-wiki) crystallization-workflow. A SV ezt evolúcióval bővíti 8 függetlenül fejleszthető tengellyel.
+A módszer kiindulópontja [Karpathy LLM-Wiki pattern](./wiki/Karpathy-LLM-Wiki-pattern/)-je: a "raw input" (10-raw) → "desztillált tudás" (11-wiki) crystallization-workflow. A SV ezt evolúcióval bővíti 8 függetlenül fejleszthető tengellyel.
 
 ## 8 tengely
 
@@ -30,13 +51,13 @@ A módszer kiindulópontja [Karpathy LLM-Wiki pattern](./11-wiki/Karpathy-LLM-Wi
 
 ## A 7 legfontosabb artifact (NotebookLM-recommended)
 
-1. **[Subagent-fanout dispatcher](./11-wiki/claude-code-subagent-fanout.md)** — 174× párhuzamos LLM-task, $0 cost (Claude Code subscription)
+1. **[Subagent-fanout dispatcher](./wiki/claude-code-subagent-fanout/)** — 174× párhuzamos LLM-task, $0 cost (Claude Code subscription)
 2. **[load-session-context](./05-Memory/Skill-map.md)** — MemGPT-stílusú virtual context loader, 75% token-megtakarítás
-3. **[vault-search-server](./06-Audits/2026-05-17%20vault-search-server%20systemd.md)** — Unix-socket daemon, 80× speedup (14s→165ms) + Memgraph 280× speedup
-4. **[Bias-mitigated G-Eval](./11-wiki/g-eval-bias-mitigation-pattern.md)** — Claude-to-Claude self-enhancement debiasing, 96.7% kalibrációs egyezés
-5. **[Smart-trigger NLI cascade](./11-wiki/smart-trigger-cost-pattern.md)** — gyors-baseline → drága-only-if-needed, 5-10× cost-savings
-6. **[4-rétegű Safety-Gate](./11-wiki/multi-layer-safety-gate.md)** — ENV + script + git-hook + Critic review (RSI-guardrail)
-7. **[Sprint Day-0 Skeleton-first](./11-wiki/sprint-day-0-skeleton-first.md)** — ~5× gyorsabb Week 1 implementáció
+3. **[vault-search-server](./audits/2026-05-17%20vault-search-server%20systemd.md)** — Unix-socket daemon, 80× speedup (14s→165ms) + Memgraph 280× speedup
+4. **[Bias-mitigated G-Eval](./wiki/g-eval-bias-mitigation-pattern/)** — Claude-to-Claude self-enhancement debiasing, 96.7% kalibrációs egyezés
+5. **[Smart-trigger NLI cascade](./wiki/smart-trigger-cost-pattern/)** — gyors-baseline → drága-only-if-needed, 5-10× cost-savings
+6. **[4-rétegű Safety-Gate](./wiki/multi-layer-safety-gate/)** — ENV + script + git-hook + Critic review (RSI-guardrail)
+7. **[Sprint Day-0 Skeleton-first](./wiki/sprint-day-0-skeleton-first/)** — ~5× gyorsabb Week 1 implementáció
 
 ## Mérhető eredmények (2026-04-23 → 2026-05-18, 26 nap)
 
@@ -92,7 +113,7 @@ python3 -m venv .notebooklm-venv
 
 ## Reproducibility
 
-A teljes módszertan **architektúra-level reprodukálható** a [07-Decisions/](./07-Decisions/) ADR-ekkel + [11-wiki/](./11-wiki/) evergreen wiki-vel. Minden script idempotens, ENV-flag-gated, default-OFF safety pattern.
+A teljes módszertan **architektúra-level reprodukálható** a [07-Decisions/](./decisions/) ADR-ekkel + [11-wiki/](./wiki/) evergreen wiki-vel. Minden script idempotens, ENV-flag-gated, default-OFF safety pattern.
 
 ## Pozícionálás (transparent)
 
@@ -108,7 +129,7 @@ MIT — lásd [LICENSE](./LICENSE). Cherry-pick szabad, attribution-friendly.
 
 ## Kapcsolódó
 
-- [Architecture decision records (28)](./07-Decisions/)
-- [Evergreen wiki (87+)](./11-wiki/)
-- [Cross-projekt synthesis audit](./06-Audits/2026-05-18%20vault-meta%20NotebookLM%20cross-projekt%20synthesis.md)
+- [Architecture decision records (28)](./decisions/)
+- [Evergreen wiki (87+)](./wiki/)
+- [Cross-projekt synthesis audit](./audits/2026-05-18%20vault-meta%20NotebookLM%20cross-projekt%20synthesis.md)
 - [English README](./README.en.md)

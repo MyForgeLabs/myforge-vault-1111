@@ -63,16 +63,16 @@ All three AI agents load this file at session start — it is the single entry p
 
 **MANDATORY workflow** (after `/11.11-uj-session` the agent automatically):
 
-1. **Detect the project** from the session name based on the [[11-wiki/Auto-context-loading#Projekt-detektálás a session-névből|project-detection table]]
-2. **Aggressive pre-load** — read according to [[11-wiki/Auto-context-loading]]:
+1. **Detect the project** from the session name based on the [[wiki/Auto-context-loading#Projekt-detektálás a session-névből|project-detection table]]
+2. **Aggressive pre-load** — read according to [[wiki/Auto-context-loading]]:
    - Project file + last 5 sessions + every relevant ADR + relevant slice of Memory + `#project/<slug>` Backlog entries + Host info + today's/yesterday's Daily
    - Target: ~15-20K token context
 3. **Write a `## Pre-loaded context` section** into the session file — list what you read, with a 1-2 sentence summary of each
 4. **Only then** wait for the user's first question — with full context
 
-If an unknown abbreviation / slug comes up → [[00-Meta/Glossary]]. If the project is ambiguous → ask back.
+If an unknown abbreviation / slug comes up → [[meta/Glossary]]. If the project is ambiguous → ask back.
 
-**If no project can be detected** (e.g. "wellbeing", "general thinking") — load only base context: [[02-Projects/Index]], urgent items from [[04-Tasks/Backlog]], today's + yesterday's Daily.
+**If no project can be detected** (e.g. "wellbeing", "general thinking") — load only base context: [[../02-Projects/Index]], urgent items from [[../04-Tasks/Backlog]], today's + yesterday's Daily.
 
 ## When to WRITE here
 
@@ -80,22 +80,22 @@ Whenever some long-term useful info comes up:
 
 | Event | Where to write |
 |---------|---------|
-| New project starts | New `02-Projects/<name>.md` + row in the matching group table in [[02-Projects/Index]] |
+| New project starts | New `02-Projects/<name>.md` + row in the matching group table in [[../02-Projects/Index]] |
 | Existing project status changed | Update `02-Projects/<name>.md` "Current state" + `updated:` |
 | Learned a user preference | [[05-Memory/User]] or new `05-Memory/Feedback-<topic>.md` |
 | Server/infra knowledge (port, host, service) | [[05-Memory/Infrastructure]] |
 | Major architecture decision | New `07-Decisions/YYYY-MM-DD <topic>.md` |
-| **New TODO** | [[04-Tasks/Backlog]] (red urgent / yellow watch / green hygiene) |
-| **Task done** | [[04-Tasks/Backlog]] — Completed section with date |
+| **New TODO** | [[../04-Tasks/Backlog]] (red urgent / yellow watch / green hygiene) |
+| **Task done** | [[../04-Tasks/Backlog]] — Completed section with date |
 | **New concept / playbook** (evergreen) | `11-wiki/<topic>.md` — in your own words |
 | **New article / transcript** (immutable) | `10-raw/YYYY-MM-DD — <source>.md` |
 
 ## Formatting conventions
 
 - **Date:** `YYYY-MM-DD` ISO; convert relative dates from the user (e.g. "Thursday") to ISO
-- **Wikilink:** `[[02-Projects/teszt-eu]]` for internal references (folder-prefix mandatory)
-- **Frontmatter:** every larger doc must have `name:`, `type:`, `created:`, `updated:` (see [[00-Meta/Frontmatter-schema]])
-- **Tags:** per [[00-Meta/Tag-taxonomy]]
+- **Wikilink:** `[[../02-Projects/teszt-eu]]` for internal references (folder-prefix mandatory)
+- **Frontmatter:** every larger doc must have `name:`, `type:`, `created:`, `updated:` (see [[meta/Frontmatter-schema]])
+- **Tags:** per [[meta/Tag-taxonomy]]
 - **Callout:** `> [!info]`, `> [!warning]`, `> [!todo]`, `> [!success]`
 - **Code/path:** in backticks
 
@@ -105,7 +105,7 @@ Whenever some long-term useful info comes up:
 
 1. **Summary + Learnings + Next** written into `08-Sessions/<slug>.md` based on chat history
 2. **(optional, if `VAULT_CRYSTALLIZE_AUTO=1`)** `11.11crystallize <slug> --scorer claude-code --with-context` — automatic G-Eval scoring in shadow mode. If a pending request is created, spawn a general-purpose Agent with the G-Eval prompt + bullets + kodb_context; have it write response.json; then re-run `11.11crystallize` with the same flag to finalize.
-3. **Routing — for every Learning bullet** apply the [[11-wiki/Crystallization-protocol#Routing decision tree|decision tree]] (architecture-level ADR / vault rule / wiki concept / glossary / infra / skill / user-pref / dashboard / project / task / ask). If a G-Eval output exists, use it as signal (high-confidence Pass → auto-prop candidate; Fail → discard; batch-preview → present to user)
+3. **Routing — for every Learning bullet** apply the [[wiki/Crystallization-protocol#Routing decision tree|decision tree]] (architecture-level ADR / vault rule / wiki concept / glossary / infra / skill / user-pref / dashboard / project / task / ask). If a G-Eval output exists, use it as signal (high-confidence Pass → auto-prop candidate; Fail → discard; batch-preview → present to user)
 4. **Batch preview** for the user — all proposals together, numbered:
    ```
    N learnings to propagate — I suggest these:
@@ -117,9 +117,9 @@ Whenever some long-term useful info comes up:
 5. **After user confirmation** propagate the knowledge
 6. **`## Propagation log`** section — timestamped, record what was propagated where
 
-The session file remains a raw-like reference — the distillate goes into the indexed layers. This is Karpathy [[11-wiki/Karpathy-LLM-Wiki-pattern|crystallization]] at its minimum.
+The session file remains a raw-like reference — the distillate goes into the indexed layers. This is Karpathy [[wiki/Karpathy-LLM-Wiki-pattern|crystallization]] at its minimum.
 
-**Detailed rules:** [[11-wiki/Crystallization-protocol]]
+**Detailed rules:** [[wiki/Crystallization-protocol]]
 
 ### SV B-1 pipeline (LIVE since 2026-05-16)
 
@@ -135,7 +135,7 @@ The session file remains a raw-like reference — the distillate goes into the i
 | 5 conflicts | `vault-ko-conflicts-audit` | Weekly cross-source contradiction audit, predicate-aware heat-classifier |
 | 5 revert | `crystallize-revert <bullet-hash>` | Auto-apply rollback (with audit-event) |
 
-**Threshold-config:** `~/.vault-config/crystallize-threshold.txt` (hot-reloadable). Shadow=1.0 (default, no auto-prop), Conservative=0.95, Aggressive=0.85. Ramp protocol: [[11-wiki/crystallize-threshold-ramp]].
+**Threshold-config:** `~/.vault-config/crystallize-threshold.txt` (hot-reloadable). Shadow=1.0 (default, no auto-prop), Conservative=0.95, Aggressive=0.85. Ramp protocol: [[wiki/crystallize-threshold-ramp]].
 
 **Env-vars (opt-in):**
 - `VAULT_CRYSTALLIZE_AUTO=1` — `11.11stop` runs the scoring automatically
@@ -154,7 +154,7 @@ The session file remains a raw-like reference — the distillate goes into the i
 
 ## Virtual-context (Letta/MemGPT) — PREVIEW (opt-in, since 2026-05-25 Day 0)
 
-Alongside the classic aggressive ~17K-token pre-load there is an alternative: **core-memory + on-demand page-in**. Sprint plan: [[07-Decisions/2026-05-25 vault-core-memory MemGPT integration sprint plan]]. Day 0 LANDED, integration between W1-5.
+Alongside the classic aggressive ~17K-token pre-load there is an alternative: **core-memory + on-demand page-in**. Sprint plan: [[decisions/2026-05-25 vault-core-memory MemGPT integration sprint plan]]. Day 0 LANDED, integration between W1-5.
 
 | Layer | Command | Function |
 |---|---|---|
@@ -171,7 +171,7 @@ Alongside the classic aggressive ~17K-token pre-load there is an alternative: **
 - The archival page-in result gives ~2-3 KB of chunk-text — instead of the classic 15-20K aggressive pre-load
 - If >20 page-faults are needed within one session → flag that the core-memory is mis-sized (review required)
 
-**Status:** Day 0 (2026-05-25) — `page-in` LANDED, integration not active (env-var OFF). See [[11-wiki/vault-core-memory-integration-roadmap]].
+**Status:** Day 0 (2026-05-25) — `page-in` LANDED, integration not active (env-var OFF). See [[wiki/vault-core-memory-integration-roadmap]].
 
 ## Net-learning (since 2026-05-17)
 
@@ -187,7 +187,7 @@ Alongside the classic aggressive ~17K-token pre-load there is an alternative: **
 - Gemini hook: `~/.gemini/.current-session-id` (written by SessionStart hook)
 - Manual override: `CODEX_SESSION_ID` or `GEMINI_SESSION_ID` env-var
 - The 6 `11.11*` scripts automatically extract the CHAT_ID from the chain, per-chat pointer file: `.active-session-$CHAT_ID`
-- Matrix doc: [[11-wiki/cli-session-id-env-var-matrix]]
+- Matrix doc: [[wiki/cli-session-id-env-var-matrix]]
 
 ## What NOT to store here
 
@@ -203,7 +203,7 @@ Alongside the classic aggressive ~17K-token pre-load there is an alternative: **
 
 ## Session orchestration (`11.11*` commands)
 
-Detailed description: [[11-wiki/11.11-session-protokoll]]
+Detailed description: [[wiki/11.11-session-protokoll]]
 
 > [!info] Slash vs shell
 > The **shell CLI** (`/usr/local/bin/11.11*`) names are unchanged: `11.11start`, `11.11stop`, `11.11focus`, `11.11note`, `11.11ls`, `11.11`.
@@ -223,7 +223,7 @@ Detailed description: [[11-wiki/11.11-session-protokoll]]
 
 ## Vault health
 
-- **Live snapshot:** [[06-Audits/System_Health]] — weekly cron `vault-cleanup` regenerates (Sunday 04:00)
+- **Live snapshot:** [[audits/System_Health]] — weekly cron `vault-cleanup` regenerates (Sunday 04:00)
 - **Auto-save:** every 10 minutes cron `/usr/local/bin/vault-autosave` → commit + push to GitHub
 - **Manual check:** `/11.11-egeszseg` (slash) or `11.11` (shell) — symlinks, skills, services
 
@@ -234,8 +234,8 @@ If a new convention emerges, edit it directly — the change is live for all thr
 ## Related
 
 - [[README]] — human entry point
-- [[00-Meta/README]] — vault rules
-- [[11-wiki/Karpathy-LLM-Wiki-pattern]] — the underlying pattern
-- [[11-wiki/Johnny-Decimal-prefix]] — why the 00-, 01-, … prefix
-- [[11-wiki/11.11-session-protokoll]] — session organization in depth
-- [[02-Projects/Index]] — project dashboard
+- [[meta/README]] — vault rules
+- [[wiki/Karpathy-LLM-Wiki-pattern]] — the underlying pattern
+- [[wiki/Johnny-Decimal-prefix]] — why the 00-, 01-, … prefix
+- [[wiki/11.11-session-protokoll]] — session organization in depth
+- [[../02-Projects/Index]] — project dashboard

@@ -1,47 +1,50 @@
 # MyForge Vault 11.11
 
 [![Docs](https://img.shields.io/badge/docs-myforgelabs.github.io-blue?logo=mkdocs)](https://myforgelabs.github.io/myforge-vault-1111/)
-[![Deploy](https://github.com/MyForgeLabs/myforge-vault-1111/actions/workflows/docs.yml/badge.svg)](https://github.com/MyForgeLabs/myforge-vault-1111/actions/workflows/docs.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
-[![Release](https://img.shields.io/github/v/release/MyForgeLabs/myforge-vault-1111?color=blueviolet&label=release)](https://github.com/MyForgeLabs/myforge-vault-1111/releases/latest)
-[![Wiki pages](https://img.shields.io/badge/wiki-274-orange)](./11-wiki/)
-[![ADRs](https://img.shields.io/badge/ADR-46-purple)](./07-Decisions/)
-[![Audits](https://img.shields.io/badge/audits-126-yellow)](./06-Audits/)
-[![Language](https://img.shields.io/badge/lang-HU%2BEN-red)](./README.hu.md)
-[![Star History](https://img.shields.io/github/stars/MyForgeLabs/myforge-vault-1111?style=social)](https://github.com/MyForgeLabs/myforge-vault-1111/stargazers)
+[![Release](https://img.shields.io/badge/release-v1.0.16-blueviolet)](https://github.com/MyForgeLabs/myforge-vault-1111/releases)
+[![Wiki pages](https://img.shields.io/badge/wiki-274-orange)](../wiki/)
+[![ADRs](https://img.shields.io/badge/ADR-46-purple)](../decisions/)
+[![Audits](https://img.shields.io/badge/audits-126-yellow)](../audits/)
+[![Language](https://img.shields.io/badge/lang-HU%2BEN-red)](.)
 
 **Live metrics** (auto-regenerated on each `vault-public-sync`):
 
-[![typed-coverage](./docs/badges/typed-coverage.svg)](./docs/typed-graph-viz/)
-[![LongMemEval R@5](./docs/badges/longmemeval-r5.svg)](./06-Audits/2026-05-25%20v1.0.11%20formal%20benchmark%20consolidated.md)
-[![latency](./docs/badges/latency.svg)](./docs/metrics/)
-[![cron-mutex](./docs/badges/cron-mutex.svg)](./docs/health/)
-[![cost](./docs/badges/cost.svg)](./CHANGELOG.md)
-[![snapshot](./docs/badges/generated.svg)](./CHANGELOG.md)
+[![typed-coverage](./badges/typed-coverage.svg)](./typed-graph-viz/)
+[![LongMemEval R@5](./badges/longmemeval-r5.svg)](../audits/2026-05-25%20v1.0.11%20formal%20benchmark%20consolidated.md)
+[![latency](./badges/latency.svg)](./metrics/)
+[![cron-mutex](./badges/cron-mutex.svg)](./health/)
+[![cost](./badges/cost.svg)](../CHANGELOG.md)
+[![snapshot](./badges/generated.svg)](../CHANGELOG.md)
+
+![MyForge Vault 11.11 — 8-axis Superintelligent Vault hero banner](./assets/hero-banner.svg)
+
+![MyForge Vault 11.11 — live docs site screenshot](./assets/hero-screenshot.png)
+
+
+
 
 > **An open-source 8-axis methodology + working tooling for evolving a personal Obsidian-vault into a self-improving knowledge-system.**
 > Made by [MyForge Labs](mailto:11.11@myforgelabs.com). Augmented intelligence — NOT AGI, NOT hype. Hungarian+English docs, MIT.
 
-[📚 Docs site](https://myforgelabs.github.io/myforge-vault-1111/) · [🎬 3-min demo](https://myforgelabs.github.io/myforge-vault-1111/demo/) · [🇭🇺 Magyar](./README.hu.md) · [📋 FAQ](./11-wiki/faq.en.md) · [🗺️ Architecture](./11-wiki/architecture-overview.en.md) · [📖 The build story (3,900 words)](./11-wiki/what-i-learned-building-self-improving-vault.en.md)
+[📚 Docs site](https://myforgelabs.github.io/myforge-vault-1111/) · [🎬 3-min demo](https://myforgelabs.github.io/myforge-vault-1111/demo/) · [🇭🇺 Magyar](.) · [📋 FAQ](../wiki/faq.en.md) · [🗺️ Architecture](../wiki/architecture-overview.en.md) · [📖 The build story (3,900 words)](../wiki/what-i-learned-building-self-improving-vault.en.md)
 
-![MyForge Vault 11.11 — 8-axis Superintelligent Vault hero banner](./docs/assets/hero-banner.svg)
 
-![MyForge Vault 11.11 — live docs site screenshot](./docs/assets/hero-screenshot.png)
 
 ## What is this
 
 **MyForge Vault 11.11** (internal codename: SV) is an **8-axis architecture** + **85+ production scripts** + **274 evergreen wiki pages** + **46 ADRs** + **126 audits** that turns a classic Obsidian-vault into a **self-improving knowledge-system shared by three CLI AI agents** (Claude Code, Codex, Gemini). Measurable numeric results, clear OSS scope, MIT-licensed, $0 marginal cost.
 
-> If you have 90 seconds: read the [FAQ](./11-wiki/faq.en.md). If you have 5
-> minutes: read the [architecture overview](./11-wiki/architecture-overview.en.md).
+> If you have 90 seconds: read the [FAQ](../wiki/faq.en.md). If you have 5
+> minutes: read the [architecture overview](../wiki/architecture-overview.en.md).
 > If you have 15 minutes: read [what I learned building it in 5
-> hours](./11-wiki/what-i-learned-building-self-improving-vault.en.md).
+> hours](../wiki/what-i-learned-building-self-improving-vault.en.md).
 
 The **11.11** in the name carries two meanings:
 - 🏢 **MyForge Labs founding signal** — the company's `11.11@myforgelabs.com` email predates this vault
 - 🔧 **Session-orchestration primitive** — every workflow runs through the `11.11*` CLI family (`11.11start`, `11.11stop`, `11.11note`, `11.11focus`, `11.11ls`, `11.11crystallize`, `11.11worker`) — the connective tissue that makes the 8 axes work as one system
 
-The methodology starts from [Karpathy's LLM-Wiki pattern](./11-wiki/Karpathy-LLM-Wiki-pattern.md): the "raw input" (10-raw) → "distilled knowledge" (11-wiki) crystallization workflow. SV extends this through evolution along 8 independently developable axes.
+The methodology starts from [Karpathy's LLM-Wiki pattern](../wiki/Karpathy-LLM-Wiki-pattern/): the "raw input" (10-raw) → "distilled knowledge" (11-wiki) crystallization workflow. SV extends this through evolution along 8 independently developable axes.
 
 ## The 8 axes
 
@@ -58,13 +61,13 @@ The methodology starts from [Karpathy's LLM-Wiki pattern](./11-wiki/Karpathy-LLM
 
 ## The 7 most important artifacts (NotebookLM-recommended)
 
-1. **[Subagent-fanout dispatcher](./11-wiki/claude-code-subagent-fanout.md)** — 174× parallel LLM-task, $0 cost (Claude Code subscription)
+1. **[Subagent-fanout dispatcher](../wiki/claude-code-subagent-fanout/)** — 174× parallel LLM-task, $0 cost (Claude Code subscription)
 2. **[load-session-context](./05-Memory/Skill-map.md)** — MemGPT-style virtual context loader, 75% token savings
-3. **[vault-search-server](./06-Audits/2026-05-17%20vault-search-server%20systemd.md)** — Unix-socket daemon, 80× speedup (14s→165ms) + Memgraph 280× speedup
-4. **[Bias-mitigated G-Eval](./11-wiki/g-eval-bias-mitigation-pattern.md)** — Claude-to-Claude self-enhancement debiasing, 96.7% calibration agreement
-5. **[Smart-trigger NLI cascade](./11-wiki/smart-trigger-cost-pattern.md)** — fast-baseline → expensive-only-if-needed, 5-10× cost-savings
-6. **[4-layer Safety-Gate](./11-wiki/multi-layer-safety-gate.md)** — ENV + script + git-hook + Critic review (RSI guardrail)
-7. **[Sprint Day-0 Skeleton-first](./11-wiki/sprint-day-0-skeleton-first.md)** — ~5× faster Week 1 implementation
+3. **[vault-search-server](../audits/2026-05-17%20vault-search-server%20systemd.md)** — Unix-socket daemon, 80× speedup (14s→165ms) + Memgraph 280× speedup
+4. **[Bias-mitigated G-Eval](../wiki/g-eval-bias-mitigation-pattern/)** — Claude-to-Claude self-enhancement debiasing, 96.7% calibration agreement
+5. **[Smart-trigger NLI cascade](../wiki/smart-trigger-cost-pattern/)** — fast-baseline → expensive-only-if-needed, 5-10× cost-savings
+6. **[4-layer Safety-Gate](../wiki/multi-layer-safety-gate/)** — ENV + script + git-hook + Critic review (RSI guardrail)
+7. **[Sprint Day-0 Skeleton-first](../wiki/sprint-day-0-skeleton-first/)** — ~5× faster Week 1 implementation
 
 ## Measured results (2026-04-23 → 2026-05-25, 33 days)
 
@@ -97,9 +100,9 @@ The methodology starts from [Karpathy's LLM-Wiki pattern](./11-wiki/Karpathy-LLM
 
 Three D3 / static pages, auto-regenerated on every `vault-public-sync`:
 
-- 🟢 [**Typed-graph visualizer**](https://myforgelabs.github.io/myforge-vault-1111/typed-graph-viz/) — top-200 typed entities, color-coded by label, click-to-filter legend
-- 💚 [**Health dashboard**](https://myforgelabs.github.io/myforge-vault-1111/health/) — `vault-doctor` 8-axis snapshot, 🟢🟡🔴 traffic-light
-- 📈 [**Metrics timeline**](https://myforgelabs.github.io/myforge-vault-1111/metrics/) — per-release line-chart: typed-coverage %, R@5 %, latency, mutex %
+- 🟢 [**Typed-graph visualizer**](https://myforgelabs.github.io./typed-graph-viz/) — top-200 typed entities, color-coded by label, click-to-filter legend
+- 💚 [**Health dashboard**](https://myforgelabs.github.io./health/) — `vault-doctor` 8-axis snapshot, 🟢🟡🔴 traffic-light
+- 📈 [**Metrics timeline**](https://myforgelabs.github.io./metrics/) — per-release line-chart: typed-coverage %, R@5 %, latency, mutex %
 
 See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the high-level system view.
 
@@ -185,13 +188,13 @@ make test             # runs the LongMemEval-S fast regression-gate
 make build-docs       # mkdocs build --strict
 ```
 
-`make help` lists everything. See [the FAQ](./11-wiki/faq.en.md) for the
+`make help` lists everything. See [the FAQ](../wiki/faq.en.md) for the
 "works on my machine" checklist (OS support, Python version, common
 friction).
 
 ## Architecture in one diagram
 
-A full Mermaid diagram lives in [`11-wiki/architecture-overview.en.md`](./11-wiki/architecture-overview.en.md).
+A full Mermaid diagram lives in [`11-wiki/architecture-overview.en.md`](../wiki/architecture-overview.en.md).
 The short version:
 
 ```
@@ -213,7 +216,7 @@ The short version:
 
 ## Reproducibility
 
-The full methodology is **architecture-level reproducible** through the [07-Decisions/](./07-Decisions/) ADRs + [11-wiki/](./11-wiki/) evergreen wikis. Every script is idempotent, ENV-flag-gated, default-OFF safety pattern.
+The full methodology is **architecture-level reproducible** through the [07-Decisions/](../decisions/) ADRs + [11-wiki/](../wiki/) evergreen wikis. Every script is idempotent, ENV-flag-gated, default-OFF safety pattern.
 
 ## Positioning (transparent)
 
@@ -260,13 +263,13 @@ MIT — see [LICENSE](./LICENSE). Cherry-pick freely, attribution-friendly.
 
 ## Related
 
-- [Architecture decision records (46)](./07-Decisions/)
-- [Evergreen wikis (274)](./11-wiki/)
-- [Audits (126)](./06-Audits/)
-- [FAQ](./11-wiki/faq.en.md)
-- [Architecture overview (with Mermaid diagram)](./11-wiki/architecture-overview.en.md)
-- [Hungarian README](./README.hu.md)
-- [The Karpathy-style build story (3,909 words)](./11-wiki/what-i-learned-building-self-improving-vault.en.md)
+- [Architecture decision records (46)](../decisions/)
+- [Evergreen wikis (274)](../wiki/)
+- [Audits (126)](../audits/)
+- [FAQ](../wiki/faq.en.md)
+- [Architecture overview (with Mermaid diagram)](../wiki/architecture-overview.en.md)
+- [Hungarian README](.)
+- [The Karpathy-style build story (3,909 words)](../wiki/what-i-learned-building-self-improving-vault.en.md)
 
 <details>
 <summary>⭐ Star history</summary>

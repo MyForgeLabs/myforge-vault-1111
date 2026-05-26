@@ -63,16 +63,16 @@ Ezt a fájlt mindhárom AI agent betölti a session elején — ez az egyetlen b
 
 **KÖTELEZŐ workflow** (`/11.11-uj-session` után az agent automatikusan):
 
-1. **Detektáld a projektet** a session-névből a [[11-wiki/Auto-context-loading#Projekt-detektálás a session-névből|projekt-detektálási tábla]] alapján
-2. **Aggressive pre-load** — olvasd be a [[11-wiki/Auto-context-loading]] szerint:
+1. **Detektáld a projektet** a session-névből a [[wiki/Auto-context-loading#Projekt-detektálás a session-névből|projekt-detektálási tábla]] alapján
+2. **Aggressive pre-load** — olvasd be a [[wiki/Auto-context-loading]] szerint:
    - Projekt-fájl + utolsó 5 session + minden érintett ADR + Memory releváns része + `#project/<slug>` Backlog tételek + Host-info + mai/tegnapi Daily
    - Cél: ~15-20K token kontextus
 3. **Ír egy `## Pre-loaded context` szekciót** a session-fájlba — listázza mit olvastál be, 1-2 mondatos kivonatot adva mindegyikből
 4. **Csak utána** vár a user első kérdésére — teljes kontextussal
 
-Ha ismeretlen rövidítés / slug jön elő → [[00-Meta/Glossary]]. Ha ambiguous a projekt → kérdezz vissza.
+Ha ismeretlen rövidítés / slug jön elő → [[meta/Glossary]]. Ha ambiguous a projekt → kérdezz vissza.
 
-**Ha nem detektálható projekt** (pl. "wellbeing", "general thinking") — csak alap-kontextust tölts be: [[02-Projects/Index]], [[04-Tasks/Backlog]] sürgősei, mai + tegnapi Daily.
+**Ha nem detektálható projekt** (pl. "wellbeing", "general thinking") — csak alap-kontextust tölts be: [[../02-Projects/Index]], [[../04-Tasks/Backlog]] sürgősei, mai + tegnapi Daily.
 
 ## Mikor ÍRJ ide
 
@@ -80,22 +80,22 @@ Amikor valami tartósan hasznos info kerül elő:
 
 | Esemény | Hova ír |
 |---------|---------|
-| Új projekt indul | Új `02-Projects/<név>.md` + sor a megfelelő csoport-táblába az [[02-Projects/Index]]-ben |
+| Új projekt indul | Új `02-Projects/<név>.md` + sor a megfelelő csoport-táblába az [[../02-Projects/Index]]-ben |
 | Meglévő projekt státusza változott | Frissítsd a `02-Projects/<név>.md` "Jelenlegi állapot" + `updated:` |
 | User preferenciát tanultál | [[05-Memory/User]] vagy új `05-Memory/Feedback-<téma>.md` |
 | Szerver/infra tudás (port, host, szolgáltatás) | [[05-Memory/Infrastructure]] |
 | Nagy architektúra-döntés | Új `07-Decisions/YYYY-MM-DD <téma>.md` |
-| **Új TODO** | [[04-Tasks/Backlog]] (🔴 sürgős / 🟡 figyelni / 🟢 tisztaság) |
-| **Feladat kész** | [[04-Tasks/Backlog]] — ✅ Elvégezve szekcióba dátummal |
+| **Új TODO** | [[../04-Tasks/Backlog]] (🔴 sürgős / 🟡 figyelni / 🟢 tisztaság) |
+| **Feladat kész** | [[../04-Tasks/Backlog]] — ✅ Elvégezve szekcióba dátummal |
 | **Új koncepció / playbook** (evergreen) | `11-wiki/<téma>.md` — saját szavakkal |
 | **Új cikk / transzkript** (immutable) | `10-raw/YYYY-MM-DD — <forrás>.md` |
 
 ## Formázási konvenciók
 
 - **Dátum:** `YYYY-MM-DD` ISO, a user-től kapott relatív dátumokat (pl. "csütörtök") konvertáld ISO-ra
-- **Wikilink:** `[[02-Projects/teszt-eu]]` belső hivatkozásra (mappa-prefix kötelező)
-- **Frontmatter:** minden nagyobb doknak legyen `name:`, `type:`, `created:`, `updated:` (lásd [[00-Meta/Frontmatter-schema]])
-- **Tag-ek:** [[00-Meta/Tag-taxonomy]] szerint
+- **Wikilink:** `[[../02-Projects/teszt-eu]]` belső hivatkozásra (mappa-prefix kötelező)
+- **Frontmatter:** minden nagyobb doknak legyen `name:`, `type:`, `created:`, `updated:` (lásd [[meta/Frontmatter-schema]])
+- **Tag-ek:** [[meta/Tag-taxonomy]] szerint
 - **Callout:** `> [!info]`, `> [!warning]`, `> [!todo]`, `> [!success]`
 - **Kód/path:** backtick-ben
 
@@ -105,7 +105,7 @@ Amikor valami tartósan hasznos info kerül elő:
 
 1. **Summary + Learnings + Next** írása a `08-Sessions/<slug>.md`-be a chat-history alapján
 2. **(opcionális, ha `VAULT_CRYSTALLIZE_AUTO=1`)** `11.11crystallize <slug> --scorer claude-code --with-context` — automatikus G-Eval scoring shadow-mode-ban. Ha pending request keletkezik, spawnolj egy general-purpose Agent-et a G-Eval prompt-tal + bullets-szel + kodb_context-tel; írja a response.json-t; majd re-run `11.11crystallize` ugyanazzal a flag-gel a finalizáláshoz.
-3. **Routing — minden Learning bullet-re** alkalmazd a [[11-wiki/Crystallization-protocol#Routing decision tree|decision tree]]-t (architektúra-szintű ADR / vault-szabály / wiki-koncepció / glossary / infra / skill / user-pref / dashboard / projekt / task / kérdezz). Ha van G-Eval-output, használd signal-ként (high-confidence Pass → auto-prop kandidát; Fail → discard; batch-preview → user-elé)
+3. **Routing — minden Learning bullet-re** alkalmazd a [[wiki/Crystallization-protocol#Routing decision tree|decision tree]]-t (architektúra-szintű ADR / vault-szabály / wiki-koncepció / glossary / infra / skill / user-pref / dashboard / projekt / task / kérdezz). Ha van G-Eval-output, használd signal-ként (high-confidence Pass → auto-prop kandidát; Fail → discard; batch-preview → user-elé)
 4. **Batch preview** a usernek — összes javaslat egyben, sorszámmal:
    ```
    🧠 N tanulság propagálása — ezeket javaslom:
@@ -117,9 +117,9 @@ Amikor valami tartósan hasznos info kerül elő:
 5. **User megerősítése után** propagáld a tudást
 6. **`## Propagation log`** szekcióba időbélyegezve írd be mit hova propagáltál
 
-A session-fájl megmarad raw-szerű referenciának — a desztillátum az index-elt rétegekbe kerül. Ez a Karpathy [[11-wiki/Karpathy-LLM-Wiki-pattern|crystallization]] az ő minimumában.
+A session-fájl megmarad raw-szerű referenciának — a desztillátum az index-elt rétegekbe kerül. Ez a Karpathy [[wiki/Karpathy-LLM-Wiki-pattern|crystallization]] az ő minimumában.
 
-**Részletes szabályok:** [[11-wiki/Crystallization-protocol]]
+**Részletes szabályok:** [[wiki/Crystallization-protocol]]
 
 ### SV B-1 pipeline (2026-05-16-tól ÉLES)
 
@@ -135,7 +135,7 @@ A session-fájl megmarad raw-szerű referenciának — a desztillátum az index-
 | 5 conflicts | `vault-ko-conflicts-audit` | Heti cross-source contradiction audit, predicate-aware heat-classifier |
 | 5 revert | `crystallize-revert <bullet-hash>` | Auto-apply rollback (audit-event-tel) |
 
-**Threshold-config:** `~/.vault-config/crystallize-threshold.txt` (hot-reloadable). Shadow=1.0 (default, no auto-prop), Conservative=0.95, Aggressive=0.85. Ramp-protocol: [[11-wiki/crystallize-threshold-ramp]].
+**Threshold-config:** `~/.vault-config/crystallize-threshold.txt` (hot-reloadable). Shadow=1.0 (default, no auto-prop), Conservative=0.95, Aggressive=0.85. Ramp-protocol: [[wiki/crystallize-threshold-ramp]].
 
 **Env-vars (opt-in):**
 - `VAULT_CRYSTALLIZE_AUTO=1` — `11.11stop` automatikusan futtatja a scoring-ot
@@ -154,7 +154,7 @@ A session-fájl megmarad raw-szerű referenciának — a desztillátum az index-
 
 ## Virtual-context (Letta/MemGPT) — PREVIEW (2026-05-25-tól Day 0, opt-in)
 
-A klasszikus aggressive ~17K token-os pre-load mellett él egy alternatív: **core-memory + on-demand page-in**. Sprint-plan: [[07-Decisions/2026-05-25 vault-core-memory MemGPT integration sprint plan]]. Day 0 LANDED, integration W1-5 között.
+A klasszikus aggressive ~17K token-os pre-load mellett él egy alternatív: **core-memory + on-demand page-in**. Sprint-plan: [[decisions/2026-05-25 vault-core-memory MemGPT integration sprint plan]]. Day 0 LANDED, integration W1-5 között.
 
 | Layer | Parancs | Funkció |
 |---|---|---|
@@ -171,7 +171,7 @@ A klasszikus aggressive ~17K token-os pre-load mellett él egy alternatív: **co
 - Az archival page-in eredmény ~2-3 KB chunk-text-et ad — a klasszikus 15-20K aggressive pre-load helyett
 - Ha 1 session-en belül >20 page-fault szükséges → flag, hogy a core-memory mis-sized (review kell)
 
-**Status:** Day 0 (2026-05-25) — `page-in` LANDED, integration nem-aktiv (env-var OFF). Lásd [[11-wiki/vault-core-memory-integration-roadmap]].
+**Status:** Day 0 (2026-05-25) — `page-in` LANDED, integration nem-aktiv (env-var OFF). Lásd [[wiki/vault-core-memory-integration-roadmap]].
 
 ## Net-tanulás (2026-05-17-től)
 
@@ -187,7 +187,7 @@ A klasszikus aggressive ~17K token-os pre-load mellett él egy alternatív: **co
 - Gemini hook: `~/.gemini/.current-session-id` (SessionStart hook írja)
 - Manual override: `CODEX_SESSION_ID` vagy `GEMINI_SESSION_ID` env-var
 - A 6 `11.11*` script automatikusan kiszedi a CHAT_ID-t a chain-ből, per-chat pointer-fájl: `.active-session-$CHAT_ID`
-- Matrix-doc: [[11-wiki/cli-session-id-env-var-matrix]]
+- Matrix-doc: [[wiki/cli-session-id-env-var-matrix]]
 
 ## Mit NE tárolj itt
 
@@ -203,7 +203,7 @@ A klasszikus aggressive ~17K token-os pre-load mellett él egy alternatív: **co
 
 ## Session-orchestration (`11.11*` parancsok)
 
-Részletes leírás: [[11-wiki/11.11-session-protokoll]]
+Részletes leírás: [[wiki/11.11-session-protokoll]]
 
 > [!info] Slash vs shell
 > A **shell-CLI** (`/usr/local/bin/11.11*`) nevei változatlanok: `11.11start`, `11.11stop`, `11.11focus`, `11.11note`, `11.11ls`, `11.11`.
@@ -223,7 +223,7 @@ Részletes leírás: [[11-wiki/11.11-session-protokoll]]
 
 ## Vault egészsége
 
-- **Live snapshot:** [[06-Audits/System_Health]] — heti cron `vault-cleanup` regenerálja (vasárnap 04:00)
+- **Live snapshot:** [[audits/System_Health]] — heti cron `vault-cleanup` regenerálja (vasárnap 04:00)
 - **Auto-save:** 10 percenként cron `/usr/local/bin/vault-autosave` → commit + push GitHub-ra
 - **Manuális check:** `/11.11-egeszseg` (slash) vagy `11.11` (shell) — symlinkek, skillek, szolgáltatások
 
@@ -234,11 +234,11 @@ Ha új konvenció kerül, szerkeszd közvetlenül — a változás azonnal él m
 ## Kapcsolódó
 
 - [[README]] — humán belépő
-- [[00-Meta/README]] — vault-szabályok
-- [[11-wiki/Karpathy-LLM-Wiki-pattern]] — a háttérben lévő minta
-- [[11-wiki/Johnny-Decimal-prefix]] — miért 00-, 01-, … prefix
-- [[11-wiki/11.11-session-protokoll]] — session-szervezés mélyebben
-- [[02-Projects/Index]] — projekt dashboard
+- [[meta/README]] — vault-szabályok
+- [[wiki/Karpathy-LLM-Wiki-pattern]] — a háttérben lévő minta
+- [[wiki/Johnny-Decimal-prefix]] — miért 00-, 01-, … prefix
+- [[wiki/11.11-session-protokoll]] — session-szervezés mélyebben
+- [[../02-Projects/Index]] — projekt dashboard
 # graphify
 - **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
 When the user types `/graphify`, invoke the Skill tool with `skill: "graphify"` before doing anything else.

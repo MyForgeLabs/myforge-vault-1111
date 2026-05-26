@@ -100,10 +100,10 @@ plugins:
       height: auto
       zoomable: true
       draggable: false
-  - minify:
-      minify_html: true
-      minify_css: true
-      minify_js: true
+  # - minify:
+  #     minify_html: true
+  #     minify_css: true
+  #     minify_js: true
   - rss:
       match_path: "wiki/.*\\.en"
       date_from_meta:

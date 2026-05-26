@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-label="MyForge Vault 11.11 — 8-axis Superintelligent Vault">
+  <title>MyForge Vault 11.11 — 8-axis Superintelligent Vault</title>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="55%" r="75%">
+      <stop offset="0%" stop-color="#0e1b3a"/>
+      <stop offset="55%" stop-color="#070d22"/>
+      <stop offset="100%" stop-color="#02040d"/>
+    </radialGradient>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffb84d" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#f59e0b" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd27a"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9ce8ff"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="textGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="1.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <symbol id="star" overflow="visible">
+      <circle r="0.9" fill="#cfe2ff" fill-opacity="0.85"/>
+    </symbol>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="640" fill="url(#bg)"/>
+
+  <!-- Starfield -->
+  <g opacity="0.85">
+    <use href="#star" x="60" y="70"/><use href="#star" x="120" y="40"/><use href="#star" x="180" y="110"/>
+    <use href="#star" x="240" y="60"/><use href="#star" x="310" y="130"/><use href="#star" x="380" y="50"/>
+    <use href="#star" x="460" y="100"/><use href="#star" x="540" y="40"/><use href="#star" x="620" y="80"/>
+    <use href="#star" x="700" y="30"/><use href="#star" x="780" y="110"/><use href="#star" x="860" y="50"/>
+    <use href="#star" x="940" y="90"/><use href="#star" x="1020" y="40"/><use href="#star" x="1100" y="80"/>
+    <use href="#star" x="1200" y="60"/><use href="#star" x="1220" y="160"/><use href="#star" x="40" y="220"/>
+    <use href="#star" x="80" y="580"/><use href="#star" x="200" y="570"/><use href="#star" x="370" y="595"/>
+    <use href="#star" x="520" y="580"/><use href="#star" x="690" y="595"/><use href="#star" x="840" y="575"/>
+    <use href="#star" x="990" y="590"/><use href="#star" x="1130" y="575"/><use href="#star" x="1230" y="460"/>
+    <use href="#star" x="30" y="460"/><use href="#star" x="1150" y="290"/><use href="#star" x="50" y="320"/>
+  </g>
+
+  <!-- Brand wordmark, top-left -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto" font-weight="700">
+    <text x="60" y="92" font-size="36" fill="url(#amber)" letter-spacing="0.5">MyForge Vault</text>
+    <text x="400" y="92" font-size="36" fill="url(#cyan)" letter-spacing="3">11.11</text>
+    <text x="60" y="120" font-size="13" fill="#9aa6c2" font-weight="500" letter-spacing="1.5">SELF-IMPROVING OBSIDIAN VAULT · KARPATHY LLM-WIKI PATTERN</text>
+  </g>
+
+  <!-- Top-right meta line -->
+  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="12" fill="#7e8cb3">
+    <text x="1220" y="92" text-anchor="end">v1.0.10 · MIT · myforgelabs.github.io/myforge-vault-1111</text>
+    <text x="1220" y="110" text-anchor="end">274 wiki · 9,517 entities · 15,835 facts · 962 skills</text>
+  </g>
+
+  <!-- ============== 8-axis radial diagram (left half) ============== -->
+  <g transform="translate(360 350)">
+    <!-- core glow -->
+    <circle r="180" fill="url(#coreGlow)" opacity="0.55" filter="url(#soft)"/>
+    <!-- outer rings -->
+    <circle r="170" fill="none" stroke="#1d2a52" stroke-width="1"/>
+    <circle r="138" fill="none" stroke="#1a2547" stroke-width="1" stroke-dasharray="2 6"/>
+    <circle r="102" fill="none" stroke="#1a2547" stroke-width="1"/>
+
+    <!-- 8 axis spokes -->
+    <g stroke="#2a3a6b" stroke-width="1">
+      <line x1="0" y1="-170" x2="0" y2="-30"/>
+      <line x1="120" y1="-120" x2="21" y2="-21"/>
+      <line x1="170" y1="0" x2="30" y2="0"/>
+      <line x1="120" y1="120" x2="21" y2="21"/>
+      <line x1="0" y1="170" x2="0" y2="30"/>
+      <line x1="-120" y1="120" x2="-21" y2="21"/>
+      <line x1="-170" y1="0" x2="-30" y2="0"/>
+      <line x1="-120" y1="-120" x2="-21" y2="-21"/>
+    </g>
+
+    <!-- 8 axis nodes (amber + cyan alternating) -->
+    <g font-family="ui-sans-serif, system-ui" font-weight="700" font-size="13">
+      <!-- N: B-1 -->
+      <circle cx="0" cy="-170" r="22" fill="#0b1430" stroke="url(#amber)" stroke-width="2.2"/>
+      <text x="0" y="-166" text-anchor="middle" fill="#ffd27a">B-1</text>
+      <text x="0" y="-202" text-anchor="middle" fill="#cfd6ea" font-size="12" font-weight="500">Crystallization</text>
+
+      <!-- NE: B-2 -->
+      <circle cx="120" cy="-120" r="22" fill="#0b1430" stroke="url(#cyan)" stroke-width="2.2"/>
+      <text x="120" y="-116" text-anchor="middle" fill="#9ce8ff">B-2</text>
+      <text x="148" y="-152" text-anchor="start" fill="#cfd6ea" font-size="12" font-weight="500">Memory</text>
+
+      <!-- E: B-3 -->
+      <circle cx="170" cy="0" r="22" fill="#0b1430" stroke="url(#amber)" stroke-width="2.2"/>
+      <text x="170" y="4" text-anchor="middle" fill="#ffd27a">B-3</text>
+      <text x="198" y="4" text-anchor="start" fill="#cfd6ea" font-size="12" font-weight="500">Continuous eval</text>
+
+      <!-- SE: B-4 -->
+      <circle cx="120" cy="120" r="22" fill="#0b1430" stroke="url(#cyan)" stroke-width="2.2"/>
+      <text x="120" y="124" text-anchor="middle" fill="#9ce8ff">B-4</text>
+      <text x="148" y="156" text-anchor="start" fill="#cfd6ea" font-size="12" font-weight="500">Tool composition</text>
+
+      <!-- S: B-5 -->
+      <circle cx="0" cy="170" r="22" fill="#0b1430" stroke="url(#amber)" stroke-width="2.2"/>
+      <text x="0" y="174" text-anchor="middle" fill="#ffd27a">B-5</text>
+      <text x="0" y="212" text-anchor="middle" fill="#cfd6ea" font-size="12" font-weight="500">NotebookLM</text>
+
+      <!-- SW: B-6 -->
+      <circle cx="-120" cy="120" r="22" fill="#0b1430" stroke="url(#cyan)" stroke-width="2.2"/>
+      <text x="-120" y="124" text-anchor="middle" fill="#9ce8ff">B-6</text>
+      <text x="-148" y="156" text-anchor="end" fill="#cfd6ea" font-size="12" font-weight="500">Multi-agent</text>
+
+      <!-- W: B-7 -->
+      <circle cx="-170" cy="0" r="22" fill="#0b1430" stroke="url(#amber)" stroke-width="2.2"/>
+      <text x="-170" y="4" text-anchor="middle" fill="#ffd27a">B-7</text>
+      <text x="-198" y="4" text-anchor="end" fill="#cfd6ea" font-size="12" font-weight="500">Knowledge graph</text>
+
+      <!-- NW: B-8 -->
+      <circle cx="-120" cy="-120" r="22" fill="#0b1430" stroke="url(#cyan)" stroke-width="2.2"/>
+      <text x="-120" y="-116" text-anchor="middle" fill="#9ce8ff">B-8</text>
+      <text x="-148" y="-152" text-anchor="end" fill="#cfd6ea" font-size="12" font-weight="500">RSI · GEPA</text>
+    </g>
+
+    <!-- core hub -->
+    <circle r="32" fill="#0b1430" stroke="url(#amber)" stroke-width="2.4"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="14" font-weight="800" fill="url(#amber)" filter="url(#textGlow)">11.11</text>
+    <text x="0" y="14" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="9" fill="#9ce8ff" letter-spacing="1.5">SESSION OS</text>
+  </g>
+
+  <!-- ============== Right-side stats panel (wider, generous padding) ============== -->
+  <g transform="translate(740 200)" font-family="ui-sans-serif, system-ui">
+    <text x="0" y="0" font-size="22" font-weight="700" fill="#e8eeff">Augmented intelligence — NOT AGI</text>
+    <text x="0" y="28" font-size="13" fill="#9aa6c2" font-weight="500">$0 marginal cost · Claude Code · 28-day measured run</text>
+
+    <!-- Stat cards row 1: 3 cards, generous widths -->
+    <g transform="translate(0 56)">
+      <!-- Card 1: 200×80 -->
+      <rect width="200" height="80" rx="10" fill="#0c1740" stroke="#1d2a52"/>
+      <text x="16" y="26" font-size="11" fill="#9ce8ff" letter-spacing="1.5">MEMGRAPH VECTOR</text>
+      <text x="16" y="58" font-size="28" font-weight="800" fill="url(#amber)">280×</text>
+      <text x="16" y="74" font-size="10" fill="#9aa6c2">speedup vs numpy-cosine</text>
+
+      <!-- Card 2: 200×80 (was 160, expanded to fit "baseline 0.541 → 0.619") -->
+      <rect x="220" width="200" height="80" rx="10" fill="#0c1740" stroke="#1d2a52"/>
+      <text x="236" y="26" font-size="11" fill="#9ce8ff" letter-spacing="1.5">GEPA PARETO</text>
+      <text x="236" y="58" font-size="28" font-weight="800" fill="url(#amber)">+14.3%</text>
+      <text x="236" y="74" font-size="10" fill="#9aa6c2">0.541 → 0.619 baseline</text>
+
+      <!-- Card 3: 90×80 (cost, slightly wider) -->
+      <rect x="440" width="90" height="80" rx="10" fill="#0c1740" stroke="#1d2a52"/>
+      <text x="485" y="26" font-size="10" fill="#9ce8ff" text-anchor="middle" letter-spacing="1.5">COST</text>
+      <text x="485" y="58" font-size="26" font-weight="800" fill="url(#cyan)" text-anchor="middle">$0</text>
+    </g>
+
+    <!-- Stat cards row 2: 4 cards, wider -->
+    <g transform="translate(0 160)">
+      <!-- Card 1: SESSIONS 122×66 -->
+      <rect width="122" height="66" rx="10" fill="#0c1740" stroke="#1d2a52"/>
+      <text x="16" y="22" font-size="10" fill="#9ce8ff" letter-spacing="1.3">SESSIONS</text>
+      <text x="16" y="50" font-size="22" font-weight="800" fill="#e8eeff">80</text>
+
+      <!-- Card 2: WIKI 122×66 -->
+      <rect x="142" width="122" height="66" rx="10" fill="#0c1740" stroke="#1d2a52"/>
+      <text x="158" y="22" font-size="10" fill="#9ce8ff" letter-spacing="1.3">WIKI PAGES</text>
+      <text x="158" y="50" font-size="22" font-weight="800" fill="#e8eeff">274</text>
+
+      <!-- Card 3: ADRs 122×66 -->
+      <rect x="284" width="122" height="66" rx="10" fill="#0c1740" stroke="#1d2a52"/>
+      <text x="300" y="22" font-size="10" fill="#9ce8ff" letter-spacing="1.3">ADRs</text>
+      <text x="300" y="50" font-size="22" font-weight="800" fill="#e8eeff">48</text>
+
+      <!-- Card 4: CRON 122×66 -->
+      <rect x="426" width="104" height="66" rx="10" fill="#0c1740" stroke="#1d2a52"/>
+      <text x="478" y="22" font-size="10" fill="#9ce8ff" text-anchor="middle" letter-spacing="1.3">CRON</text>
+      <text x="478" y="50" font-size="22" font-weight="800" fill="#e8eeff" text-anchor="middle">25</text>
+    </g>
+
+    <!-- Bottom tagline (under the cards, breathable spacing) -->
+    <g transform="translate(0 252)">
+      <text x="0" y="0" font-size="13" fill="#cfd6ea" font-weight="600">B-8 RSI Critic κ=0.708 ratified · 8 axes · 85+ scripts</text>
+      <text x="0" y="22" font-size="11" fill="#9aa6c2" font-family="ui-monospace, SFMono-Regular, Consolas, monospace">11.11start · 11.11note · 11.11focus · 11.11stop · 11.11crystallize · 11.11worker</text>
+    </g>
+  </g>
+
+  <!-- Footer strip -->
+  <g>
+    <rect x="0" y="596" width="1280" height="44" fill="#040814"/>
+    <line x1="0" y1="596" x2="1280" y2="596" stroke="#1d2a52"/>
+    <text x="60" y="624" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="12" fill="#7e8cb3">
+      $ vault-search "subagent-fanout" --top-k 3   →   cosine 0.847 · 168ms · $0
+    </text>
+    <text x="1220" y="624" text-anchor="end" font-family="ui-sans-serif, system-ui" font-size="12" fill="#9aa6c2">
+      MyForge Labs · 11.11@myforgelabs.com
+    </text>
+  </g>
+</svg>

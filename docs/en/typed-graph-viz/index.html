@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MyForge Vault — typed-entity graph (top 200)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Live visualization of the SV B-7 typed-entity Memgraph from MyForge Vault 11.11. 200 highest-cross-source-corroboration nodes, color-coded by typed label.">
+<style>
+  :root {
+    --bg: #0e1116;
+    --fg: #d6dde6;
+    --muted: #6b7585;
+    --link: rgba(160,176,200,0.18);
+    --link-hover: rgba(220,232,255,0.55);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    background: var(--bg); color: var(--fg);
+    font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow: hidden; height: 100vh;
+  }
+  header {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 12px 18px; background: rgba(14,17,22,0.92);
+    border-bottom: 1px solid #1e242d; z-index: 10;
+    backdrop-filter: blur(6px);
+  }
+  h1 { margin: 0 0 4px; font-size: 16px; font-weight: 600; }
+  .sub { color: var(--muted); font-size: 12px; }
+  .legend {
+    position: fixed; top: 70px; left: 18px; z-index: 9;
+    background: rgba(14,17,22,0.85);
+    padding: 12px 14px; border-radius: 6px;
+    border: 1px solid #1e242d;
+    font-size: 12px; max-width: 200px;
+  }
+  .legend h3 { margin: 0 0 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); font-weight: 600; }
+  .legend ul { list-style: none; margin: 0; padding: 0; }
+  .legend li { display: flex; align-items: center; gap: 8px; padding: 2px 0; cursor: pointer; }
+  .legend li:hover { color: #fff; }
+  .legend li .swatch {
+    display: inline-block; width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .legend li .count { color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
+  .legend input { width: 100%; box-sizing: border-box; margin-top: 8px; padding: 5px 8px; background: #0e1116; color: var(--fg); border: 1px solid #2a313c; border-radius: 3px; font-size: 12px; }
+  .legend input:focus { outline: none; border-color: #8aa9d6; }
+  .tooltip {
+    position: fixed; pointer-events: none; z-index: 11;
+    background: #181d24; border: 1px solid #2a313c;
+    padding: 8px 12px; border-radius: 4px;
+    font-size: 12px; max-width: 280px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    opacity: 0; transition: opacity 0.1s;
+  }
+  .tooltip .ttname { font-weight: 600; margin-bottom: 4px; word-break: break-word; }
+  .tooltip .ttmeta { color: var(--muted); font-size: 11px; }
+  #graph { width: 100vw; height: 100vh; cursor: grab; }
+  #graph:active { cursor: grabbing; }
+  footer {
+    position: fixed; bottom: 8px; right: 12px; z-index: 9;
+    font-size: 11px; color: var(--muted);
+  }
+  footer a { color: #8aa9d6; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<header>
+  <h1>MyForge Vault — typed-entity knowledge graph</h1>
+  <div class="sub">Top 200 nodes by cross-source corroboration · 137 edges · <a href="https://github.com/MyForgeLabs/myforge-vault-1111" style="color:#8aa9d6">source</a></div>
+</header>
+
+<aside class="legend">
+  <h3>Labels (click to filter)</h3>
+  <ul id="legend-list"></ul>
+  <input id="search" type="text" placeholder="search by name…" />
+</aside>
+
+<div class="tooltip" id="tooltip"></div>
+<svg id="graph"></svg>
+
+<footer>
+  Data: <span id="meta">loading…</span> ·
+  <a href="https://github.com/MyForgeLabs/myforge-vault-1111/blob/main/CHANGELOG.md">CHANGELOG</a>
+</footer>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+const COLORS = {
+  Project:    "#e84c4c",
+  Person:     "#e9a64a",
+  Server:     "#f6cf50",
+  Skill:      "#8bd450",
+  SourceFile: "#4dc0c0",
+  Concept:    "#5b8ee6",
+  Decision:   "#a874e6",
+  Sprint:     "#e664a3",
+  Generic:    "#5a6271"
+};
+
+const svg = d3.select("#graph");
+const tooltip = d3.select("#tooltip");
+let width  = window.innerWidth;
+let height = window.innerHeight;
+svg.attr("viewBox", [0, 0, width, height]);
+
+const g = svg.append("g");
+const zoom = d3.zoom().scaleExtent([0.2, 4]).on("zoom", (e) => g.attr("transform", e.transform));
+svg.call(zoom);
+
+let allNodes = [], allLinks = [];
+let activeLabels = new Set();
+let searchTerm = "";
+
+d3.json("data.json").then(data => {
+  allNodes = data.nodes;
+  allLinks = data.links;
+  document.getElementById("meta").textContent = `${allNodes.length} nodes / ${allLinks.length} edges`;
+  buildLegend();
+  document.getElementById("search").addEventListener("input", (e) => {
+    searchTerm = e.target.value.toLowerCase().trim();
+    render();
+  });
+  render();
+});
+
+function buildLegend() {
+  const counts = {};
+  allNodes.forEach(n => counts[n.label] = (counts[n.label]||0) + 1);
+  const list = d3.select("#legend-list");
+  Object.entries(COLORS).forEach(([label, color]) => {
+    if (!counts[label]) return;
+    activeLabels.add(label);
+    const li = list.append("li").attr("data-label", label).on("click", () => toggle(label));
+    li.append("span").attr("class","swatch").style("background", color);
+    li.append("span").text(label);
+    li.append("span").attr("class","count").text(counts[label]);
+  });
+}
+
+function toggle(label) {
+  if (activeLabels.has(label)) activeLabels.delete(label);
+  else activeLabels.add(label);
+  d3.selectAll("#legend-list li").style("opacity", function() {
+    return activeLabels.has(this.dataset.label) ? 1 : 0.35;
+  });
+  render();
+}
+
+function render() {
+  g.selectAll("*").remove();
+  const nodes = allNodes
+    .filter(n => activeLabels.has(n.label))
+    .filter(n => !searchTerm || n.id.toLowerCase().includes(searchTerm))
+    .map(n => Object.assign({}, n));
+  const ids = new Set(nodes.map(n => n.id));
+  const links = allLinks
+    .filter(l => ids.has(l.source) && ids.has(l.target))
+    .map(l => Object.assign({}, l));
+
+  const sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(d => d.id).distance(40).strength(0.25))
+    .force("charge", d3.forceManyBody().strength(-110))
+    .force("center", d3.forceCenter(width/2, height/2))
+    .force("collide", d3.forceCollide(d => 6 + Math.sqrt(d.weight) * 2));
+
+  const link = g.append("g")
+    .selectAll("line")
+    .data(links)
+    .join("line")
+    .attr("stroke", "var(--link)")
+    .attr("stroke-width", 1);
+
+  const node = g.append("g")
+    .selectAll("circle")
+    .data(nodes)
+    .join("circle")
+    .attr("r", d => 4 + Math.sqrt(d.weight) * 1.8)
+    .attr("fill", d => COLORS[d.label] || COLORS.Generic)
+    .attr("stroke", "#0e1116")
+    .attr("stroke-width", 1.4)
+    .style("cursor", "pointer")
+    .call(drag(sim))
+    .on("mouseover", (e, d) => {
+      tooltip.html(`<div class="ttname">${d.id}</div><div class="ttmeta">:${d.label} · ${d.weight} source${d.weight!==1?'s':''}</div>`)
+             .style("opacity", 1);
+      link.attr("stroke", l => (l.source.id === d.id || l.target.id === d.id) ? "var(--link-hover)" : "var(--link)")
+          .attr("stroke-width", l => (l.source.id === d.id || l.target.id === d.id) ? 2 : 1);
+    })
+    .on("mousemove", (e) => tooltip.style("left", (e.clientX+12) + "px").style("top", (e.clientY+12) + "px"))
+    .on("mouseout", () => {
+      tooltip.style("opacity", 0);
+      link.attr("stroke", "var(--link)").attr("stroke-width", 1);
+    });
+
+  sim.on("tick", () => {
+    link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+    node.attr("cx", d => d.x).attr("cy", d => d.y);
+  });
+}
+
+function drag(sim) {
+  return d3.drag()
+    .on("start", (e, d) => { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+    .on("drag",  (e, d) => { d.fx = e.x; d.fy = e.y; })
+    .on("end",   (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; });
+}
+
+window.addEventListener("resize", () => {
+  width  = window.innerWidth;
+  height = window.innerHeight;
+  svg.attr("viewBox", [0, 0, width, height]);
+});
+</script>
+</body>
+</html>
