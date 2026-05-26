@@ -1,0 +1,4 @@
+# GEPA Pareto-front candidate prompts land here (Week N+).
+# Week 1 skeleton: directory exists, no candidates written yet.
+# Promotion to live (.vault-agents/prompts/, .vault-ko/prompts/) is a SEPARATE
+# manual step requiring Critic-review and user-confirm.

@@ -1,0 +1,13 @@
+{
+  "scores": {
+    "factuality": 0.88,
+    "novelty": 0.8,
+    "durability": 0.9,
+    "vault_fit": 0.9,
+    "safety": 1.0
+  },
+  "reasoning": "Meta-process rule with concrete grep + line-number anchor and 1-2h savings claim. Evergreen 'check before building' principle.",
+  "modified_bullet": null,
+  "conflict_with": [],
+  "downgrade_routing_to": null
+}

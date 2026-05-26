@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "myforge-vault-1111: A self-improving Obsidian vault for CLI AI agents"
+authors:
+  - family-names: Markovics
+    given-names: Peti
+    email: peti.markovics@gmail.com
+version: 1.0.1
+date-released: 2026-05-19
+license: MIT
+type: software
+repository-code: "https://github.com/MyForgeLabs/myforge-vault-1111"
+url: "https://myforgelabs.github.io/myforge-vault-1111/"
+keywords:
+  - knowledge-graph
+  - obsidian
+  - llm-wiki
+  - karpathy
+  - agentic-ai
+  - claude-code
+  - memgraph
+  - bge-m3
+  - g-eval
+  - crystallization
+  - self-improving
+  - multi-agent
+  - rag
+abstract: >-
+  A markdown-first, locally-hosted self-improving knowledge vault shared
+  by three CLI AI agents (Claude Code, Codex, Gemini). Implements
+  Karpathy's LLM-Wiki pattern with G-Eval LLM-as-judge crystallization
+  (96.7% verdict-agreement on a 30-sample gold set), Memgraph CE 3.9 native
+  vector indexing (280× speedup over numpy cosine), bge-m3 multilingual
+  embeddings, and a $0 marginal-cost subagent-fanout pattern for bulk LLM
+  mutations. Organized along 8 evolutionary axes (memory, recursive
+  self-improvement, multi-agent orchestration, tool composition,
+  crystallization, world-model, continuous evaluation, NotebookLM
+  cognitive layer) with a 4-layer Constitutional safety-gate for vault
+  self-modification.
+preferred-citation:
+  type: software
+  title: "myforge-vault-1111"
+  authors:
+    - family-names: Markovics
+      given-names: Peti
+  year: 2026
+  version: 1.0.1
+  url: "https://github.com/MyForgeLabs/myforge-vault-1111"

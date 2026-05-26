@@ -1,0 +1,623 @@
+{
+  "repo": "stanfordnlp/dspy",
+  "ingested_at": "2026-05-18T17:31:26.370105",
+  "head_commit": "661a612cc64cac08af80ce58af52ec87d1a81f73",
+  "head_commit_short": "661a612",
+  "files": [
+    {
+      "repo_path": "README.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/README.md",
+      "chars": 4777
+    },
+    {
+      "repo_path": "docs/README.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__README.md",
+      "chars": 2698
+    },
+    {
+      "repo_path": "docs/docs/cheatsheet.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__cheatsheet.md",
+      "chars": 15516
+    },
+    {
+      "repo_path": "docs/docs/roadmap.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__roadmap.md",
+      "chars": 15566
+    },
+    {
+      "repo_path": "docs/docs/faqs.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__faqs.md",
+      "chars": 12526
+    },
+    {
+      "repo_path": "docs/docs/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__index.md",
+      "chars": 25616
+    },
+    {
+      "repo_path": "docs/docs/learn/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__index.md",
+      "chars": 1025
+    },
+    {
+      "repo_path": "docs/docs/production/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__production__index.md",
+      "chars": 1540
+    },
+    {
+      "repo_path": "docs/docs/community/use-cases.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__community__use-cases.md",
+      "chars": 8075
+    },
+    {
+      "repo_path": "docs/docs/community/community-resources.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__community__community-resources.md",
+      "chars": 4456
+    },
+    {
+      "repo_path": "docs/docs/community/built-with-dspy.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__community__built-with-dspy.md",
+      "chars": 9088
+    },
+    {
+      "repo_path": "docs/docs/community/how-to-contribute.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__community__how-to-contribute.md",
+      "chars": 251
+    },
+    {
+      "repo_path": "docs/docs/tutorials/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__index.md",
+      "chars": 3495
+    },
+    {
+      "repo_path": "docs/docs/api/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__index.md",
+      "chars": 154
+    },
+    {
+      "repo_path": "docs/docs/deep-dive/data-handling/built-in-datasets.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__deep-dive__data-handling__built-in-datasets.md",
+      "chars": 5983
+    },
+    {
+      "repo_path": "docs/docs/deep-dive/data-handling/examples.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__deep-dive__data-handling__examples.md",
+      "chars": 3885
+    },
+    {
+      "repo_path": "docs/docs/deep-dive/data-handling/loading-custom-data.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__deep-dive__data-handling__loading-custom-data.md",
+      "chars": 5651
+    },
+    {
+      "repo_path": "docs/docs/learn/evaluation/overview.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__evaluation__overview.md",
+      "chars": 2153
+    },
+    {
+      "repo_path": "docs/docs/learn/evaluation/metrics.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__evaluation__metrics.md",
+      "chars": 6265
+    },
+    {
+      "repo_path": "docs/docs/learn/evaluation/data.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__evaluation__data.md",
+      "chars": 5227
+    },
+    {
+      "repo_path": "docs/docs/learn/programming/overview.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__programming__overview.md",
+      "chars": 2547
+    },
+    {
+      "repo_path": "docs/docs/learn/programming/tools.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__programming__tools.md",
+      "chars": 10651
+    },
+    {
+      "repo_path": "docs/docs/learn/programming/modules.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__programming__modules.md",
+      "chars": 12279
+    },
+    {
+      "repo_path": "docs/docs/learn/programming/adapters.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__programming__adapters.md",
+      "chars": 11689
+    },
+    {
+      "repo_path": "docs/docs/learn/programming/signatures.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__programming__signatures.md",
+      "chars": 10467
+    },
+    {
+      "repo_path": "docs/docs/learn/programming/mcp.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__programming__mcp.md",
+      "chars": 4682
+    },
+    {
+      "repo_path": "docs/docs/learn/programming/7-assertions.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__programming__7-assertions.md",
+      "chars": 14415
+    },
+    {
+      "repo_path": "docs/docs/learn/programming/language_models.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__programming__language_models.md",
+      "chars": 11865
+    },
+    {
+      "repo_path": "docs/docs/learn/optimization/overview.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__optimization__overview.md",
+      "chars": 2363
+    },
+    {
+      "repo_path": "docs/docs/learn/optimization/optimizers.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__learn__optimization__optimizers.md",
+      "chars": 16124
+    },
+    {
+      "repo_path": "docs/docs/tutorials/saving/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__saving__index.md",
+      "chars": 7388
+    },
+    {
+      "repo_path": "docs/docs/tutorials/streaming/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__streaming__index.md",
+      "chars": 18807
+    },
+    {
+      "repo_path": "docs/docs/tutorials/deployment/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__deployment__index.md",
+      "chars": 9172
+    },
+    {
+      "repo_path": "docs/docs/tutorials/sample_code_generation/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__sample_code_generation__index.md",
+      "chars": 25541
+    },
+    {
+      "repo_path": "docs/docs/tutorials/async/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__async__index.md",
+      "chars": 5191
+    },
+    {
+      "repo_path": "docs/docs/tutorials/optimize_ai_program/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__optimize_ai_program__index.md",
+      "chars": 1567
+    },
+    {
+      "repo_path": "docs/docs/tutorials/cache/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__cache__index.md",
+      "chars": 10382
+    },
+    {
+      "repo_path": "docs/docs/tutorials/observability/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__observability__index.md",
+      "chars": 10106
+    },
+    {
+      "repo_path": "docs/docs/tutorials/output_refinement/best-of-n-and-refine.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__output_refinement__best-of-n-and-refine.md",
+      "chars": 4573
+    },
+    {
+      "repo_path": "docs/docs/tutorials/mem0_react_agent/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__mem0_react_agent__index.md",
+      "chars": 10387
+    },
+    {
+      "repo_path": "docs/docs/tutorials/optimizer_tracking/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__optimizer_tracking__index.md",
+      "chars": 5170
+    },
+    {
+      "repo_path": "docs/docs/tutorials/rl_ai_program/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__rl_ai_program__index.md",
+      "chars": 1040
+    },
+    {
+      "repo_path": "docs/docs/tutorials/papillon/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__papillon__index.md",
+      "chars": 548
+    },
+    {
+      "repo_path": "docs/docs/tutorials/build_ai_program/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__build_ai_program__index.md",
+      "chars": 3062
+    },
+    {
+      "repo_path": "docs/docs/tutorials/yahoo_finance_react/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__yahoo_finance_react__index.md",
+      "chars": 5680
+    },
+    {
+      "repo_path": "docs/docs/tutorials/ai_text_game/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__ai_text_game__index.md",
+      "chars": 25085
+    },
+    {
+      "repo_path": "docs/docs/tutorials/real_world_examples/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__real_world_examples__index.md",
+      "chars": 2132
+    },
+    {
+      "repo_path": "docs/docs/tutorials/conversation_history/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__conversation_history__index.md",
+      "chars": 7794
+    },
+    {
+      "repo_path": "docs/docs/tutorials/mcp/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__mcp__index.md",
+      "chars": 15241
+    },
+    {
+      "repo_path": "docs/docs/tutorials/llms_txt_generation/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__llms_txt_generation__index.md",
+      "chars": 10238
+    },
+    {
+      "repo_path": "docs/docs/tutorials/classification/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__classification__index.md",
+      "chars": 289
+    },
+    {
+      "repo_path": "docs/docs/tutorials/email_extraction/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__email_extraction__index.md",
+      "chars": 12248
+    },
+    {
+      "repo_path": "docs/docs/tutorials/gepa_ai_program/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__gepa_ai_program__index.md",
+      "chars": 2309
+    },
+    {
+      "repo_path": "docs/docs/tutorials/core_development/index.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__tutorials__core_development__index.md",
+      "chars": 2422
+    },
+    {
+      "repo_path": "docs/docs/api/primitives/Prediction.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__primitives__Prediction.md",
+      "chars": 678
+    },
+    {
+      "repo_path": "docs/docs/api/primitives/Audio.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__primitives__Audio.md",
+      "chars": 737
+    },
+    {
+      "repo_path": "docs/docs/api/primitives/Tool.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__primitives__Tool.md",
+      "chars": 780
+    },
+    {
+      "repo_path": "docs/docs/api/primitives/Example.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__primitives__Example.md",
+      "chars": 587
+    },
+    {
+      "repo_path": "docs/docs/api/primitives/ToolCalls.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__primitives__ToolCalls.md",
+      "chars": 702
+    },
+    {
+      "repo_path": "docs/docs/api/primitives/Image.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__primitives__Image.md",
+      "chars": 706
+    },
+    {
+      "repo_path": "docs/docs/api/primitives/Code.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__primitives__Code.md",
+      "chars": 663
+    },
+    {
+      "repo_path": "docs/docs/api/primitives/History.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__primitives__History.md",
+      "chars": 362
+    },
+    {
+      "repo_path": "docs/docs/api/models/Embedder.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__models__Embedder.md",
+      "chars": 530
+    },
+    {
+      "repo_path": "docs/docs/api/models/LM.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__models__LM.md",
+      "chars": 676
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/InferRules.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__InferRules.md",
+      "chars": 613
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/BetterTogether.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__BetterTogether.md",
+      "chars": 7836
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/KNN.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__KNN.md",
+      "chars": 495
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/Ensemble.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__Ensemble.md",
+      "chars": 428
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/SIMBA.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__SIMBA.md",
+      "chars": 1239
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/LabeledFewShot.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__LabeledFewShot.md",
+      "chars": 440
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/BootstrapRS.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__BootstrapRS.md",
+      "chars": 434
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/BootstrapFewShotWithRandomSearch.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__BootstrapFewShotWithRandomSearch.md",
+      "chars": 476
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/MIPROv2.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__MIPROv2.md",
+      "chars": 4206
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/COPRO.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__COPRO.md",
+      "chars": 422
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/BootstrapFinetune.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__BootstrapFinetune.md",
+      "chars": 506
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/KNNFewShot.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__KNNFewShot.md",
+      "chars": 540
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/BootstrapFewShot.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__BootstrapFewShot.md",
+      "chars": 444
+    },
+    {
+      "repo_path": "docs/docs/api/adapters/XMLAdapter.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__adapters__XMLAdapter.md",
+      "chars": 897
+    },
+    {
+      "repo_path": "docs/docs/api/adapters/TwoStepAdapter.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__adapters__TwoStepAdapter.md",
+      "chars": 785
+    },
+    {
+      "repo_path": "docs/docs/api/adapters/ChatAdapter.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__adapters__ChatAdapter.md",
+      "chars": 899
+    },
+    {
+      "repo_path": "docs/docs/api/adapters/Adapter.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__adapters__Adapter.md",
+      "chars": 771
+    },
+    {
+      "repo_path": "docs/docs/api/adapters/JSONAdapter.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__adapters__JSONAdapter.md",
+      "chars": 899
+    },
+    {
+      "repo_path": "docs/docs/api/tools/PythonInterpreter.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__tools__PythonInterpreter.md",
+      "chars": 487
+    },
+    {
+      "repo_path": "docs/docs/api/tools/ColBERTv2.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__tools__ColBERTv2.md",
+      "chars": 406
+    },
+    {
+      "repo_path": "docs/docs/api/tools/Embeddings.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__tools__Embeddings.md",
+      "chars": 623
+    },
+    {
+      "repo_path": "docs/docs/api/evaluation/EvaluationResult.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__evaluation__EvaluationResult.md",
+      "chars": 708
+    },
+    {
+      "repo_path": "docs/docs/api/evaluation/SemanticF1.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__evaluation__SemanticF1.md",
+      "chars": 875
+    },
+    {
+      "repo_path": "docs/docs/api/evaluation/answer_exact_match.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__evaluation__answer_exact_match.md",
+      "chars": 402
+    },
+    {
+      "repo_path": "docs/docs/api/evaluation/Evaluate.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__evaluation__Evaluate.md",
+      "chars": 404
+    },
+    {
+      "repo_path": "docs/docs/api/evaluation/CompleteAndGrounded.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__evaluation__CompleteAndGrounded.md",
+      "chars": 893
+    },
+    {
+      "repo_path": "docs/docs/api/evaluation/answer_passage_match.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__evaluation__answer_passage_match.md",
+      "chars": 406
+    },
+    {
+      "repo_path": "docs/docs/api/utils/disable_logging.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__disable_logging.md",
+      "chars": 378
+    },
+    {
+      "repo_path": "docs/docs/api/utils/configure.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__configure.md",
+      "chars": 3240
+    },
+    {
+      "repo_path": "docs/docs/api/utils/StatusMessage.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__StatusMessage.md",
+      "chars": 394
+    },
+    {
+      "repo_path": "docs/docs/api/utils/context.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__context.md",
+      "chars": 2928
+    },
+    {
+      "repo_path": "docs/docs/api/utils/StatusMessageProvider.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__StatusMessageProvider.md",
+      "chars": 661
+    },
+    {
+      "repo_path": "docs/docs/api/utils/disable_litellm_logging.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__disable_litellm_logging.md",
+      "chars": 394
+    },
+    {
+      "repo_path": "docs/docs/api/utils/load.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__load.md",
+      "chars": 356
+    },
+    {
+      "repo_path": "docs/docs/api/utils/inspect_history.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__inspect_history.md",
+      "chars": 378
+    },
+    {
+      "repo_path": "docs/docs/api/utils/enable_litellm_logging.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__enable_litellm_logging.md",
+      "chars": 392
+    },
+    {
+      "repo_path": "docs/docs/api/utils/enable_logging.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__enable_logging.md",
+      "chars": 376
+    },
+    {
+      "repo_path": "docs/docs/api/utils/asyncify.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__asyncify.md",
+      "chars": 364
+    },
+    {
+      "repo_path": "docs/docs/api/utils/streamify.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__streamify.md",
+      "chars": 366
+    },
+    {
+      "repo_path": "docs/docs/api/utils/configure_cache.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__configure_cache.md",
+      "chars": 378
+    },
+    {
+      "repo_path": "docs/docs/api/utils/StreamListener.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__utils__StreamListener.md",
+      "chars": 478
+    },
+    {
+      "repo_path": "docs/docs/api/modules/RLM.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__modules__RLM.md",
+      "chars": 9536
+    },
+    {
+      "repo_path": "docs/docs/api/modules/CodeAct.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__modules__CodeAct.md",
+      "chars": 3305
+    },
+    {
+      "repo_path": "docs/docs/api/modules/MultiChainComparison.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__modules__MultiChainComparison.md",
+      "chars": 877
+    },
+    {
+      "repo_path": "docs/docs/api/modules/Module.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__modules__Module.md",
+      "chars": 827
+    },
+    {
+      "repo_path": "docs/docs/api/modules/Parallel.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__modules__Parallel.md",
+      "chars": 426
+    },
+    {
+      "repo_path": "docs/docs/api/modules/ReAct.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__modules__ReAct.md",
+      "chars": 904
+    },
+    {
+      "repo_path": "docs/docs/api/modules/Refine.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__modules__Refine.md",
+      "chars": 849
+    },
+    {
+      "repo_path": "docs/docs/api/modules/BestOfN.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__modules__BestOfN.md",
+      "chars": 851
+    },
+    {
+      "repo_path": "docs/docs/api/modules/ProgramOfThought.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__modules__ProgramOfThought.md",
+      "chars": 869
+    },
+    {
+      "repo_path": "docs/docs/api/modules/ChainOfThought.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__modules__ChainOfThought.md",
+      "chars": 888
+    },
+    {
+      "repo_path": "docs/docs/api/modules/Predict.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__modules__Predict.md",
+      "chars": 947
+    },
+    {
+      "repo_path": "docs/docs/api/experimental/Citations.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__experimental__Citations.md",
+      "chars": 728
+    },
+    {
+      "repo_path": "docs/docs/api/experimental/Document.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__experimental__Document.md",
+      "chars": 697
+    },
+    {
+      "repo_path": "docs/docs/api/signatures/Signature.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__signatures__Signature.md",
+      "chars": 605
+    },
+    {
+      "repo_path": "docs/docs/api/signatures/OutputField.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__signatures__OutputField.md",
+      "chars": 370
+    },
+    {
+      "repo_path": "docs/docs/api/signatures/InputField.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__signatures__InputField.md",
+      "chars": 368
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/GEPA/overview.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__GEPA__overview.md",
+      "chars": 7306
+    },
+    {
+      "repo_path": "docs/docs/api/optimizers/GEPA/GEPA_Advanced.md",
+      "vault_path": "10-raw/external/stanfordnlp_dspy/docs__docs__api__optimizers__GEPA__GEPA_Advanced.md",
+      "chars": 20354
+    }
+  ]
+}

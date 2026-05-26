@@ -1,0 +1,208 @@
+{
+  "repo": "1jehuang/jcode",
+  "ingested_at": "2026-05-18T07:03:01.400894",
+  "head_commit": "9a3562874558ef3b4eb149c76326638eb6f292ef",
+  "head_commit_short": "9a35628",
+  "files": [
+    {
+      "repo_path": "docs/AGENT_NATIVE_VCS_CORE_BEHAVIOR.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__AGENT_NATIVE_VCS_CORE_BEHAVIOR.md",
+      "chars": 10589
+    },
+    {
+      "repo_path": "docs/DESKTOP_SINGLE_SESSION_DESIGN.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__DESKTOP_SINGLE_SESSION_DESIGN.md",
+      "chars": 2624
+    },
+    {
+      "repo_path": "docs/AWS_BEDROCK_PROVIDER.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__AWS_BEDROCK_PROVIDER.md",
+      "chars": 5032
+    },
+    {
+      "repo_path": "docs/MOBILE_IOS_HOST_INTEGRATION.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__MOBILE_IOS_HOST_INTEGRATION.md",
+      "chars": 11062
+    },
+    {
+      "repo_path": "docs/CRATE_OWNERSHIP_BOUNDARIES.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__CRATE_OWNERSHIP_BOUNDARIES.md",
+      "chars": 14885
+    },
+    {
+      "repo_path": "docs/BROWSER_PROVIDER_PROTOCOL.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__BROWSER_PROVIDER_PROTOCOL.md",
+      "chars": 17650
+    },
+    {
+      "repo_path": "docs/WINDOWS.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__WINDOWS.md",
+      "chars": 5986
+    },
+    {
+      "repo_path": "docs/CODE_QUALITY_TODO.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__CODE_QUALITY_TODO.md",
+      "chars": 38924
+    },
+    {
+      "repo_path": "docs/SERVER_ARCHITECTURE.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__SERVER_ARCHITECTURE.md",
+      "chars": 5609
+    },
+    {
+      "repo_path": "docs/SWARM_ARCHITECTURE.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__SWARM_ARCHITECTURE.md",
+      "chars": 9984
+    },
+    {
+      "repo_path": "docs/TERMINAL_BENCH.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__TERMINAL_BENCH.md",
+      "chars": 3514
+    },
+    {
+      "repo_path": "docs/MEMORY_BUDGET.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__MEMORY_BUDGET.md",
+      "chars": 5014
+    },
+    {
+      "repo_path": "docs/AMBIENT_MODE.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__AMBIENT_MODE.md",
+      "chars": 32515
+    },
+    {
+      "repo_path": "docs/PROVIDER_SESSION_SHARED_CONTRACT_AUDIT.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__PROVIDER_SESSION_SHARED_CONTRACT_AUDIT.md",
+      "chars": 12526
+    },
+    {
+      "repo_path": "docs/SECURITY_DEPENDENCIES.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__SECURITY_DEPENDENCIES.md",
+      "chars": 4195
+    },
+    {
+      "repo_path": "docs/MOBILE_AGENT_SIMULATOR.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__MOBILE_AGENT_SIMULATOR.md",
+      "chars": 9173
+    },
+    {
+      "repo_path": "docs/DESKTOP_CODEBASE_ARCHITECTURE.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__DESKTOP_CODEBASE_ARCHITECTURE.md",
+      "chars": 21685
+    },
+    {
+      "repo_path": "docs/IOS_CLIENT.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__IOS_CLIENT.md",
+      "chars": 28964
+    },
+    {
+      "repo_path": "docs/ONBOARDING_SANDBOX.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__ONBOARDING_SANDBOX.md",
+      "chars": 4905
+    },
+    {
+      "repo_path": "docs/COMPILE_PERFORMANCE_PLAN.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__COMPILE_PERFORMANCE_PLAN.md",
+      "chars": 37054
+    },
+    {
+      "repo_path": "docs/MOBILE_SWIFT_AUDIT.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__MOBILE_SWIFT_AUDIT.md",
+      "chars": 8309
+    },
+    {
+      "repo_path": "docs/CODE_QUALITY_AUDIT_2026-04-18.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__CODE_QUALITY_AUDIT_2026-04-18.md",
+      "chars": 26153
+    },
+    {
+      "repo_path": "docs/MODULAR_ARCHITECTURE_RFC.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__MODULAR_ARCHITECTURE_RFC.md",
+      "chars": 36212
+    },
+    {
+      "repo_path": "docs/MERMAID_RENDERING_REDESIGN.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__MERMAID_RENDERING_REDESIGN.md",
+      "chars": 7257
+    },
+    {
+      "repo_path": "docs/CLIENT_CORE_PRESENTATION_SPLIT_PLAN.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__CLIENT_CORE_PRESENTATION_SPLIT_PLAN.md",
+      "chars": 23689
+    },
+    {
+      "repo_path": "docs/SAFETY_SYSTEM.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__SAFETY_SYSTEM.md",
+      "chars": 15681
+    },
+    {
+      "repo_path": "docs/DESKTOP_APP_ARCHITECTURE.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__DESKTOP_APP_ARCHITECTURE.md",
+      "chars": 14749
+    },
+    {
+      "repo_path": "docs/MULTI_SESSION_CLIENT_ARCHITECTURE.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__MULTI_SESSION_CLIENT_ARCHITECTURE.md",
+      "chars": 16422
+    },
+    {
+      "repo_path": "docs/SERVER_SERVICE_SPLIT_PLAN.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__SERVER_SERVICE_SPLIT_PLAN.md",
+      "chars": 18574
+    },
+    {
+      "repo_path": "docs/SOFT_INTERRUPT.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__SOFT_INTERRUPT.md",
+      "chars": 10671
+    },
+    {
+      "repo_path": "docs/REFACTORING.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__REFACTORING.md",
+      "chars": 2620
+    },
+    {
+      "repo_path": "docs/CODE_QUALITY_10_10_PLAN.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__CODE_QUALITY_10_10_PLAN.md",
+      "chars": 9931
+    },
+    {
+      "repo_path": "docs/UNIFIED_SELFDEV_SERVER_PLAN.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__UNIFIED_SELFDEV_SERVER_PLAN.md",
+      "chars": 6573
+    },
+    {
+      "repo_path": "docs/provider-model-catalog-audit.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__provider-model-catalog-audit.md",
+      "chars": 6025
+    },
+    {
+      "repo_path": "docs/MOBILE_SIMULATOR_WORKFLOW.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__MOBILE_SIMULATOR_WORKFLOW.md",
+      "chars": 6405
+    },
+    {
+      "repo_path": "docs/DESKTOP_FIRST_PROTOTYPE.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__DESKTOP_FIRST_PROTOTYPE.md",
+      "chars": 7760
+    },
+    {
+      "repo_path": "docs/DESKTOP_SUPERAPP_WORKSPACE.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__DESKTOP_SUPERAPP_WORKSPACE.md",
+      "chars": 13904
+    },
+    {
+      "repo_path": "docs/MEMORY_ARCHITECTURE.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__MEMORY_ARCHITECTURE.md",
+      "chars": 25468
+    },
+    {
+      "repo_path": "docs/WRAPPERS.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__WRAPPERS.md",
+      "chars": 2621
+    },
+    {
+      "repo_path": "docs/dev/crate-splitting-plan.md",
+      "vault_path": "10-raw/external/1jehuang_jcode/docs__dev__crate-splitting-plan.md",
+      "chars": 2864
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "variant_id": "cand-001-34935f34",
+  "score": 0.5933,
+  "length": 2178,
+  "in_pareto_front": true,
+  "candidate_index": 1,
+  "baseline_source": "/root/obsidian-vault/.vault-rsi/prompts/baseline/g-eval.md",
+  "ts": "2026-05-17T22:49:53.668836+00:00",
+  "iteration_count": 9
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "critic-review/v1",
+  "hash": "1bff7f05e031",
+  "created_at": "2026-05-19T17:49:17Z",
+  "target_file": "11-wiki/model-warm-load-vs-inference.md",
+  "bullet_text": "Reranker keepalive: load vs inference cost decomposition — A 6-10s rerank-cost-ból a daemon-keepalive a load-portion-t eliminálja (~10s wall), de a tényleges cross-encoder forward-pass (~8s on 18 candidates) compute-bound marad. Wider lesson: model-warm optimizations szigorúan a *boot-time* (model-load + import) megspórolásáról szólnak, NEM az inference-throughput-ról.",
+  "diff_text": "",
+  "prompt_template_path": "/root/obsidian-vault/.vault-ko/prompts/critic-review-template.md",
+  "expected_dims": [
+    "factuality",
+    "novelty",
+    "durability",
+    "vault_fit",
+    "safety"
+  ],
+  "output_format": "json-only-no-fence"
+}

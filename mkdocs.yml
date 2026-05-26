@@ -1,0 +1,130 @@
+site_name: MyForge Vault 11.11
+site_description: 'Superintelligent Vault — Karpathy LLM-Wiki + Johnny-Decimal + 11.11 session-orchestration'
+site_url: https://myforgelabs.github.io/myforge-vault-1111/
+repo_url: https://github.com/MyForgeLabs/myforge-vault-1111
+repo_name: MyForgeLabs/myforge-vault-1111
+edit_uri: edit/main/
+copyright: 'MyForge Labs · MIT Licence'
+
+docs_dir: docs
+
+theme:
+  name: material
+  language: hu
+  palette:
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Világos mód
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Sötét mód
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - navigation.instant
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search:
+      lang:
+        - hu
+        - en
+  - awesome-pages
+  - ezlinks:
+      wikilinks: true
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago
+      fallback_to_build_date: true
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: false
+  - minify:
+      minify_html: true
+      minify_css: true
+      minify_js: true
+  - rss:
+      match_path: "wiki/.*\\.en"
+      date_from_meta:
+        as_creation: created
+        as_update: updated
+      categories:
+        - tags
+      comments_path: "#__comments"
+      feeds_filenames:
+        rss_created: feed.xml
+        rss_updated: feed-updated.xml
+        json_created: feed.json
+        json_updated: feed-updated.json
+      url_parameters:
+        utm_source: "myforge-vault-1111"
+        utm_medium: RSS
+        utm_campaign: "feed-syndication"
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: '#'
+
+nav:
+  - Bevezető: index.md
+  - Dashboard: dashboard/index.html
+  - Agentek: agents.md
+  - Demo: demo/index.md
+  - Reproduction Guide: reproduction-guide.md
+  - Knowledge Graph:
+      - Áttekintés: wiki/vault-knowledge-graph-overview.md
+      - Interactive viewer: graph/viewer.html
+      - Full (4.6 MB): graph/index.html
+  - Evergreen Wiki:
+      - Áttekintés: wiki/Index.md
+  - Audio Overviews: audio/Index.md
+  # - HN Launch Console: hn-launch/index.html  # hidden from public nav (launch-internal)
+  - ADR (Decisions):
+      - Áttekintés: decisions/Index.md
+  - Meta:
+      - meta/README.md
+  - Audits:
+      - Áttekintés: audits/Index.md
+      - Mind: audits/
+  - SV-meta Sessions:
+      - Áttekintés: sessions/Index.md
+      - Mind: sessions/
+  - Daily logs:
+      - Áttekintés: daily/Index.md

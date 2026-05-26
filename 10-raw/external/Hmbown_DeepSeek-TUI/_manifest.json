@@ -1,0 +1,118 @@
+{
+  "repo": "Hmbown/DeepSeek-TUI",
+  "ingested_at": "2026-05-18T07:03:04.121265",
+  "head_commit": "eeccf7de6c3b1c8becce367cfcba6ce4d1fbd057",
+  "head_commit_short": "eeccf7d",
+  "files": [
+    {
+      "repo_path": "docs/ACCESSIBILITY.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__ACCESSIBILITY.md",
+      "chars": 3889
+    },
+    {
+      "repo_path": "docs/DOCKER.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__DOCKER.md",
+      "chars": 3932
+    },
+    {
+      "repo_path": "docs/MCP.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__MCP.md",
+      "chars": 7268
+    },
+    {
+      "repo_path": "docs/ARCHITECTURE.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__ARCHITECTURE.md",
+      "chars": 15586
+    },
+    {
+      "repo_path": "docs/OPERATIONS_RUNBOOK.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__OPERATIONS_RUNBOOK.md",
+      "chars": 3514
+    },
+    {
+      "repo_path": "docs/capacity_controller.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__capacity_controller.md",
+      "chars": 4612
+    },
+    {
+      "repo_path": "docs/RELEASE_RUNBOOK.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__RELEASE_RUNBOOK.md",
+      "chars": 9445
+    },
+    {
+      "repo_path": "docs/INSTALL.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__INSTALL.md",
+      "chars": 23217
+    },
+    {
+      "repo_path": "docs/CONFIGURATION.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__CONFIGURATION.md",
+      "chars": 40207
+    },
+    {
+      "repo_path": "docs/CNB_MIRROR.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__CNB_MIRROR.md",
+      "chars": 7202
+    },
+    {
+      "repo_path": "docs/MEMORY.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__MEMORY.md",
+      "chars": 8390
+    },
+    {
+      "repo_path": "docs/LEGACY_RUST_AUDIT_0_7_6.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__LEGACY_RUST_AUDIT_0_7_6.md",
+      "chars": 5435
+    },
+    {
+      "repo_path": "docs/RUNTIME_API.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__RUNTIME_API.md",
+      "chars": 13301
+    },
+    {
+      "repo_path": "docs/LOCALIZATION.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__LOCALIZATION.md",
+      "chars": 6112
+    },
+    {
+      "repo_path": "docs/RELEASE_CHECKLIST.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__RELEASE_CHECKLIST.md",
+      "chars": 4419
+    },
+    {
+      "repo_path": "docs/TOOL_SURFACE.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__TOOL_SURFACE.md",
+      "chars": 15091
+    },
+    {
+      "repo_path": "docs/TENCENT_CLOUD_REMOTE_FIRST.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__TENCENT_CLOUD_REMOTE_FIRST.md",
+      "chars": 5288
+    },
+    {
+      "repo_path": "docs/SUBAGENTS.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__SUBAGENTS.md",
+      "chars": 8942
+    },
+    {
+      "repo_path": "docs/MODES.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__MODES.md",
+      "chars": 4951
+    },
+    {
+      "repo_path": "docs/TENCENT_LIGHTHOUSE_HK.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__TENCENT_LIGHTHOUSE_HK.md",
+      "chars": 8804
+    },
+    {
+      "repo_path": "docs/KEYBINDINGS.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__KEYBINDINGS.md",
+      "chars": 9848
+    },
+    {
+      "repo_path": "docs/archive/V0_7_5_IMPLEMENTATION_PLAN.md",
+      "vault_path": "10-raw/external/Hmbown_DeepSeek-TUI/docs__archive__V0_7_5_IMPLEMENTATION_PLAN.md",
+      "chars": 3366
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "critic-review/v1",
+  "hash": "bdd6fe036492",
+  "created_at": "2026-05-19T17:49:17Z",
+  "target_file": "02-Projects/boulium.md",
+  "bullet_text": "BPSE (bpse.hu) = első klub-pilot kandidate — Budapest Petanque Sport Egyesület, WordPress + Divi + Yoast, Apache hosting (NEM Hostinger HCDN, külön infra), élő tartalom. Boulium-rendszerben marad self-contained WP, deep-link kapcsolat a Boulium klub-portállal.",
+  "diff_text": "",
+  "prompt_template_path": "/root/obsidian-vault/.vault-ko/prompts/critic-review-template.md",
+  "expected_dims": [
+    "factuality",
+    "novelty",
+    "durability",
+    "vault_fit",
+    "safety"
+  ],
+  "output_format": "json-only-no-fence"
+}

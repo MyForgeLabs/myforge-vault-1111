@@ -1,0 +1,43 @@
+{
+  "repo": "colbymchenry/codegraph",
+  "ingested_at": "2026-05-19T04:18:02.188204",
+  "head_commit": "9b6a917d3235235c01d5046941a50a65551fa8db",
+  "head_commit_short": "9b6a917",
+  "files": [
+    {
+      "repo_path": "README.md",
+      "vault_path": "10-raw/external/colbymchenry_codegraph/README.md",
+      "chars": 22137
+    },
+    {
+      "repo_path": "IMPLEMENTATION_PLAN.md",
+      "vault_path": "10-raw/external/colbymchenry_codegraph/IMPLEMENTATION_PLAN.md",
+      "chars": 49576
+    },
+    {
+      "repo_path": "CHANGELOG.md",
+      "vault_path": "10-raw/external/colbymchenry_codegraph/CHANGELOG.md",
+      "chars": 5165
+    },
+    {
+      "repo_path": "CLAUDE.md",
+      "vault_path": "10-raw/external/colbymchenry_codegraph/CLAUDE.md",
+      "chars": 10159
+    },
+    {
+      "repo_path": "DELPHI-SUPPORT.md",
+      "vault_path": "10-raw/external/colbymchenry_codegraph/DELPHI-SUPPORT.md",
+      "chars": 8169
+    },
+    {
+      "repo_path": "docs/SEARCH_QUALITY_LOOP.md",
+      "vault_path": "10-raw/external/colbymchenry_codegraph/docs__SEARCH_QUALITY_LOOP.md",
+      "chars": 30606
+    },
+    {
+      "repo_path": "docs/plans/2026-04-24-framework-resolver-extract.md",
+      "vault_path": "10-raw/external/colbymchenry_codegraph/docs__plans__2026-04-24-framework-resolver-extract.md",
+      "chars": 45220
+    }
+  ]
+}

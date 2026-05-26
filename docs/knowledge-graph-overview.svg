@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 880" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="MyForge Vault knowledge graph overview — top-60 hub entities">
+<style>
+.bg{fill:#fafafa}
+.ring{fill:none;stroke:#e5e7eb;stroke-width:0.8;stroke-dasharray:2 4}
+.edge{stroke:#374151;stroke-opacity:0.4;stroke-width:1.2}
+.label{font-family:Inter,system-ui,-apple-system,sans-serif;font-size:10px;fill:#111827;pointer-events:none}
+.label-small{font-family:Inter,system-ui,sans-serif;font-size:8px;fill:#374151;pointer-events:none}
+.legend-text{font-family:Inter,system-ui,sans-serif;font-size:11px;fill:#374151}
+.title{font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;fill:#111827}
+.sub{font-family:Inter,system-ui,sans-serif;font-size:10px;fill:#6b7280}
+</style>
+<rect class="bg" x="0" y="0" width="1200" height="880"/>
+<text class="title" x="20" y="24">MyForge Vault — Knowledge Graph Overview</text>
+<text class="sub" x="20" y="40">Top-60 hub entitás Memgraph entity-graph-ból (8997 entity / 6722 typed) · radial layout: center=top-1, ring1=top-2…13, ring2=14…31, ring3=32…60 · fokszám-alapú méret · címke-szín</text>
+<circle class="ring" cx="600.0" cy="400.0" r="170"/>
+<circle class="ring" cx="600.0" cy="400.0" r="290"/>
+<circle class="ring" cx="600.0" cy="400.0" r="380"/>
+<circle cx="25" cy="828" r="5" fill="#16a34a"/>
+<text class="legend-text" x="36" y="832">Concept</text>
+<circle cx="120" cy="828" r="5" fill="#eab308"/>
+<text class="legend-text" x="131" y="832">Pattern</text>
+<circle cx="215" cy="828" r="5" fill="#2563eb"/>
+<text class="legend-text" x="226" y="832">Skill</text>
+<circle cx="310" cy="828" r="5" fill="#f97316"/>
+<text class="legend-text" x="321" y="832">Project</text>
+<circle cx="405" cy="828" r="5" fill="#dc2626"/>
+<text class="legend-text" x="416" y="832">Server</text>
+<circle cx="500" cy="828" r="5" fill="#8b5cf6"/>
+<text class="legend-text" x="511" y="832">Person</text>
+<circle cx="595" cy="828" r="5" fill="#92400e"/>
+<text class="legend-text" x="606" y="832">Decision</text>
+<circle cx="690" cy="828" r="5" fill="#0891b2"/>
+<text class="legend-text" x="701" y="832">Sprint</text>
+<circle cx="785" cy="828" r="5" fill="#6b7280"/>
+<text class="legend-text" x="796" y="832">SourceFile</text>
+<path class="edge" d="M600.0,400.0 Q775.1,533.1 902.5,630.0" fill="none"/>
+<path class="edge" d="M479.8,279.8 Q587.9,173.7 699.2,127.5" fill="none"/>
+<path class="edge" d="M699.2,127.5 Q453.0,178.1 239.9,278.7" fill="none"/>
+<path class="edge" d="M314.4,450.4 Q437.9,593.2 600.0,690.0" fill="none"/>
+<path class="edge" d="M413.6,177.8 Q408.6,476.6 459.3,753.0" fill="none"/>
+<path class="edge" d="M500.8,127.5 Q568.6,151.9 644.0,235.8" fill="none"/>
+<path class="edge" d="M701.7,33.9 Q680.8,105.9 644.0,235.8" fill="none"/>
+<path class="edge" d="M239.9,521.3 Q301.3,587.7 413.6,622.2" fill="none"/>
+<path class="edge" d="M239.9,521.3 Q368.1,375.4 556.0,235.8" fill="none"/>
+<path class="edge" d="M386.7,85.5 Q505.4,132.4 644.0,235.8" fill="none"/>
+<path class="edge" d="M459.3,47.0 Q447.2,263.6 479.8,520.2" fill="none"/>
+<circle cx="600.0" cy="400.0" r="14.0" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>robbantott-kereso (Project, deg=39)</title></circle>
+<circle cx="644.0" cy="235.8" r="13.9" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>kgc-berles (Project, deg=38)</title></circle>
+<circle cx="720.2" cy="279.8" r="13.2" fill="#0891b2" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Phase B-8 (Sprint, deg=32)</title></circle>
+<circle cx="764.2" cy="356.0" r="12.9" fill="#6b7280" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>11-wiki/Index.md (SourceFile, deg=30)</title></circle>
+<circle cx="764.2" cy="444.0" r="12.6" fill="#0891b2" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>SV-3 (Sprint, deg=28)</title></circle>
+<circle cx="720.2" cy="520.2" r="12.3" fill="#2563eb" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>NotebookLM (Skill, deg=26)</title></circle>
+<circle cx="644.0" cy="564.2" r="12.1" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>subagent-fanout (Concept, deg=24)</title></circle>
+<circle cx="556.0" cy="564.2" r="11.9" fill="#0891b2" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>SV-8 (Sprint, deg=23)</title></circle>
+<circle cx="479.8" cy="520.2" r="11.8" fill="#dc2626" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Memgraph (Server, deg=22)</title></circle>
+<circle cx="435.8" cy="444.0" r="11.8" fill="#94a3b8" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>vault (Entity, deg=22)</title></circle>
+<circle cx="435.8" cy="356.0" r="11.6" fill="#2563eb" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>11.11stop (Skill, deg=21)</title></circle>
+<circle cx="479.8" cy="279.8" r="11.6" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>myforge-dashboard (Project, deg=21)</title></circle>
+<circle cx="556.0" cy="235.8" r="11.6" fill="#6b7280" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>app/globals.css v5.0 (SourceFile, deg=21)</title></circle>
+<circle cx="600.0" cy="110.0" r="11.4" fill="#dc2626" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>ufw limit (Server, deg=20)</title></circle>
+<circle cx="699.2" cy="127.5" r="11.3" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>MYFORGE OS dashboard (Project, deg=19)</title></circle>
+<circle cx="786.4" cy="177.8" r="11.3" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>MAPESZ PWA (Project, deg=19)</title></circle>
+<circle cx="851.1" cy="255.0" r="11.1" fill="#0891b2" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>session 2026-05-13-help (Sprint, deg=18)</title></circle>
+<circle cx="885.6" cy="349.6" r="11.1" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Adobe image_vectorize (Concept, deg=18)</title></circle>
+<circle cx="885.6" cy="450.4" r="11.1" fill="#6b7280" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>06-Audits/System_Health.md (SourceFile, deg=18)</title></circle>
+<circle cx="851.1" cy="545.0" r="10.9" fill="#2563eb" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>CloakBrowser (Skill, deg=17)</title></circle>
+<circle cx="786.4" cy="622.2" r="10.9" fill="#6b7280" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>AGENTS.md (SourceFile, deg=17)</title></circle>
+<circle cx="699.2" cy="672.5" r="10.9" fill="#eab308" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>GraphRAG (Pattern, deg=17)</title></circle>
+<circle cx="600.0" cy="690.0" r="10.9" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>MAPESZ (Project, deg=17)</title></circle>
+<circle cx="500.8" cy="672.5" r="10.8" fill="#94a3b8" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>aggressive pre-load (Entity, deg=16)</title></circle>
+<circle cx="413.6" cy="622.2" r="10.8" fill="#6b7280" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>BRAND.md v3.0 (SourceFile, deg=16)</title></circle>
+<circle cx="348.9" cy="545.0" r="10.8" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>coded SVG (Concept, deg=16)</title></circle>
+<circle cx="314.4" cy="450.4" r="10.8" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>boulium (Project, deg=16)</title></circle>
+<circle cx="314.4" cy="349.6" r="10.8" fill="#0891b2" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>SV-7 (Sprint, deg=16)</title></circle>
+<circle cx="348.9" cy="255.0" r="10.8" fill="#0891b2" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>SV-4 (Sprint, deg=16)</title></circle>
+<circle cx="413.6" cy="177.8" r="10.6" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>foxxi project (Project, deg=15)</title></circle>
+<circle cx="500.8" cy="127.5" r="10.6" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>KGC-Bérlés (Project, deg=15)</title></circle>
+<circle cx="620.6" cy="20.6" r="10.6" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>FIFO-stdin pattern (Concept, deg=15)</title></circle>
+<circle cx="701.7" cy="33.9" r="10.6" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>MachineAccessory (Concept, deg=15)</title></circle>
+<circle cx="778.0" cy="64.3" r="10.6" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>MEMORY.md (Concept, deg=15)</title></circle>
+<circle cx="846.0" cy="110.4" r="10.6" fill="#2563eb" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Voyager (Skill, deg=15)</title></circle>
+<circle cx="902.5" cy="170.0" r="10.4" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Bricks Builder (Concept, deg=14)</title></circle>
+<circle cx="944.9" cy="240.4" r="10.4" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Peti-vault (Project, deg=14)</title></circle>
+<circle cx="971.1" cy="318.3" r="10.4" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Crystallization-protocol (Concept, deg=14)</title></circle>
+<circle cx="980.0" cy="400.0" r="10.4" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Day 0 (Concept, deg=14)</title></circle>
+<circle cx="971.1" cy="481.7" r="10.4" fill="#92400e" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Unified agent memory ADR (Decision, deg=14)</title></circle>
+<circle cx="944.9" cy="559.6" r="10.4" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Crystallization workflow (Concept, deg=14)</title></circle>
+<circle cx="902.5" cy="630.0" r="10.2" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>API proxy bridge (Concept, deg=13)</title></circle>
+<circle cx="846.0" cy="689.6" r="10.2" fill="#dc2626" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>himalajaijoga.hu (Server, deg=13)</title></circle>
+<circle cx="778.0" cy="735.7" r="10.2" fill="#0891b2" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>SV-1 Memory architecture (Sprint, deg=13)</title></circle>
+<circle cx="701.7" cy="766.1" r="10.2" fill="#eab308" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>File over App filozófia (Pattern, deg=13)</title></circle>
+<circle cx="620.6" cy="779.4" r="10.2" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>.active-session pointer (Concept, deg=13)</title></circle>
+<circle cx="538.5" cy="775.0" r="10.2" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>KGC TV CMS (Project, deg=13)</title></circle>
+<circle cx="459.3" cy="753.0" r="10.2" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Foxxi project (Project, deg=13)</title></circle>
+<circle cx="386.7" cy="714.5" r="10.0" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Bricks migration (Concept, deg=12)</title></circle>
+<circle cx="324.1" cy="661.3" r="10.0" fill="#2563eb" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>wp-cli-shared-db-export-fallback (Skill, deg=12)</title></circle>
+<circle cx="274.4" cy="595.9" r="10.0" fill="#2563eb" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>11.11note (Skill, deg=12)</title></circle>
+<circle cx="239.9" cy="521.3" r="10.0" fill="#6b7280" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>BRAND.md v4.0 (SourceFile, deg=12)</title></circle>
+<circle cx="222.2" cy="441.1" r="10.0" fill="#94a3b8" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Gravity Forms (Entity, deg=12)</title></circle>
+<circle cx="222.2" cy="358.9" r="10.0" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Karpathy LLM Wiki pattern (Concept, deg=12)</title></circle>
+<circle cx="239.9" cy="278.7" r="10.0" fill="#f97316" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>MYFORGE OS dashboard v2 (Project, deg=12)</title></circle>
+<circle cx="274.4" cy="204.1" r="10.0" fill="#2563eb" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>NotebookLM CLI (Skill, deg=12)</title></circle>
+<circle cx="324.1" cy="138.7" r="10.0" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>Adobe Stock free-tier (Concept, deg=12)</title></circle>
+<circle cx="386.7" cy="85.5" r="9.8" fill="#94a3b8" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>robbantott-bra-keres (Entity, deg=11)</title></circle>
+<circle cx="459.3" cy="47.0" r="9.8" fill="#0891b2" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>B-2 sprint (Sprint, deg=11)</title></circle>
+<circle cx="538.5" cy="25.0" r="9.8" fill="#16a34a" fill-opacity="0.88" stroke="#1f2937" stroke-width="0.9"><title>session-file (Concept, deg=11)</title></circle>
+<text class="label" x="600.0" y="424.0" text-anchor="middle">robbantott-kereso</text>
+<text class="label" x="644.0" y="218.9" text-anchor="middle">kgc-berles</text>
+<text class="label" x="720.2" y="263.6" text-anchor="middle">Phase B-8</text>
+<text class="label" x="764.2" y="340.1" text-anchor="middle">11-wiki/Index.md</text>
+<text class="label" x="764.2" y="466.6" text-anchor="middle">SV-3</text>
+<text class="label" x="720.2" y="542.6" text-anchor="middle">NotebookLM</text>
+<text class="label" x="644.0" y="586.3" text-anchor="middle">subagent-fanout</text>
+<text class="label" x="556.0" y="586.1" text-anchor="middle">SV-8</text>
+<text class="label" x="479.8" y="542.0" text-anchor="middle">Memgraph</text>
+<text class="label" x="435.8" y="465.8" text-anchor="middle">vault</text>
+<text class="label" x="435.8" y="341.4" text-anchor="middle">11.11stop</text>
+<text class="label" x="479.8" y="265.2" text-anchor="middle">myforge-dashboard</text>
+<text class="label" x="556.0" y="221.2" text-anchor="middle">app/globals.css v5.0</text>
+<text class="label-small" x="600.0" y="95.6" text-anchor="middle">ufw limit</text>
+<text class="label-small" x="699.2" y="113.2" text-anchor="middle">MYFORGE OS dashboard</text>
+<text class="label-small" x="786.4" y="163.6" text-anchor="middle">MAPESZ PWA</text>
+<text class="label-small" x="851.1" y="240.9" text-anchor="middle">session 2026-05-13-help</text>
+<text class="label-small" x="885.6" y="335.5" text-anchor="middle">Adobe image_vectorize</text>
+<text class="label-small" x="885.6" y="471.5" text-anchor="middle">06-Audits/System_Healt…</text>
+<text class="label-small" x="851.1" y="565.9" text-anchor="middle">CloakBrowser</text>
+<text class="label-small" x="786.4" y="643.1" text-anchor="middle">AGENTS.md</text>
+<text class="label-small" x="699.2" y="693.5" text-anchor="middle">GraphRAG</text>
+<text class="label-small" x="600.0" y="710.9" text-anchor="middle">MAPESZ</text>
+<text class="label-small" x="500.8" y="693.3" text-anchor="middle">aggressive pre-load</text>
+<text class="label-small" x="413.6" y="642.9" text-anchor="middle">BRAND.md v3.0</text>
+<text class="label-small" x="348.9" y="565.8" text-anchor="middle">coded SVG</text>
+<text class="label-small" x="314.4" y="471.1" text-anchor="middle">boulium</text>
+<text class="label-small" x="314.4" y="335.9" text-anchor="middle">SV-7</text>
+<text class="label-small" x="348.9" y="241.2" text-anchor="middle">SV-4</text>
+<text class="label-small" x="413.6" y="164.3" text-anchor="middle">foxxi project</text>
+<text class="label-small" x="500.8" y="113.9" text-anchor="middle">KGC-Bérlés</text>
+<text class="label-small" x="620.6" y="7.0" text-anchor="middle">FIFO-stdin pattern</text>
+<text class="label-small" x="701.7" y="20.3" text-anchor="middle">MachineAccessory</text>
+<text class="label-small" x="778.0" y="50.7" text-anchor="middle">MEMORY.md</text>
+<text class="label-small" x="846.0" y="96.8" text-anchor="middle">Voyager</text>
+<text class="label-small" x="902.5" y="156.6" text-anchor="middle">Bricks Builder</text>
+<text class="label-small" x="944.9" y="227.0" text-anchor="middle">Peti-vault</text>
+<text class="label-small" x="971.1" y="304.9" text-anchor="middle">Crystallization-protocol</text>
+<text class="label-small" x="980.0" y="420.4" text-anchor="middle">Day 0</text>
+<text class="label-small" x="971.1" y="502.1" text-anchor="middle">Unified agent memory ADR</text>
+<text class="label-small" x="944.9" y="580.0" text-anchor="middle">Crystallization workflow</text>
+<text class="label-small" x="902.5" y="650.2" text-anchor="middle">API proxy bridge</text>
+<text class="label-small" x="846.0" y="709.8" text-anchor="middle">himalajaijoga.hu</text>
+<text class="label-small" x="778.0" y="755.9" text-anchor="middle">SV-1 Memory architecture</text>
+<text class="label-small" x="701.7" y="786.3" text-anchor="middle">File over App filozófia</text>
+<text class="label-small" x="620.6" y="799.6" text-anchor="middle">.active-session pointer</text>
+<text class="label-small" x="538.5" y="795.2" text-anchor="middle">KGC TV CMS</text>
+<text class="label-small" x="459.3" y="773.2" text-anchor="middle">Foxxi project</text>
+<text class="label-small" x="386.7" y="734.5" text-anchor="middle">Bricks migration</text>
+<text class="label-small" x="324.1" y="681.3" text-anchor="middle">wp-cli-shared-db-expor…</text>
+<text class="label-small" x="274.4" y="615.9" text-anchor="middle">11.11note</text>
+<text class="label-small" x="239.9" y="541.3" text-anchor="middle">BRAND.md v4.0</text>
+<text class="label-small" x="222.2" y="461.1" text-anchor="middle">Gravity Forms</text>
+<text class="label-small" x="222.2" y="345.9" text-anchor="middle">Karpathy LLM Wiki patt…</text>
+<text class="label-small" x="239.9" y="265.7" text-anchor="middle">MYFORGE OS dashboard v2</text>
+<text class="label-small" x="274.4" y="191.1" text-anchor="middle">NotebookLM CLI</text>
+<text class="label-small" x="324.1" y="125.7" text-anchor="middle">Adobe Stock free-tier</text>
+<text class="label-small" x="386.7" y="72.7" text-anchor="middle">robbantott-bra-keres</text>
+<text class="label-small" x="459.3" y="34.2" text-anchor="middle">B-2 sprint</text>
+<text class="label-small" x="538.5" y="12.2" text-anchor="middle">session-file</text>
+</svg>

@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vault knowledge graph — interactive (top-200)</title>
+<style>
+  :root {
+    --bg: #0e1117;
+    --panel: #1a1f29;
+    --border: #2a3140;
+    --text: #e6e6e6;
+    --muted: #9aa3b2;
+    --accent: #ffb74d;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    height: 100%;
+    overflow: hidden;
+  }
+  #app { display: flex; height: 100vh; width: 100vw; }
+  #sidebar {
+    width: 240px;
+    flex: 0 0 240px;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    padding: 14px 12px;
+    overflow-y: auto;
+  }
+  #sidebar h1 {
+    font-size: 14px;
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  #sidebar .sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  #search {
+    width: 100%;
+    background: #0a0d12;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 7px 9px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  #search:focus { outline: none; border-color: var(--accent); }
+  .filter-section { margin-bottom: 14px; }
+  .filter-section h2 {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--muted);
+    letter-spacing: 0.6px;
+    margin: 0 0 6px;
+    font-weight: 600;
+  }
+  .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 0;
+    cursor: pointer;
+    user-select: none;
+  }
+  .filter-row:hover { color: var(--accent); }
+  .filter-row input { margin: 0; cursor: pointer; }
+  .filter-row .swatch {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .filter-row .lbl { flex: 1; font-size: 12px; }
+  .filter-row .cnt { font-size: 11px; color: var(--muted); }
+  #stats {
+    font-size: 11px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    line-height: 1.6;
+  }
+  #stats b { color: var(--text); }
+  #canvas {
+    flex: 1;
+    position: relative;
+    background:
+      radial-gradient(circle at 30% 30%, #14181f 0%, var(--bg) 60%);
+  }
+  svg { display: block; width: 100%; height: 100%; cursor: grab; }
+  svg:active { cursor: grabbing; }
+  .link {
+    stroke: #4a5160;
+    stroke-opacity: 0.55;
+  }
+  .link.hl { stroke: var(--accent); stroke-opacity: 0.9; }
+  .node circle {
+    stroke: #0a0d12;
+    stroke-width: 1.4px;
+    cursor: pointer;
+  }
+  .node text {
+    font-size: 10px;
+    fill: var(--text);
+    pointer-events: none;
+    text-anchor: middle;
+    paint-order: stroke;
+    stroke: #0e1117;
+    stroke-width: 2.5px;
+    stroke-linejoin: round;
+  }
+  .node.dim { opacity: 0.12; }
+  .node.expanded circle { stroke: var(--accent); stroke-width: 2.5px; }
+  #tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: rgba(20, 25, 35, 0.97);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+    max-width: 260px;
+    z-index: 50;
+    opacity: 0;
+    transition: opacity 0.12s;
+  }
+  #tooltip .name { color: var(--accent); font-weight: 600; display: block; word-break: break-word; }
+  #tooltip .lab {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-top: 4px;
+    color: #0a0d12;
+    font-weight: 600;
+  }
+  #tooltip .meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  #legend-footer {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    background: rgba(20, 25, 35, 0.85);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  #legend-footer a { color: var(--accent); text-decoration: none; }
+  @media (max-width: 720px) {
+    #sidebar { width: 200px; flex-basis: 200px; padding: 10px 9px; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <h1>Vault graph</h1>
+    <div class="sub">Top-200 hub entitás + intra-edges Memgraph-ból. Kattints node-ra a szomszédság kiemeléséhez.</div>
+
+    <input id="search" type="search" placeholder="Keresés node-névben…" autocomplete="off" />
+
+    <div class="filter-section">
+      <h2>Címke-szűrő</h2>
+      <div id="filters"></div>
+    </div>
+
+    <div id="stats"></div>
+  </aside>
+  <main id="canvas">
+    <svg id="svg"></svg>
+    <div id="tooltip">
+      <span class="name"></span>
+      <span class="lab"></span>
+      <span class="meta"></span>
+    </div>
+    <div id="legend-footer">
+      D3 v7 · <a href="index.html">teljes graph (4.6 MB)</a>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js" defer></script>
+<script>
+const DATA_URL = "top200.json";
+
+// Color palette (per-label)
+const LABEL_COLOR = {
+  Concept:    "#4ade80",  // green
+  Pattern:    "#facc15",  // yellow
+  Skill:      "#60a5fa",  // blue
+  Project:    "#fb923c",  // orange
+  Server:     "#f87171",  // red
+  Person:     "#c084fc",  // purple
+  Decision:   "#a16207",  // brown
+  Sprint:     "#22d3ee",  // cyan
+  SourceFile: "#9ca3af",  // gray
+  Entity:     "#6b7280",  // dim gray (untyped fallback)
+};
+
+document.addEventListener("DOMContentLoaded", async () => {
+  if (typeof d3 === "undefined") {
+    await new Promise(r => {
+      const tick = () => (typeof d3 !== "undefined") ? r() : setTimeout(tick, 30);
+      tick();
+    });
+  }
+  try {
+    const data = await fetch(DATA_URL).then(r => r.json());
+    init(data);
+  } catch (err) {
+    document.getElementById("canvas").textContent =
+      "Hiba az adat-betöltéskor: " + err;
+  }
+});
+
+function init(data) {
+  const svg = d3.select("#svg");
+  const canvas = document.getElementById("canvas");
+  const tooltip = document.getElementById("tooltip");
+  const tipName = tooltip.querySelector(".name");
+  const tipLab = tooltip.querySelector(".lab");
+  const tipMeta = tooltip.querySelector(".meta");
+  const W = () => canvas.clientWidth;
+  const H = () => canvas.clientHeight;
+
+  const nodeById = new Map(data.nodes.map(n => [n.id, n]));
+  const links = data.links
+    .filter(l => nodeById.has(l.source) && nodeById.has(l.target))
+    .map(l => ({ ...l }));
+  const nodes = data.nodes.map(n => ({ ...n }));
+
+  const neighbors = new Map();
+  nodes.forEach(n => neighbors.set(n.id, new Set([n.id])));
+  links.forEach(l => {
+    neighbors.get(l.source).add(l.target);
+    neighbors.get(l.target).add(l.source);
+  });
+
+  const labelCounts = {};
+  nodes.forEach(n => { labelCounts[n.label] = (labelCounts[n.label] || 0) + 1; });
+
+  // Filter UI — built with safe DOM methods (no innerHTML)
+  const filterBox = document.getElementById("filters");
+  const activeLabels = new Set(Object.keys(labelCounts));
+  const labelsOrdered = Object.keys(LABEL_COLOR)
+    .filter(l => labelCounts[l])
+    .concat(Object.keys(labelCounts).filter(l => !LABEL_COLOR[l]));
+
+  labelsOrdered.forEach(label => {
+    if (!labelCounts[label]) return;
+    const row = document.createElement("label");
+    row.className = "filter-row";
+
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = true;
+    cb.dataset.label = label;
+
+    const sw = document.createElement("span");
+    sw.className = "swatch";
+    sw.style.background = LABEL_COLOR[label] || "#888";
+
+    const lbl = document.createElement("span");
+    lbl.className = "lbl";
+    lbl.textContent = label;
+
+    const cnt = document.createElement("span");
+    cnt.className = "cnt";
+    cnt.textContent = String(labelCounts[label]);
+
+    row.appendChild(cb);
+    row.appendChild(sw);
+    row.appendChild(lbl);
+    row.appendChild(cnt);
+
+    cb.addEventListener("change", e => {
+      if (e.target.checked) activeLabels.add(label);
+      else activeLabels.delete(label);
+      applyFilter();
+    });
+    filterBox.appendChild(row);
+  });
+
+  // Stats — safe DOM construction
+  const stats = document.getElementById("stats");
+  const line1 = document.createElement("div");
+  const b1 = document.createElement("b"); b1.textContent = String(nodes.length);
+  const b2 = document.createElement("b"); b2.textContent = String(links.length);
+  line1.appendChild(b1);
+  line1.appendChild(document.createTextNode(" node · "));
+  line1.appendChild(b2);
+  line1.appendChild(document.createTextNode(" intra-edge"));
+  stats.appendChild(line1);
+  const line2 = document.createElement("div");
+  line2.textContent = "Kattints node-ra: szomszédság kiemelés";
+  stats.appendChild(line2);
+  const line3 = document.createElement("div");
+  line3.textContent = "Görgő = zoom · Drag = pan";
+  stats.appendChild(line3);
+
+  // Force simulation
+  const sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(d => d.id).distance(70).strength(0.35))
+    .force("charge", d3.forceManyBody().strength(-150))
+    .force("center", d3.forceCenter(W() / 2, H() / 2))
+    .force("collide", d3.forceCollide().radius(d => radius(d) + 2));
+
+  const gRoot = svg.append("g");
+  const gLink = gRoot.append("g").attr("class", "links");
+  const gNode = gRoot.append("g").attr("class", "nodes");
+
+  // Zoom + pan
+  const zoom = d3.zoom()
+    .scaleExtent([0.2, 4])
+    .on("zoom", evt => gRoot.attr("transform", evt.transform));
+  svg.call(zoom);
+
+  let linkSel = gLink.selectAll("line")
+    .data(links)
+    .join("line")
+    .attr("class", "link")
+    .attr("stroke-width", 1);
+
+  let nodeSel = gNode.selectAll("g.node")
+    .data(nodes, d => d.id)
+    .join(enter => {
+      const g = enter.append("g").attr("class", "node");
+      g.append("circle")
+        .attr("r", d => radius(d))
+        .attr("fill", d => LABEL_COLOR[d.label] || "#888");
+      g.append("text")
+        .attr("dy", d => radius(d) + 11)
+        .text(d => truncate(d.id, 22));
+      return g;
+    });
+
+  nodeSel
+    .call(d3.drag()
+      .on("start", (event, d) => {
+        if (!event.active) sim.alphaTarget(0.3).restart();
+        d.fx = d.x; d.fy = d.y;
+      })
+      .on("drag", (event, d) => { d.fx = event.x; d.fy = event.y; })
+      .on("end", (event, d) => {
+        if (!event.active) sim.alphaTarget(0);
+        d.fx = null; d.fy = null;
+      }))
+    .on("mouseover", (e, d) => showTip(e, d))
+    .on("mousemove", e => moveTip(e))
+    .on("mouseout", hideTip)
+    .on("click", (e, d) => toggleExpand(d));
+
+  sim.on("tick", () => {
+    linkSel
+      .attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+    nodeSel.attr("transform", d => `translate(${d.x},${d.y})`);
+  });
+
+  window.addEventListener("resize", () => {
+    sim.force("center", d3.forceCenter(W() / 2, H() / 2)).alpha(0.3).restart();
+  });
+
+  function radius(d) {
+    const min = 4, max = 14;
+    return min + Math.min(max - min, Math.log2((d.deg || 1) + 1) * 2);
+  }
+  function truncate(s, n) {
+    return s.length > n ? s.slice(0, n - 1) + "…" : s;
+  }
+  function showTip(e, d) {
+    // textContent is XSS-safe regardless of node-name content
+    tipName.textContent = d.id;
+    tipLab.textContent = d.label;
+    tipLab.style.background = LABEL_COLOR[d.label] || "#888";
+    tipMeta.textContent = "deg " + d.deg;
+    tooltip.style.opacity = 1;
+    moveTip(e);
+  }
+  function moveTip(e) {
+    const r = canvas.getBoundingClientRect();
+    let x = e.clientX - r.left + 14;
+    let y = e.clientY - r.top + 14;
+    if (x + 280 > r.width) x = e.clientX - r.left - 280;
+    tooltip.style.left = x + "px";
+    tooltip.style.top = y + "px";
+  }
+  function hideTip() { tooltip.style.opacity = 0; }
+
+  let expandedId = null;
+  function toggleExpand(d) {
+    expandedId = (expandedId === d.id) ? null : d.id;
+    applyFilter();
+  }
+
+  function applyFilter() {
+    const searchQ = (document.getElementById("search").value || "").trim().toLowerCase();
+    const expandNeighbors = expandedId ? neighbors.get(expandedId) : null;
+
+    nodeSel.classed("dim", d => {
+      if (!activeLabels.has(d.label)) return true;
+      if (searchQ && !d.id.toLowerCase().includes(searchQ)) return true;
+      if (expandNeighbors && !expandNeighbors.has(d.id)) return true;
+      return false;
+    });
+    nodeSel.classed("expanded", d => d.id === expandedId);
+
+    linkSel.classed("hl", l =>
+      expandedId && (idOf(l.source) === expandedId || idOf(l.target) === expandedId)
+    );
+    linkSel.style("opacity", l => {
+      const srcOk = activeLabels.has(nodeById.get(idOf(l.source))?.label);
+      const tgtOk = activeLabels.has(nodeById.get(idOf(l.target))?.label);
+      if (!srcOk || !tgtOk) return 0.05;
+      if (expandNeighbors) {
+        return (expandNeighbors.has(idOf(l.source)) && expandNeighbors.has(idOf(l.target)))
+          ? 0.9 : 0.05;
+      }
+      return null;
+    });
+  }
+  function idOf(x) { return typeof x === "object" ? x.id : x; }
+
+  document.getElementById("search").addEventListener("input", applyFilter);
+  applyFilter();
+}
+</script>
+</body>
+</html>

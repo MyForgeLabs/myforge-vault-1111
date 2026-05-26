@@ -1,0 +1,44 @@
+# EXAMPLE workflow — másold `.github/workflows/cron-trending.yml`-ként a saját repodban
+# ha aktiválni szeretnéd a heti GitHub-trending recurrence-cron-t a CI-ben (NEM csak lokálisan).
+#
+# Biztonsági megjegyzés: ez a workflow ne fogadjon untrusted-input-ot (issue-body, PR-title, stb.)
+# a `run:` parancsokban. Lásd: https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions
+
+name: Weekly GitHub-trending aggregate
+
+on:
+  schedule:
+    - cron: '0 6 * * 0'  # Sunday 06:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  trending-recurrence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install pyyaml requests beautifulsoup4
+
+      - name: Fetch GitHub trending (daily)
+        run: |
+          mkdir -p 10-raw
+          python3 scripts/github-trending-report.py --since daily --output 10-raw/
+
+      - name: Compute weekly recurrence
+        run: python3 scripts/vault-github-trending-recurrence.py --days 30 --top 15
+
+      - name: Commit changes
+        env:
+          GIT_DATE: ${{ github.event.schedule }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 10-raw/ 06-Audits/
+          git diff --cached --quiet || git commit -m "chore: weekly github-trending recurrence"
+          git push

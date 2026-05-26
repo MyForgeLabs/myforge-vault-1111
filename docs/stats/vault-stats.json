@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-05-26T03:30:05Z",
+  "wiki": {
+    "total": 260,
+    "en": 72,
+    "hu_only": 188,
+    "coverage_pct": 27.7
+  },
+  "audit": {
+    "total": 180,
+    "public": 155
+  },
+  "memgraph": {
+    "total_nodes": 39812,
+    "total_edges": 29287,
+    "entities": 13307,
+    "concepts": 5542,
+    "alias_of": 0,
+    "links_to": 3431
+  },
+  "ko_db": {
+    "total_facts": 23951
+  },
+  "crons": 30,
+  "public_commits": {
+    "all_time": 191,
+    "today": 4
+  },
+  "health": {
+    "status": "good",
+    "latest_week": "2026-W20",
+    "scored": 88,
+    "auto_prop": 33,
+    "auto_prop_rate": 0.375,
+    "applied_real": 4,
+    "reverted": 0,
+    "revert_rate": 0.0,
+    "action": "hold",
+    "threshold": 0.95
+  },
+  "github_pages": "https://myforgelabs.github.io/myforge-vault-1111/",
+  "repo_url": "https://github.com/MyForgeLabs/myforge-vault-1111"
+}

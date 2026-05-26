@@ -1,0 +1,13 @@
+{
+  "repo": "OSU-NLP-Group/HippoRAG",
+  "ingested_at": "2026-05-18T17:31:29.946939",
+  "head_commit": "d437bfb1805278b81e20c82357ed3f7d90f14901",
+  "head_commit_short": "d437bfb",
+  "files": [
+    {
+      "repo_path": "README.md",
+      "vault_path": "10-raw/external/OSU-NLP-Group_HippoRAG/README.md",
+      "chars": 17532
+    }
+  ]
+}

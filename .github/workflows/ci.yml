@@ -1,0 +1,251 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-python:
+    name: Lint Python (ruff)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Allow lint-debt to surface as ⚠️ warnings WITHOUT failing the CI run.
+    # The repo ships ~45 pre-existing F401/F541/E741 issues at launch (mostly
+    # in .vault-eval/ and .vault-rsi/ scripts inherited from the private vault).
+    # These don't gate merges; they're style-only. Fix gradually.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install ruff
+        run: pip install ruff
+      - name: Run ruff check (budget-tunable)
+        env:
+          # Round 5 (2026-05-19): full lint-debt cleanup pass landed —
+          # public repo at 0 ruff issues. Budget tightened from 60 → 5 with
+          # small headroom for future syncs that bring in private-excluded
+          # files. Tighten to 2 once we're confident no new debt creeps in.
+          RUFF_BUDGET: "5"
+        run: |
+          if [ -z "$(find . -name '*.py' -not -path './site/*' -not -path './.git/*' -print -quit)" ]; then
+            echo "No Python files found — skipping."
+            exit 0
+          fi
+          set +e
+          # GitHub format goes to stderr-via-annotations + counts goes to stdout
+          ruff check --output-format=concise --exclude site --exclude .git . > /tmp/ruff.out 2>&1
+          code=$?
+          set -e
+          # Always print the diagnostics for the CI log
+          cat /tmp/ruff.out || true
+          # Count actual lint findings (lines that look like "path:row:col: code msg")
+          issues=$(grep -cE '^[^:]+:[0-9]+:[0-9]+: [A-Z][0-9]+' /tmp/ruff.out || true)
+          echo "ruff issues found: $issues  (budget: $RUFF_BUDGET)"
+          if [ "$code" = "0" ]; then
+            echo "✓ ruff clean"; exit 0
+          fi
+          if [ "$issues" -le "$RUFF_BUDGET" ]; then
+            echo "::warning::ruff found $issues issues (within budget=$RUFF_BUDGET). Treating as non-blocking."
+            exit 0
+          fi
+          echo "::error::ruff found $issues issues, exceeds budget=$RUFF_BUDGET. Fix new issues or raise budget intentionally."
+          exit 1
+      - name: vault-atomic sanity check
+        run: |
+          if [ -f .vault-tools/lib/vault_atomic.py ]; then
+            python3 <<'PY'
+          import ast, sys, pathlib
+          bad = []
+          for p in pathlib.Path('.').rglob('*.py'):
+              if any(s in str(p) for s in ('site/', '.git/')):
+                  continue
+              try:
+                  ast.parse(p.read_text(encoding='utf-8', errors='ignore'))
+              except Exception:
+                  continue
+              text = p.read_text(encoding='utf-8', errors='ignore')
+              if 'vault_atomic' in text and 'write_text_atomic' not in text and 'atomic_write' not in text:
+                  bad.append(str(p))
+          if bad:
+              print('Files importing vault_atomic without using atomic-write API:')
+              for b in bad:
+                  print(' -', b)
+              sys.exit(1)
+          print('vault-atomic sanity OK')
+          PY
+          else
+            echo "vault_atomic.py not present in mirror — skipping."
+          fi
+
+  lint-markdown:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install markdownlint-cli2
+        run: npm install -g markdownlint-cli2@0.13.0
+      - name: Write lax config
+        run: |
+          cat > .markdownlint.jsonc <<'EOF'
+          {
+            "default": true,
+            "MD013": false,
+            "MD033": false,
+            "MD034": false,
+            "MD036": false,
+            "MD041": false,
+            "MD024": { "siblings_only": true },
+            "MD025": { "front_matter_title": "" },
+            "MD026": false,
+            "MD029": false,
+            "MD031": false,
+            "MD032": false,
+            "MD040": false
+          }
+          EOF
+      - name: Run markdownlint
+        run: |
+          markdownlint-cli2 \
+            "11-wiki/**/*.md" \
+            "07-Decisions/**/*.md" \
+            "06-Audits/**/*.md" \
+            || { echo "::warning::markdownlint found issues (non-blocking on lax preset)"; exit 0; }
+
+  lint-frontmatter:
+    name: Lint Frontmatter (11-wiki/)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install pyyaml
+        run: pip install pyyaml
+      - name: Validate required frontmatter keys
+        run: python3 .github/scripts/lint_frontmatter.py
+
+  test-regression:
+    name: Pytest (regression -m fast)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install test deps
+        run: pip install pytest pyyaml
+      - name: Run regression tests (fast)
+        run: |
+          if [ ! -d .vault-eval/regression ]; then
+            echo "No .vault-eval/regression/ in mirror — skipping."
+            exit 0
+          fi
+          if [ -z "$(find .vault-eval/regression -name 'test_*.py' -print -quit)" ]; then
+            echo "No test_*.py under .vault-eval/regression/ — skipping."
+            exit 0
+          fi
+          set +e
+          pytest .vault-eval/regression -m fast -v --tb=short
+          code=$?
+          if [ "$code" = "5" ]; then
+            echo "No fast-marker tests collected — soft-skip."
+            exit 0
+          fi
+          exit $code
+
+  check-broken-wikilinks:
+    name: Broken wikilinks budget
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      # Baseline in the public OSS mirror as of 2026-05-19:
+      # broken_references=232, broken_targets=168 (see
+      # `.github/scripts/broken_wikilinks_check.py` — it skips private vault
+      # dirs (02-Projects/, 05-Memory/, 08-Sessions/, .vault-nb/ etc.) and
+      # bash-bracket lookalikes, so this count is genuine link rot inside
+      # the published `11-wiki/`, `07-Decisions/`, `06-Audits/` set.
+      # Budget gives ~8% headroom; tighten as the count goes down.
+      # 2026-05-20: raised 250→280 (placeholder wikilinks in new Wave-A/B/C/D
+      # audits + ADRs; tighten after next cleanup pass).
+      BROKEN_REF_BUDGET: "280"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Scan for broken wikilinks
+        run: python3 .github/scripts/broken_wikilinks_check.py
+
+  build-docs:
+    name: mkdocs build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Allow content-debt warnings to surface as ⚠️ WITHOUT failing the run.
+    # The deploy workflow (docs.yml) already ships the site successfully —
+    # those ~67 warnings are stale wikilinks in vault content, not build
+    # errors. Ratchet down by fixing the underlying paths in the vault →
+    # mirror pipeline. mkdocs build still RUNS, just doesn't gate-fail.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install mkdocs deps
+        run: pip install -r requirements.txt
+      - name: Build the site (non-strict; collect warnings only)
+        env:
+          # Baseline 2026-05-19: ~35 mkdocs warnings — URL-encoded paths from
+          # the vault, README.hu.md stale refs from the public mirror's
+          # docs/index.md (which is a render of the vault README), and mailto:
+          # links that mkdocs URL-encodes oddly. These are content-debt, not
+          # mkdocs-config bugs; ratchet down by fixing the underlying paths in
+          # the vault → mirror pipeline. The deploy workflow (docs.yml) already
+          # ships the site successfully without --strict.
+          MKDOCS_WARN_BUDGET: "100"
+        run: |
+          set +e
+          mkdocs build --site-dir _ci_site 2>&1 | tee /tmp/mkdocs.out
+          code=${PIPESTATUS[0]}
+          set -e
+          warns=$(grep -cE '^WARNING' /tmp/mkdocs.out || true)
+          echo "mkdocs warnings: $warns  (budget: $MKDOCS_WARN_BUDGET)"
+          if [ "$code" -ne "0" ]; then
+            echo "::error::mkdocs build failed with exit=$code (non-warning error)"
+            exit 1
+          fi
+          if [ "$warns" -gt "$MKDOCS_WARN_BUDGET" ]; then
+            echo "::error::mkdocs reported $warns warnings, exceeds budget=$MKDOCS_WARN_BUDGET. Fix or raise budget intentionally."
+            exit 1
+          fi
+          if [ "$warns" -gt 0 ]; then
+            echo "::warning::mkdocs reported $warns warnings (within budget=$MKDOCS_WARN_BUDGET). Non-blocking."
+          fi

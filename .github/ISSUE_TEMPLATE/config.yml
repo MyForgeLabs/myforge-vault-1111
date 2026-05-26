@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Show your vault (Discussion)
+    url: https://github.com/MyForgeLabs/myforge-vault-1111/discussions/categories/show-your-vault
+    about: Share your vault pattern — no code needed, no GitHub issue needed.
+  - name: General Q&A (Discussion)
+    url: https://github.com/MyForgeLabs/myforge-vault-1111/discussions/categories/q-a
+    about: Ask a question — much better venue than a GitHub issue.
+  - name: Roadmap (Discussion)
+    url: https://github.com/MyForgeLabs/myforge-vault-1111/discussions/categories/roadmap
+    about: Discuss the 8 evolution axes (B-1..B-8) and what should be next.

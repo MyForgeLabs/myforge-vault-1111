@@ -1,0 +1,17 @@
+{
+  "schema": "critic-review/v1",
+  "hash": "591326594a67",
+  "created_at": "2026-05-19T17:49:17Z",
+  "target_file": "11-wiki/memgraph-ce-feature-limits.md",
+  "bullet_text": "Memgraph CE 3.9+ has native vector-index; cosine search drops from ~280ms numpy to 1ms native (280x speedup). Use CREATE VECTOR INDEX + vector_search.search().",
+  "diff_text": "",
+  "prompt_template_path": "/root/obsidian-vault/.vault-ko/prompts/critic-review-template.md",
+  "expected_dims": [
+    "factuality",
+    "novelty",
+    "durability",
+    "vault_fit",
+    "safety"
+  ],
+  "output_format": "json-only-no-fence"
+}

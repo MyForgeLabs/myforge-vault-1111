@@ -1,0 +1,46 @@
+# myforge-vault-1111
+
+> A self-improving Obsidian vault shared by three CLI AI agents (Claude Code,
+> Codex, Gemini). Karpathy LLM-Wiki pattern + Memgraph knowledge graph +
+> G-Eval auto-crystallization. MIT-licensed, local-first, $0 marginal cost.
+> 219 wikis, 13.8K KO-DB facts, 9K entity-graph nodes, 24K typed edges.
+
+## Core docs
+
+- [README](https://github.com/MyForgeLabs/myforge-vault-1111/blob/main/README.md): project overview, install, quickstart
+- [Karpathy essay](https://myforgelabs.github.io/myforge-vault-1111/wiki/what-i-learned-building-self-improving-vault.en/): 3,909-word longform on the build
+- [Architecture overview](https://myforgelabs.github.io/myforge-vault-1111/wiki/Karpathy-LLM-Wiki-pattern.en/): the 8 evolution axes B-1..B-8
+- [AGENTS.md](https://github.com/MyForgeLabs/myforge-vault-1111/blob/main/AGENTS.md): the single entry-point all three CLI agents read at session start
+
+## Key concepts
+
+- [LLM-Wiki pattern](https://myforgelabs.github.io/myforge-vault-1111/wiki/Karpathy-LLM-Wiki-pattern.en/): the foundational `10-raw/` immutable + `11-wiki/` distilled idea
+- [Johnny-Decimal prefix](https://myforgelabs.github.io/myforge-vault-1111/wiki/Johnny-Decimal-prefix.en/): folder structure
+- [Crystallization protocol](https://myforgelabs.github.io/myforge-vault-1111/wiki/Crystallization-protocol.en/): how sessions become wikis
+- [Subagent fanout](https://myforgelabs.github.io/myforge-vault-1111/wiki/claude-code-subagent-fanout.en/): $0-cost bulk LLM mutation via Claude Code's Task tool
+- [G-Eval bias mitigation](https://myforgelabs.github.io/myforge-vault-1111/wiki/g-eval-bias-mitigation-pattern.en/): LLM-as-judge calibration
+- [Multi-layer safety-gate](https://myforgelabs.github.io/myforge-vault-1111/wiki/multi-layer-safety-gate.en/): 4-layer atomic-write + flock + git-hook + critic-review
+
+## Stack reference
+
+- [Memgraph CE feature limits](https://myforgelabs.github.io/myforge-vault-1111/wiki/memgraph-ce-feature-limits.en/): what works, what doesn't, 280× speedup verified
+- [mgclient autocommit gotcha](https://myforgelabs.github.io/myforge-vault-1111/wiki/mgclient-autocommit-silent-rollback.en/): the bug that almost killed it (1262 silent rollbacks)
+- [CLI session-ID env-var matrix](https://myforgelabs.github.io/myforge-vault-1111/wiki/cli-session-id-env-var-matrix.en/): per-chat isolation
+- [Hybrid BM25+RRF retrieval](https://myforgelabs.github.io/myforge-vault-1111/wiki/hybrid-bm25-semantic-rrf-pattern.en/): LongMemEval-S 46% → 67.68% Recall@5
+- [Append-only JSONL migration](https://myforgelabs.github.io/myforge-vault-1111/wiki/append-only-jsonl-migration/): the centralised atomic-write playbook
+- [Two-tier graph extraction](https://myforgelabs.github.io/myforge-vault-1111/wiki/two-tier-graph-extraction/): LLM-entity + deterministic graphify tree-sitter coexistence
+
+## Optional
+
+- [Repo CHANGELOG](https://github.com/MyForgeLabs/myforge-vault-1111/blob/main/CHANGELOG.md): release notes
+- [Audits index](https://github.com/MyForgeLabs/myforge-vault-1111/tree/main/06-Audits): 101 single-shot reports
+- [Sessions index](https://github.com/MyForgeLabs/myforge-vault-1111/tree/main/08-Sessions): the day-to-day workspace
+- [ADRs](https://github.com/MyForgeLabs/myforge-vault-1111/tree/main/07-Decisions): architecture decisions
+
+## How to use this file
+
+This file follows the [llms.txt specification](https://llmstxt.org/) so AI
+agents browsing the repo or docs site can discover the project structure
+without crawling the whole tree. Human readers should start with the
+README; AI agents should start with the Karpathy essay + Architecture
+overview.

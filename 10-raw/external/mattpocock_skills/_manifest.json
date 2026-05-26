@@ -1,0 +1,13 @@
+{
+  "repo": "mattpocock/skills",
+  "ingested_at": "2026-05-18T07:02:30.310901",
+  "head_commit": "e74f0061bb67222181640effa98c675bdb2fdaa7",
+  "head_commit_short": "e74f006",
+  "files": [
+    {
+      "repo_path": "docs/adr/0001-explicit-setup-pointer-only-for-hard-dependencies.md",
+      "vault_path": "10-raw/external/mattpocock_skills/docs__adr__0001-explicit-setup-pointer-only-for-hard-dependencies.md",
+      "chars": 1166
+    }
+  ]
+}

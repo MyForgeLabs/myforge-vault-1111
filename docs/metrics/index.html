@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MyForge Vault — metrics timeline</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Per-release metric snapshots for MyForge Vault 11.11: typed-coverage %, LongMemEval-S R@5 %, retrieval latency, cron mutex-coverage %.">
+<style>
+  :root { --bg: #0e1116; --fg: #d6dde6; --muted: #6b7585; --line: #2a313c; --card: #181d24; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 32px 20px; background: var(--bg); color: var(--fg); font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; }
+  .wrap { max-width: 920px; margin: 0 auto; }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
+  .chart { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 20px; margin-bottom: 24px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 14px; font-size: 12px; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+  th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .meta { margin-top: 24px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); padding-top: 16px; }
+  .meta a { color: #8aa9d6; text-decoration: none; }
+  .meta a:hover { text-decoration: underline; }
+  .axis text { fill: var(--muted); font-size: 11px; }
+  .axis line, .axis path { stroke: var(--line); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Metrics timeline</h1>
+  <div class="sub">Per-release snapshots · updated on each <code>vault-public-sync</code> · <a href="timeline.json" style="color:#8aa9d6">raw JSON</a></div>
+
+  <div class="chart">
+    <svg id="chart" width="100%" height="320"></svg>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <table id="table">
+    <thead>
+      <tr id="thead"><th>Version</th><th>Date</th></tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+  <div class="meta">
+    Sources: <a href="../typed-graph-viz/">typed-graph visualizer</a> ·
+    <a href="../health/">health dashboard</a> ·
+    <a href="https://github.com/MyForgeLabs/myforge-vault-1111/blob/main/CHANGELOG.md">CHANGELOG</a>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+fetch("timeline.json").then(r => r.json()).then(data => {
+  const groups = data.metric_groups;
+  const releases = data.releases;
+
+  // Build table
+  const thead = document.getElementById("thead");
+  for (const k of Object.keys(groups)) {
+    const th = document.createElement("th");
+    th.textContent = groups[k].label;
+    th.style.textAlign = "right";
+    thead.appendChild(th);
+  }
+  const tbody = document.getElementById("tbody");
+  for (const r of releases) {
+    const tr = document.createElement("tr");
+    const tdV = document.createElement("td");
+    tdV.textContent = "v" + r.version;
+    tr.appendChild(tdV);
+    const tdD = document.createElement("td");
+    tdD.textContent = r.date;
+    tr.appendChild(tdD);
+    for (const k of Object.keys(groups)) {
+      const td = document.createElement("td");
+      td.className = "num";
+      td.textContent = r[k] !== undefined ? r[k] : "—";
+      tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
+  }
+
+  // Build chart
+  const svg = d3.select("#chart");
+  const W = svg.node().clientWidth || 800, H = 320;
+  const margin = {top: 20, right: 60, bottom: 40, left: 50};
+  const innerW = W - margin.left - margin.right;
+  const innerH = H - margin.top - margin.bottom;
+  svg.attr("viewBox", `0 0 ${W} ${H}`);
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  const x = d3.scalePoint().domain(releases.map(r => "v" + r.version)).range([0, innerW]).padding(0.5);
+  const yLeft = d3.scaleLinear().domain([0, 100]).range([innerH, 0]);
+  const yRight = d3.scaleLinear().domain([0, 6]).range([innerH, 0]);
+
+  g.append("g").attr("class","axis").attr("transform", `translate(0,${innerH})`).call(d3.axisBottom(x));
+  g.append("g").attr("class","axis").call(d3.axisLeft(yLeft).ticks(5).tickFormat(d => d + "%"));
+  g.append("g").attr("class","axis").attr("transform", `translate(${innerW},0)`).call(d3.axisRight(yRight).ticks(5).tickFormat(d => d + "s"));
+
+  const lg = document.getElementById("legend");
+  for (const [k, meta] of Object.entries(groups)) {
+    const y = meta.axis === "right" ? yRight : yLeft;
+    const line = d3.line()
+      .x(r => x("v" + r.version))
+      .y(r => y(r[k]));
+    g.append("path")
+      .datum(releases)
+      .attr("fill","none")
+      .attr("stroke", meta.color)
+      .attr("stroke-width", 2.5)
+      .attr("d", line);
+    g.selectAll(null)
+      .data(releases)
+      .join("circle")
+      .attr("cx", r => x("v" + r.version))
+      .attr("cy", r => y(r[k]))
+      .attr("r", 4)
+      .attr("fill", meta.color);
+    const sp = document.createElement("span");
+    const dot = document.createElement("span"); dot.className = "dot"; dot.style.background = meta.color;
+    sp.appendChild(dot);
+    sp.appendChild(document.createTextNode(" " + meta.label));
+    lg.appendChild(sp);
+  }
+});
+</script>
+</body>
+</html>

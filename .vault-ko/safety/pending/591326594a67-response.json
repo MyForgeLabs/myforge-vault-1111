@@ -1,0 +1,13 @@
+{
+  "scores": {
+    "factuality": 0.95,
+    "novelty": 0.9,
+    "durability": 0.85,
+    "vault_fit": 0.95,
+    "safety": 1.0
+  },
+  "reasoning": "Concrete benchmark (1ms vs 280ms) with named API (CREATE VECTOR INDEX). Matches calibration Anchor B almost exactly. Strong wiki-fit, evergreen until Memgraph 4.x.",
+  "modified_bullet": null,
+  "conflict_with": [],
+  "downgrade_routing_to": null
+}

@@ -1,0 +1,65 @@
+# scripts/scrub-rules.example.yaml — placeholder template
+#
+# The real `scrub-rules.yaml` is intentionally NOT included in this public
+# repo because it contains the client-project denylist (specific names of
+# projects whose content must NOT leak into the public mirror).
+#
+# If you fork this repo and want to mirror your own vault publicly:
+#
+#   1. Copy this file: `cp scrub-rules.example.yaml scrub-rules.yaml`
+#   2. Fill in `source_vault` + `target_repo` paths for your machine.
+#   3. Adjust `include_paths` to match the shape of your vault.
+#   4. Most importantly: extend `forbidden_strings` with client / customer /
+#      partner names whose mention must skip a file entirely from publish.
+#   5. Add personal-info replacements (email, hostname, passwords).
+#   6. Dry-run: `python3 scripts/scrub-public.py`
+#   7. Apply:   `python3 scripts/scrub-public.py --apply`
+#
+# The forbidden-string check runs AFTER the replacements pass — so anything
+# that has a replacement rule won't trigger forbidden. The block is at the
+# FILE level (the whole file gets skipped if any forbidden string remains
+# after replacements). This is intentional: better to lose one document
+# than to leak a partial mention.
+
+source_vault: /path/to/your/vault
+target_repo:  /path/to/your/public/mirror
+
+include_paths:
+  - "AGENTS.md"
+  - "README.md"
+  - "LICENSE"
+  # ... etc — see `scrub-public.py` for the matching algorithm
+
+always_skip:
+  - "**/.env"
+  - "**/.env.*"
+  - "**/credentials.json"
+  - "05-Memory/User.md"
+  - "05-Memory/Infrastructure.md"
+  - "02-Projects/**"
+  - "!02-Projects/Index.md"
+  - "03-Hosts/**"
+  - "04-Tasks/Backlog.md"
+  # The real scrub-rules file is excluded from publish for the same reason
+  # this template exists — its forbidden-string list reveals client names.
+  - "scripts/scrub-rules.yaml"
+
+replacements:
+  # Substring rewrites applied BEFORE the forbidden-string check.
+  - find: "your.email@example.com"
+    replace: "user@example.com"
+  - find: "your-hostname"
+    replace: "vps-prod-example"
+
+forbidden_strings:
+  # File-skip if any of these strings still appear after `replacements`.
+  # Use this for: client / partner names, business-internal codenames,
+  # leaked credentials we haven't written a replacement for yet.
+  - "BEGIN OPENSSH PRIVATE KEY"
+  - "BEGIN RSA PRIVATE KEY"
+  - "sk-ant-api"
+  - "your-partner-name-here"
+  - "client-project-codename-here"
+
+expected_min_files: 100
+expected_max_files: 1500

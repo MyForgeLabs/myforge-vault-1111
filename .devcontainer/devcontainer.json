@@ -1,0 +1,61 @@
+{
+  "name": "MyForge Vault 11.11 — devcontainer",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
+
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "moby": true,
+      "dockerDashComposeVersion": "v2"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  "forwardPorts": [
+    7687,
+    8000
+  ],
+  "portsAttributes": {
+    "7687": {
+      "label": "Memgraph CE (bolt)",
+      "onAutoForward": "silent"
+    },
+    "8000": {
+      "label": "mkdocs serve (docs preview)",
+      "onAutoForward": "openPreview"
+    }
+  },
+
+  "postCreateCommand": ".devcontainer/post-create.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "yzhang.markdown-all-in-one",
+        "DavidAnson.vscode-markdownlint",
+        "tamasfe.even-better-toml",
+        "redhat.vscode-yaml",
+        "anthropic.claude-code"
+      ],
+      "settings": {
+        "files.exclude": {
+          "**/__pycache__": true,
+          "**/.pytest_cache": true,
+          "**/site": true
+        },
+        "python.defaultInterpreterPath": "/usr/local/bin/python3"
+      }
+    }
+  },
+
+  "remoteUser": "vscode",
+  "containerEnv": {
+    "VAULT_ROOT": "/workspaces/myforge-vault-1111",
+    "MEMGRAPH_HOST": "127.0.0.1",
+    "MEMGRAPH_PORT": "7687",
+    "PYTHONUNBUFFERED": "1"
+  }
+}

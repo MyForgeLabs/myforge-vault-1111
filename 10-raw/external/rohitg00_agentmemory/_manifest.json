@@ -1,0 +1,58 @@
+{
+  "repo": "rohitg00/agentmemory",
+  "ingested_at": "2026-05-19T04:17:56.544489",
+  "head_commit": "68fddd418e1bbcc41d32a1c61b7a78d91eb7c4dc",
+  "head_commit_short": "68fddd4",
+  "files": [
+    {
+      "repo_path": "README.md",
+      "vault_path": "10-raw/external/rohitg00_agentmemory/README.md",
+      "chars": 61994
+    },
+    {
+      "repo_path": "DESIGN.md",
+      "vault_path": "10-raw/external/rohitg00_agentmemory/DESIGN.md",
+      "chars": 20938
+    },
+    {
+      "repo_path": "GOVERNANCE.md",
+      "vault_path": "10-raw/external/rohitg00_agentmemory/GOVERNANCE.md",
+      "chars": 4702
+    },
+    {
+      "repo_path": "AGENTS.md",
+      "vault_path": "10-raw/external/rohitg00_agentmemory/AGENTS.md",
+      "chars": 4593
+    },
+    {
+      "repo_path": "CHANGELOG.md",
+      "vault_path": "10-raw/external/rohitg00_agentmemory/CHANGELOG.md",
+      "chars": 134031
+    },
+    {
+      "repo_path": "ROADMAP.md",
+      "vault_path": "10-raw/external/rohitg00_agentmemory/ROADMAP.md",
+      "chars": 6172
+    },
+    {
+      "repo_path": "SECURITY.md",
+      "vault_path": "10-raw/external/rohitg00_agentmemory/SECURITY.md",
+      "chars": 3480
+    },
+    {
+      "repo_path": "MAINTAINERS.md",
+      "vault_path": "10-raw/external/rohitg00_agentmemory/MAINTAINERS.md",
+      "chars": 918
+    },
+    {
+      "repo_path": "CODE_OF_CONDUCT.md",
+      "vault_path": "10-raw/external/rohitg00_agentmemory/CODE_OF_CONDUCT.md",
+      "chars": 3083
+    },
+    {
+      "repo_path": "CONTRIBUTING.md",
+      "vault_path": "10-raw/external/rohitg00_agentmemory/CONTRIBUTING.md",
+      "chars": 5436
+    }
+  ]
+}

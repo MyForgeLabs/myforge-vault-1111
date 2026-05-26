@@ -1,0 +1,17 @@
+{
+  "schema": "critic-review/v1",
+  "hash": "74160fdd65a4",
+  "created_at": "2026-05-19T17:49:17Z",
+  "target_file": "11-wiki/audit-md-self-referential-loop.md",
+  "bullet_text": "Audit-MD self-referential loop trap — auditor-output (System_Health, broken-wikilinks-latest) [[wikilink]]-eket listáz a body-jában → következő scan re-flag-eli azokat. Fix: is_excluded_path() patch a scan-script-ben. Reusable minden recurring-audit script-hez.",
+  "diff_text": "",
+  "prompt_template_path": "/root/obsidian-vault/.vault-ko/prompts/critic-review-template.md",
+  "expected_dims": [
+    "factuality",
+    "novelty",
+    "durability",
+    "vault_fit",
+    "safety"
+  ],
+  "output_format": "json-only-no-fence"
+}

@@ -1,0 +1,13 @@
+{
+  "scores": {
+    "factuality": 0.85,
+    "novelty": 0.65,
+    "durability": 0.7,
+    "vault_fit": 0.65,
+    "safety": 1.0
+  },
+  "reasoning": "Correct decomposition but mostly restates a generic profiling axiom. Wider lesson is true but well-known. Acceptable but not first-rate wiki content.",
+  "modified_bullet": null,
+  "conflict_with": [],
+  "downgrade_routing_to": null
+}

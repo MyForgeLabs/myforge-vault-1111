@@ -1,0 +1,14 @@
+# Linguist overrides — keep language stats accurate.
+# Generated outputs (mkdocs build, HTML/CSS/JS bundles) should not count
+# toward the language breakdown shown on GitHub.
+
+site/**           linguist-generated=true
+docs/site/**      linguist-generated=true
+docs/assets/javascripts/**  linguist-vendored=true
+docs/assets/stylesheets/**  linguist-vendored=true
+
+# Audio is documentation, not source
+docs/audio/**     linguist-documentation=true
+
+# Treat .md as Markdown (default), .py as Python (default).
+# The two big script dirs are clearly source — no override needed.

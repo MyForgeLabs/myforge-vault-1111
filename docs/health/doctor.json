@@ -1,0 +1,61 @@
+{
+  "worst": "\ud83d\udd34",
+  "elapsed_sec": 0.06,
+  "checks": {
+    "Memgraph": {
+      "status": "\ud83d\udfe2",
+      "msg": "8201/13307 typed (61.6%), 29287 edges",
+      "total_entities": 13307,
+      "typed_entities": 8201,
+      "typed_pct": 61.6,
+      "edges": 29287
+    },
+    "KO-DB": {
+      "status": "\ud83d\udfe2",
+      "msg": "23951 facts / 23951 active / 0 provs / 22.2MB",
+      "facts": 23951,
+      "active": 23951,
+      "provs": 0,
+      "size_mb": 22.2
+    },
+    "MEMORY.md": {
+      "status": "\ud83d\udd34",
+      "msg": "28399 byte (+3439 OVER limit)",
+      "size": 28399,
+      "buffer": -3439
+    },
+    "Files": {
+      "status": "\ud83d\udfe2",
+      "msg": "wiki:345 audit:180 adr:56 session:98 daily:32",
+      "wiki": 345,
+      "audit": 180,
+      "adr": 56,
+      "sessions": 98,
+      "daily": 32
+    },
+    "vault-* bins": {
+      "status": "\ud83d\udfe2",
+      "msg": "93 on PATH (umbrella: `vault`)",
+      "count": 93
+    },
+    "Cron": {
+      "status": "\ud83d\udfe2",
+      "msg": "35 entries, 35 mutex-protected (100%)",
+      "entries": 35,
+      "protected": 35,
+      "pct_protected": 100.0
+    },
+    "Git": {
+      "status": "\ud83d\udfe2",
+      "msg": "last commit 20m ago, 4 uncommitted",
+      "age_min": 20.1,
+      "uncommitted": 4
+    },
+    "Disk": {
+      "status": "\ud83d\udfe2",
+      "msg": "28% used (278.8GB free)",
+      "pct": 28.0
+    }
+  },
+  "ts": "2026-05-26T03:30Z"
+}

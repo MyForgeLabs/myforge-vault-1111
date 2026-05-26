@@ -1,0 +1,46 @@
+name: Mark stale issues and PRs
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    name: Triage stale items
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+          # --- Issues ---
+          days-before-issue-stale: 60
+          days-before-issue-close: 14
+          stale-issue-label: stale
+          stale-issue-message: >
+            This issue has been quiet for 60 days — marking as stale; please drop a comment if it's still relevant.
+          close-issue-message: >
+            Closing as no activity in the last 14 days; feel free to reopen any time with fresh context.
+
+          # --- Pull Requests ---
+          days-before-pr-stale: 30
+          days-before-pr-close: 14
+          stale-pr-label: stale
+          stale-pr-message: >
+            This pull request has had no activity for 30 days — marking as stale; ping us if it's still in flight.
+          close-pr-message: >
+            Closing this stale PR after 14 days of inactivity; happy to reopen once you're ready to continue.
+
+          # --- Exemptions ---
+          exempt-issue-labels: "pinned,roadmap,community-pattern"
+          exempt-pr-labels: "pinned,roadmap,community-pattern"
+          exempt-all-milestones: true
+          operations-per-run: 100
+          remove-stale-when-updated: true
+          ascending: true

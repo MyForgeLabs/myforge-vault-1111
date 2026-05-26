@@ -1,0 +1,24 @@
+---
+name: microsoft/graphrag/docs/query/notebooks/overview.md
+type: raw
+source: external-repo
+source_repo: microsoft/graphrag
+source_path: docs/query/notebooks/overview.md
+ingested_at: 2026-05-18T17:31:31
+tags: ["#type/raw", "#source/external", "#source/github"]
+---
+
+# API Notebooks
+
+- [API Overview Notebook](../../examples_notebooks/api_overview.ipynb)
+- [Bring-Your-Own Vector Store](../../examples_notebooks/custom_vector_store.ipynb)
+
+# Query Engine Notebooks
+
+For examples about running Query please refer to the following notebooks:
+
+- [Global Search Notebook](../../examples_notebooks/global_search.ipynb)
+- [Local Search Notebook](../../examples_notebooks/local_search.ipynb)
+- [DRIFT Search Notebook](../../examples_notebooks/drift_search.ipynb)
+
+The test dataset for these notebooks can be found in [dataset.zip](../../data/operation_dulce/dataset.zip){:download}.

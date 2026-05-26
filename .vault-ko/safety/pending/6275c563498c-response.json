@@ -1,0 +1,13 @@
+{
+  "scores": {
+    "factuality": 0.7,
+    "novelty": 0.4,
+    "durability": 0.3,
+    "vault_fit": 0.15,
+    "safety": 0.9
+  },
+  "reasoning": "Project kickoff snapshot routed to 11-wiki/ — anti-pattern (vault_fit collapse per Anchor C). Belongs in 02-Projects/boulium.md, NOT wiki. Unverified staging claim + expiring domain timeline lowers durability.",
+  "modified_bullet": null,
+  "conflict_with": [],
+  "downgrade_routing_to": "discard"
+}

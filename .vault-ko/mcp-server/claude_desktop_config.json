@@ -1,0 +1,14 @@
+{
+  "//": "Skeleton config for Claude Desktop / Codex / Gemini MCP host. Merge `mcpServers.vault-ko` into your existing config file. Locations: macOS ~/Library/Application Support/Claude/claude_desktop_config.json, Linux ~/.config/Claude/claude_desktop_config.json, Codex ~/.codex/mcp.json (varies), Cursor ~/.cursor/mcp.json.",
+  "mcpServers": {
+    "vault-ko": {
+      "command": "python3",
+      "args": [
+        "/root/obsidian-vault/.vault-ko/mcp-server/vault_ko_mcp.py"
+      ],
+      "env": {
+        "VAULT_ROOT": "/root/obsidian-vault"
+      }
+    }
+  }
+}
