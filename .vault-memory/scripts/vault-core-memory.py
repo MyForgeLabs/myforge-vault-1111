@@ -195,7 +195,7 @@ def _extract_glossary() -> str:
                 rows.append((slug, meaning))
     # Hand-pick the most-likely-active 14.
     priority_slugs = {
-        "SV", "KGC", "MFL", "MAPESZ", "Foxxi", "Kokó", "BMAD", "ADR",
+        "SV", "KGC", "MFL", "MAPESZ", "Client A", "Kokó", "BMAD", "ADR",
         "PRD", "NFR", "RAG", "PWA", "PM2", "Tailscale",
     }
     picked: list[tuple[str, str]] = []
