@@ -46,6 +46,41 @@ plugins:
       lang:
         - hu
         - en
+  # i18n suffix-mode: <name>.md = HU (default), <name>.en.md = English alternate.
+  # URL layout: /myforge-vault-1111/<page>/ (HU) and /myforge-vault-1111/en/<page>/ (EN).
+  # The language-switcher in the header lets visitors flip between the two.
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: hu
+          default: true
+          name: Magyar
+          build: true
+          nav_translations:
+            Dashboard: Dashboard
+            Agents: Agentek
+            Demo: Demo
+            Reproduction Guide: Reproduction Guide
+            Knowledge Graph: Knowledge Graph
+            Overview: Áttekintés
+            Interactive viewer: Interaktív viewer
+            Evergreen Wiki: Evergreen Wiki
+            Audio Overviews: Audio áttekintések
+            ADR (Decisions): ADR (Döntések)
+            Meta: Meta
+            Audits: Auditok
+            All: Mind
+            SV-meta Sessions: SV-meta sessionök
+            Daily logs: Napi naplók
+            Home: Bevezető
+        - locale: en
+          name: English
+          build: true
+          site_name: 'MyForge Vault 11.11'
+          site_description: 'Superintelligent Vault — Karpathy LLM-Wiki + Johnny-Decimal + 11.11 session-orchestration'
   - awesome-pages
   - ezlinks:
       wikilinks: true
@@ -102,29 +137,27 @@ markdown_extensions:
   - toc:
       permalink: '#'
 
+# Canonical nav uses English labels; i18n plugin's nav_translations rewrites
+# them into Magyar for the HU build. This keeps a single source-of-truth for
+# the page tree.
 nav:
-  - Bevezető: index.md
+  - Home: index.md
   - Dashboard: dashboard/index.html
-  - Agentek: agents.md
-  - Demo: demo/index.md
+  - Agents: agents.md
   - Reproduction Guide: reproduction-guide.md
   - Knowledge Graph:
-      - Áttekintés: wiki/vault-knowledge-graph-overview.md
+      - Overview: wiki/vault-knowledge-graph-overview.md
       - Interactive viewer: graph/viewer.html
-      - Full (4.6 MB): graph/index.html
   - Evergreen Wiki:
-      - Áttekintés: wiki/Index.md
+      - Overview: wiki/Index.md
   - Audio Overviews: audio/Index.md
-  # - HN Launch Console: hn-launch/index.html  # hidden from public nav (launch-internal)
   - ADR (Decisions):
-      - Áttekintés: decisions/Index.md
+      - Overview: decisions/Index.md
   - Meta:
-      - meta/README.md
+      - Overview: meta/index.md
   - Audits:
-      - Áttekintés: audits/Index.md
-      - Mind: audits/
+      - Overview: audits/Index.md
   - SV-meta Sessions:
-      - Áttekintés: sessions/Index.md
-      - Mind: sessions/
+      - Overview: sessions/Index.md
   - Daily logs:
-      - Áttekintés: daily/Index.md
+      - Overview: daily/Index.md

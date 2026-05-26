@@ -6,3 +6,4 @@ mkdocs-glightbox>=0.4.0
 mkdocs-minify-plugin>=0.8.0
 mkdocs-rss-plugin>=1.19.0
 mkdocs-ezlinks-plugin>=0.1.14
+mkdocs-static-i18n>=1.3
